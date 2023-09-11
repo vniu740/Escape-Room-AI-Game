@@ -14,6 +14,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -40,6 +41,14 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML
   private ImageView imgViewSpiralFrog;
     
+  @FXML
+  private Pane pnFishing;
+  
+  @FXML
+  private Pane pnFishingOpacity;
+  
+  @FXML
+  private Button btnFishingExit; 
 
 
 
@@ -150,5 +159,22 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
  
 
+
+  @FXML
+  private void onPondClick(MouseEvent event) throws IOException {
+    System.out.println("pond clicked");
+    //set pnfishing to visible
+    pnFishing.setVisible(true);
+    pnFishingOpacity.setVisible(true);
+
+  }
+
+  @FXML
+  private void onFishingExit(MouseEvent event) throws IOException {
+    //set pnfishing to invisible
+    pnFishing.setVisible(false);
+    pnFishingOpacity.setVisible(false);
+
+  }
 
 }
