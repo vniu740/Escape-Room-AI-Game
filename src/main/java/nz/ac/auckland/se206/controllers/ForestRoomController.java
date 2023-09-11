@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -31,7 +33,18 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML
   private Button switchScenes;
   @FXML
-  private ImageView imgViewSpiralPond; 
+  private ImageView imgViewSpiralPond;
+
+  @FXML
+  private Slider sldOne;
+  @FXML
+  private ImageView imgViewSpiralFrog;
+    
+
+
+
+  
+
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -42,15 +55,28 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     Tooltip pondTooltip = new Tooltip("pondimagespiral");
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
+
+  //   sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
+  //     // get the new y value of the slider
+  //     double y = sldOne.getValue();
+  //     // set the y value of the frog to the difference between new and old y values of the slider
+  //     imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (newValue.doubleValue() - oldValue.doubleValue()));
+
+
+  // });
+  sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
+    // Add the difference between newValue and oldValue to the Y position of the frog
+    imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+});
 }
 
 
-  
-    /**
-   * Updates timer label according to the current time that has passed.
-   *
-   * @param formattedTime the formatted time to display
-   */
+// .
+  /**
+  * Updates timer label according to the current time that has passed.
+  *
+  * @param formattedTime the formatted time to display
+  */
   @Override
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLbl.setText(formattedTime));

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
@@ -19,5 +19,22 @@
             <Image url="@../images/spiral.png" />
          </image>
       </ImageView>
+      <Pane layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0" visible="false">
+         <children>
+            <ImageView fitHeight="285.0" fitWidth="327.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../../Users/HP%20Admin/Desktop/water.jpg" />
+               </image>
+            </ImageView>
+            <Slider fx:id="sldOne" layoutX="37.0" orientation="VERTICAL" />
+            <Slider layoutX="146.0" layoutY="3.0" orientation="VERTICAL" />
+            <Slider layoutX="251.0" layoutY="3.0" orientation="VERTICAL" />
+            <ImageView fx:id="imgViewSpiralFrog" fitHeight="43.0" fitWidth="70.0" layoutX="21.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/frog.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </Pane>
