@@ -1,16 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
    <children>
-      <ImageView fx:id="btnEasy" fitHeight="497.0" fitWidth="503.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnEasy" fitHeight="497.0" fitWidth="503.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/stars.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="btnMedium" layoutX="188.0" layoutY="124.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="124.0" text="MEDIUM">
+         <font>
+            <Font name="Herculanum" size="19.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnHard" layoutX="318.0" layoutY="124.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="124.0" text="HARD">
+         <font>
+            <Font name="Herculanum" size="19.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnEasy" layoutX="58.0" layoutY="124.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="124.0" text="EASY">
+         <font>
+            <Font name="Herculanum" size="19.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Pane fx:id="pnDifficultyMenu" layoutX="57.0" layoutY="184.0" prefHeight="263.0" prefWidth="382.0">
+         <children>
+            <ImageView fx:id="imgViewDifficultyMenu" fitHeight="263.0" fitWidth="382.0" pickOnBounds="true" preserveRatio="true" />
+            <ToggleButton fx:id="toggleButtonFourMins" layoutX="142.0" layoutY="154.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" text="4 Mins">
+               <font>
+                  <Font name="Herculanum" size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ToggleButton>
+            <ToggleButton fx:id="toggleBtnTwoMins" layoutX="46.0" layoutY="154.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" text="2 Mins">
+               <font>
+                  <Font name="Herculanum" size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ToggleButton>
+            <ToggleButton fx:id="toggleButton6Mins" layoutX="237.0" layoutY="154.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="91.0" text="6 Mins">
+               <font>
+                  <Font name="Herculanum" size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ToggleButton>
+            <Button fx:id="btnPlay" layoutX="126.0" layoutY="204.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="131.0" text="PLAY">
+               <font>
+                  <Font name="Herculanum" size="26.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
    </children>
 </Pane>
