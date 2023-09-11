@@ -1,0 +1,20 @@
+.chatTextArea {
+    -fx-background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.5);
+}
+
+.chatTextArea  .scroll-pane {
+    -fx-background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.5);
+}
+
+.text-area .scroll-pane .viewport{
+-fx-background-color: rgba(255,255,255,0.5);
+background-color: rgba(255,255,255,0);
+}
+
+
+.text-area .scroll-pane .content{
+-fx-background-color: rgba(255,255,255,0.5);
+background-color: rgba(255,255,255,0);
+}

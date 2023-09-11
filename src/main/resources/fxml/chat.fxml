@@ -3,15 +3,25 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-  xmlns="http://javafx.com/javafx/18"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-    <TextArea fx:id="chatTextArea" layoutX="35.0" layoutY="26.0" prefHeight="299.0" prefWidth="538.0" wrapText="true" />
-    <TextField fx:id="inputText" layoutX="35.0" layoutY="341.0" prefHeight="26.0" prefWidth="435.0" />
-    <Button fx:id="sendButton" layoutX="505.0" layoutY="342.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
-    <Button layoutX="505.0" layoutY="367.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+      <ImageView fitHeight="502.0" fitWidth="519.0" layoutX="-6.0" layoutY="-11.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/jewelleryBox.jpg" />
+         </image>
+      </ImageView>
+    <TextArea fx:id="chatTextArea" layoutX="16.0" layoutY="18.0" prefHeight="373.0" prefWidth="464.0" style="-fx-background-color: transparent;" stylesheets="@../css/chat.css" wrapText="true" />
+    <TextField fx:id="inputText" layoutX="16.0" layoutY="411.0" prefHeight="27.0" prefWidth="349.0" />
+    <Button fx:id="sendButton" layoutX="371.0" layoutY="411.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
+    <Button fx:id="btnGoBack" layoutX="420.0" layoutY="411.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+      <ImageView fx:id="imgView" fitHeight="100.0" fitWidth="180.0" layoutX="23.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/notes.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>
