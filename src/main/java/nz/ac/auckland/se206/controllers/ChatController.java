@@ -1,26 +1,44 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.PathTransition;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatController {
+  private TextToSpeech textToSpeech;
+  private ChatMessage chatMessage = new ChatMessage("Jewellery Box", ".");
+
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
+  @FXML private Button btnGoBack;
   @FXML private Button sendButton;
+  @FXML private ImageView imgView;
 
+  private PathTransition pathTransition;
   private ChatCompletionRequest chatCompletionRequest;
 
   /**
@@ -30,9 +48,34 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+    textToSpeech = new TextToSpeech();
+    inputText.setEditable(false);
+    Task<Void> getRiddleTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.4)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            btnGoBack.setDisable(true);
+            chatMessage =
+                runGpt(
+                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("potion")));
+            inputText.clear();
+            textToSpeech.speak(chatMessage.getContent());
+            inputText.setEditable(true);
+            btnGoBack.setDisable(false);
+            return null;
+          }
+        };
+
+    Thread riddleThread = new Thread(getRiddleTask, "Riddle Thread");
+    riddleThread.start();
+    createPathTransition(imgView);
+    pathTransition.play();
   }
 
   /**
@@ -41,7 +84,12 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    if (msg.getRole().equals("assistant")) {
+      chatTextArea.appendText("Jewellery Box: " + msg.getContent() + "\n\n");
+
+    } else {
+      chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+    }
   }
 
   /**
@@ -57,11 +105,16 @@ public class ChatController {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      appendChatMessage(result.getChatMessage());
+      Platform.runLater(
+          () -> {
+            pathTransition.pause();
+            imgView.setVisible(false);
+            appendChatMessage(result.getChatMessage());
+          });
+
       return result.getChatMessage();
     } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
-      e.printStackTrace();
+      System.out.println("Problem calling API: " + e.getMessage());
       return null;
     }
   }
@@ -75,17 +128,45 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    // if the input is empty, clear the text field and don't run GPT
     String message = inputText.getText();
     if (message.trim().isEmpty()) {
       return;
     }
     inputText.clear();
+    // Create a new task that will send the users input to GPT by calling the runGPT method
+    imgView.setVisible(true);
+    pathTransition.play();
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
-    ChatMessage lastMsg = runGpt(msg);
-    if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
-      GameState.isRiddleResolved = true;
-    }
+    inputText.clear();
+    // Make it so the user cannot edit the text field while their msg is sent to GPT
+    inputText.setEditable(false);
+    btnGoBack.setDisable(true);
+    Task<Void> sendChatMessageTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            ChatMessage lastMsg = runGpt(msg);
+            // Save the users input message and make it visible on the text area
+
+            textToSpeech.speak(lastMsg.getContent());
+            inputText.setEditable(true);
+            btnGoBack.setDisable(false);
+            // If the users input is correct, update the gameState
+            if (lastMsg.getRole().equals("assistant")
+                && lastMsg.getContent().startsWith("Correct")) {
+              GameState.isRiddleResolved = true;
+              inputText.setEditable(false);
+              textToSpeech.terminate();
+            }
+
+            return null;
+          }
+        };
+    // Create a new thread that will run this task and tell it to start
+    Thread sendChatMessageThread = new Thread(sendChatMessageTask, "Send Chat Message Thread");
+    sendChatMessageThread.start();
   }
 
   /**
@@ -97,6 +178,23 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("room");
+    App.setRoot("lab");
+  }
+
+  private void createPathTransition(ImageView ImageView) {
+    Path path = new Path();
+    path.getElements().add(new MoveTo(70, 110));
+    path.getElements().add(new LineTo(331, 110));
+    path.getElements().add(new LineTo(70, 110));
+    path.getElements().add(new LineTo(331, 110));
+    path.getElements().add(new LineTo(70, 110));
+
+    pathTransition = new PathTransition();
+    pathTransition.setDuration(Duration.millis(7000));
+    pathTransition.setNode(ImageView);
+    pathTransition.setPath(path);
+    pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+    pathTransition.setAutoReverse(true);
+    pathTransition.setCycleCount(PathTransition.INDEFINITE);
   }
 }

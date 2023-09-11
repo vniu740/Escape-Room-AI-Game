@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
+   <children>
+      <ImageView fitHeight="516.0" fitWidth="496.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/lab.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgViewIconScroll" fitHeight="92.0" fitWidth="85.0" layoutY="403.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/potionRecipeIcon.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgViewSpiralWindow" fitHeight="62.0" fitWidth="59.0" layoutX="149.0" layoutY="35.0" onMouseEntered="#onEnterSpiralWindow" onMouseExited="#onExitSpiralWindow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/spiral.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgViewMusicNotes" fitHeight="74.0" fitWidth="50.0" layoutX="166.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/musicalNotes.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgViewSpiralJewellery" fitHeight="36.0" fitWidth="78.0" layoutX="171.0" layoutY="125.0" onMouseClicked="#onJewelleryClick" onMouseEntered="#onEnterSpiralJewellery" onMouseExited="#onExitSpiralJewellery" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/spiral.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgViewSpiralLever" fitHeight="113.0" fitWidth="85.0" layoutX="124.0" layoutY="306.0" onMouseClicked="#onLeverClick" onMouseEntered="#onEnterSpiralLever" onMouseExited="#onExitSpiralLever" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/spiral.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgViewSpiralCauldron" fitHeight="63.0" fitWidth="50.0" layoutX="334.0" layoutY="260.0" onMouseClicked="#onCauldronClick" onMouseEntered="#onEnterSpiralCauldron" onMouseExited="#onExitSpiralCauldron" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/spiral.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="pnCauldronOpacity" layoutX="17.0" layoutY="36.0" opacity="0.7" prefHeight="366.0" prefWidth="464.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false" />
+      <Pane fx:id="pnCauldron" layoutX="17.0" layoutY="36.0" prefHeight="366.0" prefWidth="464.0" visible="false">
+         <children>
+            <ImageView fx:id="imgViewCauldronFrog" fitHeight="92.0" fitWidth="85.0" layoutX="64.0" layoutY="71.0" onDragDetected="#onDragDetectionSourceFrog" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/frog.png" />
+               </image>
+               <effect>
+                  <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="imgViewDestination" fitHeight="189.0" fitWidth="246.0" layoutX="130.0" layoutY="167.0" onDragDropped="#onDragDroppedDestination" onDragOver="#onDragOverDestination" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cauldron.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgViewCauldronCrystal" fitHeight="92.0" fitWidth="85.0" layoutX="190.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceCrystal" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/crystal.png" />
+               </image>
+               <effect>
+                  <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="imgViewCauldronScale" fitHeight="82.0" fitWidth="85.0" layoutX="317.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceScale" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/scale.png" />
+               </image>
+               <effect>
+                  <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
+               </effect>
+            </ImageView>
+            <Text fill="WHITE" layoutX="11.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drag the ingredients into the cauldron to make the potion" wrappingWidth="441.99999237060547">
+               <font>
+                  <Font name="Herculanum" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtTryAgain" fill="RED" layoutX="92.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrong! try again." textAlignment="CENTER" visible="false" wrappingWidth="280.0">
+               <font>
+                  <Font name="Herculanum" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtCorrect" fill="#51ff00" layoutX="36.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct! You made the potion" visible="false" wrappingWidth="391.21630859375">
+               <font>
+                  <Font name="Herculanum" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnCauldronExit" layoutX="427.0" layoutY="327.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fx:id="imgViewCauldronBubbles" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/cauldronBubbles.jpg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pnScroll" layoutX="35.0" layoutY="78.0" prefHeight="325.0" prefWidth="427.0" visible="false">
+         <children>
+            <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/scroll.png" />
+               </image>
+            </ImageView>
+            <HBox fx:id="hBoxScroll" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0">
+               <children>
+                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </children>
+</Pane>
