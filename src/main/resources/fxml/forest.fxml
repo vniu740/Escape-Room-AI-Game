@@ -13,12 +13,12 @@
    <children>
       <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../Users/HP%20Admin/Desktop/forest.png" />
+            <Image url="@../../../../../../Users/HP%20Admin/Desktop/forestV2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgViewSpiralPond" fitHeight="117.0" fitWidth="173.0" layoutX="200.0" layoutY="234.0" onMouseClicked="#onPondClick" onMouseEntered="#onEnterSpiralPond" onMouseExited="#onExitSpiralPond" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewSpiralPond" fitHeight="94.0" fitWidth="231.0" layoutX="116.0" layoutY="291.0" onMouseClicked="#onPondClick" pickOnBounds="true">
          <image>
-            <Image url="@../images/spiral.png" />
+            <Image url="@../../../../../../Users/HP%20Admin/Desktop/pond.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="68.0" fitWidth="98.0" layoutX="502.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">

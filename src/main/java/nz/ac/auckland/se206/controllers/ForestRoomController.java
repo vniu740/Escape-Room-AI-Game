@@ -19,6 +19,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 
@@ -65,18 +66,27 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
 
-  //   sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
-  //     // get the new y value of the slider
-  //     double y = sldOne.getValue();
-  //     // set the y value of the frog to the difference between new and old y values of the slider
-  //     imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (newValue.doubleValue() - oldValue.doubleValue()));
+    //   sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
+    //     // get the new y value of the slider
+    //     double y = sldOne.getValue();
+    //     // set the y value of the frog to the difference between new and old y values of the slider
+    //     imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (newValue.doubleValue() - oldValue.doubleValue()));
 
+    // });
+    sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
+      // Add the difference between newValue and oldValue to the Y position of the frog
+      imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+    });
 
-  // });
-  sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
-    // Add the difference between newValue and oldValue to the Y position of the frog
-    imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
-});
+    // new animation hread to do the pulse imahe
+    Thread thread = new Thread(() -> {
+      //create a new ImagePulseAnimation object
+      ImagePulseAnimation pulseAnimation = new ImagePulseAnimation(imgViewSpiralPond);
+      //play the animation
+      pulseAnimation.playAnimation();
+
+    });
+    thread.start();
 }
 
 
@@ -97,15 +107,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   }
 
 
-  @FXML
-  public void onEnterSpiralPond() {
-    fadeIn(imgViewSpiralPond);
-  }
+  // @FXML
+  // public void onEnterSpiralPond() {
+  //   fadeIn(imgViewSpiralPond);
+  // }
 
-  @FXML
-  public void onExitSpiralPond() {
-    fadeOut(imgViewSpiralPond);
-  }
+  // @FXML
+  // public void onExitSpiralPond() {
+  //   fadeOut(imgViewSpiralPond);
+  // }
 
 
     /**
