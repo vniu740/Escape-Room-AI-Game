@@ -6,13 +6,18 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
-      <ImageView fitHeight="393.0" fitWidth="497.0" layoutX="25.0" layoutY="4.0" pickOnBounds="true">
+      <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../Users/HP%20Admin/Desktop/magical-garden.jpg" />
+            <Image url="@../../../../../../Users/HP%20Admin/Desktop/forest.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLbl" layoutX="422.0" layoutY="361.0" text="Label" />
+      <Label fx:id="timerLbl" layoutX="517.0" layoutY="369.0" text="00:00" />
+      <ImageView fx:id="imgViewSpiralPond" fitHeight="117.0" fitWidth="173.0" layoutX="200.0" layoutY="234.0" onMouseEntered="#onEnterSpiralPond" onMouseExited="#onExitSpiralPond" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/spiral.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

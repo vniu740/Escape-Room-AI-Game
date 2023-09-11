@@ -2,15 +2,21 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 
 /** Controller class for the room view. */
@@ -22,13 +28,22 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   private Rectangle vase;
   @FXML private Label timerLbl;
   private TimeManager timeManager;
+  @FXML
+  private Button switchScenes;
+  @FXML
+  private ImageView imgViewSpiralPond; 
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
-  }
+
+    Tooltip pondTooltip = new Tooltip("pondimagespiral");
+    pondTooltip.setShowDelay(Duration.millis(0));
+    Tooltip.install(imgViewSpiralPond, pondTooltip);
+}
+
 
   
     /**
@@ -47,25 +62,49 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   }
 
 
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
   @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
+  public void onEnterSpiralPond() {
+    fadeIn(imgViewSpiralPond);
+  }
+
+  @FXML
+  public void onExitSpiralPond() {
+    fadeOut(imgViewSpiralPond);
+  }
+
+
+    /**
+   * Helper method that fades in an ImageView of the GUI.
+   *
+   * @param anchorPane
+   */
+  public void fadeIn(ImageView imageView) {
+    // Create a fade transtion that starts from opacity 0 and ends at opacity 1 that runs for 0.3
+    // seconds
+    FadeTransition transition = new FadeTransition(Duration.seconds(0.3), imageView);
+    transition.setFromValue(0);
+    transition.setToValue(0.6);
+    transition.play();
   }
 
   /**
-   * Handles the key released event.
+   * Helper method that fades out an ImageView of the GUI.
    *
-   * @param event the key event
+   * @param anchorPane
    */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
+  public void fadeOut(ImageView imageView) {
+    // Create a fade transtion that starts from opacity 1 and ends at opacity 0 that runs for 0.3
+    // seconds
+    FadeTransition transition = new FadeTransition(Duration.seconds(0.3), imageView);
+    transition.setFromValue(0.6);
+    transition.setToValue(0);
+    transition.play();
   }
+
+
+
+
+
 
   /**
    * Displays a dialog box with the given title, header text, and message.
@@ -82,51 +121,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     alert.showAndWait();
   }
 
-  /**
-   * Handles the click event on the door.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
-  @FXML
-  public void clickDoor(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
 
-    if (!GameState.isRiddleResolved) {
-      showDialog("Info", "Riddle", "You need to resolve the riddle!");
-      App.setRoot("chat");
-      return;
-    }
+ 
 
-    if (!GameState.isKeyFound) {
-      showDialog(
-          "Info", "Find the key!", "You resolved the riddle, now you know where the key is.");
-    } else {
-      showDialog("Info", "You Won!", "Good Job!");
-    }
-  }
 
-  /**
-   * Handles the click event on the vase.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickVase(MouseEvent event) {
-    System.out.println("vase clicked");
-    if (GameState.isRiddleResolved && !GameState.isKeyFound) {
-      showDialog("Info", "Key Found", "You found a key under the vase!");
-      GameState.isKeyFound = true;
-    }
-  }
-
-  /**
-   * Handles the click event on the window.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickWindow(MouseEvent event) {
-    System.out.println("window clicked");
-  }
 }
