@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimeManager;
 
 /** Controller class for the room view. */
-public class RoomController implements TimeManager.TimeUpdateListener{
+public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
   @FXML private Rectangle door;
   @FXML private Rectangle window;

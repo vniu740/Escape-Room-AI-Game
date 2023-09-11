@@ -6,8 +6,8 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -34,7 +34,10 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button btnGoBack;
   @FXML private Button sendButton;
-  @FXML private ImageView imgView;
+  @FXML
+  private ImageView imgView;
+ @FXML private Label timerLbl;
+  
 
   private PathTransition pathTransition;
   private ChatCompletionRequest chatCompletionRequest;
