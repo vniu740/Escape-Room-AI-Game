@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -40,7 +41,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML
   private Slider sldOne;
   @FXML
+  private Slider sldTwo;
+  @FXML
+  private Slider sldThree;
+  @FXML
   private ImageView imgViewSpiralFrog;
+  @FXML
+  private ImageView imgViewMushroom;
+  @FXML
+  private ImageView imgViewBug;
     
   @FXML
   private Pane pnFishing;
@@ -66,16 +75,19 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
 
-    //   sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
-    //     // get the new y value of the slider
-    //     double y = sldOne.getValue();
-    //     // set the y value of the frog to the difference between new and old y values of the slider
-    //     imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (newValue.doubleValue() - oldValue.doubleValue()));
-
-    // });
     sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
       imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+    });
+
+        sldTwo.valueProperty().addListener((observable, oldValue, newValue) -> {
+      // Add the difference between newValue and oldValue to the Y position of the frog
+      imgViewMushroom.setY(imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+        });
+    
+      sldThree.valueProperty().addListener((observable, oldValue, newValue) -> {
+      // Add the difference between newValue and oldValue to the Y position of the frog
+      imgViewBug.setY(imgViewBug.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
     });
 
     // new animation hread to do the pulse imahe
