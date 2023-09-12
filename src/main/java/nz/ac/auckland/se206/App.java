@@ -60,7 +60,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
 
     // scene = new Scene(SceneManager.getUi(AppUi.START_PAGE), 640, 480);
-    scene = new Scene(SceneManager.getUi(AppUi.FOREST), 640, 480);
+    scene = new Scene(SceneManager.getUi(AppUi.FOREST), 600, 399);
 
 
     stage.setScene(scene);
