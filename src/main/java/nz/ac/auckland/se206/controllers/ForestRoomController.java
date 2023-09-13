@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -61,7 +62,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML
   private Button btnFishingExit;
   @FXML 
-   private Pane sldOneDisablePane; 
+  private Pane sldOneDisablePane;
+
+  @FXML 
+  private Line threadOne;
+
+  
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Initialization code goes here
@@ -82,6 +88,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
       imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+      // update the end point of line to be higher
+      threadOne.setEndY(threadOne.getEndY() -(oldValue.doubleValue() - newValue.doubleValue()));
       //if the frog is at the bottom of the slider, change the pic to be the frog with the fishing rod
       if (newValue.doubleValue() == sldOne.getMax()) {
         imgViewSpiralFrog.setImage(new Image("/images/bottleM.png"));

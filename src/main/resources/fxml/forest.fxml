@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
@@ -59,6 +60,7 @@
                </image>
             </ImageView>
             <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
+            <Line fx:id="threadOne" endX="108.66664123535156" endY="4.0" layoutX="-3.0" layoutY="227.0" startX="108.66664123535156" startY="-68.00001525878906" />
          </children>
       </Pane>
       <Pane fx:id="sldOneDisablePane" layoutX="127.0" layoutY="80.0" prefHeight="180.0" prefWidth="142.0" visible="false" />
