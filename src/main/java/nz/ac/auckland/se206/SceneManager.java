@@ -6,7 +6,12 @@ import javafx.scene.Parent;
 public class SceneManager {
 
   public enum AppUi {
-    ROOM, CHAT, START_PAGE, FOREST
+    ROOM,
+    CHAT,
+    START_PAGE,
+    FOREST,
+    DRAGON_ROOM,
+    MATCHING
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
@@ -17,7 +22,5 @@ public class SceneManager {
 
   public static Parent getUi(AppUi ui) {
     return sceneMap.get(ui);
-
   }
-
 }

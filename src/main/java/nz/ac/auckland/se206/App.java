@@ -53,6 +53,8 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+    SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
+
     Parent root = loadFxml("room");
     scene = new Scene(root, 600, 470);
     stage.setScene(scene);
