@@ -89,7 +89,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       // Add the difference between newValue and oldValue to the Y position of the frog
       imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
       // update the end point of line to be higher
-      threadOne.setEndY(threadOne.getEndY() -(oldValue.doubleValue() - newValue.doubleValue()));
+      threadOne.setEndY(threadOne.getEndY() +(oldValue.doubleValue() - newValue.doubleValue()));
       //if the frog is at the bottom of the slider, change the pic to be the frog with the fishing rod
       if (newValue.doubleValue() == sldOne.getMax()) {
         imgViewSpiralFrog.setImage(new Image("/images/bottleM.png"));
