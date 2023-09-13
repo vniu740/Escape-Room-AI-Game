@@ -36,7 +36,6 @@ public class LabController {
   private @FXML ImageView imgViewSpiralLever;
   private @FXML ImageView imgViewSpiralCauldron;
   private @FXML ImageView imgViewScrollIcon;
-  private @FXML ImageView imgViewMusicNotes;
   private @FXML ImageView imgViewCauldronFrog;
   private @FXML ImageView imgViewCauldronCrystal;
   private @FXML ImageView imgViewCauldronScale;
@@ -61,7 +60,6 @@ public class LabController {
     setPotionRecipe();
     setCauldronOrder();
 
-    imgViewMusicNotes.setVisible(false);
     imgViewSpiralJewellery.setVisible(false);
     txtTryAgain.setVisible(false);
     txtCorrect.setVisible(false);
@@ -161,7 +159,6 @@ public class LabController {
   @FXML
   public void onLeverClick() {
     GameState.isLeverPulled = true;
-    imgViewMusicNotes.setVisible(true);
     imgViewSpiralJewellery.setVisible(true);
     imgViewSpiralLever.setVisible(false);
   }
