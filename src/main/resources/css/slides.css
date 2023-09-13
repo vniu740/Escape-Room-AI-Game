@@ -1,0 +1,23 @@
+#sldOne .track {
+  -fx-background-color: linear-gradient(to right, rgba(119, 64, 4, 1), rgba(124, 91, 6, 1)); /* Gradient from brown to a different color */
+}
+
+#sldTwo .track {
+  -fx-background-color: linear-gradient(to right, rgba(119, 64, 4, 1), rgba(124, 91, 6, 1)); /* Gradient from brown to a different color */
+}
+
+#sldThree .track {
+  -fx-background-color: linear-gradient(to right, rgba(119, 64, 4, 1), rgba(124, 91, 6, 1)); /* Gradient from brown to a different color */
+}
+
+#sldOne .thumb {
+  -fx-background-color: rgb(141, 81, 13); /* Set the desired color for the thumb */
+} 
+
+#sldTwo .thumb {
+  -fx-background-color: rgb(141, 81, 13); /* Set the desired color for the thumb */
+} 
+
+#sldThree .thumb {
+  -fx-background-color: rgb(141, 81, 13); /* Set the desired color for the thumb */
+} 

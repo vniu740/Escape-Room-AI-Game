@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -58,13 +59,9 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   private Pane pnFishingOpacity;
   
   @FXML
-  private Button btnFishingExit; 
-
-
-
-  
-
-
+  private Button btnFishingExit;
+  @FXML 
+   private Pane sldOneDisablePane; 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Initialization code goes here
@@ -75,14 +72,32 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
 
+    Rotate rotate = new Rotate(-45); // Rotate by 45 degrees
+
+    // Apply the transformation to the Slider
+    sldOne.getTransforms().add(rotate);
+    sldTwo.getTransforms().add(rotate);
+    sldThree.getTransforms().add(rotate);
+
     sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
       imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+      //if the frog is at the bottom of the slider, change the pic to be the frog with the fishing rod
+      if (newValue.doubleValue() == sldOne.getMax()) {
+        imgViewSpiralFrog.setImage(new Image("/images/bottleM.png"));
+        // he slider should not move anymore 
+        sldOne.lookup(".thumb").setPickOnBounds(false);
+        sldOneDisablePane.setVisible(true);
+ 
+      }
     });
 
         sldTwo.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
-      imgViewMushroom.setY(imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+          imgViewMushroom.setY(imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+    
+
+      
         });
     
       sldThree.valueProperty().addListener((observable, oldValue, newValue) -> {

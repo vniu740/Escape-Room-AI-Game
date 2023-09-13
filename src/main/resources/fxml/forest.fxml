@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
       <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
          <image>
@@ -34,33 +34,34 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="pnFishing" layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0" visible="false">
+      <Pane fx:id="pnFishing" layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0">
          <children>
             <ImageView fitHeight="285.0" fitWidth="327.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/water.jpg" />
                </image>
             </ImageView>
-            <Slider fx:id="sldOne" layoutX="37.0" orientation="VERTICAL" />
-            <Slider fx:id="sldTwo" layoutX="146.0" layoutY="3.0" orientation="VERTICAL" />
-            <Slider fx:id="sldThree" layoutX="251.0" layoutY="3.0" orientation="VERTICAL" />
-            <ImageView fx:id="imgViewSpiralFrog" fitHeight="35.0" fitWidth="49.0" layoutX="20.0" layoutY="231.0" pickOnBounds="true">
+            <Slider fx:id="sldTwo" layoutX="37.0" layoutY="4.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="14.0" />
+            <Slider fx:id="sldThree" layoutX="100.0" layoutY="1.0" orientation="VERTICAL" prefHeight="196.0" prefWidth="14.0" />
+            <ImageView fx:id="imgViewSpiralFrog" fitHeight="44.0" fitWidth="49.0" layoutX="83.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/bottleEyes.png" />
+                  <Image url="@../images/questionBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgViewMushroom" fitHeight="54.0" fitWidth="65.0" layoutX="128.0" layoutY="222.0" pickOnBounds="true">
+            <ImageView fx:id="imgViewMushroom" fitHeight="44.0" fitWidth="49.0" layoutX="145.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/BottleM.png" />
+                  <Image url="@../images/questionBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgViewBug" fitHeight="44.0" fitWidth="32.0" layoutX="242.0" layoutY="227.0" pickOnBounds="true">
+            <ImageView fx:id="imgViewBug" fitHeight="44.0" fitWidth="49.0" layoutX="212.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/bottle.png" />
+                  <Image url="@../images/questionBox.png" />
                </image>
             </ImageView>
+            <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
          </children>
       </Pane>
+      <Pane fx:id="sldOneDisablePane" layoutX="127.0" layoutY="80.0" prefHeight="180.0" prefWidth="142.0" visible="false" />
       <Label fx:id="timerLbl" alignment="CENTER" layoutX="531.0" layoutY="29.0" prefHeight="34.0" prefWidth="32.0" style="-fx-background-color: white;" text="00:00" />
    </children>
 </Pane>
