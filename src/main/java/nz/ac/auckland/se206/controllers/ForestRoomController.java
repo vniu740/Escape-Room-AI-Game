@@ -67,6 +67,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML 
   private Line threadOne;
 
+  @FXML
+  private Line threadTwo;
+
+  @FXML
+  private Line threadThree;
+
   
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -103,6 +109,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         sldTwo.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
           imgViewMushroom.setY(imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+          threadTwo.setEndY(threadTwo.getEndY() +(oldValue.doubleValue() - newValue.doubleValue()));
     
 
       
@@ -110,7 +117,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     
       sldThree.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
-      imgViewBug.setY(imgViewBug.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+        imgViewBug.setY(imgViewBug.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+        threadThree.setEndY(threadThree.getEndY() +(oldValue.doubleValue() - newValue.doubleValue()));
     });
 
     // new animation hread to do the pulse imahe

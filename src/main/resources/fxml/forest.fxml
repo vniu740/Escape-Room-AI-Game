@@ -61,6 +61,8 @@
             </ImageView>
             <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
             <Line fx:id="threadOne" endX="108.66664123535156" endY="4.0" layoutX="-3.0" layoutY="227.0" startX="108.66664123535156" startY="-68.00001525878906" />
+            <Line fx:id="threadTwo" endX="-93.33334350585938" endY="75.0" layoutX="261.0" layoutY="158.0" startX="-93.33334350585938" startY="0.3333282470703125" />
+            <Line fx:id="threadThree" endX="13.666656494140625" endY="74.0" layoutX="226.0" layoutY="159.0" startX="13.666656494140625" startY="-2.6666717529296875" />
          </children>
       </Pane>
       <Pane fx:id="sldOneDisablePane" layoutX="127.0" layoutY="80.0" prefHeight="180.0" prefWidth="142.0" visible="false" />
