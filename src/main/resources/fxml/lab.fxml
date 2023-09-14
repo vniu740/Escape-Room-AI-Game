@@ -25,33 +25,33 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewSpiralWindow" fitHeight="62.0" fitWidth="59.0" layoutX="234.0" layoutY="125.0" onMouseEntered="#onEnterSpiralWindow" onMouseExited="#onExitSpiralWindow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewWindow" fitHeight="60.0" fitWidth="54.0" layoutX="236.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/spiral.png" />
+            <Image url="@../images/window.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewSpiralJewellery" fitHeight="36.0" fitWidth="78.0" layoutX="249.0" layoutY="179.0" onMouseClicked="#onJewelleryClick" onMouseEntered="#onEnterSpiralJewellery" onMouseExited="#onExitSpiralJewellery" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewJewellery" fitHeight="39.0" fitWidth="40.0" layoutX="252.0" layoutY="180.0" onMouseClicked="#onJewelleryClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/spiral.png" />
+            <Image url="@../images/jewellery.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewSpiralLever" fitHeight="54.0" fitWidth="18.0" layoutX="245.0" layoutY="286.0" onMouseClicked="#onLeverClick" onMouseEntered="#onEnterSpiralLever" onMouseExited="#onExitSpiralLever" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewLever" fitHeight="54.0" fitWidth="18.0" layoutX="245.0" layoutY="286.0" onMouseClicked="#onLeverClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/spiral.png" />
+            <Image url="@../images/lever.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewSpiralCauldron" fitHeight="63.0" fitWidth="50.0" layoutX="348.0" layoutY="258.0" onMouseClicked="#onCauldronClick" onMouseEntered="#onEnterSpiralCauldron" onMouseExited="#onExitSpiralCauldron" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewCauldron" fitHeight="60.0" fitWidth="70.0" layoutX="342.0" layoutY="249.0" onMouseClicked="#onCauldronClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/spiral.png" />
+            <Image url="@../images/labCauldron.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
