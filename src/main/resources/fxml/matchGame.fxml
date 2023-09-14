@@ -79,14 +79,19 @@
             </rowConstraints>
           </GridPane>
          <Button fx:id="buttonBack" alignment="CENTER" layoutX="250.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="48.0" prefWidth="100.0" text="Go back" />
-         <Label alignment="CENTER" layoutX="39.0" layoutY="14.0" prefWidth="108.0" text="Pairs found" textFill="WHITE">
+         <ImageView fx:id="counterBack" fitHeight="120.0" fitWidth="131.0" layoutX="28.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/paperButton.png" />
+            </image>
+         </ImageView>
+         <Label alignment="CENTER" layoutX="37.0" layoutY="54.0" prefHeight="30.0" prefWidth="100.0" text="Pairs found">
             <font>
-               <Font size="20.0" />
+               <Font name="Lucida Calligraphy Italic" size="16.0" />
             </font>
          </Label>
-         <Label fx:id="counter" alignment="CENTER" layoutX="65.0" layoutY="44.0" prefHeight="89.0" prefWidth="57.0" text="0" textAlignment="CENTER" textFill="WHITE">
+         <Label fx:id="counter" alignment="CENTER" layoutX="74.0" layoutY="77.0" prefHeight="48.0" prefWidth="39.0" text="0" textAlignment="CENTER">
             <font>
-               <Font size="32.0" />
+               <Font name="System Bold Italic" size="45.0" />
             </font>
          </Label>
       </children>

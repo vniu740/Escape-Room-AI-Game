@@ -29,9 +29,3 @@
     -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 
 }
-
-#counter {
-    -fx-shape: "M 600 300 L 650 250 L 700 300 L 700 400 L 650 450 L 600 400 L 600 300 ";
-    -fx-background-color: #ff34ff;
-    -fx-padding: 5px;
-}

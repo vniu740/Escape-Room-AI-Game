@@ -33,3 +33,9 @@ public class DragonRoomController {
     App.setUi(AppUi.MATCHING);
   }
 }
+
+/**
+ * Attribution: imageLock: <a
+ * href="https://www.freepik.com/free-vector/set-lockpad-icon_4150202.htm#query=cartoon%20lock&position=16&from_view=keyword&track=ais">Image
+ * by brgfx</a> on Freepik
+ */

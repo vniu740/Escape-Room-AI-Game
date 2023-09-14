@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.stream.Collectors;
 import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -37,14 +35,13 @@ public class MatchingGameController {
   @FXML private ImageView tile9;
   @FXML private Button buttonBack;
   @FXML private Label counter;
+  @FXML private ImageView counterBack;
 
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
   private ImageView[] tiles; // Array of tile ImageViews
   private int lastClickedTileIndex = -1; // Index of the last clicked tile
   private int lastrow = -1;
   private int lastcol = -1;
-  private PauseTransition pauseTransition =
-      new PauseTransition(Duration.seconds(2)); // Adjust the duration as needed
 
   // Initialize the game and set up event handlers
   public void initialize() throws IOException {
@@ -196,17 +193,11 @@ public class MatchingGameController {
     }
   }
 
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
-  }
-
   @FXML
   private void onBackClicked() throws IOException {
     // Go back to the Dragon Room
     App.setUi(AppUi.DRAGON_ROOM);
   }
 }
+
+/** Attribution: counterBack https://freesvg.org/parchment-background-vector */
