@@ -39,22 +39,6 @@ public class App extends Application {
     return fxmlLoader.load();
   }
 
-    /**
-<<<<<<< featForestRoom
-   * This method is invoked when the application starts. It loads and shows the
-   * "Canvas" scene.
-=======
-   * Sets the scene to the input UI.
-   *
-   * @param newUi The UI to set the scene to.
-   */
-
-  public static void setUi(AppUi newUi) {
-
-    scene.setRoot(SceneManager.getUi(newUi));
-
-  }
-
   /**
    * This method is invoked when the application starts. It loads and shows the
    * "Canvas" scene.
