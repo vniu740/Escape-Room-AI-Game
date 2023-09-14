@@ -106,13 +106,14 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         }
 
         // Shuffle the list
-        Collections.shuffle(uniqueImages);
+        //Collections.shuffle(uniqueImages);
 
         // Convert the shuffled list back to an array
         Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
         //random index to select an image from the list
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(3);
+        // Random rand = new Random();
+        // int randomIndex = rand.nextInt(3);
+        int randomIndex = 0; //for testing purposes
     
     Tooltip pondTooltip = new Tooltip("pondimagespiral");
     pondTooltip.setShowDelay(Duration.millis(0));
@@ -138,7 +139,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         imgViewSpiralFrog.setImage(selectedImage);
          if (randomIndex == 0) {
           //alert the user that they have found the correct image
-          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingradient in this room!", "You have found the correct ingradient!"));
+          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
 
         }
       
@@ -159,7 +160,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         imgViewMushroom.setImage(selectedImage);
          if (randomIndex == 1) {
           //alert the user that they have found the correct image
-          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingradient in this room!", "You have found the correct ingradient!"));
+          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
 
         }
         // he slider should not move anymore 
@@ -182,7 +183,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         // he slider should not move anymore 
          if (randomIndex == 2) {
           //alert the user that they have found the correct image
-          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingradient in this room!", "You have found the correct ingradient!"));
+          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
 
         }
         sldThree.lookup(".thumb").setPickOnBounds(false);
@@ -190,16 +191,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
       }
     });
-
-    // new animation hread to do the pulse imahe
-    // Thread thread = new Thread(() -> {
-    //   //create a new ImagePulseAnimation object
-    //   ImagePulseAnimation pulseAnimation = new ImagePulseAnimation(imgViewSpiralPond);
-    //   //play the animation
-    //   pulseAnimation.playAnimation();
-
-    // });
-    // thread.start();
   }
 
 
@@ -218,39 +209,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       timerLbl.setText("00:00");
     }
   }
-
-
-    /**
-   * Helper method that fades in an ImageView of the GUI.
-   *
-   * @param anchorPane
-   */
-  public void fadeIn(ImageView imageView) {
-    // Create a fade transtion that starts from opacity 0 and ends at opacity 1 that runs for 0.3
-    // seconds
-    FadeTransition transition = new FadeTransition(Duration.seconds(0.3), imageView);
-    transition.setFromValue(0);
-    transition.setToValue(0.6);
-    transition.play();
-  }
-
-  /**
-   * Helper method that fades out an ImageView of the GUI.
-   *
-   * @param anchorPane
-   */
-  public void fadeOut(ImageView imageView) {
-    // Create a fade transtion that starts from opacity 1 and ends at opacity 0 that runs for 0.3
-    // seconds
-    FadeTransition transition = new FadeTransition(Duration.seconds(0.3), imageView);
-    transition.setFromValue(0.6);
-    transition.setToValue(0);
-    transition.play();
-  }
-
-
-
-
 
 
   /**
