@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class RoomController {
@@ -102,5 +103,7 @@ public class RoomController {
   @FXML
   public void clickWindow(MouseEvent event) {
     System.out.println("window clicked");
+
+    App.setUi(AppUi.DRAGON_ROOM);
   }
 }
