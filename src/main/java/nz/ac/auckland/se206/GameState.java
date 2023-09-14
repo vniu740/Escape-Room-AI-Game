@@ -20,4 +20,7 @@ public class GameState {
 
   /** Indicates whether the user is matching tiles */
   public static boolean matching = false;
+
+  /** Indicates whether the user has collected the dragon scale */
+  public static boolean isScaleCollected = false;
 }

@@ -16,7 +16,7 @@
             <Image url="@../images/lock.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageScale" fitHeight="53.0" fitWidth="53.0" layoutX="228.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageScale" fitHeight="53.0" fitWidth="53.0" layoutX="228.0" layoutY="217.0" onMouseClicked="#onScaleClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/scale.png" />
          </image>
