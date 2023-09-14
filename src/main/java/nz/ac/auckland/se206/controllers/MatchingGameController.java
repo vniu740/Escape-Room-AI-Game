@@ -112,17 +112,17 @@ public class MatchingGameController {
     // Set the image based on the tile value when it's flipped up
     String tileImageName = "/images/questionBox.png"; // Default image path
     if (tileValue == 1) {
-      tileImageName = "/images/tileVal1.jpg";
+      tileImageName = "/images/tileVal1.png";
     } else if (tileValue == 2) {
-      tileImageName = "/images/tileVal2.jpg";
+      tileImageName = "/images/tileVal2.png";
     } else if (tileValue == 3) {
-      tileImageName = "/images/tileVal3.jpg";
+      tileImageName = "/images/tileVal3.png";
     } else if (tileValue == 4) {
-      tileImageName = "/images/tileVal4.jpg";
+      tileImageName = "/images/tileVal4.png";
     } else if (tileValue == 5) {
-      tileImageName = "/images/tileVal5.jpg";
+      tileImageName = "/images/tileVal5.png";
     } else if (tileValue == 6) {
-      tileImageName = "/images/tileVal6.jpg";
+      tileImageName = "/images/tileVal6.png";
     }
 
     Image tileImage = new Image(tileImageName);
