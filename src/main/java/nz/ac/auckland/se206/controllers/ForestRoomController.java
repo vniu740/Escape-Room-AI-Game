@@ -96,15 +96,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     //list of images that we can select from randomly
     Image[] images = { new Image("/images/bottle.png"), new Image("/images/bottleEyes.png"),
         new Image("/images/bottleM.png"), new Image("/images/bottleMushroom.png")};
-    //shuffle the images and make sure that all three are different 
-    //Random random = new Random();
-    // Random random = new Random();
-    // for (int i = 0; i < images.length; i++) {
-    //   int randomIndex = random.nextInt(images.length);
-    //   Image temp = images[i];
-    //   images[i] = images[randomIndex];
-    //   images[randomIndex] = temp;
-    // }
       List<Image> uniqueImages = new ArrayList<>();
 
         // Add unique images to the list
@@ -119,6 +110,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
         // Convert the shuffled list back to an array
         Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
+        //random index to select an image from the list
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(3);
+    
     Tooltip pondTooltip = new Tooltip("pondimagespiral");
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
@@ -135,11 +130,18 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
       // update the end point of line to be higher
       threadOne.setEndY(threadOne.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
+
       //if the frog is at the bottom of the slider, change the pic to be the frog with the fishing rod
       if (newValue.doubleValue() == sldOne.getMax()) {
         //get image with picOne 
         Image selectedImage = shuffledImages[0];
         imgViewSpiralFrog.setImage(selectedImage);
+         if (randomIndex == 0) {
+          //alert the user that they have found the correct image
+          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingradient in this room!", "You have found the correct ingradient!"));
+
+        }
+      
         // he slider should not move anymore 
         sldOne.lookup(".thumb").setPickOnBounds(false);
         sldOneDisablePane.setVisible(true);
@@ -155,6 +157,11 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         //get an image that hasnt been selected yet
         Image selectedImage = shuffledImages[1];
         imgViewMushroom.setImage(selectedImage);
+         if (randomIndex == 1) {
+          //alert the user that they have found the correct image
+          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingradient in this room!", "You have found the correct ingradient!"));
+
+        }
         // he slider should not move anymore 
         sldTwo.lookup(".thumb").setPickOnBounds(false);
         sldTwoDisablePane.setVisible(true);
@@ -173,6 +180,11 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         Image selectedImage = shuffledImages[2];
         imgViewBug.setImage(selectedImage);
         // he slider should not move anymore 
+         if (randomIndex == 2) {
+          //alert the user that they have found the correct image
+          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingradient in this room!", "You have found the correct ingradient!"));
+
+        }
         sldThree.lookup(".thumb").setPickOnBounds(false);
         sldThreeDisablePane.setVisible(true);
 
@@ -180,14 +192,14 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     });
 
     // new animation hread to do the pulse imahe
-    Thread thread = new Thread(() -> {
-      //create a new ImagePulseAnimation object
-      ImagePulseAnimation pulseAnimation = new ImagePulseAnimation(imgViewSpiralPond);
-      //play the animation
-      pulseAnimation.playAnimation();
+    // Thread thread = new Thread(() -> {
+    //   //create a new ImagePulseAnimation object
+    //   ImagePulseAnimation pulseAnimation = new ImagePulseAnimation(imgViewSpiralPond);
+    //   //play the animation
+    //   pulseAnimation.playAnimation();
 
-    });
-    thread.start();
+    // });
+    // thread.start();
   }
 
 
