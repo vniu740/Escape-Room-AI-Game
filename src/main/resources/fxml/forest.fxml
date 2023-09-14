@@ -35,7 +35,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="pnFishing" layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0">
+      <Pane fx:id="pnFishing" layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0" visible="false">
          <children>
             <ImageView fitHeight="285.0" fitWidth="327.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true">
                <image>
@@ -67,5 +67,7 @@
       </Pane>
       <Pane fx:id="sldOneDisablePane" layoutX="127.0" layoutY="80.0" prefHeight="180.0" prefWidth="142.0" visible="false" />
       <Label fx:id="timerLbl" alignment="CENTER" layoutX="531.0" layoutY="29.0" prefHeight="34.0" prefWidth="32.0" style="-fx-background-color: white;" text="00:00" />
+      <Pane fx:id="sldTwoDisablePane" layoutX="242.0" layoutY="29.0" prefHeight="218.0" prefWidth="102.0" visible="false" />
+      <Pane fx:id="sldThreeDisablePane" layoutX="317.0" layoutY="5.0" prefHeight="248.0" prefWidth="200.0" visible="false" />
    </children>
 </Pane>

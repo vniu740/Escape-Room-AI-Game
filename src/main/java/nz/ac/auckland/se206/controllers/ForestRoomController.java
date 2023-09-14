@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -64,6 +65,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML 
   private Pane sldOneDisablePane;
 
+  @FXML
+  private Pane sldTwoDisablePane;
+  
+  @FXML
+  private Pane sldThreeDisablePane;
+
   @FXML 
   private Line threadOne;
 
@@ -73,9 +80,26 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML
   private Line threadThree;
 
+
+  private ImageView picOne;
+  private ImageView picTwo;
+  private ImageView picThree;
+  private List<ImageView> picList;
+
   
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+
+    //have a pool of pictures that we can select randomly from and assign to 
+    //add the three pics to the list
+    // picList.add(imgViewBug);
+    // picList.add(imgViewMushroom);
+    // picList.add(imgViewSpiralFrog);
+    //assign the three pics in picList to picOne, picTwo, picThree randomly
+    // picOne = picList.get((int) (Math.random() * 3));
+    // picTwo = picList.get((int) (Math.random() * 3));
+    // picThree = picList.get((int) (Math.random() * 3));
+  
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
@@ -106,19 +130,32 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       }
     });
 
-        sldTwo.valueProperty().addListener((observable, oldValue, newValue) -> {
+      sldTwo.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
           imgViewMushroom.setY(imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
-          threadTwo.setEndY(threadTwo.getEndY() +(oldValue.doubleValue() - newValue.doubleValue()));
-    
-
+          threadTwo.setEndY(threadTwo.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
+        if (newValue.doubleValue() == sldTwo.getMax()) {
+        imgViewMushroom.setImage(new Image("/images/bottleM.png"));
+        // he slider should not move anymore 
+        sldTwo.lookup(".thumb").setPickOnBounds(false);
+        sldTwoDisablePane.setVisible(true);
+ 
+      }
       
         });
     
       sldThree.valueProperty().addListener((observable, oldValue, newValue) -> {
       // Add the difference between newValue and oldValue to the Y position of the frog
         imgViewBug.setY(imgViewBug.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
-        threadThree.setEndY(threadThree.getEndY() +(oldValue.doubleValue() - newValue.doubleValue()));
+        threadThree.setEndY(threadThree.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
+        
+        if (newValue.doubleValue() == sldThree.getMax()) {
+        imgViewBug.setImage(new Image("/images/bottleM.png"));
+        // he slider should not move anymore 
+        sldThree.lookup(".thumb").setPickOnBounds(false);
+        sldThreeDisablePane.setVisible(true);
+ 
+      }
     });
 
     // new animation hread to do the pulse imahe
