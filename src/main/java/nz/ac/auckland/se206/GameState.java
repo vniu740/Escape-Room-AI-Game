@@ -17,4 +17,7 @@ public class GameState {
 
   /** Indicates whether the dragon match game is won */
   public static boolean isMatchGameWon = false;
+
+  /** Indicates whether the user is matching tiles */
+  public static boolean matching = false;
 }

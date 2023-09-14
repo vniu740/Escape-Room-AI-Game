@@ -8,8 +8,8 @@ import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class DragonRoomController {
-  @FXML private ImageView imageShelf;
-  @FXML private ImageView imageFire;
+  @FXML private ImageView imageLock;
+  @FXML private ImageView imageScale;
 
   @FXML
   public void initialize() throws IOException {
@@ -18,8 +18,8 @@ public class DragonRoomController {
     Thread animationThread =
         new Thread(
             () -> {
-              ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageShelf);
-              ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageFire);
+              ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageLock);
+              ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageScale);
               imageAnimation.playAnimation();
               image2Animation.playAnimation();
             });

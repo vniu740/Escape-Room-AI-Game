@@ -11,14 +11,14 @@
             <Image url="@../images/roomDragon.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageShelf" fitHeight="95.0" fitWidth="121.0" layoutX="290.0" layoutY="147.0" onMouseClicked="#onLockClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageLock" fitHeight="66.0" fitWidth="53.0" layoutX="316.0" layoutY="176.0" onMouseClicked="#onLockClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/shelf.png" />
+            <Image url="@../images/lock.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageFire" fitHeight="124.0" fitWidth="121.0" layoutX="198.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageScale" fitHeight="53.0" fitWidth="53.0" layoutX="228.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/fire.png" />
+            <Image url="@../images/scale.png" />
          </image>
       </ImageView>
    </children>

@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
 import java.util.stream.Collectors;
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -41,6 +43,8 @@ public class MatchingGameController {
   private int lastClickedTileIndex = -1; // Index of the last clicked tile
   private int lastrow = -1;
   private int lastcol = -1;
+  private PauseTransition pauseTransition =
+      new PauseTransition(Duration.seconds(2)); // Adjust the duration as needed
 
   // Initialize the game and set up event handlers
   public void initialize() throws IOException {
@@ -85,6 +89,11 @@ public class MatchingGameController {
   // Implement event handler for tile clicks
   @FXML
   public void onTileClicked(MouseEvent event, ImageView clickedTile) {
+    // Check if the user is already matching tiles
+    if (GameState.matching) {
+      return; // Do nothing
+    }
+
     int clickedTileIndex = -1;
 
     // Find the row and column coordinates of the clicked tile in the GridPane
@@ -144,26 +153,36 @@ public class MatchingGameController {
         // Handle matching tiles (e.g., set them as matched)
         clickedGameTile.setMatched(true);
         lastTileValue.setMatched(true);
+
+        // Increment the number of matches
         GameState.dragonMatches++;
 
         // Display how many the user has found
-        counter.setText(Integer.toString(GameState.dragonMatches) + " " + "out of 3");
+        counter.setText(Integer.toString(GameState.dragonMatches));
         System.out.println("Matches: " + GameState.dragonMatches);
       } else {
-
+        GameState.matching = true;
+        final int finalClickedTileIndex = clickedTileIndex;
+        final int finalLastTileIndex = lastClickedTileIndex;
         // Handle non-matching tiles (e.g., flip them back face down)
         clickedGameTile.flip();
         lastTileValue.flip();
 
         System.out.println("Not matched");
 
-        showDialog(
-            "Not a match",
-            "Not a match",
-            "The tiles you selected are not a match. Please try again.");
-
-        tiles[clickedTileIndex].setImage(new Image("/images/questionBox.png"));
-        tiles[lastClickedTileIndex].setImage(new Image("/images/questionBox.png"));
+        Timer t = new java.util.Timer();
+        t.schedule(
+            new java.util.TimerTask() {
+              @Override
+              public void run() {
+                tiles[finalClickedTileIndex].setImage(new Image("/images/questionBox.png"));
+                tiles[finalLastTileIndex].setImage(new Image("/images/questionBox.png"));
+                GameState.matching = false;
+                // close the thread
+                t.cancel();
+              }
+            },
+            3000);
       }
       lastClickedTileIndex = -1; // Reset the last clicked tile index
     } else {
@@ -177,17 +196,17 @@ public class MatchingGameController {
     }
   }
 
-  @FXML
-  private void onBackClicked() throws IOException {
-    // Go back to the Dragon Room
-    App.setUi(AppUi.DRAGON_ROOM);
-  }
-
   private void showDialog(String title, String headerText, String message) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle(title);
     alert.setHeaderText(headerText);
     alert.setContentText(message);
     alert.showAndWait();
+  }
+
+  @FXML
+  private void onBackClicked() throws IOException {
+    // Go back to the Dragon Room
+    App.setUi(AppUi.DRAGON_ROOM);
   }
 }
