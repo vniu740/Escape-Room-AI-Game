@@ -9,8 +9,7 @@ import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /**
- * This is the entry point of the JavaFX application, while you can change this
- * class, it should
+ * This is the entry point of the JavaFX application, while you can change this class, it should
  * remain as the class that runs the JavaFX application.
  */
 public class App extends Application {
@@ -26,8 +25,7 @@ public class App extends Application {
   }
 
   /**
-   * Returns the node associated to the input file. The method expects that the
-   * file is located in
+   * Returns the node associated to the input file. The method expects that the file is located in
    * "src/main/resources/fxml".
    *
    * @param fxml The name of the FXML file (without extension).
@@ -35,34 +33,30 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   private static Parent loadFxml(final String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
-    return fxmlLoader.load();
+    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the
-   * "Canvas" scene.
+   * Sets the scene to the input UI.
+   *
+   * @param newUi The UI to set the scene to.
+   */
+  public static void setUi(AppUi newUi) {
+    scene.setRoot(SceneManager.getUi(newUi));
+  }
+
+  /**
+   * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
    * @param stage The primary stage of the application.
    * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
    */
   @Override
   public void start(final Stage stage) throws IOException {
-
-    SceneManager.addAppUi(AppUi.ROOM, loadFxml("room"));
-    SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
-    SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
-
-    // scene = new Scene(SceneManager.getUi(AppUi.START_PAGE), 640, 480);
-    scene = new Scene(SceneManager.getUi(AppUi.FOREST), 600, 399);
-
-
+    Parent root = loadFxml("room");
+    scene = new Scene(root, 600, 470);
     stage.setScene(scene);
     stage.show();
-    scene.getRoot().requestFocus();
-    TimeManager.getInstance().startTimer();
-    //start the timer 
-
+    root.requestFocus();
   }
-
 }
