@@ -94,8 +94,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     timeManager.registerListener(this);
 
     //list of images that we can select from randomly
-    Image[] images = { new Image("/images/bottle.png"), new Image("/images/bottleEyes.png"),
-        new Image("/images/bottleM.png"), new Image("/images/bottleMushroom.png")};
+    Image[] images = { new Image("/images/bottleBug.png"), new Image("/images/bottleEyes.png"),
+        new Image("/images/BottleRedMushroom.png"), new Image("/images/bottleBlueMushroom.png"), new Image("/images/bottleSnake.png"), new Image("/images/bottleSeaShell.png"), new Image("/images/bottleGreenLiq.png")};
       List<Image> uniqueImages = new ArrayList<>();
 
         // Add unique images to the list
