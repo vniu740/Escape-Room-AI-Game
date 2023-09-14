@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -36,6 +37,15 @@ public class App extends Application {
   }
 
   /**
+   * Sets the scene to the input UI.
+   *
+   * @param newUi The UI to set the scene to.
+   */
+  public static void setUi(AppUi newUi) {
+    scene.setRoot(SceneManager.getUi(newUi));
+  }
+
+  /**
    * This method is invoked when the application starts. It loads and shows the "Canvas" scene.
    *
    * @param stage The primary stage of the application.
@@ -49,5 +59,4 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
   }
-  
 }
