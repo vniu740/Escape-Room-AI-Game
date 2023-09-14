@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -81,10 +82,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   private Line threadThree;
 
 
-  private ImageView picOne;
-  private ImageView picTwo;
-  private ImageView picThree;
-  private List<ImageView> picList;
+  // private Image picOne;
+  // private Image picTwo;
+  // private Image picThree;
+  //private List<Image> picList;
+
+  String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
   
   /** Initializes the room view, it is called when the room loads. */
@@ -92,6 +95,24 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
     //have a pool of pictures that we can select randomly from and assign to 
     //add the three pics to the list
+    //add bottle eyes image to the list
+    // picList.add(new Image("/images/bottleEyes.png"));
+    // //add bottle M image to the list
+    // picList.add(new Image("/images/bottleM.png"));
+    // // add bottle to the list
+    // picList.add(new Image("/images/bottle.png"));
+    
+
+    // get a random index of the string and assign to string picOne
+    //String picOne = images[(int) (Math.random() * 3)];
+    // get a random index of the string and assign to string picTwo
+    //String picTwo = images[(int) (Math.random() * 3)];
+    // get a random index of the string and assign to string picThree
+    //String picThree = images[(int) (Math.random() * 3)];
+   
+ 
+    
+
     // picList.add(imgViewBug);
     // picList.add(imgViewMushroom);
     // picList.add(imgViewSpiralFrog);
@@ -103,6 +124,21 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
+    // Random random = new Random();
+    // int randomIndex = random.nextInt(images.length-1);
+    // Image selectedImage = new Image(getClass().getResourceAsStream(images[randomIndex]));
+
+    //list of images that we can select from randomly
+    Image[] images = { new Image("/images/bottle.png"), new Image("/images/bottleEyes.png"),
+        new Image("/images/bottleM.png") };
+    //shuffle the images
+    Random random = new Random();
+    for (int i = 0; i < images.length; i++) {
+      int randomIndex = random.nextInt(images.length);
+      Image temp = images[i];
+      images[i] = images[randomIndex];
+      images[randomIndex] = temp;
+    }
 
     Tooltip pondTooltip = new Tooltip("pondimagespiral");
     pondTooltip.setShowDelay(Duration.millis(0));
@@ -122,7 +158,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       threadOne.setEndY(threadOne.getEndY() +(oldValue.doubleValue() - newValue.doubleValue()));
       //if the frog is at the bottom of the slider, change the pic to be the frog with the fishing rod
       if (newValue.doubleValue() == sldOne.getMax()) {
-        imgViewSpiralFrog.setImage(new Image("/images/bottleM.png"));
+        //get image with picOne 
+        //Image firstPic = new Image(picOne);
+        Image selectedImage = images[0];
+        imgViewSpiralFrog.setImage(selectedImage);
+         //imgViewSpiralFrog.setImage(new Image("/images/bottleM.png"));
+        //imgViewSpiralFrog.setImage(new Image(picOne));
         // he slider should not move anymore 
         sldOne.lookup(".thumb").setPickOnBounds(false);
         sldOneDisablePane.setVisible(true);
@@ -135,7 +176,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
           imgViewMushroom.setY(imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
           threadTwo.setEndY(threadTwo.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
         if (newValue.doubleValue() == sldTwo.getMax()) {
-        imgViewMushroom.setImage(new Image("/images/bottleM.png"));
+          //get an image that hasnt been selected yet
+          Image selectedImage = images[1];
+          imgViewMushroom.setImage(selectedImage);
+        //imgViewMushroom.setImage(new Image("/images/bottleM.png"));
         // he slider should not move anymore 
         sldTwo.lookup(".thumb").setPickOnBounds(false);
         sldTwoDisablePane.setVisible(true);
@@ -150,7 +194,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         threadThree.setEndY(threadThree.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
         
         if (newValue.doubleValue() == sldThree.getMax()) {
-        imgViewBug.setImage(new Image("/images/bottleM.png"));
+          //get an image that hasnt been selected yet
+          Image selectedImage = images[2];
+          imgViewBug.setImage(selectedImage);
+        //imgViewBug.setImage(new Image("/images/bottleM.png"));
         // he slider should not move anymore 
         sldThree.lookup(".thumb").setPickOnBounds(false);
         sldThreeDisablePane.setVisible(true);
