@@ -43,27 +43,27 @@
                   <Image url="@../images/water.jpg" />
                </image>
             </ImageView>
-            <Slider fx:id="sldTwo" layoutX="37.0" layoutY="4.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="14.0" />
+            <Line fx:id="threadOne" endX="108.66664123535156" endY="4.0" layoutX="-2.0" layoutY="237.0" startX="108.66664123535156" startY="-90.66667175292969" />
+            <Line fx:id="threadTwo" endX="-93.33334350585938" endY="79.66668701171875" layoutX="270.0" layoutY="156.0" startX="-93.33334350585938" startY="-30.333328247070312" />
+            <Line fx:id="threadThree" endX="13.666656494140625" endY="78.0" layoutX="228.0" layoutY="157.0" startX="13.666656494140625" startY="-30.000015258789062" />
             <Slider fx:id="sldThree" layoutX="100.0" layoutY="1.0" orientation="VERTICAL" prefHeight="196.0" prefWidth="14.0" />
+            <Slider fx:id="sldTwo" layoutX="37.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="196.0" prefWidth="14.0" />
+            <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
             <ImageView fx:id="imgViewSpiralFrog" fitHeight="44.0" fitWidth="49.0" layoutX="83.0" layoutY="227.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/questionBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgViewMushroom" fitHeight="44.0" fitWidth="49.0" layoutX="145.0" layoutY="227.0" pickOnBounds="true">
+            <ImageView fx:id="imgViewMushroom" fitHeight="44.0" fitWidth="49.0" layoutX="153.0" layoutY="227.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/questionBox.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgViewBug" fitHeight="44.0" fitWidth="49.0" layoutX="212.0" layoutY="227.0" pickOnBounds="true">
+            <ImageView fx:id="imgViewBug" fitHeight="44.0" fitWidth="49.0" layoutX="217.0" layoutY="227.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/questionBox.png" />
                </image>
             </ImageView>
-            <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
-            <Line fx:id="threadOne" endX="108.66664123535156" endY="4.0" layoutX="-3.0" layoutY="227.0" startX="108.66664123535156" startY="-68.00001525878906" />
-            <Line fx:id="threadTwo" endX="-93.33334350585938" endY="75.0" layoutX="261.0" layoutY="158.0" startX="-93.33334350585938" startY="0.3333282470703125" />
-            <Line fx:id="threadThree" endX="13.666656494140625" endY="74.0" layoutX="226.0" layoutY="159.0" startX="13.666656494140625" startY="-2.6666717529296875" />
          </children>
       </Pane>
       <Pane fx:id="sldThreeDisablePane" layoutX="317.0" layoutY="5.0" prefHeight="248.0" prefWidth="200.0" visible="false" />
