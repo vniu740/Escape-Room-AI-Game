@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="gameBox" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MatchingGameController">
+   <Pane prefHeight="399.0" prefWidth="600.0">
+      <children>
+         <ImageView fitHeight="435.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/candlewall.jpg" />
+            </image>
+         </ImageView>
+          <GridPane fx:id="gameGrid" alignment="CENTER" hgap="10" layoutX="148.0" layoutY="14.0" prefHeight="296.0" prefWidth="293.0" vgap="10">
+              <ImageView fx:id="tile1" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile2" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile3" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile4" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile5" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile6" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile7" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile8" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+              <ImageView fx:id="tile9" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+          </GridPane>
+         <Button fx:id="buttonBack" alignment="CENTER" layoutX="250.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="48.0" prefWidth="100.0" text="Go back" />
+         <ImageView fx:id="counterBack" fitHeight="120.0" fitWidth="131.0" layoutX="28.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/paperButton.png" />
+            </image>
+         </ImageView>
+         <Label alignment="CENTER" layoutX="37.0" layoutY="54.0" prefHeight="30.0" prefWidth="100.0" text="Pairs found">
+            <font>
+               <Font name="Lucida Calligraphy Italic" size="16.0" />
+            </font>
+         </Label>
+         <Label fx:id="counter" alignment="CENTER" layoutX="74.0" layoutY="77.0" prefHeight="48.0" prefWidth="39.0" text="0" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold Italic" size="45.0" />
+            </font>
+         </Label>
+      </children>
+   </Pane>
+</VBox>

@@ -53,6 +53,10 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
+    // Adding rooms into the scenemanager hashmap
+    SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
+    SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
+
     Parent root = loadFxml("room");
     scene = new Scene(root, 600, 470);
     stage.setScene(scene);

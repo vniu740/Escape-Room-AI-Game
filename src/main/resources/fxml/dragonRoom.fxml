@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DragonRoomController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="600.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/roomDragon.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageLock" fitHeight="66.0" fitWidth="53.0" layoutX="316.0" layoutY="176.0" onMouseClicked="#onLockClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/lock.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageScale" fitHeight="53.0" fitWidth="53.0" layoutX="228.0" layoutY="217.0" onMouseClicked="#onScaleClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/scale.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
