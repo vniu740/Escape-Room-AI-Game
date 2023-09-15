@@ -10,6 +10,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -26,6 +27,8 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class LabController {
 
@@ -50,6 +53,8 @@ public class LabController {
   private @FXML ImageView imgViewCauldronCrystal;
   private @FXML ImageView imgViewCauldronScale;
   private @FXML ImageView imgViewCauldronBubbles;
+  private @FXML ImageView imgViewLeftArrow;
+  private @FXML ImageView imgViewRightArrow;
   private @FXML Image imgFrog;
   private @FXML Image imgCrystal;
   private @FXML Image imgScale;
@@ -101,10 +106,13 @@ public class LabController {
             leverAnimation = new ImagePulseAnimation(imgViewLever);
             ImagePulseAnimation cauldronAnimation = new ImagePulseAnimation(imgViewCauldron);
             ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
+            ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
+            ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
             windowAnimation.playAnimation();
             cauldronAnimation.playAnimation();
             leverAnimation.playAnimation();
-
+            leftArrowAnimation.playAnimation();
+            rightArrowAnimation.playAnimation();
             return null;
           }
         };
@@ -378,12 +386,28 @@ public class LabController {
 
   /**
    * Handles the ActionEvent on the Button btnCauldronExit
+   *
    * @param event
    */
-  @FXML private void onCauldronExit(ActionEvent event) {
+  @FXML
+  private void onCauldronExit(ActionEvent event) {
     pnCauldron.setVisible(false);
     pnCauldronOpacity.setVisible(false);
     imgViewCauldronBubbles.setVisible(false);
     txtTryAgain.setVisible(false);
+  }
+
+  @FXML
+  private void onLeftArrowClicked(MouseEvent event) {
+    ImageView imgView = (ImageView) event.getSource();
+    Scene sceneImageViewIsIn = imgView.getScene();
+    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.FOREST));
+  }
+
+  @FXML
+  private void onRightArrowClicked(MouseEvent event) {
+    ImageView imgView = (ImageView) event.getSource();
+    Scene sceneImageViewIsIn = imgView.getScene();
+    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.DRAGON_ROOM));
   }
 }
