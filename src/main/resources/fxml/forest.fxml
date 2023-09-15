@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
       <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
          <image>
@@ -76,5 +76,13 @@
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="543.0" layoutY="45.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
       <Label fx:id="timerLbl" alignment="CENTER" layoutX="527.0" layoutY="28.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
+      <ImageView fx:id="imgViewRightArrow" fitHeight="111.0" fitWidth="40.0" layoutX="546.0" layoutY="161.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/rightArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

@@ -132,5 +132,21 @@
             </HBox>
          </children>
       </Pane>
+      <ImageView fx:id="imgViewLeftArrow" fitHeight="71.0" fitWidth="40.0" layoutX="14.0" layoutY="178.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/leftArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="556.0" layoutY="187.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/rightArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

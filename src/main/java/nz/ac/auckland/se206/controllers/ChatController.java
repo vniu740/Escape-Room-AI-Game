@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -15,29 +16,25 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the chat view. */
 public class ChatController {
-  private TextToSpeech textToSpeech;
-  private ChatMessage chatMessage = new ChatMessage("Jewellery Box", ".");
 
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button btnGoBack;
   @FXML private Button sendButton;
-  @FXML
-  private ImageView imgView;
- @FXML private Label timerLbl;
-  
+  @FXML private ImageView imgView;
+  @FXML private Label timerLbl;
 
   private PathTransition pathTransition;
   private ChatCompletionRequest chatCompletionRequest;
@@ -49,7 +46,6 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
-    textToSpeech = new TextToSpeech();
     inputText.setEditable(false);
     Task<Void> getRiddleTask =
         new Task<Void>() {
@@ -62,11 +58,8 @@ public class ChatController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             btnGoBack.setDisable(true);
-            chatMessage =
-                runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("potion")));
+            runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("potion")));
             inputText.clear();
-            textToSpeech.speak(chatMessage.getContent());
             inputText.setEditable(true);
             btnGoBack.setDisable(false);
             return null;
@@ -151,7 +144,6 @@ public class ChatController {
             ChatMessage lastMsg = runGpt(msg);
             // Save the users input message and make it visible on the text area
 
-            textToSpeech.speak(lastMsg.getContent());
             inputText.setEditable(true);
             btnGoBack.setDisable(false);
             // If the users input is correct, update the gameState
@@ -159,7 +151,6 @@ public class ChatController {
                 && lastMsg.getContent().startsWith("Correct")) {
               GameState.isRiddleResolved = true;
               inputText.setEditable(false);
-              textToSpeech.terminate();
             }
 
             return null;
@@ -179,7 +170,9 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("lab");
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
   }
 
   private void createPathTransition(ImageView ImageView) {

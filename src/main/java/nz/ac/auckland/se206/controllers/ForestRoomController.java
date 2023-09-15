@@ -9,7 +9,9 @@ import java.util.Random;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,6 +29,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
+import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 
@@ -82,6 +85,9 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
   @FXML
   private Line threadThree;
+
+    @FXML
+  private ImageView imgViewRightArrow;
 
   String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
@@ -191,6 +197,24 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
       }
     });
+
+
+        // Create animation task for clickable objects
+    Task<Void> animationTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            // The method ImagePulseAnimation is from its own class
+            ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
+            rightArrowAnimation.playAnimation();
+            return null;
+          }
+        };
+
+    // Create threads that run each animation task. Start the main animation thread
+    Thread animationThread = new Thread(animationTask, "Animation Thread");
+    animationThread.start();
+
   }
 
 
@@ -245,6 +269,18 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     pnFishing.setVisible(false);
     pnFishingOpacity.setVisible(false);
 
+  }
+  
+  /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
+   * 
+   * @param event
+   */
+  @FXML private void onRightArrowClicked(MouseEvent event) {
+    // Switch to the Lab
+    ImageView imgView = (ImageView) event.getSource();
+    Scene sceneImageViewIsIn = imgView.getScene();
+    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
   }
 
 }

@@ -4,12 +4,15 @@ import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
   @FXML Button btnEasyMode;
@@ -260,7 +263,11 @@ public class MenuController {
   }
 
   @FXML
-  private void onPlayClick(ActionEvent event) {}
+  private void onPlayClick(ActionEvent event) {
+    Button button = (Button) event.getSource();
+    Scene sceneButtonIsIn = button.getScene();
+    sceneButtonIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+  }
 
   /**
    * Helper method that translates the pane pnDifficultyMenu upwards.
@@ -270,7 +277,7 @@ public class MenuController {
     // Create and play a transition that will move the difficulty menu pane upwards
     TranslateTransition transition =
         new TranslateTransition(Duration.seconds(0.3), pnDifficultyMenu);
-    transition.setToY(-320);
+    transition.setToY(-370);
     transition.play();
   }
 
