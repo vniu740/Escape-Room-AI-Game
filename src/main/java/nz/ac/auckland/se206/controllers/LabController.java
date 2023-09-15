@@ -24,7 +24,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.SceneManager;
@@ -401,10 +400,11 @@ public class LabController {
 
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
-   * 
+   *
    * @param event
    */
-  @FXML private void onLeftArrowClicked(MouseEvent event) {
+  @FXML
+  private void onLeftArrowClicked(MouseEvent event) {
     // Switch to the forest
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
@@ -413,10 +413,11 @@ public class LabController {
 
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
-   * 
+   *
    * @param event
    */
-  @FXML private void onRightArrowClicked(MouseEvent event) {
+  @FXML
+  private void onRightArrowClicked(MouseEvent event) {
     // Switch to the dragon room
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();

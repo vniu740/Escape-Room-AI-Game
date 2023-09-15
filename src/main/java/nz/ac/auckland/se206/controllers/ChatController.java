@@ -16,7 +16,6 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
@@ -34,10 +33,8 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button btnGoBack;
   @FXML private Button sendButton;
-  @FXML
-  private ImageView imgView;
- @FXML private Label timerLbl;
-  
+  @FXML private ImageView imgView;
+  @FXML private Label timerLbl;
 
   private PathTransition pathTransition;
   private ChatCompletionRequest chatCompletionRequest;
@@ -61,8 +58,7 @@ public class ChatController {
                     .setTopP(0.5)
                     .setMaxTokens(100);
             btnGoBack.setDisable(true);
-                runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("potion")));
+            runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("potion")));
             inputText.clear();
             inputText.setEditable(true);
             btnGoBack.setDisable(false);
