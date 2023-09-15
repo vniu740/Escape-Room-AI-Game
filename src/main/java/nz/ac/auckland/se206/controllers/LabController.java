@@ -397,15 +397,25 @@ public class LabController {
     txtTryAgain.setVisible(false);
   }
 
-  @FXML
-  private void onLeftArrowClicked(MouseEvent event) {
+  /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
+   * 
+   * @param event
+   */
+  @FXML private void onLeftArrowClicked(MouseEvent event) {
+    // Switch to the forest
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.FOREST));
   }
 
-  @FXML
-  private void onRightArrowClicked(MouseEvent event) {
+  /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
+   * 
+   * @param event
+   */
+  @FXML private void onRightArrowClicked(MouseEvent event) {
+    // Switch to the dragon room
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.DRAGON_ROOM));
