@@ -11,7 +11,8 @@ public class SceneManager {
     START_PAGE,
     FOREST,
     DRAGON_ROOM,
-    MATCHING
+    MATCHING,
+    LAB
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

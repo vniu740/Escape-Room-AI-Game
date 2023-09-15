@@ -270,7 +270,7 @@ public class MenuController {
     // Create and play a transition that will move the difficulty menu pane upwards
     TranslateTransition transition =
         new TranslateTransition(Duration.seconds(0.3), pnDifficultyMenu);
-    transition.setToY(-320);
+    transition.setToY(-370);
     transition.play();
   }
 

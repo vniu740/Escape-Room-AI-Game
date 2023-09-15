@@ -56,9 +56,13 @@ public class App extends Application {
     // Adding rooms into the scenemanager hashmap
     SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
     SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
+    SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
+    SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
+    SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
+    // SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
 
-    Parent root = loadFxml("room");
-    scene = new Scene(root, 600, 470);
+    Parent root = SceneManager.getUi(AppUi.START_PAGE);
+    scene = new Scene(root, 600, 399);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
