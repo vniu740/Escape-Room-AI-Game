@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
+   <children>
+      <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/forest.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="86.0" fitWidth="142.0" layoutX="189.0" layoutY="204.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/splash.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgViewSpiralPond" fitHeight="68.0" fitWidth="142.0" layoutX="189.0" layoutY="239.0" onMouseClicked="#onPondClick" pickOnBounds="true">
+         <image>
+            <Image url="@../images/pond.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="pnFishingOpacity" layoutX="-1.0" layoutY="-1.0" opacity="0.7" prefHeight="399.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
+         <children>
+            <Button fx:id="btnFishingExit" layoutX="562.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#onFishingExit" opacity="0.65" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="pnFishing" layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0" visible="false">
+         <children>
+            <ImageView fitHeight="285.0" fitWidth="327.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/water.jpg" />
+               </image>
+            </ImageView>
+            <Line fx:id="threadOne" endX="108.66664123535156" endY="4.0" layoutX="-2.0" layoutY="237.0" startX="108.66664123535156" startY="-90.66667175292969" />
+            <Line fx:id="threadTwo" endX="-93.33334350585938" endY="79.66668701171875" layoutX="270.0" layoutY="156.0" startX="-93.33334350585938" startY="-30.333328247070312" />
+            <Line fx:id="threadThree" endX="13.666656494140625" endY="78.0" layoutX="228.0" layoutY="157.0" startX="13.666656494140625" startY="-30.000015258789062" />
+            <Slider fx:id="sldThree" layoutX="100.0" layoutY="1.0" orientation="VERTICAL" prefHeight="196.0" prefWidth="14.0" />
+            <Slider fx:id="sldTwo" layoutX="37.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="196.0" prefWidth="14.0" />
+            <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
+            <ImageView fx:id="imgViewSpiralFrog" fitHeight="44.0" fitWidth="49.0" layoutX="83.0" layoutY="227.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgViewMushroom" fitHeight="44.0" fitWidth="49.0" layoutX="153.0" layoutY="227.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgViewBug" fitHeight="44.0" fitWidth="49.0" layoutX="217.0" layoutY="227.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/questionBox.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="sldThreeDisablePane" layoutX="317.0" layoutY="5.0" prefHeight="248.0" prefWidth="200.0" visible="false" />
+      <Pane fx:id="sldOneDisablePane" layoutX="127.0" layoutY="80.0" prefHeight="180.0" prefWidth="142.0" visible="false" />
+      <Pane fx:id="sldTwoDisablePane" layoutX="242.0" layoutY="29.0" prefHeight="218.0" prefWidth="102.0" visible="false" />
+      <ImageView fitHeight="68.0" fitWidth="98.0" layoutX="509.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/clock.png" />
+         </image>
+      </ImageView>
+      <Circle fill="DODGERBLUE" layoutX="543.0" layoutY="45.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLbl" alignment="CENTER" layoutX="527.0" layoutY="28.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
+   </children>
+</Pane>
