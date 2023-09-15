@@ -201,7 +201,9 @@ public class LabController {
    */
   @FXML
   private void onJewelleryClick(MouseEvent event) throws IOException {
-    App.setRoot("chat");
+    ImageView imgView = (ImageView) event.getSource();
+    Scene sceneImageViewIsIn = imgView.getScene();
+    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
   }
 
   /**
