@@ -106,27 +106,44 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
 
-    //list of images that we can select from randomly
-    Image[] images = { new Image("/images/bottleBug.png"), new Image("/images/bottleEyes.png"),
-        new Image("/images/BottleRedMushroom.png"), new Image("/images/bottleBlueMushroom.png"), new Image("/images/bottleSnake.png"), new Image("/images/bottleSeaShell.png"), new Image("/images/bottleGreenLiq.png")};
-      List<Image> uniqueImages = new ArrayList<>();
+    // Kimia's original shuffling code
+    // //list of images that we can select from randomly
+    // Image[] images = { new Image("/images/bottleBug.png"), new Image("/images/bottleEyes.png"),
+    //     new Image("/images/BottleRedMushroom.png"), new Image("/images/bottleBlueMushroom.png"), new Image("/images/bottleSnake.png"), new Image("/images/bottleSeaShell.png"), new Image("/images/bottleGreenLiq.png")};
+    //   List<Image> uniqueImages = new ArrayList<>();
 
-        // Add unique images to the list
-        for (Image image : images) {
-            if (!uniqueImages.contains(image)) {
-                uniqueImages.add(image);
-            }
-        }
+    //     // Add unique images to the list
+    //     for (Image image : images) {
+    //         if (!uniqueImages.contains(image)) {
+    //             uniqueImages.add(image);
+    //         }
+    //     }
 
-        // Shuffle the list
+
+            // Shuffle the list
         //Collections.shuffle(uniqueImages);
 
         // Convert the shuffled list back to an array
-        Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
+        // Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
         //random index to select an image from the list
         // Random rand = new Random();
         // int randomIndex = rand.nextInt(3);
-        int randomIndex = 0; //for testing purposes
+        // int randomIndex = 0; //for testing purposes
+
+
+      // Get the list of all possible forest images made instantiated in LabController
+      List<Image> uniqueImages = potionRecipeManager.getForestObjectList();
+      // Get the correct ingredient which was randomised and set to index 0 in LabController and remove it
+      Image correctIngredient = uniqueImages.remove(0);
+      // Shuffle the list to randomise the incorrect ingredients
+      Collections.shuffle(uniqueImages);
+      // Make the list a size of 3 ingredients
+      uniqueImages.subList(3, 6).clear();;
+      // Add the correct ingredient back into the list so that the two wrong ingredients are random and the correct ingredient is in the list
+      uniqueImages.set(0, correctIngredient);
+      // Shuffle the list again so that the order of the two wrong ingredients and correct ingredient is randomised
+      Collections.shuffle(uniqueImages);
+      Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
     
     Tooltip pondTooltip = new Tooltip("pondimagespiral");
     pondTooltip.setShowDelay(Duration.millis(0));
@@ -150,7 +167,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         //get image with picOne 
         Image selectedImage = shuffledImages[0];
         imgViewSpiralFrog.setImage(selectedImage);
-         if (randomIndex == 0) {
+         if (selectedImage == correctIngredient) {
           //alert the user that they have found the correct image
           Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
 
@@ -171,7 +188,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         //get an image that hasnt been selected yet
         Image selectedImage = shuffledImages[1];
         imgViewMushroom.setImage(selectedImage);
-         if (randomIndex == 1) {
+         if (selectedImage == correctIngredient) {
           //alert the user that they have found the correct image
           Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
 
@@ -194,7 +211,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         Image selectedImage = shuffledImages[2];
         imgViewBug.setImage(selectedImage);
         // he slider should not move anymore 
-         if (randomIndex == 2) {
+         if (selectedImage == correctIngredient) {
           //alert the user that they have found the correct image
           Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
 

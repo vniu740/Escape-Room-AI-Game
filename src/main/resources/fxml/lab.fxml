@@ -60,10 +60,7 @@
       <Pane fx:id="pnCauldronOpacity" layoutX="71.0" layoutY="21.0" opacity="0.7" prefHeight="366.0" prefWidth="464.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false" />
       <Pane fx:id="pnCauldron" layoutX="71.0" layoutY="21.0" prefHeight="366.0" prefWidth="464.0" visible="false">
          <children>
-            <ImageView fx:id="imgViewCauldronFrog" fitHeight="92.0" fitWidth="85.0" layoutX="64.0" layoutY="71.0" onDragDetected="#onDragDetectionSourceFrog" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/frog.png" />
-               </image>
+            <ImageView fx:id="imgViewCauldronForest" fitHeight="92.0" fitWidth="85.0" layoutX="64.0" layoutY="71.0" onDragDetected="#onDragDetectionSourceForest" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
                </effect>
