@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.Timer;
+
 import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.TimeManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
@@ -162,13 +165,23 @@ public class MenuController {
    * 
    * @param event
    */
-  @FXML private void onTwoMinsClick(ActionEvent event) {
+  @FXML
+  private void onTwoMinsClick(ActionEvent event) {
+    //get instance of time manager for forest room and start timer
+    ForestRoomController.getTimeManager().startTimer(121);
+    //LabController.getTimeManager().startTimer(121);
+    
     if (isFourMinsSelected == true) {
       // If the four mins button is selected, deselect it, and select the two mins button
       toggleBtnFourMins.setSelected(false);
       toggleBtnTwoMins.setSelected(true);
       isFourMinsSelected = false;
       isTwoMinsSelected = true;
+      //start timer of timer manager by getting the instance 
+      //TimeManager.getInstance().startTimer();
+     
+
+      
     } else if (isSixMinsSelected == true) {
       // If the six mins button is selected, deselect it, and select the two mins button
       toggleBtnSixMins.setSelected(false);
@@ -197,7 +210,9 @@ public class MenuController {
    * 
    * @param event
    */
-  @FXML private void onFourMinsClick(ActionEvent event) {
+  @FXML
+  private void onFourMinsClick(ActionEvent event) {
+    ForestRoomController.getTimeManager().startTimer(241);
     if (isTwoMinsSelected == true) {
       // If the two mins button is selected, deselect it, and select four two mins button
       toggleBtnFourMins.setSelected(true);
@@ -232,7 +247,9 @@ public class MenuController {
    * 
    * @param event
    */
-  @FXML private void onSixMinsClick(ActionEvent event) {
+  @FXML
+  private void onSixMinsClick(ActionEvent event) {
+    ForestRoomController.getTimeManager().startTimer(361);
     if (isTwoMinsSelected == true) {
       // If the two mins button is selected, deselect it, and select six two mins button
       toggleBtnTwoMins.setSelected(false);

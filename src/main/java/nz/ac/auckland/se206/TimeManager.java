@@ -15,7 +15,8 @@ public class TimeManager {
   
 
   /** Starts the game timer. */
-  public void startTimer() {
+  public void startTimer(int time) {
+    timeRemaining = time;
     timer = new Timer();
 
     // update timer every second

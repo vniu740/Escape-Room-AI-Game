@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,8 +30,9 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TimeManager;
 
-public class LabController {
+public class LabController implements TimeManager.TimeUpdateListener{
 
   private List<Image> imgScrollList = new ArrayList<Image>();
   private List<String> stringScrollListOrder = new ArrayList<String>();
@@ -63,6 +66,8 @@ public class LabController {
   private @FXML Text txtTryAgain;
   private @FXML Text txtCorrect;
   private @FXML Button btnCauldronExit;
+  private @FXML Label timerLblLab;
+  private static TimeManager timeManager;
 
   /**
    * Initialises the lab scene when called.
@@ -97,39 +102,57 @@ public class LabController {
     Tooltip.install(imgViewCauldron, cauldronTooltip);
 
     // Create animation task for clickkable objects
-    Task<Void> animationTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            // The method ImagePulseAnimation is from its own class
-            leverAnimation = new ImagePulseAnimation(imgViewLever);
-            ImagePulseAnimation cauldronAnimation = new ImagePulseAnimation(imgViewCauldron);
-            ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
-            ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
-            ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
-            windowAnimation.playAnimation();
-            cauldronAnimation.playAnimation();
-            leverAnimation.playAnimation();
-            leftArrowAnimation.playAnimation();
-            rightArrowAnimation.playAnimation();
-            return null;
-          }
-        };
+    Task<Void> animationTask = new Task<Void>() {
+      @Override
+      protected Void call() throws Exception {
+        // The method ImagePulseAnimation is from its own class
+        leverAnimation = new ImagePulseAnimation(imgViewLever);
+        ImagePulseAnimation cauldronAnimation = new ImagePulseAnimation(imgViewCauldron);
+        ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
+        ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
+        ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
+        windowAnimation.playAnimation();
+        cauldronAnimation.playAnimation();
+        leverAnimation.playAnimation();
+        leftArrowAnimation.playAnimation();
+        rightArrowAnimation.playAnimation();
+        return null;
+      }
+    };
 
-    Task<Void> animationJewelleryTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            jewelleryAnimation = new ImagePulseAnimation(imgViewJewellery);
-            jewelleryAnimation.playAnimation();
-            return null;
-          }
-        };
+    Task<Void> animationJewelleryTask = new Task<Void>() {
+      @Override
+      protected Void call() throws Exception {
+        jewelleryAnimation = new ImagePulseAnimation(imgViewJewellery);
+        jewelleryAnimation.playAnimation();
+        return null;
+      }
+    };
     // Create threads that run each animation task. Start the main animation thread
     Thread animationThread = new Thread(animationTask, "Animation Thread");
     animationThread.start();
     animationJewelleryThread = new Thread(animationJewelleryTask, "Animation Thread");
   }
+  // .
+  /**
+  * Updates timer label according to the current time that has passed.
+  *
+  * @param formattedTime the formatted time to display
+  */
+  @Override
+  public void onTimerUpdate(String formattedTime) {
+    Platform.runLater(() -> timerLblLab.setText(formattedTime));
+    //when time is up, show an alert that they have lost 
+    if (formattedTime.equals("00:00")) {
+      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      timerLblLab.setText("00:00");
+    }
+  }
+
+  public static TimeManager getTimeManager() {
+    return timeManager;
+  }
+
 
   /** Helper method that randomises and sets the order of the ingredients of the potion recipe. */
   private void setPotionRecipe() {
