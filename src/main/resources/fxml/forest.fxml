@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
       <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
          <image>
@@ -51,17 +51,17 @@
             <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
             <ImageView fx:id="imgViewSpiralFrog" fitHeight="44.0" fitWidth="49.0" layoutX="83.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryBottle.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imgViewMushroom" fitHeight="44.0" fitWidth="49.0" layoutX="153.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryBottle.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imgViewBug" fitHeight="44.0" fitWidth="49.0" layoutX="217.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryBottle.png" />
                </image>
             </ImageView>
          </children>
