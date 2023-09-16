@@ -54,10 +54,10 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     // Adding rooms into the scenemanager hashmap
+    SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
     SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
     SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
     SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
-    SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
     SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
     // SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
 
@@ -68,4 +68,3 @@ public class App extends Application {
     root.requestFocus();
   }
 }
-
