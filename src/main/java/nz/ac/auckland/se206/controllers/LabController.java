@@ -26,14 +26,17 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
+import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.potionRecipeManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+
 
 public class LabController {
 
   private List<Image> imgScrollList = new ArrayList<Image>();
   private List<Image> forestObjectList = new ArrayList<Image>();
+  private List<Image> labObjectList = new ArrayList<Image>();
+  private List<Image> dragonObjectList = new ArrayList<Image>();
   private List<String> stringScrollListOrder = new ArrayList<String>();
   private List<String> imgCauldronList = new ArrayList<String>();
   private ImagePulseAnimation leverAnimation;
@@ -41,37 +44,43 @@ public class LabController {
   private int imagesDropped = 0;
   private Thread animationJewelleryThread;
 
-   @FXML private HBox hBoxScroll;
-   @FXML private ImageView imgViewOne;
-   @FXML private ImageView imgViewTwo;
-   @FXML private ImageView imgViewThree;
-   @FXML private ImageView imgViewWindow;
-   @FXML private ImageView imgViewJewellery;
-   @FXML private ImageView imgViewLever;
-   @FXML private ImageView imgViewCauldron;
-   @FXML private ImageView imgViewIconScroll;
-   @FXML private ImageView imgViewCauldronForest;
-   @FXML private ImageView imgViewCauldronCrystal;
-   @FXML private ImageView imgViewCauldronScale;
-   @FXML private ImageView imgViewCauldronBubbles;
-   @FXML private ImageView imgViewLeftArrow;
-   @FXML private ImageView imgViewRightArrow;
-   @FXML private Image imgFrog;
-   @FXML private Image imgBottleBug;
-   @FXML private Image imgBottleEyes;
-   @FXML private Image imgBottleRedMushRoom;
-   @FXML private Image imgBottleBlueMushroom ;
-   @FXML private Image imgBottleSnake;
-   @FXML private Image imgBottleSeaShell;
-   @FXML private Image imgBottleLiquid;
-   @FXML private Image imgCrystal;
-   @FXML private Image imgScale;
-   @FXML private Pane pnCauldron;
-   @FXML private Pane pnCauldronOpacity;
-   @FXML private Pane pnScroll;
-   @FXML private Text txtTryAgain;
-   @FXML private Text txtCorrect;
-   @FXML private Button btnCauldronExit;
+  @FXML private HBox hBoxScroll;
+  @FXML private ImageView imgViewOne;
+  @FXML private ImageView imgViewTwo;
+  @FXML private ImageView imgViewThree;
+  @FXML private ImageView imgViewWindow;
+  @FXML private ImageView imgViewJewellery;
+  @FXML private ImageView imgViewLever;
+  @FXML private ImageView imgViewCauldron;
+  @FXML private ImageView imgViewIconScroll;
+  @FXML private ImageView imgViewCauldronForest;
+  @FXML private ImageView imgViewCauldronLab;
+  @FXML private ImageView imgViewCauldronDragon;
+  @FXML private ImageView imgViewCauldronBubbles;
+  @FXML private ImageView imgViewLeftArrow;
+  @FXML private ImageView imgViewRightArrow;
+  @FXML private Image imgBottleBug;
+  @FXML private Image imgBottleEyes;
+  @FXML private Image imgBottleRedMushRoom;
+  @FXML private Image imgBottleBlueMushroom;
+  @FXML private Image imgBottleSnake;
+  @FXML private Image imgBottleSeaShell;
+  @FXML private Image imgBottleLiquid;
+  @FXML private Image imgCrystal;
+  @FXML private Image imgDiamond;
+  @FXML private Image imgGreenGem;
+  @FXML private Image imgMineral;
+  @FXML private Image imgOrangeGem;
+  @FXML private Image imgScale;
+  @FXML private Image imgDragonBlood;
+  @FXML private Image imgDragonRelic;
+  @FXML private Image imgDragonFire;
+  @FXML private Pane pnCauldron;
+  @FXML private Pane pnCauldronOpacity;
+  @FXML private Pane pnScroll;
+  @FXML private Text txtTryAgain;
+  @FXML private Text txtCorrect;
+  @FXML private Button btnCauldronExit;
 
   /**
    * Initialises the lab scene when called.
@@ -143,32 +152,60 @@ public class LabController {
   /** Helper method that randomises and sets the order of the ingredients of the potion recipe. */
   private void setPotionRecipe() {
     int listCounter = 0;
-    // Initialise each image for the forest
-   imgBottleBug = new Image("/images/bottleBug.png");
-   imgBottleEyes = new Image("/images/bottleEyes.png");
-   imgBottleRedMushRoom = new Image("/images/BottleRedMushroom.png");
-   imgBottleBlueMushroom = new Image("/images/bottleBlueMushroom.png");
-   imgBottleSnake = new Image("/images/bottleSnake.png");
-   imgBottleSeaShell = new Image("/images/bottleSeaShell.png");
-   imgBottleLiquid =  new Image("/images/bottleGreenLiq.png");
 
-   Collections.addAll(forestObjectList, imgBottleBug, imgBottleEyes, imgBottleRedMushRoom, imgBottleBlueMushroom, imgBottleSnake, imgBottleSeaShell, imgBottleLiquid);
-   Collections.shuffle(forestObjectList);
-   potionRecipeManager.setForestObjectList(forestObjectList);
-    
-    imgFrog = new Image("images/frog.png");
+    // Initialise each image for the forest
+    imgBottleBug = new Image("/images/bottleBug.png");
+    imgBottleEyes = new Image("/images/bottleEyes.png");
+    imgBottleRedMushRoom = new Image("/images/BottleRedMushroom.png");
+    imgBottleBlueMushroom = new Image("/images/bottleBlueMushroom.png");
+    imgBottleSnake = new Image("/images/bottleSnake.png");
+    imgBottleSeaShell = new Image("/images/bottleSeaShell.png");
+    imgBottleLiquid = new Image("/images/bottleGreenLiq.png");
+
+    // Intialise each image for the lab
+    imgDiamond = new Image("/images/diamond.png");
+    imgMineral = new Image("/images/mineral.png");
+    imgOrangeGem = new Image("/images/orangeGem.png");
+    imgGreenGem = new Image("/images/greenGem.png");
     imgCrystal = new Image("images/crystal.png");
+
+    // Initialise each image for the dragon room
+    imgDragonBlood = new Image("/images/dragonsBlood.png");
+    imgDragonRelic = new Image("/images/dragonRelic.png");
+    imgDragonFire = new Image("/images/flame.png");
     imgScale = new Image("images/Scale.png");
 
+    // Add all images to their corresponding room lists
+    Collections.addAll(
+        forestObjectList,
+        imgBottleBug,
+        imgBottleEyes,
+        imgBottleRedMushRoom,
+        imgBottleBlueMushroom,
+        imgBottleSnake,
+        imgBottleSeaShell,
+        imgBottleLiquid);
+    Collections.addAll(
+        labObjectList, imgDiamond, imgMineral, imgOrangeGem, imgGreenGem, imgCrystal);
+    Collections.addAll(dragonObjectList, imgDragonBlood, imgDragonRelic, imgDragonFire, imgScale);
 
-    
+    // Shuffle each object room list
+    Collections.shuffle(forestObjectList);
+    Collections.shuffle(labObjectList);
+    Collections.shuffle(dragonObjectList);
+
+    // Set each list in PotionManager so they are acessible from other scenes
+    PotionManager.setForestObjectList(forestObjectList);
+    PotionManager.setDragonObjectList(dragonObjectList);
 
     // Add all images to the ArrayList imgScrollList
-    Collections.addAll(imgScrollList, forestObjectList.get(0), imgCrystal, imgScale);
+    Collections.addAll(imgScrollList, forestObjectList.get(0), labObjectList.get(0), dragonObjectList.get(0));
     // Shuffle the ArrayList to randomise the order of ingredients
     Collections.shuffle(imgScrollList);
 
-    potionRecipeManager.setImageScrollList(imgScrollList);
+    // Set the lists in PotionManger so they are accessible from other scenes
+    PotionManager.setImageScrollList(imgScrollList);
+    
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
     for (Node child : hBoxScroll.getChildren()) {
@@ -178,8 +215,11 @@ public class LabController {
       }
       listCounter++;
     }
+
+    // Set the ingredients visible in the cauldron to the same ones displayed on the potion recipe
     imgViewCauldronForest.setImage(forestObjectList.get(0));
-    
+    imgViewCauldronLab.setImage(labObjectList.get(0));
+    imgViewCauldronDragon.setImage(dragonObjectList.get(0));
   }
 
   /**
@@ -193,9 +233,9 @@ public class LabController {
       if (forestObjectList.contains(image)) {
         stringScrollListOrder.add("imgViewCauldronForest");
       } else if (image == imgCrystal) {
-        stringScrollListOrder.add("imgViewCauldronCrystal");
+        stringScrollListOrder.add("imgViewCauldronLab");
       } else if (image == imgScale) {
-        stringScrollListOrder.add("imgViewCauldronScale");
+        stringScrollListOrder.add("imgViewCauldronDragon");
       }
     }
   }
@@ -254,7 +294,7 @@ public class LabController {
   @FXML
   private void onCauldronClick(MouseEvent event) {
     if (GameState.isRiddleResolved) {
-      imgViewCauldronCrystal.setEffect(null);
+      imgViewCauldronLab.setEffect(null);
     }
     pnCauldron.setVisible(true);
     pnCauldronOpacity.setVisible(true);
@@ -302,12 +342,12 @@ public class LabController {
   }
 
   /**
-   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronCrystal.
+   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronLab.
    *
    * @param event
    */
   @FXML
-  private void onDragDetectionSourceCrystal(MouseEvent event) {
+  private void onDragDetectionSourceLab(MouseEvent event) {
     if (GameState.isRiddleResolved == false) {
       return;
     }
@@ -316,12 +356,12 @@ public class LabController {
   }
 
   /**
-   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronScale.
+   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronDragon.
    *
    * @param event
    */
   @FXML
-  private void onDragDetectionSourceScale(MouseEvent event) {
+  private void onDragDetectionSourceDragon(MouseEvent event) {
     if (GameState.isRiddleResolved == false) {
       return;
     }

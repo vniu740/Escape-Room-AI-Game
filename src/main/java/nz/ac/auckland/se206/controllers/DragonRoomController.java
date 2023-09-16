@@ -14,8 +14,8 @@ import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
+import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.potionRecipeManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class DragonRoomController {
@@ -28,6 +28,12 @@ public class DragonRoomController {
 
   @FXML
   public void initialize() throws IOException {
+
+    // Get the correct ingredient of all possible dragon images instantiated in LabController
+      List<Image> dragonImageList = PotionManager.getDragonObjectList();
+      Image correctIngredient = dragonImageList.get(0);
+    // Set image to correct ingredient
+    imageScale.setImage(correctIngredient);
 
     // Create a new thread for the animation
     Thread animationThread =
@@ -76,7 +82,7 @@ public class DragonRoomController {
       /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
     int listCounter = 0;
-    List<Image> imgScrollList = potionRecipeManager.getImgScrollList();
+    List<Image> imgScrollList = PotionManager.getImgScrollList();
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
     for (Node child : hBoxScroll.getChildren()) {

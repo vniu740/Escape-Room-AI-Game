@@ -31,10 +31,11 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
+import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
-import nz.ac.auckland.se206.potionRecipeManager;
+
 
 /** Controller class for the room view. */
 public class ForestRoomController implements TimeManager.TimeUpdateListener{
@@ -131,8 +132,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
         // int randomIndex = 0; //for testing purposes
 
 
-      // Get the list of all possible forest images made instantiated in LabController
-      List<Image> uniqueImages = potionRecipeManager.getForestObjectList();
+      // Get the list of all possible forest images instantiated in LabController
+      List<Image> uniqueImages = PotionManager.getForestObjectList();
       // Get the correct ingredient which was randomised and set to index 0 in LabController and remove it
       Image correctIngredient = uniqueImages.remove(0);
       // Shuffle the list to randomise the incorrect ingredients
@@ -311,7 +312,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
     int listCounter = 0;
-    List<Image> imgScrollList = potionRecipeManager.getImgScrollList();
+    List<Image> imgScrollList = PotionManager.getImgScrollList();
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
     for (Node child : hBoxScroll.getChildren()) {

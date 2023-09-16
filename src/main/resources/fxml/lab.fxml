@@ -70,7 +70,7 @@
                   <Image url="@../images/cauldron.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgViewCauldronCrystal" fitHeight="92.0" fitWidth="85.0" layoutX="190.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceCrystal" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgViewCauldronLab" fitHeight="92.0" fitWidth="85.0" layoutX="190.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceLab" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/crystal.png" />
                </image>
@@ -78,7 +78,7 @@
                   <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
                </effect>
             </ImageView>
-            <ImageView fx:id="imgViewCauldronScale" fitHeight="82.0" fitWidth="85.0" layoutX="317.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceScale" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgViewCauldronDragon" fitHeight="82.0" fitWidth="85.0" layoutX="317.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceDragon" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/scale.png" />
                </image>
@@ -120,7 +120,7 @@
                   <Image url="@../images/scroll.png" />
                </image>
             </ImageView>
-            <HBox fx:id="hBoxScroll" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0">
+            <HBox fx:id="hBoxScroll" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0" style="-fx-spacing: 30;">
                <children>
                   <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
