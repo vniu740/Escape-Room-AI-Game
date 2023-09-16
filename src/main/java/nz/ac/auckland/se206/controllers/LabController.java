@@ -27,6 +27,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.SceneManager;
+import nz.ac.auckland.se206.potionRecipeManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class LabController {
@@ -47,7 +48,7 @@ public class LabController {
   private @FXML ImageView imgViewJewellery;
   private @FXML ImageView imgViewLever;
   private @FXML ImageView imgViewCauldron;
-  private @FXML ImageView imgViewScrollIcon;
+  private @FXML ImageView imgViewIconScroll;
   private @FXML ImageView imgViewCauldronFrog;
   private @FXML ImageView imgViewCauldronCrystal;
   private @FXML ImageView imgViewCauldronScale;
@@ -143,6 +144,8 @@ public class LabController {
     Collections.addAll(imgScrollList, imgFrog, imgCrystal, imgScale);
     // Shuffle the ArrayList to randomise the order of ingredients
     Collections.shuffle(imgScrollList);
+
+    potionRecipeManager.setImageScrollList(imgScrollList);
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
     for (Node child : hBoxScroll.getChildren()) {

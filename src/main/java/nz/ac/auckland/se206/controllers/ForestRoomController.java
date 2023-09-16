@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -21,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -32,6 +34,7 @@ import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.potionRecipeManager;
 
 /** Controller class for the room view. */
 public class ForestRoomController implements TimeManager.TimeUpdateListener{
@@ -88,6 +91,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
     @FXML
   private ImageView imgViewRightArrow;
+
+  private @FXML Pane pnScroll;
+  private @FXML HBox hBoxScroll;
+  private @FXML ImageView imgViewIconScroll;
 
   String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
@@ -215,6 +222,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     Thread animationThread = new Thread(animationTask, "Animation Thread");
     animationThread.start();
 
+    setPotionRecipeImages();
   }
 
 
@@ -281,6 +289,42 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+  }
+
+    /** Helper method that sets the ingredient images of the potion recipe. */
+  private void setPotionRecipeImages() {
+    int listCounter = 0;
+    List<Image> imgScrollList = potionRecipeManager.getImgScrollList();
+
+    // Set each of the images to the imageViews in the HBox of the Pane pnScroll
+    for (Node child : hBoxScroll.getChildren()) {
+      if (child instanceof ImageView) {
+        ImageView childImageView = (ImageView) child;
+        childImageView.setImage(imgScrollList.get(listCounter));
+      }
+      listCounter++;
+    }
+  }
+
+
+  /**
+   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon
+   *
+   * @param event
+   */
+  @FXML
+  private void onEnterIconScroll(MouseEvent event) {
+    pnScroll.setVisible(true);
+  }
+
+  /**
+   * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
+   *
+   * @param event
+   */
+  @FXML
+  private void onExitIconScroll(MouseEvent event) {
+    pnScroll.setVisible(false);
   }
 
 }
