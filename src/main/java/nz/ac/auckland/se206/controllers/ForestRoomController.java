@@ -230,11 +230,17 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLbl.setText(formattedTime));
     //when time is up, show an alert that they have lost 
-    if (formattedTime.equals("00:00")) {
+    if (formattedTime.equals("00:01")) {
       Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
       timerLbl.setText("00:00");
     }
   }
+
+  //getter for timerLabel 
+  public Label getTimerLbl() {
+    return timerLbl;
+  }
+  
 
   public static TimeManager getTimeManager() {
     return timeManager;

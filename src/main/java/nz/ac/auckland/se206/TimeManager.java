@@ -32,6 +32,7 @@ public class TimeManager {
               showDialog("Game Over", "You have run out of time!", "You have ran out of time!");
               for (TimeUpdateListener listener : listeners) {
                 listener.onTimerUpdate("00:00");
+                //listener.getTimerLbl().setText("00:00");
               }
               }
             }
