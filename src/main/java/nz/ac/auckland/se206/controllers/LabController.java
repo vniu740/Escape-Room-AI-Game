@@ -67,7 +67,7 @@ public class LabController implements TimeManager.TimeUpdateListener{
   private @FXML Text txtCorrect;
   private @FXML Button btnCauldronExit;
   private @FXML Label timerLblLab;
-  private static TimeManager timeManager;
+  private static TimeManager timeManagerlab;
 
   /**
    * Initialises the lab scene when called.
@@ -76,6 +76,8 @@ public class LabController implements TimeManager.TimeUpdateListener{
    */
   @FXML
   public void initialize() throws URISyntaxException {
+    timeManagerlab = TimeManager.getInstance();
+    timeManagerlab.registerListener(this);
     setPotionRecipe();
     setCauldronOrder();
 
@@ -150,7 +152,7 @@ public class LabController implements TimeManager.TimeUpdateListener{
   }
 
   public static TimeManager getTimeManager() {
-    return timeManager;
+    return timeManagerlab;
   }
 
 

@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -11,32 +13,55 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TimeManager;
 
-public class DragonRoomController {
+public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
   @FXML
   private ImageView imgViewLeftArrow;
   @FXML
-  private Label timerLblDragon; 
+  private Label timerLblDragon;
+  private static TimeManager timeManager;
 
   @FXML
   public void initialize() throws IOException {
+    timeManager = TimeManager.getInstance();
+    timeManager.registerListener(this);
 
     // Create a new thread for the animation
-    Thread animationThread =
-        new Thread(
-            () -> {
-              ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageLock);
-              ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageScale);
-              ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
-              imageAnimation.playAnimation();
-              image2Animation.playAnimation();
-              leftArrowAnimation.playAnimation();
-            });
+    Thread animationThread = new Thread(
+        () -> {
+          ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageLock);
+          ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageScale);
+          ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
+          imageAnimation.playAnimation();
+          image2Animation.playAnimation();
+          leftArrowAnimation.playAnimation();
+        });
 
     // Start the animation thread
     animationThread.start();
+  }
+
+  // .
+  /**
+  * Updates timer label according to the current time that has passed.
+  *
+  * @param formattedTime the formatted time to display
+  */
+  @Override
+  public void onTimerUpdate(String formattedTime) {
+    Platform.runLater(() -> timerLblDragon.setText(formattedTime));
+    //when time is up, show an alert that they have lost 
+    if (formattedTime.equals("00:00")) {
+      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      timerLblDragon.setText("00:00");
+    }
+  }
+
+  public static TimeManager getTimeManager() {
+    return timeManager;
   }
 
   @FXML

@@ -169,7 +169,8 @@ public class MenuController {
   private void onTwoMinsClick(ActionEvent event) {
     //get instance of time manager for forest room and start timer
     ForestRoomController.getTimeManager().startTimer(121);
-    //LabController.getTimeManager().startTimer(121);
+    LabController.getTimeManager().startTimer(121);
+    DragonRoomController.getTimeManager().startTimer(121);  
     
     if (isFourMinsSelected == true) {
       // If the four mins button is selected, deselect it, and select the two mins button
@@ -213,6 +214,8 @@ public class MenuController {
   @FXML
   private void onFourMinsClick(ActionEvent event) {
     ForestRoomController.getTimeManager().startTimer(241);
+    LabController.getTimeManager().startTimer(241);
+    DragonRoomController.getTimeManager().startTimer(241);
     if (isTwoMinsSelected == true) {
       // If the two mins button is selected, deselect it, and select four two mins button
       toggleBtnFourMins.setSelected(true);
@@ -250,6 +253,8 @@ public class MenuController {
   @FXML
   private void onSixMinsClick(ActionEvent event) {
     ForestRoomController.getTimeManager().startTimer(361);
+    LabController.getTimeManager().startTimer(361);
+    DragonRoomController.getTimeManager().startTimer(361);
     if (isTwoMinsSelected == true) {
       // If the two mins button is selected, deselect it, and select six two mins button
       toggleBtnTwoMins.setSelected(false);
