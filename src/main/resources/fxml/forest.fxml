@@ -109,5 +109,6 @@
             </HBox>
          </children>
       </Pane>
+      <ImageView fx:id="imgViewIngredient" fitHeight="68.0" fitWidth="76.0" layoutX="331.0" layoutY="200.0" onMouseClicked="#onIngredientClicked" pickOnBounds="true" preserveRatio="true" visible="false" />
    </children>
 </Pane>

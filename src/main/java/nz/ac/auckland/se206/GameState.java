@@ -23,4 +23,13 @@ public class GameState {
 
   /** Indicates whether the user has collected the dragon scale */
   public static boolean isScaleCollected = false;
+
+  /** Indicates whether the user has fished up the correct ingredient */
+  public static boolean isFishingComplete = false;
+
+   /** Indicates whether the user has collected the correct ingredient for the forest Room */
+  public static boolean isForestCollected = false;
+
+  /** Indicates whether the user has collected the correct ingredient for the lab Room */
+  public static boolean isLabCollected = false;
 }

@@ -96,6 +96,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   private @FXML Pane pnScroll;
   private @FXML HBox hBoxScroll;
   private @FXML ImageView imgViewIconScroll;
+  private @FXML ImageView imgViewIngredient;
+  private @FXML Image correctIngredient;
 
   String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
@@ -135,7 +137,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       // Get the list of all possible forest images instantiated in LabController
       List<Image> uniqueImages = PotionManager.getForestObjectList();
       // Get the correct ingredient which was randomised and set to index 0 in LabController and remove it
-      Image correctIngredient = uniqueImages.remove(0);
+       correctIngredient = uniqueImages.remove(0);
       // Shuffle the list to randomise the incorrect ingredients
       Collections.shuffle(uniqueImages);
       // Make the list a size of 3 ingredients
@@ -171,7 +173,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
          if (selectedImage == correctIngredient) {
           //alert the user that they have found the correct image
           Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
-
+          GameState.isFishingComplete = true;
         }
       
         // he slider should not move anymore 
@@ -192,7 +194,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
          if (selectedImage == correctIngredient) {
           //alert the user that they have found the correct image
           Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
-
+           GameState.isFishingComplete = true;
         }
         // he slider should not move anymore 
         sldTwo.lookup(".thumb").setPickOnBounds(false);
@@ -215,7 +217,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
          if (selectedImage == correctIngredient) {
           //alert the user that they have found the correct image
           Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
-
+          GameState.isFishingComplete = true;
         }
         sldThree.lookup(".thumb").setPickOnBounds(false);
         sldThreeDisablePane.setVisible(true);
@@ -295,6 +297,21 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     pnFishing.setVisible(false);
     pnFishingOpacity.setVisible(false);
 
+    if (GameState.isFishingComplete == true) {
+      imgViewIngredient.setImage(correctIngredient);
+      imgViewIngredient.setVisible(true);
+          // Create a new thread for the animation
+    Thread animationThread =
+        new Thread(
+            () -> {
+              ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imgViewIngredient);
+              imageAnimation.playAnimation();
+            });
+
+    // Start the animation thread
+    animationThread.start();
+    }
+
   }
   
   /**
@@ -343,6 +360,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML
   private void onExitIconScroll(MouseEvent event) {
     pnScroll.setVisible(false);
+  }
+ 
+  /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient
+   * @param event
+   */
+  @FXML private void onIngredientClicked(MouseEvent event) {
+    GameState.isForestCollected = true;
+    imgViewIngredient.setVisible(false);
   }
 
 }

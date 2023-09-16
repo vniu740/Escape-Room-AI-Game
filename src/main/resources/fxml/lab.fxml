@@ -57,6 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <ImageView fx:id="imgViewIngredient" fitHeight="33.0" fitWidth="36.0" layoutX="286.0" layoutY="180.0" onMouseClicked="#onIngredientClicked" pickOnBounds="true" preserveRatio="true" />
       <Pane fx:id="pnCauldronOpacity" layoutX="71.0" layoutY="21.0" opacity="0.7" prefHeight="366.0" prefWidth="464.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false" />
       <Pane fx:id="pnCauldron" layoutX="71.0" layoutY="21.0" prefHeight="366.0" prefWidth="464.0" visible="false">
          <children>
@@ -113,22 +114,6 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pnScroll" layoutX="90.0" layoutY="45.0" prefHeight="325.0" prefWidth="427.0" visible="false">
-         <children>
-            <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/scroll.png" />
-               </image>
-            </ImageView>
-            <HBox fx:id="hBoxScroll" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0" style="-fx-spacing: 30;">
-               <children>
-                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </HBox>
-         </children>
-      </Pane>
       <ImageView fx:id="imgViewLeftArrow" fitHeight="71.0" fitWidth="40.0" layoutX="14.0" layoutY="178.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/leftArrow.png" />
@@ -145,5 +130,21 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Pane fx:id="pnScroll" layoutX="90.0" layoutY="45.0" prefHeight="325.0" prefWidth="427.0" visible="false">
+         <children>
+            <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/scroll.png" />
+               </image>
+            </ImageView>
+            <HBox fx:id="hBoxScroll" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0" style="-fx-spacing: 30;">
+               <children>
+                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
    </children>
 </Pane>
