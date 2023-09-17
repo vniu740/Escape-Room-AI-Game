@@ -24,4 +24,8 @@ public class SceneManager {
   public static Parent getUi(AppUi ui) {
     return sceneMap.get(ui);
   }
+
+  public static void resetUiMap() {
+    sceneMap.clear();
+  }
 }

@@ -1,10 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 
 public class WinController {
 
@@ -27,7 +29,8 @@ public class WinController {
   }
 
   @FXML
-  public void onRetryClicked() {
-    // Implement code that resets game
+  public void onRetryClicked() throws IOException {
+    // Reset the game state
+    App.restartGame();
   }
 }

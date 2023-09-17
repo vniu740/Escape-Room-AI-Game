@@ -67,4 +67,18 @@ public class App extends Application {
     stage.show();
     root.requestFocus();
   }
+
+  public static void restartGame() throws IOException {
+    SceneManager.resetUiMap();
+    GameState.reset();
+
+    // Adding new room instances into the scenemanager hashmap
+    SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
+    SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
+    SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
+    SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
+    SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
+
+    setUi(AppUi.START_PAGE);
+  }
 }

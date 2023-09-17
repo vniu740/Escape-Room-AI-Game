@@ -26,4 +26,16 @@ public class GameState {
 
   /** Indicates how many items the user has collected */
   public static int itemsCollected = 0;
+
+  /** Resets the game state */
+  public static void reset() {
+    isRiddleResolved = false;
+    isKeyFound = false;
+    isLeverPulled = false;
+    dragonMatches = 0;
+    isMatchGameWon = false;
+    matching = false;
+    isScaleCollected = false;
+    itemsCollected = 0;
+  }
 }
