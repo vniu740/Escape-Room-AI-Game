@@ -23,4 +23,7 @@ public class GameState {
 
   /** Indicates whether the user has collected the dragon scale */
   public static boolean isScaleCollected = false;
+
+  /** Indicates how many items the user has collected */
+  public static int itemsCollected = 0;
 }

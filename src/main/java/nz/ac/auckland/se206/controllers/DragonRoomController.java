@@ -44,22 +44,23 @@ public class DragonRoomController {
   private void onScaleClicked() {
     if (GameState.isMatchGameWon) {
       GameState.isScaleCollected = true;
+      GameState.itemsCollected++;
       imageScale.setVisible(false);
     }
   }
 
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
-   * 
+   *
    * @param event
    */
-    @FXML private void onLeftArrowClicked(MouseEvent event) {
+  @FXML
+  private void onLeftArrowClicked(MouseEvent event) {
     // Switch to the lab
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
   }
-
 }
 /**
  * Attribution: imageLock: <a

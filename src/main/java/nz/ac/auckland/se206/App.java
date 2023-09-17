@@ -68,4 +68,3 @@ public class App extends Application {
     root.requestFocus();
   }
 }
-
