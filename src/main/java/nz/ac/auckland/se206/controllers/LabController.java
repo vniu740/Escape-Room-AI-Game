@@ -151,11 +151,6 @@ public class LabController implements TimeManager.TimeUpdateListener{
     }
   }
 
-  //getter for timerlabel 
-  public Label getTimerLbl() {
-    return timerLblLab;
-  }
-
   public static TimeManager getTimeManager() {
     return timeManagerlab;
   }

@@ -59,10 +59,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       timerLblDragon.setText("00:00");
     }
   }
-  //getter for timerlabel 
-  public Label getTimerLblDragon() {
-    return timerLblDragon;
-  }
 
   public static TimeManager getTimeManager() {
     return timeManager;

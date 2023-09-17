@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.stream.Collectors;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,8 +21,9 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Tile;
+import nz.ac.auckland.se206.TimeManager;
 
-public class MatchingGameController {
+public class MatchingGameController implements TimeManager.TimeUpdateListener {
   @FXML private VBox gameBox;
   @FXML private GridPane gameGrid;
   @FXML private ImageView tile1;
@@ -35,7 +37,12 @@ public class MatchingGameController {
   @FXML private ImageView tile9;
   @FXML private Button buttonBack;
   @FXML private Label counter;
-  @FXML private ImageView counterBack;
+  @FXML
+  private ImageView counterBack;
+  
+  @FXML
+  private Label timerLblMatchGame;
+  private static TimeManager timeManager;
 
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
   private ImageView[] tiles; // Array of tile ImageViews
@@ -45,6 +52,8 @@ public class MatchingGameController {
 
   // Initialize the game and set up event handlers
   public void initialize() throws IOException {
+    timeManager = TimeManager.getInstance();
+    timeManager.registerListener(this);
 
     // Initialize the game board with Tile objects
     gameBoard =
@@ -69,8 +78,7 @@ public class MatchingGameController {
 
   // Method to shuffle the positions of the tiles on the game board
   private void shuffleGameBoard() {
-    List<Tile> tileList =
-        Arrays.stream(gameBoard).flatMap(Arrays::stream).collect(Collectors.toList());
+    List<Tile> tileList = Arrays.stream(gameBoard).flatMap(Arrays::stream).collect(Collectors.toList());
     Collections.shuffle(tileList);
 
     // Update the game board with the shuffled tiles
@@ -81,6 +89,26 @@ public class MatchingGameController {
         index++;
       }
     }
+  }
+  
+    // .
+  /**
+  * Updates timer label according to the current time that has passed.
+  *
+  * @param formattedTime the formatted time to display
+  */
+  @Override
+  public void onTimerUpdate(String formattedTime) {
+    Platform.runLater(() -> timerLblMatchGame.setText(formattedTime));
+    //when time is up, show an alert that they have lost 
+    if (formattedTime.equals("00:01")) {
+      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      timerLblMatchGame.setText("00:00");
+    }
+  }
+
+  public static TimeManager getTimeManager() {
+    return timeManager;
   }
 
   // Implement event handler for tile clicks

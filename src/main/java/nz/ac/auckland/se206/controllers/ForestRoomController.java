@@ -235,11 +235,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       timerLbl.setText("00:00");
     }
   }
-
-  //getter for timerLabel 
-  public Label getTimerLbl() {
-    return timerLbl;
-  }
   
 
   public static TimeManager getTimeManager() {
