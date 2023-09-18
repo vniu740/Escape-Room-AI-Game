@@ -15,7 +15,8 @@ public class TimeManager {
   
 
   /** Starts the game timer. */
-  public void startTimer() {
+  public void startTimer(int time) {
+    timeRemaining = time;
     timer = new Timer();
 
     // update timer every second
@@ -31,6 +32,7 @@ public class TimeManager {
               showDialog("Game Over", "You have run out of time!", "You have ran out of time!");
               for (TimeUpdateListener listener : listeners) {
                 listener.onTimerUpdate("00:00");
+                //listener.getTimerLbl().setText("00:00");
               }
               }
             }

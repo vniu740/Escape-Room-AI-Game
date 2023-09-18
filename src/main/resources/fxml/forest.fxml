@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
@@ -26,6 +27,14 @@
          <image>
             <Image url="@../images/pond.png" />
          </image>
+      </ImageView>
+      <ImageView fx:id="imgViewIconScroll" fitHeight="92.0" fitWidth="85.0" layoutX="-1.0" layoutY="316.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/potionRecipeIcon.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </ImageView>
       <Pane fx:id="pnFishingOpacity" layoutX="-1.0" layoutY="-1.0" opacity="0.7" prefHeight="399.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
          <children>
@@ -69,13 +78,6 @@
       <Pane fx:id="sldThreeDisablePane" layoutX="317.0" layoutY="5.0" prefHeight="248.0" prefWidth="200.0" visible="false" />
       <Pane fx:id="sldOneDisablePane" layoutX="127.0" layoutY="80.0" prefHeight="180.0" prefWidth="142.0" visible="false" />
       <Pane fx:id="sldTwoDisablePane" layoutX="242.0" layoutY="29.0" prefHeight="218.0" prefWidth="102.0" visible="false" />
-      <ImageView fitHeight="68.0" fitWidth="98.0" layoutX="509.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/clock.png" />
-         </image>
-      </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="543.0" layoutY="45.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Label fx:id="timerLbl" alignment="CENTER" layoutX="527.0" layoutY="28.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
       <ImageView fx:id="imgViewRightArrow" fitHeight="111.0" fitWidth="40.0" layoutX="546.0" layoutY="161.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightArrow.png" />
@@ -84,5 +86,29 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <ImageView fitHeight="68.0" fitWidth="98.0" layoutX="531.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/clock.png" />
+         </image>
+      </ImageView>
+      <Circle fill="DODGERBLUE" layoutX="565.0" layoutY="75.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLbl" alignment="CENTER" layoutX="549.0" layoutY="58.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
+      <Pane fx:id="pnScroll" layoutX="100.0" layoutY="55.0" prefHeight="325.0" prefWidth="427.0" visible="false">
+         <children>
+            <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/scroll.png" />
+               </image>
+            </ImageView>
+            <HBox fx:id="hBoxScroll" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0" style="-fx-spacing: 30;">
+               <children>
+                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <ImageView fx:id="imgViewIngredient" fitHeight="68.0" fitWidth="76.0" layoutX="331.0" layoutY="200.0" onMouseClicked="#onIngredientClicked" pickOnBounds="true" preserveRatio="true" visible="false" />
    </children>
 </Pane>

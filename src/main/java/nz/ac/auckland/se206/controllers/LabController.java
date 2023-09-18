@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,14 +26,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
+import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TimeManager;
 
-public class LabController {
+public class LabController implements TimeManager.TimeUpdateListener{
 
   private List<Image> imgScrollList = new ArrayList<Image>();
+  private List<Image> forestObjectList = new ArrayList<Image>();
+  private List<Image> labObjectList = new ArrayList<Image>();
+  private List<Image> dragonObjectList = new ArrayList<Image>();
   private List<String> stringScrollListOrder = new ArrayList<String>();
   private List<String> imgCauldronList = new ArrayList<String>();
   private ImagePulseAnimation leverAnimation;
@@ -63,6 +71,27 @@ public class LabController {
   private @FXML Text txtTryAgain;
   private @FXML Text txtCorrect;
   private @FXML Button btnCauldronExit;
+  private @FXML Label timerLblLab;
+  private static TimeManager timeManagerlab;
+  @FXML private ImageView imgViewIconScroll;
+  @FXML private ImageView imgViewCauldronForest;
+  @FXML private ImageView imgViewCauldronLab;
+  @FXML private ImageView imgViewCauldronDragon;
+  @FXML private ImageView imgViewIngredient;
+  @FXML private Image imgBottleBug;
+  @FXML private Image imgBottleEyes;
+  @FXML private Image imgBottleRedMushRoom;
+  @FXML private Image imgBottleBlueMushroom;
+  @FXML private Image imgBottleSnake;
+  @FXML private Image imgBottleSeaShell;
+  @FXML private Image imgBottleLiquid;
+  @FXML private Image imgDiamond;
+  @FXML private Image imgGreenGem;
+  @FXML private Image imgMineral;
+  @FXML private Image imgOrangeGem;
+  @FXML private Image imgDragonBlood;
+  @FXML private Image imgDragonFire;
+ 
 
   /**
    * Initialises the lab scene when called.
@@ -71,6 +100,8 @@ public class LabController {
    */
   @FXML
   public void initialize() throws URISyntaxException {
+    timeManagerlab = TimeManager.getInstance();
+    timeManagerlab.registerListener(this);
     setPotionRecipe();
     setCauldronOrder();
 
@@ -97,52 +128,114 @@ public class LabController {
     Tooltip.install(imgViewCauldron, cauldronTooltip);
 
     // Create animation task for clickkable objects
-    Task<Void> animationTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            // The method ImagePulseAnimation is from its own class
-            leverAnimation = new ImagePulseAnimation(imgViewLever);
-            ImagePulseAnimation cauldronAnimation = new ImagePulseAnimation(imgViewCauldron);
-            ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
-            ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
-            ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
-            windowAnimation.playAnimation();
-            cauldronAnimation.playAnimation();
-            leverAnimation.playAnimation();
-            leftArrowAnimation.playAnimation();
-            rightArrowAnimation.playAnimation();
-            return null;
-          }
-        };
+    Task<Void> animationTask = new Task<Void>() {
+      @Override
+      protected Void call() throws Exception {
+        // The method ImagePulseAnimation is from its own class
+        leverAnimation = new ImagePulseAnimation(imgViewLever);
+        ImagePulseAnimation cauldronAnimation = new ImagePulseAnimation(imgViewCauldron);
+        ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
+        ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
+        ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
+        windowAnimation.playAnimation();
+        cauldronAnimation.playAnimation();
+        leverAnimation.playAnimation();
+        leftArrowAnimation.playAnimation();
+        rightArrowAnimation.playAnimation();
+        return null;
+      }
+    };
 
-    Task<Void> animationJewelleryTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            jewelleryAnimation = new ImagePulseAnimation(imgViewJewellery);
-            jewelleryAnimation.playAnimation();
-            return null;
-          }
-        };
+    Task<Void> animationJewelleryTask = new Task<Void>() {
+      @Override
+      protected Void call() throws Exception {
+        jewelleryAnimation = new ImagePulseAnimation(imgViewJewellery);
+        jewelleryAnimation.playAnimation();
+        return null;
+      }
+    };
     // Create threads that run each animation task. Start the main animation thread
     Thread animationThread = new Thread(animationTask, "Animation Thread");
     animationThread.start();
     animationJewelleryThread = new Thread(animationJewelleryTask, "Animation Thread");
   }
+  // .
+  /**
+  * Updates timer label according to the current time that has passed.
+  *
+  * @param formattedTime the formatted time to display
+  */
+  @Override
+  public void onTimerUpdate(String formattedTime) {
+    Platform.runLater(() -> timerLblLab.setText(formattedTime));
+    //when time is up, show an alert that they have lost 
+    if (formattedTime.equals("00:01")) {
+      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      timerLblLab.setText("00:00");
+    }
+  }
+
+  public static TimeManager getTimeManager() {
+    return timeManagerlab;
+  }
+
 
   /** Helper method that randomises and sets the order of the ingredients of the potion recipe. */
   private void setPotionRecipe() {
     int listCounter = 0;
-    // Initialise each image
-    imgFrog = new Image("images/frog.png");
+
+    // Initialise each image for the forest
+    imgBottleBug = new Image("/images/bottleBug.png");
+    imgBottleEyes = new Image("/images/bottleEyes.png");
+    imgBottleRedMushRoom = new Image("/images/BottleRedMushroom.png");
+    imgBottleBlueMushroom = new Image("/images/bottleBlueMushroom.png");
+    imgBottleSnake = new Image("/images/bottleSnake.png");
+    imgBottleSeaShell = new Image("/images/bottleSeaShell.png");
+    imgBottleLiquid = new Image("/images/bottleGreenLiq.png");
+
+    // Intialise each image for the lab
+    imgDiamond = new Image("/images/diamond.png");
+    imgMineral = new Image("/images/mineral.png");
+    imgOrangeGem = new Image("/images/orangeGem.png");
+    imgGreenGem = new Image("/images/greenGem.png");
     imgCrystal = new Image("images/crystal.png");
+
+    // Initialise each image for the dragon room
+    imgDragonBlood = new Image("/images/dragonsBlood.png");
+    imgDragonFire = new Image("/images/flame.png");
     imgScale = new Image("images/Scale.png");
 
+    // Add all images to their corresponding room lists
+    Collections.addAll(
+        forestObjectList,
+        imgBottleBug,
+        imgBottleEyes,
+        imgBottleRedMushRoom,
+        imgBottleBlueMushroom,
+        imgBottleSnake,
+        imgBottleSeaShell,
+        imgBottleLiquid);
+    Collections.addAll(
+        labObjectList, imgDiamond, imgMineral, imgOrangeGem, imgGreenGem, imgCrystal);
+    Collections.addAll(dragonObjectList, imgDragonBlood, imgDragonFire, imgScale);
+
+    // Shuffle each object room list
+    Collections.shuffle(forestObjectList);
+    Collections.shuffle(labObjectList);
+    Collections.shuffle(dragonObjectList);
+
+    // Set each list in PotionManager so they are acessible from other scenes
+    PotionManager.setForestObjectList(forestObjectList);
+    PotionManager.setDragonObjectList(dragonObjectList);
+
     // Add all images to the ArrayList imgScrollList
-    Collections.addAll(imgScrollList, imgFrog, imgCrystal, imgScale);
+    Collections.addAll(
+        imgScrollList, forestObjectList.get(0), labObjectList.get(0), dragonObjectList.get(0));
     // Shuffle the ArrayList to randomise the order of ingredients
     Collections.shuffle(imgScrollList);
+
+    // Set the lists in PotionManger so they are accessible from other scenes
+    PotionManager.setImageScrollList(imgScrollList);
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
     for (Node child : hBoxScroll.getChildren()) {
@@ -152,6 +245,13 @@ public class LabController {
       }
       listCounter++;
     }
+
+    // Set the ingredients visible in the cauldron to the same ones displayed on the potion recipe
+    imgViewCauldronForest.setImage(forestObjectList.get(0));
+    imgViewCauldronLab.setImage(labObjectList.get(0));
+    imgViewCauldronDragon.setImage(dragonObjectList.get(0));
+
+    imgViewIngredient.setImage(labObjectList.get(0));
   }
 
   /**
@@ -162,12 +262,12 @@ public class LabController {
     // Loop through the ArrayList imgScrollList and add the fxId of the imageView to the ArrayList
     // stringScrollListOrder
     for (Image image : imgScrollList) {
-      if (image == imgFrog) {
-        stringScrollListOrder.add("imgViewCauldronFrog");
-      } else if (image == imgCrystal) {
-        stringScrollListOrder.add("imgViewCauldronCrystal");
-      } else if (image == imgScale) {
-        stringScrollListOrder.add("imgViewCauldronScale");
+      if (forestObjectList.contains(image)) {
+        stringScrollListOrder.add("imgViewCauldronForest");
+      } else if (labObjectList.contains(image)) {
+        stringScrollListOrder.add("imgViewCauldronLab");
+      } else if (dragonObjectList.contains(image)) {
+        stringScrollListOrder.add("imgViewCauldronDragon");
       }
     }
   }
@@ -200,9 +300,11 @@ public class LabController {
    */
   @FXML
   private void onJewelleryClick(MouseEvent event) throws IOException {
-    ImageView imgView = (ImageView) event.getSource();
-    Scene sceneImageViewIsIn = imgView.getScene();
-    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
+    // ImageView imgView = (ImageView) event.getSource();
+    // Scene sceneImageViewIsIn = imgView.getScene();
+    // sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
+
+    App.setRoot("chat");
   }
 
   /**
@@ -225,61 +327,39 @@ public class LabController {
    */
   @FXML
   private void onCauldronClick(MouseEvent event) {
-    if (GameState.isRiddleResolved) {
-      imgViewCauldronCrystal.setEffect(null);
+    if (GameState.isLabCollected) {
+      imgViewCauldronLab.setEffect(null);
+    }
+    if (GameState.isForestCollected) {
+      imgViewCauldronForest.setEffect(null);
+    }
+    if (GameState.isScaleCollected) {
+      imgViewCauldronDragon.setEffect(null);
     }
     pnCauldron.setVisible(true);
     pnCauldronOpacity.setVisible(true);
   }
 
   /**
-   * Helper method that fades in an ImageView of the GUI.
-   *
-   * @param anchorPane
-   */
-  public void fadeIn(ImageView imageView) {
-    // Create a fade transtion that starts from opacity 0 and ends at opacity 1 that runs for 0.3
-    // seconds
-    FadeTransition transition = new FadeTransition(Duration.seconds(0.3), imageView);
-    transition.setFromValue(0);
-    transition.setToValue(0.6);
-    transition.play();
-  }
-
-  /**
-   * Helper method that fades out an ImageView of the GUI.
-   *
-   * @param anchorPane
-   */
-  public void fadeOut(ImageView imageView) {
-    // Create a fade transtion that starts from opacity 1 and ends at opacity 0 that runs for 0.3
-    // seconds
-    FadeTransition transition = new FadeTransition(Duration.seconds(0.3), imageView);
-    transition.setFromValue(0.6);
-    transition.setToValue(0);
-    transition.play();
-  }
-
-  /**
-   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronFrog.
+   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronForest.
    *
    * @param event
    */
   @FXML
-  private void onDragDetectionSourceFrog(MouseEvent event) {
-    if (GameState.isRiddleResolved == false) {
+  private void onDragDetectionSourceForest(MouseEvent event) {
+    if (GameState.isForestCollected == false) {
       return;
     }
     dragDetection(event);
   }
 
   /**
-   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronCrystal.
+   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronLab.
    *
    * @param event
    */
   @FXML
-  private void onDragDetectionSourceCrystal(MouseEvent event) {
+  private void onDragDetectionSourceLab(MouseEvent event) {
     if (GameState.isRiddleResolved == false) {
       return;
     }
@@ -288,13 +368,13 @@ public class LabController {
   }
 
   /**
-   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronScale.
+   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronDragon.
    *
    * @param event
    */
   @FXML
-  private void onDragDetectionSourceScale(MouseEvent event) {
-    if (GameState.isRiddleResolved == false) {
+  private void onDragDetectionSourceDragon(MouseEvent event) {
+    if (GameState.isScaleCollected == false) {
       return;
     }
 
@@ -422,5 +502,18 @@ public class LabController {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.DRAGON_ROOM));
+  }
+
+  /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient.
+   *
+   * @param event
+   */
+  @FXML
+  private void onIngredientClicked(MouseEvent event) {
+    if (GameState.isRiddleResolved) {
+      GameState.isLabCollected = true;
+      imgViewIngredient.setVisible(false);
+    }
   }
 }

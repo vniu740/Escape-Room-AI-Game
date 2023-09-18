@@ -38,4 +38,13 @@ public class GameState {
     isScaleCollected = false;
     itemsCollected = 0;
   }
+  
+  /** Indicates whether the user has fished up the correct ingredient */
+  public static boolean isFishingComplete = false;
+
+   /** Indicates whether the user has collected the correct ingredient for the forest Room */
+  public static boolean isForestCollected = false;
+
+  /** Indicates whether the user has collected the correct ingredient for the lab Room */
+  public static boolean isLabCollected = false;
 }
