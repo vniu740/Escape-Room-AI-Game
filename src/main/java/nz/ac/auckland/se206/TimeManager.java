@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javafx.scene.control.Alert;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class TimeManager {
   private static TimeManager instance;
   private Timer timer;
   public static int timeRemaining = 121;
   private List<TimeUpdateListener> listeners = new ArrayList<>();
-  
 
   /** Starts the game timer. */
   public void startTimer(int time) {
@@ -29,23 +28,23 @@ public class TimeManager {
             // stop timer when time is up
             if (timeRemaining == 0) {
               stopTimer();
-              showDialog("Game Over", "You have run out of time!", "You have ran out of time!");
+              System.out.println("Game Over2");
+
               for (TimeUpdateListener listener : listeners) {
                 listener.onTimerUpdate("00:00");
-                //listener.getTimerLbl().setText("00:00");
-              }
+                // listener.getTimerLbl().setText("00:00");
               }
             }
-
-        },0,1000);
-
+          }
+        },
+        0,
+        1000);
   }
 
   /** Gets the instance of the time manager. */
   public static TimeManager getInstance() {
     if (instance == null) {
       instance = new TimeManager();
-      
     }
     return instance;
   }
@@ -77,15 +76,16 @@ public class TimeManager {
   public void stopTimer() {
     timer.cancel();
     timer.purge();
-    showDialog("Game Over", "You have run out of time!", "You have ran out of time!");
+    // showDialog("Game Over", "You have run out of time!", "You have ran out of time!");
+    System.out.println("Game Over");
+    App.setUi(AppUi.LOSE);
   }
 
-   private void showDialog(String title, String headerText, String message) {
+  private void showDialog(String title, String headerText, String message) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle(title);
     alert.setHeaderText(headerText);
     alert.setContentText(message);
     alert.showAndWait();
   }
-
 }

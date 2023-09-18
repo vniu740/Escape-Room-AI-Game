@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.Timer;
 
 import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
@@ -14,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager;
-import nz.ac.auckland.se206.TimeManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
@@ -66,7 +64,7 @@ public class MenuController {
 
   /**
    * Handles the ActionEvent on the button btnEasyMode.
-   * 
+   *
    * @param event
    */
   @FXML
@@ -97,12 +95,14 @@ public class MenuController {
       isHidden = true;
     }
   }
+
   /**
    * Handles the ActionEvent on the button btnMediumMode.
-   * 
+   *
    * @param event
    */
-  @FXML private void onMediumClick(ActionEvent event) {
+  @FXML
+  private void onMediumClick(ActionEvent event) {
     if (isEasyHidden == false) {
       // If the easy menu is visible, transition it down, and translate the medium menu up
       translateDown();
@@ -132,10 +132,11 @@ public class MenuController {
 
   /**
    * Handles the ActionEvent on the button btnHardMode.
-   * 
+   *
    * @param event
    */
-  @FXML private void onHardClick(ActionEvent event) {
+  @FXML
+  private void onHardClick(ActionEvent event) {
     if (isEasyHidden == false) {
       // If the easy menu is visible, transition it down, and translate the hard menu up
       translateDown();
@@ -162,26 +163,25 @@ public class MenuController {
       isHidden = true;
     }
   }
+
   /**
    * Handles the ActionEvent on the toggle button toggleBtnTwoMins.
-   * 
+   *
    * @param event
    */
   @FXML
-  private void onTwoMinsClick(ActionEvent event) {  
+  private void onTwoMinsClick(ActionEvent event) {
     timeRemaining = 121;
-    
+
     if (isFourMinsSelected == true) {
       // If the four mins button is selected, deselect it, and select the two mins button
       toggleBtnFourMins.setSelected(false);
       toggleBtnTwoMins.setSelected(true);
       isFourMinsSelected = false;
       isTwoMinsSelected = true;
-      //start timer of timer manager by getting the instance 
-      //TimeManager.getInstance().startTimer();
-     
+      // start timer of timer manager by getting the instance
+      // TimeManager.getInstance().startTimer();
 
-      
     } else if (isSixMinsSelected == true) {
       // If the six mins button is selected, deselect it, and select the two mins button
       toggleBtnSixMins.setSelected(false);
@@ -207,7 +207,7 @@ public class MenuController {
 
   /**
    * Handles the ActionEvent on the toggle button toggleBtnFourMins.
-   * 
+   *
    * @param event
    */
   @FXML
@@ -244,7 +244,7 @@ public class MenuController {
 
   /**
    * Handles the ActionEvent on the toggle button toggleBtnFourMins.
-   * 
+   *
    * @param event
    */
   @FXML
@@ -284,14 +284,11 @@ public class MenuController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
-    //start timer of timer manager by getting the instance
+    // start timer of timer manager by getting the instance
     ForestRoomController.getTimeManager().startTimer(timeRemaining);
   }
 
-  /**
-   * Helper method that translates the pane pnDifficultyMenu upwards.
-   * 
-   */
+  /** Helper method that translates the pane pnDifficultyMenu upwards. */
   private void translateUp() {
     // Create and play a transition that will move the difficulty menu pane upwards
     TranslateTransition transition =
@@ -300,10 +297,7 @@ public class MenuController {
     transition.play();
   }
 
-  /**
-   * Helper method that translates the pane pnDifficultyMenu downwards.
-   * 
-   */
+  /** Helper method that translates the pane pnDifficultyMenu downwards. */
   private void translateDown() {
     // Create and play a transition that will move the difficulty menu pane downwards
     TranslateTransition transition =
