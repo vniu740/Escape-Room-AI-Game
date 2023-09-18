@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -23,8 +24,6 @@ import nz.ac.auckland.se206.TimeManager;
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
-  @FXML
-  private ImageView imgViewLeftArrow;
   @FXML
   private Label timerLblDragon;
   private static TimeManager timeManager;

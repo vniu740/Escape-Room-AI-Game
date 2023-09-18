@@ -73,21 +73,10 @@ public class LabController implements TimeManager.TimeUpdateListener{
   private @FXML Button btnCauldronExit;
   private @FXML Label timerLblLab;
   private static TimeManager timeManagerlab;
-  @FXML private HBox hBoxScroll;
-  @FXML private ImageView imgViewOne;
-  @FXML private ImageView imgViewTwo;
-  @FXML private ImageView imgViewThree;
-  @FXML private ImageView imgViewWindow;
-  @FXML private ImageView imgViewJewellery;
-  @FXML private ImageView imgViewLever;
-  @FXML private ImageView imgViewCauldron;
   @FXML private ImageView imgViewIconScroll;
   @FXML private ImageView imgViewCauldronForest;
   @FXML private ImageView imgViewCauldronLab;
   @FXML private ImageView imgViewCauldronDragon;
-  @FXML private ImageView imgViewCauldronBubbles;
-  @FXML private ImageView imgViewLeftArrow;
-  @FXML private ImageView imgViewRightArrow;
   @FXML private ImageView imgViewIngredient;
   @FXML private Image imgBottleBug;
   @FXML private Image imgBottleEyes;
@@ -96,20 +85,13 @@ public class LabController implements TimeManager.TimeUpdateListener{
   @FXML private Image imgBottleSnake;
   @FXML private Image imgBottleSeaShell;
   @FXML private Image imgBottleLiquid;
-  @FXML private Image imgCrystal;
   @FXML private Image imgDiamond;
   @FXML private Image imgGreenGem;
   @FXML private Image imgMineral;
   @FXML private Image imgOrangeGem;
-  @FXML private Image imgScale;
   @FXML private Image imgDragonBlood;
   @FXML private Image imgDragonFire;
-  @FXML private Pane pnCauldron;
-  @FXML private Pane pnCauldronOpacity;
-  @FXML private Pane pnScroll;
-  @FXML private Text txtTryAgain;
-  @FXML private Text txtCorrect;
-  @FXML private Button btnCauldronExit;
+ 
 
   /**
    * Initialises the lab scene when called.
