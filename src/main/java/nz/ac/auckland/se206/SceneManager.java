@@ -12,7 +12,9 @@ public class SceneManager {
     FOREST,
     DRAGON_ROOM,
     MATCHING,
-    LAB
+    LAB,
+    LOSE,
+    WIN
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
@@ -23,5 +25,9 @@ public class SceneManager {
 
   public static Parent getUi(AppUi ui) {
     return sceneMap.get(ui);
+  }
+
+  public static void resetUiMap() {
+    sceneMap.clear();
   }
 }

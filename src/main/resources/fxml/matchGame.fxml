@@ -23,47 +23,47 @@
           <GridPane fx:id="gameGrid" alignment="CENTER" hgap="10" layoutX="148.0" layoutY="14.0" prefHeight="296.0" prefWidth="293.0" vgap="10">
               <ImageView fx:id="tile1" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile2" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile3" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile4" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile5" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile6" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile7" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile8" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
               <ImageView fx:id="tile9" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryTile.png" />
                </image>
             </ImageView>
             <columnConstraints>

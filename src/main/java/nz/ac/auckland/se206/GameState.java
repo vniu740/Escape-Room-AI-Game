@@ -24,12 +24,30 @@ public class GameState {
   /** Indicates whether the user has collected the dragon scale */
   public static boolean isScaleCollected = false;
 
+  /** Indicates how many items the user has collected */
+  public static int itemsCollected = 0;
+
   /** Indicates whether the user has fished up the correct ingredient */
   public static boolean isFishingComplete = false;
 
-   /** Indicates whether the user has collected the correct ingredient for the forest Room */
+  /** Indicates whether the user has collected the correct ingredient for the forest Room */
   public static boolean isForestCollected = false;
 
   /** Indicates whether the user has collected the correct ingredient for the lab Room */
   public static boolean isLabCollected = false;
+
+  /** Resets the game state */
+  public static void reset() {
+    isRiddleResolved = false;
+    isKeyFound = false;
+    isLeverPulled = false;
+    dragonMatches = 0;
+    isMatchGameWon = false;
+    matching = false;
+    isScaleCollected = false;
+    itemsCollected = 0;
+    isFishingComplete = false;
+    isForestCollected = false;
+    isLabCollected = false;
+  }
 }

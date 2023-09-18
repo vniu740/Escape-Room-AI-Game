@@ -89,6 +89,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   private void onScaleClicked() {
     if (GameState.isMatchGameWon) {
       GameState.isScaleCollected = true;
+      GameState.itemsCollected++;
       imageScale.setVisible(false);
     }
   }

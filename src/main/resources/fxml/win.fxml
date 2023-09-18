@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinController">
+   <children>
+      <ImageView fitHeight="406.0" fitWidth="600.0" layoutY="-6.0">
+         <image>
+            <Image url="@../images/win.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="buttonRetryWin" alignment="CENTER" layoutX="445.0" layoutY="265.0" mnemonicParsing="false" onAction="#onRetryClicked" onMouseClicked="#onRetryClicked" prefHeight="48.0" prefWidth="100.0" text="Retry" />
+      <Button fx:id="buttonCloseWin" alignment="CENTER" layoutX="71.0" layoutY="265.0" mnemonicParsing="false" onAction="#onCloseClicked" onMouseClicked="#onCloseClicked" prefHeight="48.0" prefWidth="100.0" text="Close" />
+      <Label fx:id="winTitle" alignment="CENTER" layoutX="28.0" layoutY="65.0" prefHeight="99.0" prefWidth="544.0" text="You escaped!" textFill="#c438ff">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="65.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

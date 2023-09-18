@@ -1,4 +1,3 @@
-/* Example CSS for the button with an old paper texture background */
 #buttonBack {
     -fx-shape: "M 600 300 A 50 50 0 1 1 700 300 L 700 450 L 600 450 L 600 300 ";
     -fx-padding: 8 15 15 15;
@@ -25,6 +24,128 @@
 }
 
 #buttonBack:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
+
+}
+
+#buttonClose {
+    -fx-shape: "M 600 300 A 50 50 0 1 1 700 300 L 700 450 L 600 450 L 600 300 ";
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #d96e3a, #c54e2c);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill: white;
+}
+
+#buttonClose:hover {
+
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+}
+
+#buttonClose:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#buttonRetry {
+    -fx-shape: "M 600 300 A 50 50 0 1 1 700 300 L 700 450 L 600 450 L 600 300 ";
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #d96e3a, #c54e2c);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill: white;
+}
+
+#buttonRetry:hover {
+
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+}
+
+#buttonRetry:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
+
+}
+
+#buttonCloseWin {
+    -fx-shape: "M 600 300 A 50 50 0 1 1 700 300 L 700 450 L 600 450 L 600 300 ";
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #b700ff 0%, #ae00ff 100%),
+        #8600d3,
+        #9700c5,
+        radial-gradient(center 50% 50%, radius 100%, #c300ff, #9900ff);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill: white;
+}
+
+#buttonCloseWin:hover {
+
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #b700ff 0%, #ae00ff 100),
+        #8600d3,
+        #9700c5,
+        radial-gradient(center 50% 50%, radius 100%, #c300ff, #9900ff);
+}
+
+#buttonCloseWin:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#buttonRetryWin {
+    -fx-shape: "M 600 300 A 50 50 0 1 1 700 300 L 700 450 L 600 450 L 600 300 ";
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #b700ff 0%, #ae00ff 100%),
+        #8600d3,
+        #9700c5,
+        radial-gradient(center 50% 50%, radius 100%, #c300ff, #9900ff);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill: white;
+}
+
+#buttonRetryWin:hover {
+
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #b700ff 0%, #ae00ff 100),
+        #8600d3,
+        #9700c5,
+        radial-gradient(center 50% 50%, radius 100%, #c300ff, #9900ff);
+}
+
+#buttonRetryWin:pressed {
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 

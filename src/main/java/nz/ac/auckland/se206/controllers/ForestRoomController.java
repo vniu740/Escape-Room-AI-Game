@@ -1,14 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,7 +15,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -28,7 +22,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.PotionManager;
@@ -36,62 +29,43 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 
-
 /** Controller class for the room view. */
-public class ForestRoomController implements TimeManager.TimeUpdateListener{
+public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
   @FXML private Rectangle door;
   @FXML private Rectangle window;
-  @FXML
-  private Rectangle vase;
+  @FXML private Rectangle vase;
   @FXML private Label timerLbl;
+
   private static TimeManager timeManager;
-  @FXML
-  private Button switchScenes;
-  @FXML
-  private ImageView imgViewSpiralPond;
+  @FXML private Button switchScenes;
+  @FXML private ImageView imgViewSpiralPond;
 
-  @FXML
-  private Slider sldOne;
-  @FXML
-  private Slider sldTwo;
-  @FXML
-  private Slider sldThree;
-  @FXML
-  private ImageView imgViewSpiralFrog;
-  @FXML
-  private ImageView imgViewMushroom;
-  @FXML
-  private ImageView imgViewBug;
-    
-  @FXML
-  private Pane pnFishing;
-  
-  @FXML
-  private Pane pnFishingOpacity;
-  
-  @FXML
-  private Button btnFishingExit;
-  @FXML 
-  private Pane sldOneDisablePane;
+  @FXML private Slider sldOne;
+  @FXML private Slider sldTwo;
+  @FXML private Slider sldThree;
+  @FXML private ImageView imgViewSpiralFrog;
+  @FXML private ImageView imgViewMushroom;
+  @FXML private ImageView imgViewBug;
 
-  @FXML
-  private Pane sldTwoDisablePane;
-  
-  @FXML
-  private Pane sldThreeDisablePane;
+  @FXML private Pane pnFishing;
 
-  @FXML 
-  private Line threadOne;
+  @FXML private Pane pnFishingOpacity;
 
-  @FXML
-  private Line threadTwo;
+  @FXML private Button btnFishingExit;
+  @FXML private Pane sldOneDisablePane;
 
-  @FXML
-  private Line threadThree;
+  @FXML private Pane sldTwoDisablePane;
 
-    @FXML
-  private ImageView imgViewRightArrow;
+  @FXML private Pane sldThreeDisablePane;
+
+  @FXML private Line threadOne;
+
+  @FXML private Line threadTwo;
+
+  @FXML private Line threadThree;
+
+  @FXML private ImageView imgViewRightArrow;
 
   private @FXML Pane pnScroll;
   private @FXML HBox hBoxScroll;
@@ -101,20 +75,21 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
 
   String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
-  
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
-    //start the 
-    //timeManager.startTimer();
+    // start the
+    // timeManager.startTimer();
 
     // Kimia's original shuffling code
     // //list of images that we can select from randomly
     // Image[] images = { new Image("/images/bottleBug.png"), new Image("/images/bottleEyes.png"),
-    //     new Image("/images/BottleRedMushroom.png"), new Image("/images/bottleBlueMushroom.png"), new Image("/images/bottleSnake.png"), new Image("/images/bottleSeaShell.png"), new Image("/images/bottleGreenLiq.png")};
+    //     new Image("/images/BottleRedMushroom.png"), new Image("/images/bottleBlueMushroom.png"),
+    // new Image("/images/bottleSnake.png"), new Image("/images/bottleSeaShell.png"), new
+    // Image("/images/bottleGreenLiq.png")};
     //   List<Image> uniqueImages = new ArrayList<>();
 
     //     // Add unique images to the list
@@ -124,32 +99,34 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     //         }
     //     }
 
+    // Shuffle the list
+    // Collections.shuffle(uniqueImages);
 
-            // Shuffle the list
-        //Collections.shuffle(uniqueImages);
+    // Convert the shuffled list back to an array
+    // Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
+    // random index to select an image from the list
+    // Random rand = new Random();
+    // int randomIndex = rand.nextInt(3);
+    // int randomIndex = 0; //for testing purposes
 
-        // Convert the shuffled list back to an array
-        // Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
-        //random index to select an image from the list
-        // Random rand = new Random();
-        // int randomIndex = rand.nextInt(3);
-        // int randomIndex = 0; //for testing purposes
+    // Get the list of all possible forest images instantiated in LabController
+    List<Image> uniqueImages = PotionManager.getForestObjectList();
+    // Get the correct ingredient which was randomised and set to index 0 in LabController and
+    // remove it
+    correctIngredient = uniqueImages.remove(0);
+    // Shuffle the list to randomise the incorrect ingredients
+    Collections.shuffle(uniqueImages);
+    // Make the list a size of 3 ingredients
+    uniqueImages.subList(3, 6).clear();
+    ;
+    // Add the correct ingredient back into the list so that the two wrong ingredients are random
+    // and the correct ingredient is in the list
+    uniqueImages.set(0, correctIngredient);
+    // Shuffle the list again so that the order of the two wrong ingredients and correct ingredient
+    // is randomised
+    Collections.shuffle(uniqueImages);
+    Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
 
-
-      // Get the list of all possible forest images instantiated in LabController
-      List<Image> uniqueImages = PotionManager.getForestObjectList();
-      // Get the correct ingredient which was randomised and set to index 0 in LabController and remove it
-       correctIngredient = uniqueImages.remove(0);
-      // Shuffle the list to randomise the incorrect ingredients
-      Collections.shuffle(uniqueImages);
-      // Make the list a size of 3 ingredients
-      uniqueImages.subList(3, 6).clear();;
-      // Add the correct ingredient back into the list so that the two wrong ingredients are random and the correct ingredient is in the list
-      uniqueImages.set(0, correctIngredient);
-      // Shuffle the list again so that the order of the two wrong ingredients and correct ingredient is randomised
-      Collections.shuffle(uniqueImages);
-      Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
-    
     Tooltip pondTooltip = new Tooltip("pondimagespiral");
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
@@ -161,74 +138,100 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     sldTwo.getTransforms().add(rotate);
     sldThree.getTransforms().add(rotate);
 
-    sldOne.valueProperty().addListener((observable, oldValue, newValue) -> {
-      // Add the difference between newValue and oldValue to the Y position of the frog
-      imgViewSpiralFrog.setY(imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
-      // update the end point of line to be higher
-      threadOne.setEndY(threadOne.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
+    sldOne
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              // Add the difference between newValue and oldValue to the Y position of the frog
+              imgViewSpiralFrog.setY(
+                  imgViewSpiralFrog.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+              // update the end point of line to be higher
+              threadOne.setEndY(
+                  threadOne.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
 
-      //if the frog is at the bottom of the slider, change the pic to be the frog with the fishing rod
-      if (newValue.doubleValue() == sldOne.getMax()) {
-        //get image with picOne 
-        Image selectedImage = shuffledImages[0];
-        imgViewSpiralFrog.setImage(selectedImage);
-         if (selectedImage == correctIngredient) {
-          //alert the user that they have found the correct image
-          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
-          GameState.isFishingComplete = true;
-        }
-      
-        // he slider should not move anymore 
-        sldOne.lookup(".thumb").setPickOnBounds(false);
-        sldOneDisablePane.setVisible(true);
+              // if the frog is at the bottom of the slider, change the pic to be the frog with the
+              // fishing rod
+              if (newValue.doubleValue() == sldOne.getMax()) {
+                // get image with picOne
+                Image selectedImage = shuffledImages[0];
+                imgViewSpiralFrog.setImage(selectedImage);
+                if (selectedImage == correctIngredient) {
+                  // alert the user that they have found the correct image
+                  Platform.runLater(
+                      () ->
+                          showDialog(
+                              "Congratulations!",
+                              "You have found the correct ingredient in this room!",
+                              "You have found the correct ingredient!"));
+                  GameState.isFishingComplete = true;
+                }
 
-      }
-    });
+                // he slider should not move anymore
+                sldOne.lookup(".thumb").setPickOnBounds(false);
+                sldOneDisablePane.setVisible(true);
+              }
+            });
 
-    sldTwo.valueProperty().addListener((observable, oldValue, newValue) -> {
-      // Add the difference between newValue and oldValue to the Y position of the frog
-      imgViewMushroom.setY(imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
-      threadTwo.setEndY(threadTwo.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
-      if (newValue.doubleValue() == sldTwo.getMax()) {
-        //get an image that hasnt been selected yet
-        Image selectedImage = shuffledImages[1];
-        imgViewMushroom.setImage(selectedImage);
-         if (selectedImage == correctIngredient) {
-          //alert the user that they have found the correct image
-          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
-           GameState.isFishingComplete = true;
-        }
-        // he slider should not move anymore 
-        sldTwo.lookup(".thumb").setPickOnBounds(false);
-        sldTwoDisablePane.setVisible(true);
+    sldTwo
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              // Add the difference between newValue and oldValue to the Y position of the frog
+              imgViewMushroom.setY(
+                  imgViewMushroom.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+              threadTwo.setEndY(
+                  threadTwo.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
+              if (newValue.doubleValue() == sldTwo.getMax()) {
+                // get an image that hasnt been selected yet
+                Image selectedImage = shuffledImages[1];
+                imgViewMushroom.setImage(selectedImage);
+                if (selectedImage == correctIngredient) {
+                  // alert the user that they have found the correct image
+                  Platform.runLater(
+                      () ->
+                          showDialog(
+                              "Congratulations!",
+                              "You have found the correct ingredient in this room!",
+                              "You have found the correct ingredient!"));
+                  GameState.isFishingComplete = true;
+                }
+                // he slider should not move anymore
+                sldTwo.lookup(".thumb").setPickOnBounds(false);
+                sldTwoDisablePane.setVisible(true);
+              }
+            });
 
-      }
+    sldThree
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              // Add the difference between newValue and oldValue to the Y position of the frog
+              imgViewBug.setY(
+                  imgViewBug.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
+              threadThree.setEndY(
+                  threadThree.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
 
-    });
+              if (newValue.doubleValue() == sldThree.getMax()) {
+                // get an image that hasnt been selected yet
+                Image selectedImage = shuffledImages[2];
+                imgViewBug.setImage(selectedImage);
+                // he slider should not move anymore
+                if (selectedImage == correctIngredient) {
+                  // alert the user that they have found the correct image
+                  Platform.runLater(
+                      () ->
+                          showDialog(
+                              "Congratulations!",
+                              "You have found the correct ingredient in this room!",
+                              "You have found the correct ingredient!"));
+                  GameState.isFishingComplete = true;
+                }
+                sldThree.lookup(".thumb").setPickOnBounds(false);
+                sldThreeDisablePane.setVisible(true);
+              }
+            });
 
-    sldThree.valueProperty().addListener((observable, oldValue, newValue) -> {
-      // Add the difference between newValue and oldValue to the Y position of the frog
-      imgViewBug.setY(imgViewBug.getY() + (oldValue.doubleValue() - newValue.doubleValue()));
-      threadThree.setEndY(threadThree.getEndY() + (oldValue.doubleValue() - newValue.doubleValue()));
-
-      if (newValue.doubleValue() == sldThree.getMax()) {
-        //get an image that hasnt been selected yet
-        Image selectedImage = shuffledImages[2];
-        imgViewBug.setImage(selectedImage);
-        // he slider should not move anymore 
-         if (selectedImage == correctIngredient) {
-          //alert the user that they have found the correct image
-          Platform.runLater(() -> showDialog("Congratulations!", "You have found the correct ingredient in this room!", "You have found the correct ingredient!"));
-          GameState.isFishingComplete = true;
-        }
-        sldThree.lookup(".thumb").setPickOnBounds(false);
-        sldThreeDisablePane.setVisible(true);
-
-      }
-    });
-
-
-        // Create animation task for clickable objects
+    // Create animation task for clickable objects
     Task<Void> animationTask =
         new Task<Void>() {
           @Override
@@ -247,28 +250,26 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     setPotionRecipeImages();
   }
 
-
-// .
+  // .
   /**
-  * Updates timer label according to the current time that has passed.
-  *
-  * @param formattedTime the formatted time to display
-  */
+   * Updates timer label according to the current time that has passed.
+   *
+   * @param formattedTime the formatted time to display
+   */
   @Override
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLbl.setText(formattedTime));
-    //when time is up, show an alert that they have lost 
+    // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      Platform.runLater(
+          () -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
       timerLbl.setText("00:00");
     }
   }
-  
 
   public static TimeManager getTimeManager() {
     return timeManager;
   }
-
 
   /**
    * Displays a dialog box with the given title, header text, and message.
@@ -285,55 +286,50 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     alert.showAndWait();
   }
 
-
- 
-
-
   @FXML
   private void onPondClick(MouseEvent event) throws IOException {
     System.out.println("pond clicked");
-    //set pnfishing to visible
+    // set pnfishing to visible
     pnFishing.setVisible(true);
     pnFishingOpacity.setVisible(true);
-
   }
 
   @FXML
   private void onFishingExit(MouseEvent event) throws IOException {
-    //set pnfishing to invisible
+    // set pnfishing to invisible
     pnFishing.setVisible(false);
     pnFishingOpacity.setVisible(false);
 
     if (GameState.isFishingComplete == true) {
       imgViewIngredient.setImage(correctIngredient);
       imgViewIngredient.setVisible(true);
-          // Create a new thread for the animation
-    Thread animationThread =
-        new Thread(
-            () -> {
-              ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imgViewIngredient);
-              imageAnimation.playAnimation();
-            });
+      // Create a new thread for the animation
+      Thread animationThread =
+          new Thread(
+              () -> {
+                ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imgViewIngredient);
+                imageAnimation.playAnimation();
+              });
 
-    // Start the animation thread
-    animationThread.start();
+      // Start the animation thread
+      animationThread.start();
     }
-
   }
-  
+
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
-   * 
+   *
    * @param event
    */
-  @FXML private void onRightArrowClicked(MouseEvent event) {
+  @FXML
+  private void onRightArrowClicked(MouseEvent event) {
     // Switch to the Lab
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
   }
 
-    /** Helper method that sets the ingredient images of the potion recipe. */
+  /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
     int listCounter = 0;
     List<Image> imgScrollList = PotionManager.getImgScrollList();
@@ -347,7 +343,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
       listCounter++;
     }
   }
-
 
   /**
    * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon
@@ -368,14 +363,16 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   private void onExitIconScroll(MouseEvent event) {
     pnScroll.setVisible(false);
   }
- 
+
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient
+   *
    * @param event
    */
-  @FXML private void onIngredientClicked(MouseEvent event) {
+  @FXML
+  private void onIngredientClicked(MouseEvent event) {
     GameState.isForestCollected = true;
+    GameState.itemsCollected++;
     imgViewIngredient.setVisible(false);
   }
-
 }

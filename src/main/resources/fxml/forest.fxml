@@ -60,17 +60,17 @@
             <Slider fx:id="sldOne" layoutY="47.0" orientation="VERTICAL" prefHeight="150.0" prefWidth="14.0" />
             <ImageView fx:id="imgViewSpiralFrog" fitHeight="44.0" fitWidth="49.0" layoutX="83.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryBottle.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imgViewMushroom" fitHeight="44.0" fitWidth="49.0" layoutX="153.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryBottle.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imgViewBug" fitHeight="44.0" fitWidth="49.0" layoutX="217.0" layoutY="227.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/questionBox.png" />
+                  <Image url="@../images/mysteryBottle.png" />
                </image>
             </ImageView>
          </children>

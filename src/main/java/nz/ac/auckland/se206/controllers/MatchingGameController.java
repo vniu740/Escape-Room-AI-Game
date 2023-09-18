@@ -144,7 +144,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     int tileValue = clickedGameTile.getValue();
 
     // Set the image based on the tile value when it's flipped up
-    String tileImageName = "/images/questionBox.png"; // Default image path
+    String tileImageName = "/images/mysteryTile.png"; // Default image path
     if (tileValue == 1) {
       tileImageName = "/images/tileVal1.png";
     } else if (tileValue == 2) {
@@ -200,8 +200,8 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
             new java.util.TimerTask() {
               @Override
               public void run() {
-                tiles[finalClickedTileIndex].setImage(new Image("/images/questionBox.png"));
-                tiles[finalLastTileIndex].setImage(new Image("/images/questionBox.png"));
+                tiles[finalClickedTileIndex].setImage(new Image("/images/mysteryTile.png"));
+                tiles[finalLastTileIndex].setImage(new Image("/images/mysteryTile.png"));
                 GameState.matching = false;
                 // close the thread
                 t.cancel();

@@ -59,6 +59,8 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
     SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
     SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
+    SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
+    SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
     // SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
 
     Parent root = SceneManager.getUi(AppUi.START_PAGE);
@@ -66,5 +68,21 @@ public class App extends Application {
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
+  }
+
+  public static void restartGame() throws IOException {
+    SceneManager.resetUiMap();
+    GameState.reset();
+
+    // Adding new room instances into the scenemanager hashmap
+    SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
+    SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
+    SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
+    SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
+    SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
+    SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
+    SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
+
+    setUi(AppUi.START_PAGE);
   }
 }
