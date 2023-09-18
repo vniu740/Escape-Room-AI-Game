@@ -5,12 +5,15 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,8 +32,9 @@ import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.TimeManager;
 
-public class LabController {
+public class LabController implements TimeManager.TimeUpdateListener{
 
   private List<Image> imgScrollList = new ArrayList<Image>();
   private List<Image> forestObjectList = new ArrayList<Image>();
@@ -43,21 +47,36 @@ public class LabController {
   private int imagesDropped = 0;
   private Thread animationJewelleryThread;
 
-  @FXML private HBox hBoxScroll;
-  @FXML private ImageView imgViewOne;
-  @FXML private ImageView imgViewTwo;
-  @FXML private ImageView imgViewThree;
-  @FXML private ImageView imgViewWindow;
-  @FXML private ImageView imgViewJewellery;
-  @FXML private ImageView imgViewLever;
-  @FXML private ImageView imgViewCauldron;
+  private @FXML HBox hBoxScroll;
+  private @FXML ImageView imgViewOne;
+  private @FXML ImageView imgViewTwo;
+  private @FXML ImageView imgViewThree;
+  private @FXML ImageView imgViewWindow;
+  private @FXML ImageView imgViewJewellery;
+  private @FXML ImageView imgViewLever;
+  private @FXML ImageView imgViewCauldron;
+  private @FXML ImageView imgViewScrollIcon;
+  private @FXML ImageView imgViewCauldronFrog;
+  private @FXML ImageView imgViewCauldronCrystal;
+  private @FXML ImageView imgViewCauldronScale;
+  private @FXML ImageView imgViewCauldronBubbles;
+  private @FXML ImageView imgViewLeftArrow;
+  private @FXML ImageView imgViewRightArrow;
+  private @FXML Image imgFrog;
+  private @FXML Image imgCrystal;
+  private @FXML Image imgScale;
+  private @FXML Pane pnCauldron;
+  private @FXML Pane pnCauldronOpacity;
+  private @FXML Pane pnScroll;
+  private @FXML Text txtTryAgain;
+  private @FXML Text txtCorrect;
+  private @FXML Button btnCauldronExit;
+  private @FXML Label timerLblLab;
+  private static TimeManager timeManagerlab;
   @FXML private ImageView imgViewIconScroll;
   @FXML private ImageView imgViewCauldronForest;
   @FXML private ImageView imgViewCauldronLab;
   @FXML private ImageView imgViewCauldronDragon;
-  @FXML private ImageView imgViewCauldronBubbles;
-  @FXML private ImageView imgViewLeftArrow;
-  @FXML private ImageView imgViewRightArrow;
   @FXML private ImageView imgViewIngredient;
   @FXML private Image imgBottleBug;
   @FXML private Image imgBottleEyes;
@@ -66,20 +85,13 @@ public class LabController {
   @FXML private Image imgBottleSnake;
   @FXML private Image imgBottleSeaShell;
   @FXML private Image imgBottleLiquid;
-  @FXML private Image imgCrystal;
   @FXML private Image imgDiamond;
   @FXML private Image imgGreenGem;
   @FXML private Image imgMineral;
   @FXML private Image imgOrangeGem;
-  @FXML private Image imgScale;
   @FXML private Image imgDragonBlood;
   @FXML private Image imgDragonFire;
-  @FXML private Pane pnCauldron;
-  @FXML private Pane pnCauldronOpacity;
-  @FXML private Pane pnScroll;
-  @FXML private Text txtTryAgain;
-  @FXML private Text txtCorrect;
-  @FXML private Button btnCauldronExit;
+ 
 
   /**
    * Initialises the lab scene when called.
@@ -88,6 +100,8 @@ public class LabController {
    */
   @FXML
   public void initialize() throws URISyntaxException {
+    timeManagerlab = TimeManager.getInstance();
+    timeManagerlab.registerListener(this);
     setPotionRecipe();
     setCauldronOrder();
 
@@ -114,39 +128,57 @@ public class LabController {
     Tooltip.install(imgViewCauldron, cauldronTooltip);
 
     // Create animation task for clickkable objects
-    Task<Void> animationTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            // The method ImagePulseAnimation is from its own class
-            leverAnimation = new ImagePulseAnimation(imgViewLever);
-            ImagePulseAnimation cauldronAnimation = new ImagePulseAnimation(imgViewCauldron);
-            ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
-            ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
-            ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
-            windowAnimation.playAnimation();
-            cauldronAnimation.playAnimation();
-            leverAnimation.playAnimation();
-            leftArrowAnimation.playAnimation();
-            rightArrowAnimation.playAnimation();
-            return null;
-          }
-        };
+    Task<Void> animationTask = new Task<Void>() {
+      @Override
+      protected Void call() throws Exception {
+        // The method ImagePulseAnimation is from its own class
+        leverAnimation = new ImagePulseAnimation(imgViewLever);
+        ImagePulseAnimation cauldronAnimation = new ImagePulseAnimation(imgViewCauldron);
+        ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
+        ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
+        ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
+        windowAnimation.playAnimation();
+        cauldronAnimation.playAnimation();
+        leverAnimation.playAnimation();
+        leftArrowAnimation.playAnimation();
+        rightArrowAnimation.playAnimation();
+        return null;
+      }
+    };
 
-    Task<Void> animationJewelleryTask =
-        new Task<Void>() {
-          @Override
-          protected Void call() throws Exception {
-            jewelleryAnimation = new ImagePulseAnimation(imgViewJewellery);
-            jewelleryAnimation.playAnimation();
-            return null;
-          }
-        };
+    Task<Void> animationJewelleryTask = new Task<Void>() {
+      @Override
+      protected Void call() throws Exception {
+        jewelleryAnimation = new ImagePulseAnimation(imgViewJewellery);
+        jewelleryAnimation.playAnimation();
+        return null;
+      }
+    };
     // Create threads that run each animation task. Start the main animation thread
     Thread animationThread = new Thread(animationTask, "Animation Thread");
     animationThread.start();
     animationJewelleryThread = new Thread(animationJewelleryTask, "Animation Thread");
   }
+  // .
+  /**
+  * Updates timer label according to the current time that has passed.
+  *
+  * @param formattedTime the formatted time to display
+  */
+  @Override
+  public void onTimerUpdate(String formattedTime) {
+    Platform.runLater(() -> timerLblLab.setText(formattedTime));
+    //when time is up, show an alert that they have lost 
+    if (formattedTime.equals("00:01")) {
+      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      timerLblLab.setText("00:00");
+    }
+  }
+
+  public static TimeManager getTimeManager() {
+    return timeManagerlab;
+  }
+
 
   /** Helper method that randomises and sets the order of the ingredients of the potion recipe. */
   private void setPotionRecipe() {

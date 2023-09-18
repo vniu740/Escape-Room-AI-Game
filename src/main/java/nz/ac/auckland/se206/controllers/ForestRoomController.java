@@ -45,7 +45,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   @FXML
   private Rectangle vase;
   @FXML private Label timerLbl;
-  private TimeManager timeManager;
+  private static TimeManager timeManager;
   @FXML
   private Button switchScenes;
   @FXML
@@ -108,6 +108,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
+    //start the 
+    //timeManager.startTimer();
 
     // Kimia's original shuffling code
     // //list of images that we can select from randomly
@@ -256,10 +258,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener{
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLbl.setText(formattedTime));
     //when time is up, show an alert that they have lost 
-    if (formattedTime.equals("00:00")) {
+    if (formattedTime.equals("00:01")) {
       Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
       timerLbl.setText("00:00");
     }
+  }
+  
+
+  public static TimeManager getTimeManager() {
+    return timeManager;
   }
 
 
