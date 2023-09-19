@@ -292,6 +292,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // set pnfishing to visible
     pnFishing.setVisible(true);
     pnFishingOpacity.setVisible(true);
+    //Remove the option to change room
+    imgViewRightArrow.setVisible(false);
   }
 
   @FXML
@@ -299,6 +301,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // set pnfishing to invisible
     pnFishing.setVisible(false);
     pnFishingOpacity.setVisible(false);
+    // Include the ability to move rooms
+    imgViewRightArrow.setVisible(true);
 
     if (GameState.isFishingComplete == true) {
       imgViewIngredient.setImage(correctIngredient);
