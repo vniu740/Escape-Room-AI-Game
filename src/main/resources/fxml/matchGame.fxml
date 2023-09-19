@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="gameBox" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MatchingGameController">
+<VBox fx:id="gameBox" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MatchingGameController">
    <Pane prefHeight="399.0" prefWidth="600.0">
       <children>
          <ImageView fitHeight="435.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
@@ -102,6 +102,11 @@
          </ImageView>
          <Circle fill="DODGERBLUE" layoutX="555.0" layoutY="65.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
          <Label fx:id="timerLblMatchGame" alignment="CENTER" layoutX="539.0" layoutY="48.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
+         <ImageView fx:id="imgViewWizard" fitHeight="225.0" fitWidth="166.0" layoutX="447.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/wizard.png" />
+            </image>
+         </ImageView>
       </children>
    </Pane>
 </VBox>
