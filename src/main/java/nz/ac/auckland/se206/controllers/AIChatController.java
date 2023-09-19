@@ -282,6 +282,10 @@ public class AIChatController {
   public static void setBackground() {
     if (GameState.currentRoom.equals("dragon")) {
       chatBackground.setImage(new Image("/images/roomDragon.jpg"));
+    } else if (GameState.currentRoom.equals("lab")) {
+      chatBackground.setImage(new Image("/images/lab.jpg"));
+    } else if (GameState.currentRoom.equals("forest")) {
+      chatBackground.setImage(new Image("/images/forest.jpg"));
     }
   }
 }

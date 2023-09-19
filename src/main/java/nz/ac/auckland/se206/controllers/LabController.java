@@ -90,6 +90,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Image imgOrangeGem;
   @FXML private Image imgDragonBlood;
   @FXML private Image imgDragonFire;
+  @FXML private ImageView wizard;
 
   /**
    * Initialises the lab scene when called.
@@ -521,5 +522,11 @@ public class LabController implements TimeManager.TimeUpdateListener {
       GameState.itemsCollected++;
       imgViewIngredient.setVisible(false);
     }
+  }
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
   }
 }
