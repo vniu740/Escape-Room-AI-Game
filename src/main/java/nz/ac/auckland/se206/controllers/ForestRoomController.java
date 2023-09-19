@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
@@ -72,6 +74,11 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   private @FXML ImageView imgViewIconScroll;
   private @FXML ImageView imgViewIngredient;
   private @FXML Image correctIngredient;
+
+  @FXML private Button btnSpeechExit;
+  @FXML private Pane pnSpeech;
+  @FXML private Text txtSpeech;
+  @FXML private ImageView imgViewWizard;
 
   String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
@@ -157,12 +164,18 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 imgViewSpiralFrog.setImage(selectedImage);
                 if (selectedImage == correctIngredient) {
                   // alert the user that they have found the correct image
+                  // Platform.runLater(
+                  //     () ->
+                  //         showDialog(
+                  //             "Congratulations!",
+                  //             "You have found the correct ingredient in this room!",
+                  //             "You have found the correct ingredient!"));
+
                   Platform.runLater(
-                      () ->
-                          showDialog(
-                              "Congratulations!",
-                              "You have found the correct ingredient in this room!",
-                              "You have found the correct ingredient!"));
+                      () -> {
+                        txtSpeech.setText("You fished up the correct ingredient!");
+                        pnSpeech.setVisible(true);
+                      });
                   GameState.isFishingComplete = true;
                 }
 
@@ -187,12 +200,17 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 imgViewMushroom.setImage(selectedImage);
                 if (selectedImage == correctIngredient) {
                   // alert the user that they have found the correct image
+                  // Platform.runLater(
+                  //     () ->
+                  //         showDialog(
+                  //             "Congratulations!",
+                  //             "You have found the correct ingredient in this room!",
+                  //             "You have found the correct ingredient!"));
                   Platform.runLater(
-                      () ->
-                          showDialog(
-                              "Congratulations!",
-                              "You have found the correct ingredient in this room!",
-                              "You have found the correct ingredient!"));
+                      () -> {
+                        txtSpeech.setText("You fished up the correct ingredient!");
+                        pnSpeech.setVisible(true);
+                      });
                   GameState.isFishingComplete = true;
                 }
                 // he slider should not move anymore
@@ -218,12 +236,17 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 // he slider should not move anymore
                 if (selectedImage == correctIngredient) {
                   // alert the user that they have found the correct image
+                  // Platform.runLater(
+                  //     () ->
+                  //         showDialog(
+                  //             "Congratulations!",
+                  //             "You have found the correct ingredient in this room!",
+                  //             "You have found the correct ingredient!"));
                   Platform.runLater(
-                      () ->
-                          showDialog(
-                              "Congratulations!",
-                              "You have found the correct ingredient in this room!",
-                              "You have found the correct ingredient!"));
+                      () -> {
+                        txtSpeech.setText("You fished up the correct ingredient!");
+                        pnSpeech.setVisible(true);
+                      });
                   GameState.isFishingComplete = true;
                 }
                 sldThree.lookup(".thumb").setPickOnBounds(false);
@@ -292,8 +315,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // set pnfishing to visible
     pnFishing.setVisible(true);
     pnFishingOpacity.setVisible(true);
-    //Remove the option to change room
+    // Remove the option to change room
     imgViewRightArrow.setVisible(false);
+    if (!GameState.isFishingComplete) {
+      txtSpeech.setText("Fish up the correct ingredient!");
+      pnSpeech.setVisible(true);
+    } else {
+      txtSpeech.setText("You fished up the correct ingredient!");
+      pnSpeech.setVisible(true);
+    }
   }
 
   @FXML
@@ -303,6 +333,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     pnFishingOpacity.setVisible(false);
     // Include the ability to move rooms
     imgViewRightArrow.setVisible(true);
+    pnSpeech.setVisible(false);
 
     if (GameState.isFishingComplete == true) {
       imgViewIngredient.setImage(correctIngredient);
@@ -378,5 +409,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     GameState.isForestCollected = true;
     GameState.itemsCollected++;
     imgViewIngredient.setVisible(false);
+  }
+
+  /**
+   * Handles the ActionEvent on the Button btnSpeechExit.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSpeechExit(ActionEvent event) {
+    pnSpeech.setVisible(false);
   }
 }

@@ -2,17 +2,19 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.List;
-
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
@@ -24,13 +26,17 @@ import nz.ac.auckland.se206.TimeManager;
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
-  @FXML
-  private Label timerLblDragon;
+  @FXML private Label timerLblDragon;
   private static TimeManager timeManager;
   @FXML private ImageView imgViewLeftArrow;
   @FXML private Pane pnScroll;
   @FXML private HBox hBoxScroll;
   @FXML private ImageView imgViewIconScroll;
+
+  @FXML private Button btnSpeechExit;
+  @FXML private Pane pnSpeech;
+  @FXML private Text txtSpeech;
+  @FXML private ImageView imgViewWizard;
 
   @FXML
   public void initialize() throws IOException {
@@ -38,21 +44,22 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     timeManager.registerListener(this);
 
     // Get the correct ingredient of all possible dragon images instantiated in LabController
-      List<Image> dragonImageList = PotionManager.getDragonObjectList();
-      Image correctIngredient = dragonImageList.get(0);
+    List<Image> dragonImageList = PotionManager.getDragonObjectList();
+    Image correctIngredient = dragonImageList.get(0);
     // Set image to correct ingredient
     imageScale.setImage(correctIngredient);
 
     // Create a new thread for the animation
-    Thread animationThread = new Thread(
-        () -> {
-          ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageLock);
-          ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageScale);
-          ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
-          imageAnimation.playAnimation();
-          image2Animation.playAnimation();
-          leftArrowAnimation.playAnimation();
-        });
+    Thread animationThread =
+        new Thread(
+            () -> {
+              ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageLock);
+              ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageScale);
+              ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
+              imageAnimation.playAnimation();
+              image2Animation.playAnimation();
+              leftArrowAnimation.playAnimation();
+            });
 
     // Start the animation thread
     animationThread.start();
@@ -62,16 +69,17 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   // .
   /**
-  * Updates timer label according to the current time that has passed.
-  *
-  * @param formattedTime the formatted time to display
-  */
+   * Updates timer label according to the current time that has passed.
+   *
+   * @param formattedTime the formatted time to display
+   */
   @Override
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLblDragon.setText(formattedTime));
-    //when time is up, show an alert that they have lost 
+    // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
+      // out of time!"));
       timerLblDragon.setText("00:00");
     }
   }
@@ -91,6 +99,9 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       GameState.isScaleCollected = true;
       GameState.itemsCollected++;
       imageScale.setVisible(false);
+      pnSpeech.setVisible(false);
+    } else {
+      pnSpeech.setVisible(true);
     }
   }
 
@@ -107,7 +118,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
   }
 
-      /** Helper method that sets the ingredient images of the potion recipe. */
+  /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
     int listCounter = 0;
     List<Image> imgScrollList = PotionManager.getImgScrollList();
@@ -121,7 +132,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       listCounter++;
     }
   }
-
 
   /**
    * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon
@@ -141,6 +151,16 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onExitIconScroll(MouseEvent event) {
     pnScroll.setVisible(false);
+  }
+
+    /**
+   * Handles the ActionEvent on the Button btnSpeechExit.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSpeechExit(ActionEvent event) {
+    pnSpeech.setVisible(false);
   }
 }
 /**

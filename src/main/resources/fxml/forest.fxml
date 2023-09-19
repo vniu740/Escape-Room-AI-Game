@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
@@ -115,5 +117,27 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Pane fx:id="pnSpeech" layoutX="344.0" layoutY="127.0" prefHeight="130.0" prefWidth="159.0" visible="false">
+         <children>
+            <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="12.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/speechBubble.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnSpeechExit" layoutX="22.0" layoutY="80.0" mnemonicParsing="false" onAction="#onSpeechExit" opacity="0.65" prefHeight="0.0" prefWidth="9.0" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Text fx:id="txtSpeech" layoutX="24.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fish up the correct ingredient!" textAlignment="CENTER" wrappingWidth="111.21630859375">
+               <font>
+                  <Font name="Herculanum" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </Pane>
