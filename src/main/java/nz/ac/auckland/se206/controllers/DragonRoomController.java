@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.List;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -24,8 +23,8 @@ import nz.ac.auckland.se206.TimeManager;
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
-  @FXML
-  private Label timerLblDragon;
+  @FXML private ImageView wizard;
+  @FXML private Label timerLblDragon;
   private static TimeManager timeManager;
   @FXML private ImageView imgViewLeftArrow;
   @FXML private Pane pnScroll;
@@ -38,21 +37,22 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     timeManager.registerListener(this);
 
     // Get the correct ingredient of all possible dragon images instantiated in LabController
-      List<Image> dragonImageList = PotionManager.getDragonObjectList();
-      Image correctIngredient = dragonImageList.get(0);
+    List<Image> dragonImageList = PotionManager.getDragonObjectList();
+    Image correctIngredient = dragonImageList.get(0);
     // Set image to correct ingredient
     imageScale.setImage(correctIngredient);
 
     // Create a new thread for the animation
-    Thread animationThread = new Thread(
-        () -> {
-          ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageLock);
-          ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageScale);
-          ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
-          imageAnimation.playAnimation();
-          image2Animation.playAnimation();
-          leftArrowAnimation.playAnimation();
-        });
+    Thread animationThread =
+        new Thread(
+            () -> {
+              ImagePulseAnimation imageAnimation = new ImagePulseAnimation(imageLock);
+              ImagePulseAnimation image2Animation = new ImagePulseAnimation(imageScale);
+              ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
+              imageAnimation.playAnimation();
+              image2Animation.playAnimation();
+              leftArrowAnimation.playAnimation();
+            });
 
     // Start the animation thread
     animationThread.start();
@@ -62,16 +62,17 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   // .
   /**
-  * Updates timer label according to the current time that has passed.
-  *
-  * @param formattedTime the formatted time to display
-  */
+   * Updates timer label according to the current time that has passed.
+   *
+   * @param formattedTime the formatted time to display
+   */
   @Override
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLblDragon.setText(formattedTime));
-    //when time is up, show an alert that they have lost 
+    // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
+      // out of time!"));
       timerLblDragon.setText("00:00");
     }
   }
@@ -105,9 +106,10 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+    GameState.currentRoom = "lab";
   }
 
-      /** Helper method that sets the ingredient images of the potion recipe. */
+  /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
     int listCounter = 0;
     List<Image> imgScrollList = PotionManager.getImgScrollList();
@@ -121,7 +123,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       listCounter++;
     }
   }
-
 
   /**
    * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon
@@ -141,6 +142,12 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onExitIconScroll(MouseEvent event) {
     pnScroll.setVisible(false);
+  }
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
   }
 }
 /**

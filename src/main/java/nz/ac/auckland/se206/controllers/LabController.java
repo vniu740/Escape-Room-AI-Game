@@ -305,8 +305,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
     // Scene sceneImageViewIsIn = imgView.getScene();
     // sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
 
-    //App.setRoot("aichat");
-    //set the scene to aichat 
+    // App.setRoot("aichat");
+    // set the scene to aichat
     App.setUi(AppUi.AICHAT);
   }
 
@@ -492,6 +492,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.FOREST));
+    GameState.currentRoom = "forest";
   }
 
   /**
@@ -505,6 +506,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.DRAGON_ROOM));
+    GameState.currentRoom = "dragon";
   }
 
   /**

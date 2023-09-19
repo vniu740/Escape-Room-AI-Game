@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.scene.control.Alert;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class TimeManager {
@@ -79,13 +78,5 @@ public class TimeManager {
     // showDialog("Game Over", "You have run out of time!", "You have ran out of time!");
     System.out.println("Game Over");
     App.setUi(AppUi.LOSE);
-  }
-
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
   }
 }

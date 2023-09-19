@@ -327,6 +327,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+    GameState.currentRoom = "lab";
   }
 
   /** Helper method that sets the ingredient images of the potion recipe. */
