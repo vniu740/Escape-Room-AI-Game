@@ -305,7 +305,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
     // Scene sceneImageViewIsIn = imgView.getScene();
     // sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
 
-    App.setRoot("chat");
+    //App.setRoot("aichat");
+    //set the scene to aichat 
+    App.setUi(AppUi.AICHAT);
   }
 
   /**

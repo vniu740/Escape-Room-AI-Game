@@ -34,48 +34,17 @@ public class AIChatController {
 
   private ChatCompletionRequest chatCompletionRequest;
 
-  // @FXML
-  // public void initialize() throws ApiProxyException {
+  private int numHints; // number of hints given to the user
+  private String gameLevel;
 
-  //   tf_message.setEditable(false);
-  //   Task<Void> getRiddleTask = new Task<Void>() {
-  //     @Override
-  //     protected Void call() throws Exception {
-  //       chatCompletionRequest = new ChatCompletionRequest()
-  //           .setN(1)
-  //           .setTemperature(0.4)
-  //           .setTopP(0.5)
-  //           .setMaxTokens(100);
-  //       //btnGoBack.setDisable(true);
-  //       ChatMessage msg = runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("potion")));
-  //       //add label for msg 
-  //       addLabel(msg.getContent(), vbox_message, sp_main);
-  //       tf_message.clear();
-  //       tf_message.setEditable(true);
-  //       //btnGoBack.setDisable(false);
-  //       return null;
-  //     }
-  //   };
-
-  //   Thread riddleThread = new Thread(getRiddleTask, "Riddle Thread");
-  //   riddleThread.start();
-
-  //   vbox_message.heightProperty().addListener((observable, oldValue, newValue) -> {
-  //     sp_main.setVvalue((Double) newValue);
-  //   });
-
-  //   vbox_message.heightProperty().addListener(new ChangeListener<Number>() {
-  //     @Override
-  //     public void changed(javafx.beans.value.ObservableValue<? extends Number> observable, Number oldValue,
-  //         Number newValue) {
-  //       sp_main.setVvalue((Double) newValue);
-  //     }
-
-  //   });
-
-  // }
   @FXML
   public void initialize() throws ApiProxyException {
+    //get the game level 
+    //gameLevel = GameState.getLevel();
+    gameLevel = "hard"; //for testing purposes
+    //gameLevel = "hard";
+    //set the number of hints given to 0
+    numHints = 0;
 
     tf_message.setEditable(false);
     //round the corners of scrollpane
@@ -121,10 +90,74 @@ public class AIChatController {
     }
   }
 
+  // @FXML
+  // public void onSend() throws ApiProxyException {
+  //   String messageToSend = tf_message.getText();
+  //   //message to give to gpt 
+  //   ChatMessage msg = new ChatMessage("user", messageToSend);
+  //   if (!messageToSend.isEmpty()) {
+  //     HBox hbox = new HBox();
+  //     hbox.setAlignment(Pos.CENTER_LEFT);
+  //     hbox.setPadding(new Insets(5, 5, 5, 10));
+
+  //     Text text = new Text(messageToSend);
+  //     TextFlow textFlow = new TextFlow(text);
+
+  //     textFlow.setStyle("-fx-background-color: #00bfff; -fx-background-radius: 20;");
+  //     textFlow.setPadding(new Insets(5, 5, 10, 10));
+  //     text.setFill(Color.color(0.934, 0.945, 0.996));
+
+  //     hbox.getChildren().add(textFlow);
+  //     vbox_message.getChildren().add(hbox);
+  //     tf_message.clear();
+
+  //     Task<Void> sendChatMessageTask = new Task<Void>() {
+  //       @Override
+  //       protected Void call() throws Exception {
+  //         ChatMessage lastMsg = runGpt(msg);
+  //                   if (containsHintPhrase(lastMsg.getContent())) {
+  //           numHints++;
+  //           //if level is medium, no more than 5 hints allowed 
+  //           if (gameLevel.equals("medium") && numHints > 5) {
+  //             //send a message to the user that they have used up all their hints
+  //             addLabel("You have used up all your hints", vbox_message, sp_main);
+  //             tf_message.setEditable(false);
+  //             return null;
+  //           }
+  //           //if level is hard, no hints allowed
+  //           if (gameLevel.equals("hard")) {
+  //             //send a message to the user that they have used up all their hints
+  //             addLabel("You cant ask for hints", vbox_message, sp_main);
+  //             //tf_message.setEditable(false);
+  //             return null;
+  //           }
+  //         }
+  //         // call add label to add the message to the vbox
+  //         addLabel(lastMsg.getContent(), vbox_message, sp_main); 
+
+  //         tf_message.setEditable(true);
+  //         //btnGoBack.setDisable(false);
+  //         // If the users input is correct, update the gameState
+  //         if (lastMsg.getRole().equals("assistant")
+  //             && lastMsg.getContent().startsWith("Correct")) {
+  //           GameState.isRiddleResolved = true;
+  //           tf_message.setEditable(false);
+  //         }
+
+  //         return null;
+  //       }
+  //     };
+  //     // Create a new thread that will run this task and tell it to start
+  //     Thread sendChatMessageThread = new Thread(sendChatMessageTask, "Send Chat Message Thread");
+  //     sendChatMessageThread.start();
+
+  //   }
+
+  // }
   @FXML
   public void onSend() throws ApiProxyException {
     String messageToSend = tf_message.getText();
-    //message to give to gpt 
+    // Message to give to GPT
     ChatMessage msg = new ChatMessage("user", messageToSend);
     if (!messageToSend.isEmpty()) {
       HBox hbox = new HBox();
@@ -146,11 +179,29 @@ public class AIChatController {
         @Override
         protected Void call() throws Exception {
           ChatMessage lastMsg = runGpt(msg);
-          // call add label to add the message to the vbox
-          addLabel(lastMsg.getContent(), vbox_message, sp_main);
+
+          // Call containsHintPhrase to check if the message contains a hint
+          if (containsHintPhrase(lastMsg.getContent())) {
+            numHints++;
+            // Check the game level and limit the hints accordingly
+            if (gameLevel.equals("medium") && numHints > 5) {
+              // Send a message to the user that they have used up all their hints
+              addLabel("You have used up all your hints", vbox_message, sp_main);
+            } else if (gameLevel.equals("hard")) {
+              // Send a message to the user that they can't ask for hints
+              addLabel("You can't ask for hints", vbox_message, sp_main);
+            } else {
+              // Call addLabel to add the hint message to the vbox
+              addLabel(lastMsg.getContent(), vbox_message, sp_main);
+            }
+          } else {
+            // Call addLabel to add the message to the vbox
+            addLabel(lastMsg.getContent(), vbox_message, sp_main);
+          }
+
           tf_message.setEditable(true);
-          //btnGoBack.setDisable(false);
-          // If the users input is correct, update the gameState
+
+          // If the user's input is correct, update the gameState
           if (lastMsg.getRole().equals("assistant")
               && lastMsg.getContent().startsWith("Correct")) {
             GameState.isRiddleResolved = true;
@@ -160,51 +211,13 @@ public class AIChatController {
           return null;
         }
       };
+
       // Create a new thread that will run this task and tell it to start
       Thread sendChatMessageThread = new Thread(sendChatMessageTask, "Send Chat Message Thread");
       sendChatMessageThread.start();
-
     }
-
   }
 
-  // public static void addLabel(String messageFromClient, VBox vbox) {
-  //   HBox hbox = new HBox();
-  //   hbox.setAlignment(Pos.CENTER_RIGHT);
-  //   hbox.setPadding(new Insets(5, 10, 5, 10));
-
-  //   Text text = new Text(messageFromClient);
-  //   TextFlow textFlow = new TextFlow(text);
-  //   textFlow.setStyle("-fx-background-color: #e6e6e6; -fx-background-radius: 10px; -fx-padding: 5px;"); 
-  //   textFlow.setPadding(new Insets(5, 10, 5, 10));
-  //   hbox.getChildren().add(textFlow);
-
-  //   //platform to update the vbox later 
-  //   Platform.runLater(() -> {
-  //     vbox.getChildren().add(hbox);
-  //   });
-  // }
-  // public static void addLabel(String messageFromClient, VBox vbox, ScrollPane sp_main) {
-  //   HBox hbox = new HBox();
-  //   hbox.setAlignment(Pos.CENTER_LEFT);
-  //   hbox.setPadding(new Insets(5, 10, 5, 10));
-  //   hbox.setMaxWidth(sp_main.getViewportBounds().getWidth() - 20); // Adjust the value as needed
-
-  //   Text text = new Text(messageFromClient);
-  //   TextFlow textFlow = new TextFlow(text);
-  //   textFlow.setStyle("-fx-background-color: #e6e6e6; -fx-background-radius: 10px; -fx-padding: 5px;");
-  //   textFlow.setPadding(new Insets(5, 10, 5, 10));
-
-  //   // Set the preferred width of TextFlow to prevent horizontal scrollingm and have it on the right 
-  //   textFlow.setPrefWidth(sp_main.getViewportBounds().getWidth() - 20); // Adjust the value as needed
-
-  //   hbox.getChildren().add(textFlow);
-
-  //   // Platform to update the VBox later
-  //   Platform.runLater(() -> {
-  //     vbox.getChildren().add(hbox);
-  //   });
-  // }
   public static void addLabel(String messageFromClient, VBox vbox, ScrollPane sp_main) {
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER_RIGHT); // Align to the right
@@ -222,11 +235,25 @@ public class AIChatController {
 
     // Platform to update the VBox later
     Platform.runLater(() -> {
-        vbox.getChildren().add(hbox);
+      vbox.getChildren().add(hbox);
     });
 
     // Scroll to the bottom of the ScrollPane to show the latest message
     sp_main.setVvalue(1.0);
-}
+  }
 
+  // public boolean containsHintPhrase(String input) {
+  //   // Check if the input string contains the phrase "here is a hint" (case-sensitive)
+  //   return input.contains("here is a hint");
+  // }
+
+  //   public boolean containsHintPhrase(String input) {
+  //     // Use a case-insensitive regular expression to check for the phrase
+  //     return input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint\\b.*");
+  // }
+  public boolean containsHintPhrase(String input) {
+    // Use a case-insensitive regular expression to check for either phrase
+    return input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint\\b.*") ||
+           input.matches("(?i).*\\bhere\\s+is\\s+another\\s+hint\\b.*");
+}
 }
