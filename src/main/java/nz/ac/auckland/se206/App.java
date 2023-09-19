@@ -61,9 +61,12 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
-    // SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
+    //SceneManager.addAppUi(AppUi.CHATBOX, loadFxml("chatbox"));
+    SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
+      SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
 
-    Parent root = SceneManager.getUi(AppUi.START_PAGE);
+   // Parent root = SceneManager.getUi(AppUi.START_PAGE);
+    Parent root = SceneManager.getUi(AppUi.AICHAT);
     scene = new Scene(root, 600, 399);
     stage.setScene(scene);
     stage.show();

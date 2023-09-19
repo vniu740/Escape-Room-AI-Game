@@ -132,13 +132,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="68.0" fitWidth="98.0" layoutX="521.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="81.0" fitWidth="91.0" layoutX="499.0" layoutY="14.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
          </image>
       </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="555.0" layoutY="65.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Label fx:id="timerLblLab" alignment="CENTER" layoutX="539.0" layoutY="48.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
+      <Circle fill="DODGERBLUE" layoutX="544.0" layoutY="62.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLblLab" alignment="CENTER" layoutX="481.0" layoutY="45.0" prefHeight="34.0" prefWidth="127.0" text="00:00" />
       <Pane fx:id="pnScroll" layoutX="90.0" layoutY="45.0" prefHeight="325.0" prefWidth="427.0" visible="false">
          <children>
             <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">

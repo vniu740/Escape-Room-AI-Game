@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/forest.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="26.0" opacity="0.7" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
+         <children>
+            <Button fx:id="button_send" layoutX="362.0" layoutY="334.0" mnemonicParsing="false" onAction="#onSend" prefHeight="25.0" prefWidth="66.0" text="send" />
+         </children>
+      </Pane>
+      <TextField fx:id="tf_message" layoutX="26.0" layoutY="335.0" prefHeight="25.0" prefWidth="367.0" />
+      <ScrollPane fx:id="sp_main" layoutX="26.0" layoutY="19.0" prefHeight="318.0" prefWidth="425.0">
+         <content>
+            <VBox fx:id="vbox_message" prefHeight="305.0" prefWidth="406.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
