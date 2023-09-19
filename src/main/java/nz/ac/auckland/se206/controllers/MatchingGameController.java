@@ -223,8 +223,15 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onBackClicked() throws IOException {
+    GameState.currentRoom = "dragon";
     // Go back to the Dragon Room
     App.setUi(AppUi.DRAGON_ROOM);
+  }
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
   }
 }
 

@@ -16,7 +16,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -31,6 +33,7 @@ public class AIChatController {
   @FXML private ScrollPane sp_main;
   @FXML private static ImageView chatBackground;
   @FXML private Pane paneBack;
+  @FXML private Button buttonBack;
 
   private ChatCompletionRequest chatCompletionRequest;
 
@@ -52,8 +55,6 @@ public class AIChatController {
     // Move the background image to the back
     chatBackground.toBack();
 
-    // get the game level
-    gameLevel = GameState.getLevel();
     // set the number of hints given to 0
     numHints = 0;
 
@@ -174,6 +175,9 @@ public class AIChatController {
   // }
   @FXML
   public void onSend() throws ApiProxyException {
+    // get the game level
+    gameLevel = GameState.getLevel();
+
     String messageToSend = tf_message.getText();
     // Message to give to GPT
     ChatMessage msg = new ChatMessage("user", messageToSend);
@@ -237,6 +241,19 @@ public class AIChatController {
     }
   }
 
+  @FXML
+  public void onBackClicked() {
+    if (GameState.currentRoom.equals("dragon")) {
+      App.setUi(AppUi.DRAGON_ROOM);
+    } else if (GameState.currentRoom.equals("lab")) {
+      App.setUi(AppUi.LAB);
+    } else if (GameState.currentRoom.equals("forest")) {
+      App.setUi(AppUi.FOREST);
+    } else if (GameState.currentRoom.equals("matchGame")) {
+      App.setUi(AppUi.MATCHING);
+    }
+  }
+
   public static void addLabel(String messageFromClient, VBox vbox, ScrollPane sp_main) {
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER_RIGHT); // Align to the right
@@ -247,10 +264,6 @@ public class AIChatController {
     textFlow.setStyle(
         "-fx-background-color: #e6e6e6; -fx-background-radius: 10px; -fx-padding: 5px;");
     textFlow.setPadding(new Insets(5, 10, 5, 10));
-
-    // Set the preferred width of TextFlow to prevent horizontal scrolling
-    textFlow.setPrefWidth(
-        sp_main.getViewportBounds().getWidth() - 20); // Adjust the value as needed
 
     hbox.getChildren().add(textFlow);
 
@@ -286,6 +299,8 @@ public class AIChatController {
       chatBackground.setImage(new Image("/images/lab.jpg"));
     } else if (GameState.currentRoom.equals("forest")) {
       chatBackground.setImage(new Image("/images/forest.jpg"));
+    } else if (GameState.currentRoom.equals("matchGame")) {
+      chatBackground.setImage(new Image("/images/candlewall.jpg"));
     }
   }
 }

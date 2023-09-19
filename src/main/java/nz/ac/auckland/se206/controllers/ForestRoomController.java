@@ -379,7 +379,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     imgViewIngredient.setVisible(false);
   }
 
-    @FXML
+  @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);

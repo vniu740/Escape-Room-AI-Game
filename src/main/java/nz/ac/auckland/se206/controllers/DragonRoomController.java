@@ -83,6 +83,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onLockClicked() {
+    GameState.currentRoom = "matchGame";
     App.setUi(AppUi.MATCHING);
   }
 
