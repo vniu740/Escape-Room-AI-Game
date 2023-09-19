@@ -85,6 +85,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
+    SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
 
     setUi(AppUi.START_PAGE);
   }

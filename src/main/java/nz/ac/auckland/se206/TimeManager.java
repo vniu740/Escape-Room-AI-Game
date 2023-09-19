@@ -75,7 +75,6 @@ public class TimeManager {
   public void stopTimer() {
     timer.cancel();
     timer.purge();
-    // showDialog("Game Over", "You have run out of time!", "You have ran out of time!");
     System.out.println("Game Over");
     App.setUi(AppUi.LOSE);
   }
