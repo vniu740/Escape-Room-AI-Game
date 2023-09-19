@@ -30,6 +30,7 @@ import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Controller class for the room view. */
 public class ForestRoomController implements TimeManager.TimeUpdateListener {
@@ -406,6 +407,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onIngredientClicked(MouseEvent event) {
+    // Play the textToSpeech using a thread to make sure the app doesnt freeze
+    Thread speachThread =
+        new Thread(
+            () -> {
+              TextToSpeech textToSpeech = new TextToSpeech();
+              textToSpeech.speak("Item picked up");
+            });
+    speachThread.start();
+    // remove the ingredient and change the GameState
     GameState.isForestCollected = true;
     GameState.itemsCollected++;
     imgViewIngredient.setVisible(false);

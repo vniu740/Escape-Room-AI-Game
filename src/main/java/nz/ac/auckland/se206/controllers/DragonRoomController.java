@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
@@ -96,8 +97,17 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onScaleClicked() {
     if (GameState.isMatchGameWon) {
+      // If the game is won play the textToSpeech
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("Item picked up");
+              });
+      speachThread.start();
       GameState.isScaleCollected = true;
       GameState.itemsCollected++;
+      // Remove the wizard speech bubble and remove the item
       imageScale.setVisible(false);
       pnSpeech.setVisible(false);
     } else {
@@ -153,7 +163,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     pnScroll.setVisible(false);
   }
 
-    /**
+  /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
    * @param event

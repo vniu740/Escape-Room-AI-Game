@@ -32,6 +32,7 @@ import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LabController implements TimeManager.TimeUpdateListener {
 
@@ -140,6 +141,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
             ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
             ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
             ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
+            // Play each animation
             windowAnimation.playAnimation();
             cauldronAnimation.playAnimation();
             leverAnimation.playAnimation();
@@ -335,16 +337,20 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onCauldronClick(MouseEvent event) {
     if (GameState.isLabCollected) {
+      // If the item in the lab is collected, make it not blurred in the cauldron
       imgViewCauldronLab.setEffect(null);
     }
     if (GameState.isForestCollected) {
+      // If the item in the forest is collected, make it not blurred in the cauldron
       imgViewCauldronForest.setEffect(null);
     }
     if (GameState.isScaleCollected) {
+      // If the item in the dragon room is collected, make it not blurred in the cauldron
       imgViewCauldronDragon.setEffect(null);
     }
     pnCauldron.setVisible(true);
     pnCauldronOpacity.setVisible(true);
+    // Make the wizard inform the user on what to do
     txtSpeech.setText("Follow the recipe to make the shrinking potion!");
     pnSpeech.setVisible(true);
   }
@@ -521,6 +527,15 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onIngredientClicked(MouseEvent event) {
     if (GameState.isRiddleResolved) {
+      // Play the textToSpeech using a thread to make sure the app doesnt freeze
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("Item picked up");
+              });
+      speachThread.start();
+      // Remove the item and update the GameState
       GameState.isLabCollected = true;
       GameState.itemsCollected++;
       imgViewIngredient.setVisible(false);
