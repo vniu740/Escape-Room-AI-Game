@@ -27,7 +27,6 @@ public class TimeManager {
             // stop timer when time is up
             if (timeRemaining == 0) {
               stopTimer();
-              System.out.println("Game Over2");
 
               for (TimeUpdateListener listener : listeners) {
                 listener.onTimerUpdate("00:00");

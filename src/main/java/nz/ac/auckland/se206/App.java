@@ -61,7 +61,6 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
-    // SceneManager.addAppUi(AppUi.CHATBOX, loadFxml("chatbox"));
     SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
     SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
 
@@ -86,6 +85,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
     SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
+    SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
 
     setUi(AppUi.START_PAGE);
   }

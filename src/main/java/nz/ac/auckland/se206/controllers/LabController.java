@@ -172,8 +172,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLblLab.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
-      // out of time!"));
+      LoseController.setItemCounter();
       timerLblLab.setText("00:00");
     }
   }
