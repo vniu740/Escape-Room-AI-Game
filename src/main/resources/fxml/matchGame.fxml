@@ -109,12 +109,12 @@
                <Image url="@../images/wizard.png" />
             </image>
          </ImageView>
-         <ImageView fx:id="imgViewSpeech" fitHeight="130.0" fitWidth="136.0" layoutX="379.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="imgViewSpeech" fitHeight="109.0" fitWidth="131.0" layoutX="430.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../images/speechBubble.png" />
             </image>
          </ImageView>
-         <Button fx:id="btnSpeechExit" layoutX="392.0" layoutY="177.0" mnemonicParsing="false" onAction="#onSpeechExit" opacity="0.65" prefHeight="0.0" prefWidth="9.0" style="-fx-background-color: white;" text="X">
+         <Button fx:id="btnSpeechExit" layoutX="440.0" layoutY="160.0" mnemonicParsing="false" onAction="#onSpeechExit" opacity="0.65" prefHeight="0.0" prefWidth="9.0" style="-fx-background-color: white;" text="X">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
@@ -122,7 +122,7 @@
                <Font size="9.0" />
             </font>
          </Button>
-         <Text fx:id="txtSpeech" layoutX="391.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match 3 pairs to unlock the shelf!" textAlignment="CENTER" wrappingWidth="111.21630859375">
+         <Text fx:id="txtSpeech" layoutX="435.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match 3 pairs to unlock the shelf!" textAlignment="CENTER" wrappingWidth="111.21630859375">
             <font>
                <Font name="Herculanum" size="13.0" />
             </font>
