@@ -273,13 +273,13 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
                 // Check the game level and limit the hints accordingly
                 if (gameLevel.equals("medium")) {
-                  // Update the hint counter
-                  Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
 
                   if (numHints > 5) {
                     // Send a message to the user that they have used up all their hints
                     addLabel("You have used up all your hints", vbox_message, sp_main);
                   } else {
+                    // Update the hint counter
+                    Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
                     addLabel(lastMsg.getContent(), vbox_message, sp_main);
                   }
 
