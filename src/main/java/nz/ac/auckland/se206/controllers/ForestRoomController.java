@@ -319,13 +319,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     pnFishingOpacity.setVisible(true);
     // Remove the option to change room
     imgViewRightArrow.setVisible(false);
-    if (!GameState.isFishingComplete) {
-      txtSpeech.setText("Fish up the correct ingredient!");
+    if (GameState.isFishingComplete) {
+        txtSpeech.setText("You fished up the correct ingredient!");
       pnSpeech.setVisible(true);
-    } else {
-      txtSpeech.setText("You fished up the correct ingredient!");
-      pnSpeech.setVisible(true);
-    }
+    } 
   }
 
   @FXML
@@ -433,7 +430,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   private void onSpeechExit(ActionEvent event) {
     pnSpeech.setVisible(false);
   }
-  
+
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();

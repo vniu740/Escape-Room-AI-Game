@@ -45,6 +45,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Text fill="WHITE" layoutX="135.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fish up the correct ingredient!" textAlignment="CENTER" wrappingWidth="327.00001580328717">
+               <font>
+                  <Font name="Herculanum" size="26.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane fx:id="pnFishing" layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0" visible="false">
