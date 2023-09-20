@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
+<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/aichat.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/forest.jpg" />
-         </image>
-      </ImageView>
-      <Pane layoutX="26.0" opacity="0.7" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
+      <Pane fx:id="paneBack" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="button_send" layoutX="362.0" layoutY="334.0" mnemonicParsing="false" onAction="#onSend" prefHeight="25.0" prefWidth="66.0" text="send" />
+            <Button fx:id="button_send" layoutX="392.0" layoutY="337.0" mnemonicParsing="false" onAction="#onSend" prefHeight="12.0" prefWidth="60.0" text="send" />
+            <TextField fx:id="tf_message" layoutX="25.0" layoutY="337.0" prefHeight="25.0" prefWidth="367.0" />
+            <ScrollPane fx:id="sp_main" layoutX="25.0" layoutY="30.0" prefHeight="307.0" prefWidth="426.0">
+               <content>
+                  <VBox fx:id="vbox_message" prefHeight="305.0" prefWidth="398.0" />
+               </content>
+            </ScrollPane>
+            <ImageView fitHeight="203.0" fitWidth="124.0" layoutX="462.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/wizar.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonBack" layoutX="475.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="58.0" prefWidth="98.0" text="Back" />
          </children>
       </Pane>
-      <TextField fx:id="tf_message" layoutX="26.0" layoutY="335.0" prefHeight="25.0" prefWidth="367.0" />
-      <ScrollPane fx:id="sp_main" layoutX="26.0" layoutY="19.0" prefHeight="318.0" prefWidth="425.0">
-         <content>
-            <VBox fx:id="vbox_message" prefHeight="305.0" prefWidth="406.0" />
-         </content>
-      </ScrollPane>
    </children>
 </AnchorPane>

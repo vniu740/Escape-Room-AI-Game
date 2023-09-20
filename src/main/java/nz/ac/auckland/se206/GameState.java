@@ -36,8 +36,14 @@ public class GameState {
   /** Indicates whether the user has collected the correct ingredient for the lab Room */
   public static boolean isLabCollected = false;
 
+  /** Indicates the number of hints the user has used */
   public static int numberOfHints;
+
+  /** Indicates the level of the game */
   public static String level; // easy, medium, hard
+
+  /** Indicates the current room */
+  public static String currentRoom = "lab";
 
   /** Resets the game state */
   public static void reset() {
@@ -53,7 +59,6 @@ public class GameState {
     isForestCollected = false;
     isLabCollected = false;
     numberOfHints = 0;
-    level = "easy";
   }
 
   public static void setHints(int n) {
@@ -67,6 +72,7 @@ public class GameState {
   public static void setLevel(String l) {
     level = l;
   }
+
   public static String getLevel() {
     return level;
   }

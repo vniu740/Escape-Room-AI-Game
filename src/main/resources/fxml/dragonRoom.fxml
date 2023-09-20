@@ -64,5 +64,10 @@
             </HBox>
          </children>
       </Pane>
+      <ImageView fx:id="wizard" fitHeight="166.0" fitWidth="114.0" layoutX="479.0" layoutY="233.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/wizar.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

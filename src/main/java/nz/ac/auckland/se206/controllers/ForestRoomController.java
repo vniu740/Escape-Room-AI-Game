@@ -22,6 +22,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
 import nz.ac.auckland.se206.PotionManager;
@@ -47,6 +48,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imgViewSpiralFrog;
   @FXML private ImageView imgViewMushroom;
   @FXML private ImageView imgViewBug;
+  @FXML private ImageView wizard;
 
   @FXML private Pane pnFishing;
 
@@ -261,8 +263,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLbl.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      Platform.runLater(
-          () -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      LoseController.setItemCounter();
       timerLbl.setText("00:00");
     }
   }
@@ -327,6 +328,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+    GameState.currentRoom = "lab";
   }
 
   /** Helper method that sets the ingredient images of the potion recipe. */
@@ -374,5 +376,11 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     GameState.isForestCollected = true;
     GameState.itemsCollected++;
     imgViewIngredient.setVisible(false);
+  }
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
   }
 }

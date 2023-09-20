@@ -37,11 +37,9 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView tile9;
   @FXML private Button buttonBack;
   @FXML private Label counter;
-  @FXML
-  private ImageView counterBack;
-  
-  @FXML
-  private Label timerLblMatchGame;
+  @FXML private ImageView counterBack;
+
+  @FXML private Label timerLblMatchGame;
   private static TimeManager timeManager;
 
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
@@ -78,7 +76,8 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   // Method to shuffle the positions of the tiles on the game board
   private void shuffleGameBoard() {
-    List<Tile> tileList = Arrays.stream(gameBoard).flatMap(Arrays::stream).collect(Collectors.toList());
+    List<Tile> tileList =
+        Arrays.stream(gameBoard).flatMap(Arrays::stream).collect(Collectors.toList());
     Collections.shuffle(tileList);
 
     // Update the game board with the shuffled tiles
@@ -90,19 +89,19 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
       }
     }
   }
-  
-    // .
+
+  // .
   /**
-  * Updates timer label according to the current time that has passed.
-  *
-  * @param formattedTime the formatted time to display
-  */
+   * Updates timer label according to the current time that has passed.
+   *
+   * @param formattedTime the formatted time to display
+   */
   @Override
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLblMatchGame.setText(formattedTime));
-    //when time is up, show an alert that they have lost 
+    // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      //Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran out of time!"));
+      LoseController.setItemCounter();
       timerLblMatchGame.setText("00:00");
     }
   }
@@ -163,7 +162,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     clickedTile.setImage(tileImage);
 
     // Create a fade in transition for the clicked tile
-    FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.5), clickedTile);
+    FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), clickedTile);
     fadeIn.setFromValue(0.0);
     fadeIn.setToValue(1.0);
     fadeIn.play();
@@ -207,7 +206,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
                 t.cancel();
               }
             },
-            3000);
+            1500);
       }
       lastClickedTileIndex = -1; // Reset the last clicked tile index
     } else {
@@ -223,8 +222,15 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onBackClicked() throws IOException {
+    GameState.currentRoom = "dragon";
     // Go back to the Dragon Room
     App.setUi(AppUi.DRAGON_ROOM);
+  }
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
   }
 }
 
