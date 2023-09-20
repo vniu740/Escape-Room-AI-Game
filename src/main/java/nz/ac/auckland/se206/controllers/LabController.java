@@ -32,6 +32,12 @@ import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LabController implements TimeManager.TimeUpdateListener {
@@ -47,6 +53,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private int imagesDropped = 0;
   private Thread animationJewelleryThread;
   private static TimeManager timeManagerlab;
+  private ChatCompletionRequest chatCompletionRequest;
 
   @FXML private HBox hBoxScroll;
   @FXML private ImageView imgViewOne;
@@ -96,7 +103,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
   @FXML private ImageView imgViewWizard;
-
+  @FXML private Pane pnIntro;
+  @FXML private Text txtIntro;
+  @FXML private Button btnIntroExit;
 
   /**
    * Initialises the lab scene when called.
@@ -107,6 +116,24 @@ public class LabController implements TimeManager.TimeUpdateListener {
   public void initialize() throws URISyntaxException {
     timeManagerlab = TimeManager.getInstance();
     timeManagerlab.registerListener(this);
+    Task<Void> getIntroTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.4)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            runGpt(new ChatMessage("user", GptPromptEngineering.getIntro()));
+            return null;
+          }
+        };
+
+    Thread introThread = new Thread(getIntroTask, "Intro Thread");
+    introThread.start();
+
     setPotionRecipe();
     setCauldronOrder();
     imgViewIngredient.setVisible(false);
@@ -571,5 +598,23 @@ public class LabController implements TimeManager.TimeUpdateListener {
       TimeManager.getInstance().stopTimer();
       App.setUi(AppUi.WIN);
     }
+  }
+
+  private void runGpt(ChatMessage msg) throws ApiProxyException {
+    chatCompletionRequest.addMessage(msg);
+    try {
+      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+      Choice result = chatCompletionResult.getChoices().iterator().next();
+      chatCompletionRequest.addMessage(result.getChatMessage());
+      txtIntro.setText(result.getChatMessage().getContent());
+
+    } catch (ApiProxyException e) {
+      System.out.println("Problem calling API: " + e.getMessage());
+    }
+  }
+
+  @FXML
+  private void onIntroExit(ActionEvent event) {
+    pnIntro.setVisible(false);
   }
 }

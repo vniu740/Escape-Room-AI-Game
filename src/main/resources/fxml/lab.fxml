@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
+<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
    <children>
       <ImageView fitHeight="424.0" fitWidth="625.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -177,5 +177,20 @@
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="566.0" layoutY="78.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
       <Label fx:id="timerLblLab" alignment="CENTER" layoutX="524.0" layoutY="61.0" prefHeight="34.0" prefWidth="85.0" text="00:00" />
+      <Pane fx:id="pnIntro" layoutX="115.0" layoutY="66.0" prefHeight="277.0" prefWidth="342.0">
+         <children>
+            <ImageView fitHeight="268.0" fitWidth="334.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/introBoard.jpg" />
+               </image>
+            </ImageView>
+            <Text fx:id="txtIntro" layoutX="32.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="288.21630859375" />
+            <Button fx:id="btnIntroExit" layoutX="298.0" layoutY="221.0" mnemonicParsing="false" onAction="#onIntroExit" opacity="0.65" prefHeight="24.0" prefWidth="28.0" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </Pane>
