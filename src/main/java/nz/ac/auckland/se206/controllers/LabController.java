@@ -97,7 +97,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Text txtSpeech;
   @FXML private ImageView imgViewWizard;
 
-  @FXML private ImageView wizard;
 
 
   /**

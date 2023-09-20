@@ -143,7 +143,7 @@
          </children>
       </Pane>
 
-      <ImageView fx:id="imgViewWizard" fitHeight="221.0" fitWidth="149.0" layoutX="443.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewWizard" fitHeight="205.0" fitWidth="136.0" layoutX="443.0" layoutY="212.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wizard.png" />
          </image>
@@ -156,7 +156,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane fx:id="pnSpeech" layoutX="331.0" layoutY="122.0" prefHeight="130.0" prefWidth="173.0" visible="false">
+      <Pane fx:id="pnSpeech" layoutX="342.0" layoutY="135.0" prefHeight="130.0" prefWidth="173.0" visible="false">
          <children>
             <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="19.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -178,12 +178,6 @@
             </Text>
          </children>
       </Pane>
-
-      <ImageView fx:id="wizard" fitHeight="166.0" fitWidth="114.0" layoutX="487.0" layoutY="249.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wizar.png" />
-         </image>
-      </ImageView>
 
    </children>
 </Pane>
