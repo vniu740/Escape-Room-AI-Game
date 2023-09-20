@@ -118,14 +118,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="96.0" layoutX="510.0" layoutY="7.0" pickOnBounds="true">
-
-         <image>
-            <Image url="@../images/clock.png" />
-         </image>
-      </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="556.0" layoutY="65.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Label fx:id="timerLblLab" alignment="CENTER" layoutX="524.0" layoutY="48.0" prefHeight="34.0" prefWidth="62.0" text="00:00" />
       <Pane fx:id="pnScroll" layoutX="90.0" layoutY="45.0" prefHeight="325.0" prefWidth="427.0" visible="false">
          <children>
             <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
@@ -184,6 +176,13 @@
             <Image url="@../images/wizar.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="521.0" layoutY="19.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/clock.png" />
+         </image>
+      </ImageView>
+      <Circle fill="DODGERBLUE" layoutX="566.0" layoutY="78.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLblLab" alignment="CENTER" layoutX="524.0" layoutY="61.0" prefHeight="34.0" prefWidth="85.0" text="00:00" />
 
    </children>
 </Pane>
