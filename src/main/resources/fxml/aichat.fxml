@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/aichat.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
    <children>
@@ -22,12 +24,23 @@
                   <VBox fx:id="vbox_message" prefHeight="305.0" prefWidth="398.0" />
                </content>
             </ScrollPane>
-            <ImageView fitHeight="203.0" fitWidth="124.0" layoutX="462.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgViewWizard" fitHeight="203.0" fitWidth="124.0" layoutX="462.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../images/wizar.png" />
+                  <Image url="@../images/wizard.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonBack" layoutX="475.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="58.0" prefWidth="98.0" text="Back" />
+            <Button fx:id="buttonBack" layoutX="436.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="58.0" prefWidth="98.0" text="Back" />
+            <ImageView fx:id="imgViewWizardCast" fitHeight="180.0" fitWidth="162.0" layoutX="436.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/wizardCast.gif" />
+               </image>
+            </ImageView>
+            <Text fx:id="txtSpeak" fill="WHITE" layoutX="449.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CATCH THAT SPRITE!" textAlignment="CENTER" wrappingWidth="149.92519143223763" />
+            <Circle fx:id="circle" fill="DODGERBLUE" layoutX="400.0" layoutY="200.0" onMouseClicked="#onSpriteClick" radius="26.0" stroke="BLACK" strokeType="INSIDE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Circle>
          </children>
       </Pane>
       <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="521.0" layoutY="19.0" pickOnBounds="true">

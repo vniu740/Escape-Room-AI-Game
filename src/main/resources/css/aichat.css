@@ -2,3 +2,8 @@
     -fx-background-color: #ff0000;
     background-color: #ff0000;
 }
+
+#circle {
+    -fx-stroke: transparent;
+    stroke: transparent;
+}
