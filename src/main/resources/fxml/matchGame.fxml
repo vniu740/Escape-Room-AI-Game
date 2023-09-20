@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="gameBox" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MatchingGameController">
+<VBox fx:id="gameBox" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MatchingGameController">
    <Pane prefHeight="399.0" prefWidth="600.0">
       <children>
          <ImageView fitHeight="435.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
@@ -97,13 +97,6 @@
                <Font name="System Bold Italic" size="45.0" />
             </font>
          </Label>
-         <ImageView fitHeight="68.0" fitWidth="98.0" layoutX="521.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../images/clock.png" />
-            </image>
-         </ImageView>
-         <Circle fill="DODGERBLUE" layoutX="555.0" layoutY="65.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-         <Label fx:id="timerLblMatchGame" alignment="CENTER" layoutX="539.0" layoutY="48.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
 
          <ImageView fx:id="imgViewWizard" fitHeight="205.0" fitWidth="136.0" layoutX="459.0" layoutY="210.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -128,7 +121,13 @@
                <Font name="Herculanum" size="13.0" />
             </font>
          </Text>
-
+         <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="521.0" layoutY="19.0" pickOnBounds="true">
+            <image>
+               <Image url="@../images/clock.png" />
+            </image>
+         </ImageView>
+         <Circle fill="DODGERBLUE" layoutX="566.0" layoutY="78.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+         <Label fx:id="timerLblMatchGame" alignment="CENTER" layoutX="533.0" layoutY="61.0" prefHeight="34.0" prefWidth="63.0" text="00:00" />
       </children>
    </Pane>
 </VBox>
