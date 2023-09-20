@@ -46,11 +46,11 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private static ImageView chatBackground;
   @FXML private Pane paneBack;
   @FXML private Button buttonBack;
-  @FXML private Label hintCounter;
+  @FXML private static Label hintCounter;
 
   private ChatCompletionRequest chatCompletionRequest;
 
-  private int numHints; // number of hints given to the user
+  private static int numHints; // number of hints given to the user
   private String gameLevel;
 
   @FXML private Label timerLblChat;
@@ -121,6 +121,23 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     paneBack.getChildren().add(chatBackground);
     // Move the background image to the back
     chatBackground.toBack();
+
+    // Add hintCounter
+    hintCounter = new Label();
+    // set the text colour to #ad1cad
+    hintCounter.setTextFill(Color.web("#ad1cad"));
+    // set styles
+    hintCounter.setStyle(
+        "-fx-font-size: 23px; "
+            + "-fx-font-weight: bold; "
+            + "-fx-font-family: 'lucida calligraphy'; "
+            + "-fx-font-style: italic; "
+            + "-fx-underline: true;");
+    // set the layout
+    hintCounter.setLayoutX(140);
+    hintCounter.setLayoutY(-7);
+    // add the hintCounter to the paneBack
+    paneBack.getChildren().add(hintCounter);
 
     // set the number of hints given to 0
     numHints = 0;
@@ -380,5 +397,15 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     sleep.setOnSucceeded(event -> continuation.run());
     Thread sleepThread = new Thread(sleep, "Sleep Thread");
     sleepThread.start();
+  }
+
+  public static void setHintCounter() {
+    if (GameState.level.equals("medium")) {
+      hintCounter.setText(Integer.toString(5 - numHints));
+    } else if (GameState.level.equals("hard")) {
+      hintCounter.setText("0");
+    } else {
+      hintCounter.setText("Unlimited");
+    }
   }
 }

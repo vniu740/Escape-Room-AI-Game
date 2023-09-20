@@ -96,6 +96,7 @@ public class MenuController {
     }
     // set the game state level to easy
     GameState.setLevel("easy");
+    AIChatController.setHintCounter();
   }
 
   /**
@@ -132,6 +133,7 @@ public class MenuController {
     }
     // set the game state level to medium
     GameState.setLevel("medium");
+    AIChatController.setHintCounter();
   }
 
   /**
@@ -168,6 +170,7 @@ public class MenuController {
     }
     // set the game state level to hard
     GameState.setLevel("hard");
+    AIChatController.setHintCounter();
   }
 
   /**
