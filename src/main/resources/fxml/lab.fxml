@@ -118,17 +118,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-
-      <ImageView fitHeight="68.0" fitWidth="98.0" layoutX="521.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-
-      <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="556.0" layoutY="187.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/rightArrow.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fitHeight="81.0" fitWidth="91.0" layoutX="499.0" layoutY="14.0" pickOnBounds="true">
 
          <image>
