@@ -81,6 +81,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Image imgOrangeGem;
   @FXML private Image imgDragonBlood;
   @FXML private Image imgDragonFire;
+
   @FXML private Image imgCrystal;
   @FXML private Image imgScale;
   @FXML private Pane pnCauldron;
@@ -95,6 +96,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
   @FXML private ImageView imgViewWizard;
+
+  @FXML private ImageView wizard;
+
 
   /**
    * Initialises the lab scene when called.
@@ -177,8 +181,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLblLab.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
-      // out of time!"));
+      LoseController.setItemCounter();
       timerLblLab.setText("00:00");
     }
   }
@@ -311,7 +314,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
     // Scene sceneImageViewIsIn = imgView.getScene();
     // sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
 
-    App.setRoot("chat");
+    // App.setRoot("aichat");
+    // set the scene to aichat
+    App.setUi(AppUi.AICHAT);
   }
 
   /**
@@ -504,6 +509,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.FOREST));
+    GameState.currentRoom = "forest";
   }
 
   /**
@@ -517,6 +523,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.DRAGON_ROOM));
+    GameState.currentRoom = "dragon";
   }
 
   /**
@@ -542,6 +549,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     }
   }
 
+
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
@@ -550,5 +558,11 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onSpeechExit(ActionEvent event) {
     pnSpeech.setVisible(false);
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
+
   }
 }

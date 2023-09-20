@@ -104,6 +104,7 @@
          </ImageView>
          <Circle fill="DODGERBLUE" layoutX="555.0" layoutY="65.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
          <Label fx:id="timerLblMatchGame" alignment="CENTER" layoutX="539.0" layoutY="48.0" prefHeight="34.0" prefWidth="32.0" text="00:00" />
+
          <ImageView fx:id="imgViewWizard" fitHeight="225.0" fitWidth="166.0" layoutX="447.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../images/wizard.png" />
@@ -127,6 +128,13 @@
                <Font name="Herculanum" size="13.0" />
             </font>
          </Text>
+
+         <ImageView fx:id="wizard" fitHeight="166.0" fitWidth="114.0" layoutX="464.0" layoutY="227.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/wizar.png" />
+            </image>
+         </ImageView>
+
       </children>
    </Pane>
 </VBox>

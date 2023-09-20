@@ -36,6 +36,15 @@ public class GameState {
   /** Indicates whether the user has collected the correct ingredient for the lab Room */
   public static boolean isLabCollected = false;
 
+  /** Indicates the number of hints the user has used */
+  public static int numberOfHints;
+
+  /** Indicates the level of the game */
+  public static String level; // easy, medium, hard
+
+  /** Indicates the current room */
+  public static String currentRoom = "lab";
+
   /** Resets the game state */
   public static void reset() {
     isRiddleResolved = false;
@@ -49,5 +58,22 @@ public class GameState {
     isFishingComplete = false;
     isForestCollected = false;
     isLabCollected = false;
+    numberOfHints = 0;
+  }
+
+  public static void setHints(int n) {
+    numberOfHints = n;
+  }
+
+  public static int getNumberOfHints() {
+    return numberOfHints;
+  }
+
+  public static void setLevel(String l) {
+    level = l;
+  }
+
+  public static String getLevel() {
+    return level;
   }
 }

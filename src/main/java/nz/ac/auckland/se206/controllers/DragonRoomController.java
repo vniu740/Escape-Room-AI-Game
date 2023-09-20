@@ -27,6 +27,10 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
+
+
+  @FXML private ImageView wizard;
+
   @FXML private Label timerLblDragon;
   private static TimeManager timeManager;
   @FXML private ImageView imgViewLeftArrow;
@@ -79,8 +83,12 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLblDragon.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
+
       // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
       // out of time!"));
+
+      LoseController.setItemCounter();
+
       timerLblDragon.setText("00:00");
     }
   }
@@ -91,6 +99,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onLockClicked() {
+    GameState.currentRoom = "matchGame";
     App.setUi(AppUi.MATCHING);
   }
 
@@ -126,6 +135,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     ImageView imgView = (ImageView) event.getSource();
     Scene sceneImageViewIsIn = imgView.getScene();
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+    GameState.currentRoom = "lab";
   }
 
   /** Helper method that sets the ingredient images of the potion recipe. */
@@ -163,6 +173,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     pnScroll.setVisible(false);
   }
 
+
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
@@ -171,6 +182,12 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onSpeechExit(ActionEvent event) {
     pnSpeech.setVisible(false);
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
+
   }
 }
 /**

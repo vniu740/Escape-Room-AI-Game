@@ -14,7 +14,8 @@ public class SceneManager {
     MATCHING,
     LAB,
     LOSE,
-    WIN
+    WIN,
+   AICHAT; 
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();

@@ -108,8 +108,12 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLblMatchGame.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
+
       // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
       // out of time!"));
+
+      LoseController.setItemCounter();
+
       timerLblMatchGame.setText("00:00");
     }
   }
@@ -170,7 +174,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     clickedTile.setImage(tileImage);
 
     // Create a fade in transition for the clicked tile
-    FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.5), clickedTile);
+    FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), clickedTile);
     fadeIn.setFromValue(0.0);
     fadeIn.setToValue(1.0);
     fadeIn.play();
@@ -214,7 +218,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
                 t.cancel();
               }
             },
-            3000);
+            1500);
       }
       lastClickedTileIndex = -1; // Reset the last clicked tile index
     } else {
@@ -230,9 +234,11 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onBackClicked() throws IOException {
+    GameState.currentRoom = "dragon";
     // Go back to the Dragon Room
     App.setUi(AppUi.DRAGON_ROOM);
   }
+
 
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
@@ -244,6 +250,12 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     imgViewSpeech.setVisible(false);
     btnSpeechExit.setVisible(false);
     txtSpeech.setVisible(false);
+
+  @FXML
+  private void onWizardClicked() {
+    AIChatController.setBackground();
+    App.setUi(AppUi.AICHAT);
+
   }
 }
 

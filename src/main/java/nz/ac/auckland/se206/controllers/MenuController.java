@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-
 import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -12,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -94,6 +94,8 @@ public class MenuController {
       translateDown();
       isHidden = true;
     }
+    // set the game state level to easy
+    GameState.setLevel("easy");
   }
 
   /**
@@ -128,6 +130,8 @@ public class MenuController {
       translateDown();
       isHidden = true;
     }
+    // set the game state level to medium
+    GameState.setLevel("medium");
   }
 
   /**
@@ -162,6 +166,8 @@ public class MenuController {
       translateDown();
       isHidden = true;
     }
+    // set the game state level to hard
+    GameState.setLevel("hard");
   }
 
   /**
