@@ -572,6 +572,10 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onWindowClicked() {
+    if (GameState.isPotionComplete) {
+    GameState.isWon = true;
+    TimeManager.getInstance().stopTimer();
     App.setUi(AppUi.WIN);
+    }
   }
 }

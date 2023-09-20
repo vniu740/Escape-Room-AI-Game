@@ -48,6 +48,9 @@ public class GameState {
   /** Indicates if the potion has been created */
   public static boolean isPotionComplete = false;
 
+  /** Indicates if the game has been won */
+  public static boolean isWon = false;
+
   /** Resets the game state */
   public static void reset() {
     isRiddleResolved = false;
@@ -62,6 +65,8 @@ public class GameState {
     isForestCollected = false;
     isLabCollected = false;
     numberOfHints = 0;
+    isPotionComplete = false;
+    isWon = false;
   }
 
   public static void setHints(int n) {
