@@ -110,7 +110,7 @@
       </Pane>
       <ImageView fx:id="imgViewIngredient" fitHeight="68.0" fitWidth="76.0" layoutX="331.0" layoutY="200.0" onMouseClicked="#onIngredientClicked" pickOnBounds="true" preserveRatio="true" visible="false" />
 
-      <ImageView fx:id="imgViewWizard" fitHeight="227.0" fitWidth="160.0" layoutX="444.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewWizard" fitHeight="205.0" fitWidth="136.0" layoutX="444.0" layoutY="213.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wizard.png" />
          </image>
@@ -138,19 +138,13 @@
                   <Font size="9.0" />
                </font>
             </Button>
-            <Text fx:id="txtSpeech" layoutX="24.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fish up the correct ingredient!" textAlignment="CENTER" wrappingWidth="111.21630859375">
+            <Text fx:id="txtSpeech" layoutX="24.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.21630859375">
                <font>
                   <Font name="Herculanum" size="13.0" />
                </font>
             </Text>
          </children>
       </Pane>
-
-      <ImageView fx:id="wizard" fitHeight="166.0" fitWidth="114.0" layoutX="485.0" layoutY="233.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wizar.png" />
-         </image>
-      </ImageView>
 
    </children>
 </Pane>

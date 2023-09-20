@@ -28,9 +28,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
 
-
-  @FXML private ImageView wizard;
-
   @FXML private Label timerLblDragon;
   private static TimeManager timeManager;
   @FXML private ImageView imgViewLeftArrow;
