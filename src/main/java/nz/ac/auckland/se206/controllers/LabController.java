@@ -310,13 +310,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onJewelleryClick(MouseEvent event) throws IOException {
-    // ImageView imgView = (ImageView) event.getSource();
-    // Scene sceneImageViewIsIn = imgView.getScene();
-    // sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
-
-    // App.setRoot("aichat");
-    // set the scene to aichat
-    if (GameState.isRiddleResolved) {
+    //
+    if (GameState.isRiddleResolved && !GameState.isLabCollected) {
       imgViewIngredient.setVisible(true);
     }
   }
@@ -573,9 +568,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onWindowClicked() {
     if (GameState.isPotionComplete) {
-    GameState.isWon = true;
-    TimeManager.getInstance().stopTimer();
-    App.setUi(AppUi.WIN);
+      GameState.isWon = true;
+      TimeManager.getInstance().stopTimer();
+      App.setUi(AppUi.WIN);
     }
   }
 }
