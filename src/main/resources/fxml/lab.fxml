@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
+<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
    <children>
       <ImageView fitHeight="424.0" fitWidth="625.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -74,17 +74,11 @@
                </image>
             </ImageView>
             <ImageView fx:id="imgViewCauldronLab" fitHeight="92.0" fitWidth="85.0" layoutX="190.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceLab" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/crystal.png" />
-               </image>
                <effect>
                   <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
                </effect>
             </ImageView>
             <ImageView fx:id="imgViewCauldronDragon" fitHeight="82.0" fitWidth="85.0" layoutX="317.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceDragon" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/scale.png" />
-               </image>
                <effect>
                   <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
                </effect>
@@ -104,7 +98,7 @@
                   <Font name="Herculanum" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="btnCauldronExit" layoutX="427.0" layoutY="327.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" style="-fx-background-color: white;" text="X">
+            <Button fx:id="btnCauldronExit" layoutX="427.0" layoutY="30.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" style="-fx-background-color: white;" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -124,15 +118,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="556.0" layoutY="187.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/rightArrow.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fitHeight="81.0" fitWidth="91.0" layoutX="499.0" layoutY="14.0" pickOnBounds="true">
+
          <image>
             <Image url="@../images/clock.png" />
          </image>
@@ -155,10 +142,48 @@
             </HBox>
          </children>
       </Pane>
+
+      <ImageView fx:id="imgViewWizard" fitHeight="221.0" fitWidth="149.0" layoutX="443.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/wizard.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="556.0" layoutY="187.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/rightArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="pnSpeech" layoutX="331.0" layoutY="122.0" prefHeight="130.0" prefWidth="173.0" visible="false">
+         <children>
+            <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="19.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/speechBubble.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnSpeechExit" layoutX="29.0" layoutY="82.0" mnemonicParsing="false" onAction="#onSpeechExit" opacity="0.65" prefHeight="0.0" prefWidth="9.0" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Text fx:id="txtSpeech" layoutX="31.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.21630859375">
+               <font>
+                  <Font name="Herculanum" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+
       <ImageView fx:id="wizard" fitHeight="166.0" fitWidth="114.0" layoutX="487.0" layoutY="249.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wizar.png" />
          </image>
       </ImageView>
+
    </children>
 </Pane>

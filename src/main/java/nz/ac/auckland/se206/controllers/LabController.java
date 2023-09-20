@@ -32,6 +32,7 @@ import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LabController implements TimeManager.TimeUpdateListener {
 
@@ -45,33 +46,23 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private ImagePulseAnimation jewelleryAnimation;
   private int imagesDropped = 0;
   private Thread animationJewelleryThread;
-
-  private @FXML HBox hBoxScroll;
-  private @FXML ImageView imgViewOne;
-  private @FXML ImageView imgViewTwo;
-  private @FXML ImageView imgViewThree;
-  private @FXML ImageView imgViewWindow;
-  private @FXML ImageView imgViewJewellery;
-  private @FXML ImageView imgViewLever;
-  private @FXML ImageView imgViewCauldron;
-  private @FXML ImageView imgViewScrollIcon;
-  private @FXML ImageView imgViewCauldronFrog;
-  private @FXML ImageView imgViewCauldronCrystal;
-  private @FXML ImageView imgViewCauldronScale;
-  private @FXML ImageView imgViewCauldronBubbles;
-  private @FXML ImageView imgViewLeftArrow;
-  private @FXML ImageView imgViewRightArrow;
-  private @FXML Image imgFrog;
-  private @FXML Image imgCrystal;
-  private @FXML Image imgScale;
-  private @FXML Pane pnCauldron;
-  private @FXML Pane pnCauldronOpacity;
-  private @FXML Pane pnScroll;
-  private @FXML Text txtTryAgain;
-  private @FXML Text txtCorrect;
-  private @FXML Button btnCauldronExit;
-  private @FXML Label timerLblLab;
   private static TimeManager timeManagerlab;
+
+  @FXML private HBox hBoxScroll;
+  @FXML private ImageView imgViewOne;
+  @FXML private ImageView imgViewTwo;
+  @FXML private ImageView imgViewThree;
+  @FXML private ImageView imgViewWindow;
+  @FXML private ImageView imgViewJewellery;
+  @FXML private ImageView imgViewLever;
+  @FXML private ImageView imgViewCauldron;
+  @FXML private ImageView imgViewScrollIcon;
+  @FXML private ImageView imgViewCauldronFrog;
+  @FXML private ImageView imgViewCauldronCrystal;
+  @FXML private ImageView imgViewCauldronScale;
+  @FXML private ImageView imgViewCauldronBubbles;
+  @FXML private ImageView imgViewLeftArrow;
+  @FXML private ImageView imgViewRightArrow;
   @FXML private ImageView imgViewIconScroll;
   @FXML private ImageView imgViewCauldronForest;
   @FXML private ImageView imgViewCauldronLab;
@@ -90,7 +81,24 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Image imgOrangeGem;
   @FXML private Image imgDragonBlood;
   @FXML private Image imgDragonFire;
+
+  @FXML private Image imgCrystal;
+  @FXML private Image imgScale;
+  @FXML private Pane pnCauldron;
+  @FXML private Pane pnCauldronOpacity;
+  @FXML private Pane pnScroll;
+  @FXML private Text txtTryAgain;
+  @FXML private Text txtCorrect;
+  @FXML private Button btnCauldronExit;
+  @FXML private Label timerLblLab;
+
+  @FXML private Button btnSpeechExit;
+  @FXML private Pane pnSpeech;
+  @FXML private Text txtSpeech;
+  @FXML private ImageView imgViewWizard;
+
   @FXML private ImageView wizard;
+
 
   /**
    * Initialises the lab scene when called.
@@ -137,6 +145,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
             ImagePulseAnimation windowAnimation = new ImagePulseAnimation(imgViewWindow);
             ImagePulseAnimation leftArrowAnimation = new ImagePulseAnimation(imgViewLeftArrow);
             ImagePulseAnimation rightArrowAnimation = new ImagePulseAnimation(imgViewRightArrow);
+            // Play each animation
             windowAnimation.playAnimation();
             cauldronAnimation.playAnimation();
             leverAnimation.playAnimation();
@@ -318,6 +327,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onLeverClick(MouseEvent event) {
     GameState.isLeverPulled = true;
+    txtSpeech.setText("The jewellery box is playing music!");
+    pnSpeech.setVisible(true);
     imgViewJewellery.setVisible(true);
     animationJewelleryThread.start();
     imgViewLever.setVisible(false);
@@ -331,16 +342,22 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onCauldronClick(MouseEvent event) {
     if (GameState.isLabCollected) {
+      // If the item in the lab is collected, make it not blurred in the cauldron
       imgViewCauldronLab.setEffect(null);
     }
     if (GameState.isForestCollected) {
+      // If the item in the forest is collected, make it not blurred in the cauldron
       imgViewCauldronForest.setEffect(null);
     }
     if (GameState.isScaleCollected) {
+      // If the item in the dragon room is collected, make it not blurred in the cauldron
       imgViewCauldronDragon.setEffect(null);
     }
     pnCauldron.setVisible(true);
     pnCauldronOpacity.setVisible(true);
+    // Make the wizard inform the user on what to do
+    txtSpeech.setText("Follow the recipe to make the shrinking potion!");
+    pnSpeech.setVisible(true);
   }
 
   /**
@@ -517,15 +534,35 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onIngredientClicked(MouseEvent event) {
     if (GameState.isRiddleResolved) {
+      // Play the textToSpeech using a thread to make sure the app doesnt freeze
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("Item picked up");
+              });
+      speachThread.start();
+      // Remove the item and update the GameState
       GameState.isLabCollected = true;
       GameState.itemsCollected++;
       imgViewIngredient.setVisible(false);
     }
   }
 
+
+  /**
+   * Handles the ActionEvent on the Button btnSpeechExit.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSpeechExit(ActionEvent event) {
+    pnSpeech.setVisible(false);
+  }
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
+
   }
 }

@@ -8,6 +8,7 @@ import java.util.Timer;
 import java.util.stream.Collectors;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -41,6 +43,11 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   @FXML private Label timerLblMatchGame;
   private static TimeManager timeManager;
+
+  @FXML private Button btnSpeechExit;
+  @FXML private Text txtSpeech;
+  @FXML private ImageView imgViewWizard;
+  @FXML private ImageView imgViewSpeech;
 
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
   private ImageView[] tiles; // Array of tile ImageViews
@@ -101,7 +108,12 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLblMatchGame.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
+
+      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
+      // out of time!"));
+
       LoseController.setItemCounter();
+
       timerLblMatchGame.setText("00:00");
     }
   }
@@ -227,10 +239,23 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     App.setUi(AppUi.DRAGON_ROOM);
   }
 
+
+  /**
+   * Handles the ActionEvent on the Button btnSpeechExit.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSpeechExit(ActionEvent event) {
+    imgViewSpeech.setVisible(false);
+    btnSpeechExit.setVisible(false);
+    txtSpeech.setVisible(false);
+  }
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
+
   }
 }
 

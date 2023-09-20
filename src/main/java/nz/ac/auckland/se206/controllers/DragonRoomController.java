@@ -3,15 +3,18 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.List;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
@@ -19,17 +22,26 @@ import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
+
+
   @FXML private ImageView wizard;
+
   @FXML private Label timerLblDragon;
   private static TimeManager timeManager;
   @FXML private ImageView imgViewLeftArrow;
   @FXML private Pane pnScroll;
   @FXML private HBox hBoxScroll;
   @FXML private ImageView imgViewIconScroll;
+
+  @FXML private Button btnSpeechExit;
+  @FXML private Pane pnSpeech;
+  @FXML private Text txtSpeech;
+  @FXML private ImageView imgViewWizard;
 
   @FXML
   public void initialize() throws IOException {
@@ -71,7 +83,12 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLblDragon.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
+
+      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
+      // out of time!"));
+
       LoseController.setItemCounter();
+
       timerLblDragon.setText("00:00");
     }
   }
@@ -89,9 +106,21 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onScaleClicked() {
     if (GameState.isMatchGameWon) {
+      // If the game is won play the textToSpeech
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("Item picked up");
+              });
+      speachThread.start();
       GameState.isScaleCollected = true;
       GameState.itemsCollected++;
+      // Remove the wizard speech bubble and remove the item
       imageScale.setVisible(false);
+      pnSpeech.setVisible(false);
+    } else {
+      pnSpeech.setVisible(true);
     }
   }
 
@@ -144,10 +173,22 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     pnScroll.setVisible(false);
   }
 
+
+  /**
+   * Handles the ActionEvent on the Button btnSpeechExit.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSpeechExit(ActionEvent event) {
+    pnSpeech.setVisible(false);
+  }
+    
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
+
   }
 }
 /**
