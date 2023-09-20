@@ -45,6 +45,9 @@ public class GameState {
   /** Indicates the current room */
   public static String currentRoom = "lab";
 
+  /** Indicates if the potion has been created */
+  public static boolean isPotionComplete = false;
+
   /** Resets the game state */
   public static void reset() {
     isRiddleResolved = false;

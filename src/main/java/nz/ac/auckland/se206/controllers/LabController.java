@@ -99,7 +99,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
   @FXML private ImageView wizard;
 
-
   /**
    * Initialises the lab scene when called.
    *
@@ -111,6 +110,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     timeManagerlab.registerListener(this);
     setPotionRecipe();
     setCauldronOrder();
+    imgViewIngredient.setVisible(false);
 
     // Set specific nodes visibility to false
     imgViewJewellery.setVisible(false);
@@ -316,7 +316,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
     // App.setRoot("aichat");
     // set the scene to aichat
-    App.setUi(AppUi.AICHAT);
+    if (GameState.isRiddleResolved) {
+      imgViewIngredient.setVisible(true);
+    }
   }
 
   /**
@@ -341,23 +343,25 @@ public class LabController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onCauldronClick(MouseEvent event) {
-    if (GameState.isLabCollected) {
-      // If the item in the lab is collected, make it not blurred in the cauldron
-      imgViewCauldronLab.setEffect(null);
+    if (!GameState.isPotionComplete) {
+      if (GameState.isLabCollected) {
+        // If the item in the lab is collected, make it not blurred in the cauldron
+        imgViewCauldronLab.setEffect(null);
+      }
+      if (GameState.isForestCollected) {
+        // If the item in the forest is collected, make it not blurred in the cauldron
+        imgViewCauldronForest.setEffect(null);
+      }
+      if (GameState.isScaleCollected) {
+        // If the item in the dragon room is collected, make it not blurred in the cauldron
+        imgViewCauldronDragon.setEffect(null);
+      }
+      pnCauldron.setVisible(true);
+      pnCauldronOpacity.setVisible(true);
+      // Make the wizard inform the user on what to do
+      txtSpeech.setText("Follow the recipe to make the shrinking potion!");
+      pnSpeech.setVisible(true);
     }
-    if (GameState.isForestCollected) {
-      // If the item in the forest is collected, make it not blurred in the cauldron
-      imgViewCauldronForest.setEffect(null);
-    }
-    if (GameState.isScaleCollected) {
-      // If the item in the dragon room is collected, make it not blurred in the cauldron
-      imgViewCauldronDragon.setEffect(null);
-    }
-    pnCauldron.setVisible(true);
-    pnCauldronOpacity.setVisible(true);
-    // Make the wizard inform the user on what to do
-    txtSpeech.setText("Follow the recipe to make the shrinking potion!");
-    pnSpeech.setVisible(true);
   }
 
   /**
@@ -475,6 +479,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
       // Display corresponding image
       if (isCorrectOrder) {
         txtCorrect.setVisible(true);
+        GameState.isPotionComplete = true;
       } else {
         txtTryAgain.setVisible(true);
       }
@@ -549,7 +554,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
     }
   }
 
-
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
@@ -559,10 +563,15 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private void onSpeechExit(ActionEvent event) {
     pnSpeech.setVisible(false);
   }
+
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
+  }
 
+  @FXML
+  private void onWindowClicked() {
+    App.setUi(AppUi.WIN);
   }
 }
