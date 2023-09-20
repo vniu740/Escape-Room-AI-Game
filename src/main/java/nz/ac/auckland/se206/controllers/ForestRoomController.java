@@ -51,7 +51,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imgViewSpiralFrog;
   @FXML private ImageView imgViewMushroom;
   @FXML private ImageView imgViewBug;
-  @FXML private ImageView wizard;
 
   @FXML private Pane pnFishing;
 

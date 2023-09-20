@@ -61,7 +61,7 @@
          </children>
       </Pane>
 
-      <ImageView fx:id="imgViewWizard" fitHeight="219.0" fitWidth="165.0" layoutX="455.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewWizard" fitHeight="201.0" fitWidth="147.0" layoutX="448.0" layoutY="209.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/wizard.png" />
          </image>
@@ -88,12 +88,6 @@
             </Text>
          </children>
       </Pane>
-
-      <ImageView fx:id="wizard" fitHeight="166.0" fitWidth="114.0" layoutX="479.0" layoutY="233.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wizar.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="511.0" layoutY="9.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
@@ -101,6 +95,5 @@
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="556.0" layoutY="68.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
       <Label fx:id="timerLblDragon" alignment="CENTER" layoutX="488.0" layoutY="51.0" prefHeight="34.0" prefWidth="136.0" text="00:00" />
-
    </children>
 </Pane>
