@@ -27,7 +27,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewWindow" fitHeight="60.0" fitWidth="54.0" layoutX="236.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewWindow" fitHeight="60.0" fitWidth="54.0" layoutX="236.0" layoutY="122.0" onMouseClicked="#onWindowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/window.png" />
          </image>
@@ -98,7 +98,7 @@
                   <Font name="Herculanum" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="btnCauldronExit" layoutX="427.0" layoutY="30.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" style="-fx-background-color: white;" text="X">
+            <Button fx:id="btnCauldronExit" layoutX="388.0" layoutY="30.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" prefHeight="60.0" prefWidth="62.0" style="-fx-background-color: white;" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

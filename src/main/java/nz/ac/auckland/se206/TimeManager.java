@@ -26,8 +26,10 @@ public class TimeManager {
 
             // stop timer when time is up
             if (timeRemaining == 0) {
+              if (!GameState.isWon) {
+                App.setUi(AppUi.LOSE);
+              }
               stopTimer();
-
               for (TimeUpdateListener listener : listeners) {
                 listener.onTimerUpdate("00:00");
                 // listener.getTimerLbl().setText("00:00");
@@ -74,7 +76,5 @@ public class TimeManager {
   public void stopTimer() {
     timer.cancel();
     timer.purge();
-    System.out.println("Game Over");
-    App.setUi(AppUi.LOSE);
   }
 }
