@@ -250,7 +250,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     imgViewSpeech.setVisible(false);
     btnSpeechExit.setVisible(false);
     txtSpeech.setVisible(false);
-
+  }
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();

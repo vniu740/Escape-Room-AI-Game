@@ -432,7 +432,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onSpeechExit(ActionEvent event) {
     pnSpeech.setVisible(false);
-
+  }
+  
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
