@@ -46,6 +46,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private static ImageView chatBackground;
   @FXML private Pane paneBack;
   @FXML private Button buttonBack;
+  @FXML private Label hintCounter;
 
   private ChatCompletionRequest chatCompletionRequest;
 
@@ -196,7 +197,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-            Platform.runLater(
+      Platform.runLater(
           () -> {
             imgViewWizardCast.setVisible(false);
             imgViewWizard.setVisible(true);
@@ -227,7 +228,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       Text text = new Text(messageToSend);
       TextFlow textFlow = new TextFlow(text);
 
-      textFlow.setStyle("-fx-background-color: #00bfff; -fx-background-radius: 20;");
+      textFlow.setStyle("-fx-background-color: #ff6620; -fx-background-radius: 20;");
       textFlow.setPadding(new Insets(5, 5, 10, 10));
       text.setFill(Color.color(0.934, 0.945, 0.996));
 
@@ -235,13 +236,13 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       vbox_message.getChildren().add(hbox);
       tf_message.clear();
 
-    txtSpeak.setText("CATCH THAT SPRITE!");
-    txtSpeak.setVisible(true);
-    imgViewWizard.setVisible(false);
-    imgViewWizardCast.setVisible(true);
-    circle.setVisible(true);
-    circle.setFill(new ImagePattern(new Image("/Images/soot.png")));
-    timeline.play();
+      txtSpeak.setText("CATCH THAT SPRITE!");
+      txtSpeak.setVisible(true);
+      imgViewWizard.setVisible(false);
+      imgViewWizardCast.setVisible(true);
+      circle.setVisible(true);
+      circle.setFill(new ImagePattern(new Image("/Images/soot.png")));
+      timeline.play();
 
       Task<Void> sendChatMessageTask =
           new Task<Void>() {
@@ -252,10 +253,19 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               // Call containsHintPhrase to check if the message contains a hint
               if (containsHintPhrase(lastMsg.getContent())) {
                 numHints++;
+
                 // Check the game level and limit the hints accordingly
-                if (gameLevel.equals("medium") && numHints > 5) {
-                  // Send a message to the user that they have used up all their hints
-                  addLabel("You have used up all your hints", vbox_message, sp_main);
+                if (gameLevel.equals("medium")) {
+                  // Update the hint counter
+                  Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
+
+                  if (numHints > 5) {
+                    // Send a message to the user that they have used up all their hints
+                    addLabel("You have used up all your hints", vbox_message, sp_main);
+                  } else {
+                    addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                  }
+
                 } else if (gameLevel.equals("hard")) {
                   // Send a message to the user that they can't ask for hints
                   addLabel("You can't ask for hints", vbox_message, sp_main);
@@ -274,7 +284,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
                 GameState.isRiddleResolved = true;
-                tf_message.setEditable(false);
               }
 
               return null;
@@ -308,7 +317,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     Text text = new Text(messageFromClient);
     TextFlow textFlow = new TextFlow(text);
     textFlow.setStyle(
-        "-fx-background-color: #e6e6e6; -fx-background-radius: 10px; -fx-padding: 5px;");
+        "-fx-background-color: #ea00ff; -fx-background-radius: 10px; -fx-padding: 5px;");
     textFlow.setPadding(new Insets(5, 10, 5, 10));
 
     hbox.getChildren().add(textFlow);
@@ -341,14 +350,14 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
-    @FXML
+  @FXML
   private void onSpriteClick(MouseEvent event) {
     txtSpeak.setText("GOT HIM!");
     circle.setFill(new ImagePattern(new Image("/Images/explosion.png")));
     delay(400, () -> circle.setVisible(false));
   }
 
-    /**
+  /**
    * Helper method that delays the call of a runnable.
    *
    * @param time How long the delay will be
