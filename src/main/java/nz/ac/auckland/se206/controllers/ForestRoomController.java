@@ -35,53 +35,46 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 /** Controller class for the room view. */
 public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
+  // FXML elements for the main scene
   @FXML private Rectangle door;
   @FXML private Rectangle window;
   @FXML private Rectangle vase;
   @FXML private Label timerLbl;
-
-  private static TimeManager timeManager;
   @FXML private Button switchScenes;
   @FXML private ImageView imgViewSpiralPond;
-
   @FXML private Slider sldOne;
   @FXML private Slider sldTwo;
   @FXML private Slider sldThree;
   @FXML private ImageView imgViewSpiralFrog;
   @FXML private ImageView imgViewMushroom;
   @FXML private ImageView imgViewBug;
-
   @FXML private Pane pnFishing;
-
   @FXML private Pane pnFishingOpacity;
-
   @FXML private Button btnFishingExit;
   @FXML private Pane sldOneDisablePane;
-
   @FXML private Pane sldTwoDisablePane;
-
   @FXML private Pane sldThreeDisablePane;
-
   @FXML private Line threadOne;
-
   @FXML private Line threadTwo;
-
   @FXML private Line threadThree;
-
   @FXML private ImageView imgViewRightArrow;
 
-  private @FXML Pane pnScroll;
-  private @FXML HBox hBoxScroll;
-  private @FXML ImageView imgViewIconScroll;
-  private @FXML ImageView imgViewIngredient;
-  private @FXML Image correctIngredient;
+  // FXML elements for the scrolling section
+  @FXML private Pane pnScroll;
+  @FXML private HBox hBoxScroll;
+  @FXML private ImageView imgViewIconScroll;
+  @FXML private ImageView imgViewIngredient;
+  @FXML private Image correctIngredient;
 
+  // Speech and wizard elements
   @FXML private Button btnSpeechExit;
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
   @FXML private ImageView imgViewWizard;
 
-  String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
+  // Other fields
+  private static TimeManager timeManager;
+  public String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {

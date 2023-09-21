@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,12 +14,11 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 
 /** Controller class for the room view. */
-public class RoomController implements TimeManager.TimeUpdateListener{
+public class RoomController implements TimeManager.TimeUpdateListener {
 
   @FXML private Rectangle door;
   @FXML private Rectangle window;
-  @FXML
-  private Rectangle vase;
+  @FXML private Rectangle vase;
   @FXML private Label timerLbl;
   private TimeManager timeManager;
 
@@ -31,8 +29,7 @@ public class RoomController implements TimeManager.TimeUpdateListener{
     timeManager.registerListener(this);
   }
 
-  
-    /**
+  /**
    * Updates timer label according to the current time that has passed.
    *
    * @param formattedTime the formatted time to display
@@ -40,9 +37,7 @@ public class RoomController implements TimeManager.TimeUpdateListener{
   @Override
   public void onTimerUpdate(String formattedTime) {
     Platform.runLater(() -> timerLbl.setText(formattedTime));
-
   }
-
 
   /**
    * Handles the key pressed event.
