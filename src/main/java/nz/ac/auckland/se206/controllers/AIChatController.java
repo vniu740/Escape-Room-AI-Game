@@ -50,6 +50,29 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     return timeManager;
   }
 
+  public static void addLabel(String messageFromClient, VBox vbox, ScrollPane scrollPaneMain) {
+    HBox hbox = new HBox();
+    hbox.setAlignment(Pos.CENTER_RIGHT); // Align to the right
+    hbox.setPadding(new Insets(5, 10, 5, 10));
+
+    Text text = new Text(messageFromClient);
+    TextFlow textFlow = new TextFlow(text);
+    textFlow.setStyle(
+        "-fx-background-color: #ffb25b; -fx-background-radius: 10px; -fx-padding: 5px;");
+    textFlow.setPadding(new Insets(5, 10, 5, 10));
+
+    hbox.getChildren().add(textFlow);
+
+    // Platform to update the VBox later
+    Platform.runLater(
+        () -> {
+          vbox.getChildren().add(hbox);
+        });
+
+    // Scroll to the bottom of the ScrollPane to show the latest message
+    scrollPaneMain.setVvalue(1.0);
+  }
+
   private ChatCompletionRequest chatCompletionRequest;
   private ChatCompletionRequest chatCompletionRequestChat;
   private String gameLevel;
@@ -392,29 +415,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  public static void addLabel(String messageFromClient, VBox vbox, ScrollPane scrollPaneMain) {
-    HBox hbox = new HBox();
-    hbox.setAlignment(Pos.CENTER_RIGHT); // Align to the right
-    hbox.setPadding(new Insets(5, 10, 5, 10));
-
-    Text text = new Text(messageFromClient);
-    TextFlow textFlow = new TextFlow(text);
-    textFlow.setStyle(
-        "-fx-background-color: #ffb25b; -fx-background-radius: 10px; -fx-padding: 5px;");
-    textFlow.setPadding(new Insets(5, 10, 5, 10));
-
-    hbox.getChildren().add(textFlow);
-
-    // Platform to update the VBox later
-    Platform.runLater(
-        () -> {
-          vbox.getChildren().add(hbox);
-        });
-
-    // Scroll to the bottom of the ScrollPane to show the latest message
-    scrollPaneMain.setVvalue(1.0);
-  }
-
   public boolean containsHintPhrase(String input) {
     // Use a case-insensitive regular expression to check for either phrase using regex
     return input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint\\b.*")
@@ -470,9 +470,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
    * @param continuation the runnable that will be called after the delay
    */
   private void delay(int time, Runnable continuation) {
+    // Create a new task that uses a thread to simulate a delay
     Task<Void> sleep =
         new Task<Void>() {
-
           @Override
           protected Void call() throws Exception {
             try {
@@ -483,6 +483,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
             return null;
           }
         };
+    // Run the input code after the given time passed
     sleep.setOnSucceeded(event -> continuation.run());
     Thread sleepThread = new Thread(sleep, "Sleep Thread");
     sleepThread.start();

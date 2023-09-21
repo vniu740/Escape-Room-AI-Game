@@ -325,7 +325,7 @@ public class MenuController {
   private void delay(int time, Runnable continuation) {
     Task<Void> sleep =
         new Task<Void>() {
-
+          // Create a new task that uses a thread to simulate a delay
           @Override
           protected Void call() throws Exception {
             try {
@@ -336,6 +336,7 @@ public class MenuController {
             return null;
           }
         };
+    // Run the input code after the given time passed
     sleep.setOnSucceeded(event -> continuation.run());
     Thread sleepThread = new Thread(sleep, "Sleep Thread");
     sleepThread.start();
