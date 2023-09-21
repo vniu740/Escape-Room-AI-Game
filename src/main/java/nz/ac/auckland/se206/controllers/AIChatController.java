@@ -166,7 +166,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                     .setN(1)
                     .setTemperature(0.4)
                     .setTopP(0.5)
-                    .setMaxTokens(100);
+                    .setMaxTokens(130);
 
             ChatMessage msg =
                 runGpt(
@@ -423,6 +423,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         || input.matches("(?i).*\\bhere\\s+is\\s+another\\s+hint:\\b.*")
         || input.matches("(?i).*\\bhere's\\s+a\\s+hint:\\b.*")
         || input.matches("(?i).*\\bhere's\\s+another\\s+hint:\\b.*")
+        || input.matches("(?i).*\\bwill\\s+provide\\s+you\\s+with\\s+another\\s+hint:\\b.*")
+        || input.matches("(?i).*\\bwill\\s+provide\\s+you\\s+with\\s+another\\s+hint\\.\\b.*")
+        || input.matches("(?i).*\\bwill\\s+provide\\s+you\\s+with\\s+a\\s+hint\\.\\b.*")
         || input.toLowerCase().contains("here is a hint")
         || input.toLowerCase().contains("here is another hint")
         || input.toLowerCase().contains("here's a hint")
@@ -430,7 +433,10 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         || input.toLowerCase().contains("here is a hint:")
         || input.toLowerCase().contains("here is another hint:")
         || input.toLowerCase().contains("here's a hint:")
-        || input.toLowerCase().contains("here's another hint:");
+        || input.toLowerCase().contains("here's another hint:")
+        || input.toLowerCase().contains("will provide you with another hint")
+        || input.toLowerCase().contains("will provide you with a hint")
+        || input.toLowerCase().contains("a final hint");
   }
 
   public static void setBackground() {
@@ -449,35 +455,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   private void onSpriteClick(MouseEvent event) {
     txtSpeak.setText("GOT HIM!");
     circle.setFill(new ImagePattern(new Image("/Images/explosion.png")));
-    delay(400, () -> circle.setVisible(false));
-    delay(600, () -> circle.setFill(new ImagePattern(new Image("/Images/soot.png"))));
-    delay(400, () -> circle.setVisible(true));
-    delay(400, () -> txtSpeak.setText("CATCH THAT SPRITE!"));
-  }
-
-  /**
-   * Helper method that delays the call of a runnable.
-   *
-   * @param time How long the delay will be
-   * @param continuation the runnable that will be called after the delay
-   */
-  private void delay(int time, Runnable continuation) {
-    Task<Void> sleep =
-        new Task<Void>() {
-
-          @Override
-          protected Void call() throws Exception {
-            try {
-              Thread.sleep(time);
-            } catch (InterruptedException e) {
-              return null;
-            }
-            return null;
-          }
-        };
-    sleep.setOnSucceeded(event -> continuation.run());
-    Thread sleepThread = new Thread(sleep, "Sleep Thread");
-    sleepThread.start();
   }
 
   public static void setHintCounter() {

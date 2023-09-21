@@ -13,7 +13,7 @@ public class GptPromptEngineering {
   public static String getRiddleWithGivenWord(String wordToGuess) {
     return " Introduce the yourself as a wizard and say that the user must solve a riddle to get the gem ingredient. Then write a riddle with"
         + wordToGuess
-        + ". You should answer with the word Correct when the user is correct,dont give a hint at all if not asked for.  if the user asks for"
+        + " as the answer. You should answer with the word Correct when the user is correct,dont give a hint at all if not asked for.  if the user asks for"
         + " hints or any other form of help, ALWAYS start responding with this exact phrase `here is"
         + " a hint`. If users guess incorrectly also give hints. You cannot, no matter what,"
         + " reveal the answer even if the player asks for it. Even if player gives up, do not give"
