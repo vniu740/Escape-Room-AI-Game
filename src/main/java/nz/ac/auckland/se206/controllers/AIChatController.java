@@ -94,14 +94,14 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
           new KeyFrame(
               Duration.millis(15),
               new EventHandler<ActionEvent>() {
-                private double X = 2;
-                private double Y = 2;
+                private double x = 2;
+                private double y = 2;
 
                 @Override
                 public void handle(ActionEvent event) {
                   double initialScaleX;
-                  circle.setLayoutX(circle.getLayoutX() + X);
-                  circle.setLayoutY(circle.getLayoutY() + Y);
+                  circle.setLayoutX(circle.getLayoutX() + x);
+                  circle.setLayoutY(circle.getLayoutY() + y);
 
                   double sceneMinX = paneBack.getLayoutX();
                   double sceneMinY = paneBack.getLayoutY();
@@ -114,9 +114,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   boolean topBorder = circle.getLayoutY() <= (sceneMinY + circle.getRadius());
 
                   if (rightBorder || leftBorder) {
-                    X *= -1;
+                    x *= -1;
                     // Flip the image horizontally based on the direction of motion
-                    if (X > 0) {
+                    if (x > 0) {
                       initialScaleX = 1.0; // Image faces right
                     } else {
                       initialScaleX = -1.0; // Flip the image horizontally when moving left
@@ -128,7 +128,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                     circle.getTransforms().add(scale);
                   }
                   if (bottomBorder || topBorder) {
-                    Y *= -1;
+                    y *= -1;
                   }
                 }
               }));
@@ -351,6 +351,13 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                     lastMsg =
                         runGptChat(new ChatMessage("user", GptPromptEngineering.getHintActivity()));
                   }
+                  if (GameState.isLabCollected == false
+                      && GameState.isForestCollected == false
+                      && GameState.isScaleCollected == false
+                      && GameState.level.equals("easy")) {
+                    addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
+                    Platform.runLater(() -> stopAnimation());
+                  }
                   if (GameState.isLabCollected == true
                       && GameState.isForestCollected == true
                       && GameState.isScaleCollected == true) {
@@ -470,6 +477,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
    * @param continuation the runnable that will be called after the delay
    */
   private void delay(int time, Runnable continuation) {
+
     // Create a new task that uses a thread to simulate a delay
     Task<Void> sleep =
         new Task<Void>() {
@@ -486,6 +494,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     // Run the input code after the given time passed
     sleep.setOnSucceeded(event -> continuation.run());
     Thread sleepThread = new Thread(sleep, "Sleep Thread");
+    // Start the thread
     sleepThread.start();
   }
 
