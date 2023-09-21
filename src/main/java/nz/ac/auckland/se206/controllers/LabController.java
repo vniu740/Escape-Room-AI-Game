@@ -9,7 +9,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -44,20 +43,8 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LabController implements TimeManager.TimeUpdateListener {
 
-  private List<Image> imgScrollList = new ArrayList<Image>();
-  private List<Image> forestObjectList = new ArrayList<Image>();
-  private List<Image> labObjectList = new ArrayList<Image>();
-  private List<Image> dragonObjectList = new ArrayList<Image>();
-  private List<String> stringScrollListOrder = new ArrayList<String>();
-  private List<String> imgCauldronList = new ArrayList<String>();
-  private ImagePulseAnimation leverAnimation;
-  private ImagePulseAnimation jewelleryAnimation;
-  private int imagesDropped = 0;
-  private Thread animationJewelleryThread;
-  private static TimeManager timeManagerlab;
-  private ChatCompletionRequest chatCompletionRequest;
-
-  @FXML private HBox hBoxScroll;
+  // FXML elements
+  @FXML private HBox hboxScroll;
   @FXML private ImageView imgViewOne;
   @FXML private ImageView imgViewTwo;
   @FXML private ImageView imgViewThree;
@@ -90,7 +77,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Image imgOrangeGem;
   @FXML private Image imgDragonBlood;
   @FXML private Image imgDragonFire;
-
   @FXML private Image imgCrystal;
   @FXML private Image imgScale;
   @FXML private Pane pnCauldron;
@@ -100,17 +86,32 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Text txtCorrect;
   @FXML private Button btnCauldronExit;
   @FXML private Label timerLblLab;
-
   @FXML private Button btnSpeechExit;
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
   @FXML private ImageView imgViewWizard;
   @FXML private Pane pnIntro;
   @FXML private Text txtIntro;
-  @FXML
-  private Button btnIntroExit;
-  @FXML
-  private ProgressIndicator progressIndicator; 
+  @FXML private Button btnIntroExit;
+  @FXML private ProgressIndicator progressIndicator;
+
+  // Lists and collections
+  private List<Image> imgScrollList = new ArrayList<Image>();
+  private List<Image> forestObjectList = new ArrayList<Image>();
+  private List<Image> labObjectList = new ArrayList<Image>();
+  private List<Image> dragonObjectList = new ArrayList<Image>();
+  private List<String> stringScrollListOrder = new ArrayList<String>();
+  private List<String> imgCauldronList = new ArrayList<String>();
+
+  // Animations and counters
+  private ImagePulseAnimation leverAnimation;
+  private ImagePulseAnimation jewelleryAnimation;
+  private int imagesDropped = 0;
+  private Thread animationJewelleryThread;
+
+  // Other fields
+  private static TimeManager timeManagerlab;
+  private ChatCompletionRequest chatCompletionRequest;
 
   /**
    * Initialises the lab scene when called.
@@ -125,9 +126,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
-            //set the cursor to be a spinning wheel
+            // set the cursor to be a spinning wheel
             progressIndicator.setVisible(true);
-            
+
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
@@ -141,12 +142,12 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
     Thread introThread = new Thread(getIntroTask, "Intro Thread");
     introThread.start();
-    //when thread finishes, set the progress indicator to be invisible
+    // when thread finishes, set the progress indicator to be invisible
     getIntroTask.setOnSucceeded(
         e -> {
           progressIndicator.setVisible(false);
         });
-    //when the introthread finishes, set the progress indicator to be invisible
+    // when the introthread finishes, set the progress indicator to be invisible
     // introThread.setOnSucceeded(
     //     e -> {
     //       progressIndicator.setVisible(false);
@@ -292,7 +293,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     PotionManager.setImageScrollList(imgScrollList);
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
-    for (Node child : hBoxScroll.getChildren()) {
+    for (Node child : hboxScroll.getChildren()) {
       if (child instanceof ImageView) {
         ImageView childImageView = (ImageView) child;
         childImageView.setImage(imgScrollList.get(listCounter));
@@ -367,10 +368,12 @@ public class LabController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onLeverClick(MouseEvent event) {
+    // Indicate that the lever is pulled
     GameState.isLeverPulled = true;
     txtSpeech.setText("The jewellery box is playing music!");
     pnSpeech.setVisible(true);
     imgViewJewellery.setVisible(true);
+    // Start the animtion of the jewellery box
     animationJewelleryThread.start();
     imgViewLever.setVisible(false);
   }
@@ -624,12 +627,13 @@ public class LabController implements TimeManager.TimeUpdateListener {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      //txtIntro.setText(result.getChatMessage().getContent());
-      Platform.runLater(() -> {
-        txtIntro.setText(result.getChatMessage().getContent());
-    });
-      //set progress indicator to be invisible when the result is returned
-      //progressIndicator.setVisible(false);
+      // txtIntro.setText(result.getChatMessage().getContent());
+      Platform.runLater(
+          () -> {
+            txtIntro.setText(result.getChatMessage().getContent());
+          });
+      // set progress indicator to be invisible when the result is returned
+      // progressIndicator.setVisible(false);
 
     } catch (ApiProxyException e) {
       System.out.println("Problem calling API: " + e.getMessage());
