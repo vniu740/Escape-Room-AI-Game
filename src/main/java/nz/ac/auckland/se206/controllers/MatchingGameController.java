@@ -32,6 +32,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   public static TimeManager getTimeManager() {
     return timeManager;
   }
+  
   private ImageView[] tiles; // Array of tile ImageViews
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
   

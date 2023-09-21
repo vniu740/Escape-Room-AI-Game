@@ -14,6 +14,12 @@ import nz.ac.auckland.se206.GameState;
 public class LoseController {
 
   @FXML private static Label itemCounter;
+  
+  @FXML
+  public static void setItemCounter() {
+    itemCounter.setText(Integer.toString(GameState.itemsCollected));
+  }
+
   @FXML private Button buttonRetry;
   @FXML private Button buttonClose;
   @FXML private Label topTitle;
@@ -80,8 +86,4 @@ public class LoseController {
     restartApp.start();
   }
 
-  @FXML
-  public static void setItemCounter() {
-    itemCounter.setText(Integer.toString(GameState.itemsCollected));
-  }
 }
