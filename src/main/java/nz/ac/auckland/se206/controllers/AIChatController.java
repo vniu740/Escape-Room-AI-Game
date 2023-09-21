@@ -40,6 +40,14 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class AIChatController implements TimeManager.TimeUpdateListener {
+
+  private static TimeManager timeManager;
+  private static int numHints; // number of hints given to the user
+
+  private ChatCompletionRequest chatCompletionRequest;
+  private ChatCompletionRequest chatCompletionRequestChat;
+  private String gameLevel;
+
   @FXML private Button button_send;
   @FXML private TextField tf_message;
   @FXML private VBox vbox_message;
@@ -48,16 +56,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private Pane paneBack;
   @FXML private Button buttonBack;
   @FXML private static Label hintCounter;
-
-  private ChatCompletionRequest chatCompletionRequest;
-  private ChatCompletionRequest chatCompletionRequestChat;
-
-  private static int numHints; // number of hints given to the user
-  private String gameLevel;
-
   @FXML private Label timerLblChat;
-  private static TimeManager timeManager;
-
   @FXML private ImageView imgViewWizard;
   @FXML private ImageView imgViewWizardCast;
   @FXML private Text txtSpeak;
@@ -455,6 +454,32 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   private void onSpriteClick(MouseEvent event) {
     txtSpeak.setText("GOT HIM!");
     circle.setFill(new ImagePattern(new Image("/Images/explosion.png")));
+    delay(400, () -> circle.setVisible(false));
+  }
+
+  /**
+   * Helper method that delays the call of a runnable.
+   *
+   * @param time How long the delay will be
+   * @param continuation the runnable that will be called after the delay
+   */
+  private void delay(int time, Runnable continuation) {
+    Task<Void> sleep =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            try {
+              Thread.sleep(time);
+            } catch (InterruptedException e) {
+              return null;
+            }
+            return null;
+          }
+        };
+    sleep.setOnSucceeded(event -> continuation.run());
+    Thread sleepThread = new Thread(sleep, "Sleep Thread");
+    sleepThread.start();
   }
 
   public static void setHintCounter() {

@@ -35,6 +35,10 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 /** Controller class for the room view. */
 public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
+  // Other fields
+  private static TimeManager timeManager;
+  public String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
+
   // FXML elements for the main scene
   @FXML private Rectangle door;
   @FXML private Rectangle window;
@@ -71,10 +75,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
   @FXML private ImageView imgViewWizard;
-
-  // Other fields
-  private static TimeManager timeManager;
-  public String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {

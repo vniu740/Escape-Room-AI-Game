@@ -26,6 +26,16 @@ import nz.ac.auckland.se206.Tile;
 import nz.ac.auckland.se206.TimeManager;
 
 public class MatchingGameController implements TimeManager.TimeUpdateListener {
+
+  private static TimeManager timeManager;
+
+  private ImageView[] tiles; // Array of tile ImageViews
+  private Tile[][] gameBoard; // Represents the game board (3x3 grid)
+
+  private int lastClickedTileIndex = -1; // Index of the last clicked tile
+  private int lastCol = -1;
+  private int lastRow = -1;
+
   @FXML private Button btnSpeechExit;
   @FXML private Button buttonBack;
   @FXML private GridPane gameGrid;
@@ -45,15 +55,6 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   @FXML private Label timerLblMatchGame;
   @FXML private Text txtSpeech;
   @FXML private VBox gameBox;
-
-  private static TimeManager timeManager;
-
-  private ImageView[] tiles; // Array of tile ImageViews
-  private Tile[][] gameBoard; // Represents the game board (3x3 grid)
-
-  private int lastClickedTileIndex = -1; // Index of the last clicked tile
-  private int lastCol = -1;
-  private int lastRow = -1;
 
   // Initialize the game and set up event handlers
   public void initialize() throws IOException {

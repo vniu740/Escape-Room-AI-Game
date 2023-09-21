@@ -16,18 +16,6 @@ import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class MenuController {
-  @FXML Button btnEasyMode;
-  @FXML Button btnMediumMode;
-  @FXML Button btnHardMode;
-  @FXML Button btnPlay;
-  @FXML ToggleButton toggleBtnTwoMins;
-  @FXML ToggleButton toggleBtnFourMins;
-  @FXML ToggleButton toggleBtnSixMins;
-  @FXML Pane pnDifficultyMenu;
-  @FXML ImageView imgViewDifficultyMenu;
-  @FXML Image imgEasy;
-  @FXML Image imgMedium;
-  @FXML Image imgHard;
 
   private boolean isHidden;
   private boolean isEasyHidden;
@@ -40,6 +28,19 @@ public class MenuController {
   private boolean isSixMinsSelected;
 
   private int timeRemaining;
+
+  @FXML Button btnEasyMode;
+  @FXML Button btnMediumMode;
+  @FXML Button btnHardMode;
+  @FXML Button btnPlay;
+  @FXML ToggleButton toggleBtnTwoMins;
+  @FXML ToggleButton toggleBtnFourMins;
+  @FXML ToggleButton toggleBtnSixMins;
+  @FXML Pane pnDifficultyMenu;
+  @FXML ImageView imgViewDifficultyMenu;
+  @FXML Image imgEasy;
+  @FXML Image imgMedium;
+  @FXML Image imgHard;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {

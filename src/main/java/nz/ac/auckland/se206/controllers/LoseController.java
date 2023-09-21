@@ -13,9 +13,9 @@ import nz.ac.auckland.se206.GameState;
 
 public class LoseController {
 
+  @FXML private static Label itemCounter;
   @FXML private Button buttonRetry;
   @FXML private Button buttonClose;
-  @FXML private static Label itemCounter;
   @FXML private Label topTitle;
   @FXML private Label botTitle;
   @FXML private Pane loseBackground;

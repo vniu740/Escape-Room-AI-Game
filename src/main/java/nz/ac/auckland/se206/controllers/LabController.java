@@ -43,6 +43,25 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LabController implements TimeManager.TimeUpdateListener {
 
+  private static TimeManager timeManagerlab;
+
+  // Lists and collections
+  private List<Image> imgScrollList = new ArrayList<Image>();
+  private List<Image> forestObjectList = new ArrayList<Image>();
+  private List<Image> labObjectList = new ArrayList<Image>();
+  private List<Image> dragonObjectList = new ArrayList<Image>();
+  private List<String> stringScrollListOrder = new ArrayList<String>();
+  private List<String> imgCauldronList = new ArrayList<String>();
+
+  // Animations and counters
+  private ImagePulseAnimation leverAnimation;
+  private ImagePulseAnimation jewelleryAnimation;
+  private int imagesDropped = 0;
+  private Thread animationJewelleryThread;
+
+  // Other fields
+  private ChatCompletionRequest chatCompletionRequest;
+
   // FXML elements
   @FXML private HBox hboxScroll;
   @FXML private ImageView imgViewOne;
@@ -94,24 +113,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Text txtIntro;
   @FXML private Button btnIntroExit;
   @FXML private ProgressIndicator progressIndicator;
-
-  // Lists and collections
-  private List<Image> imgScrollList = new ArrayList<Image>();
-  private List<Image> forestObjectList = new ArrayList<Image>();
-  private List<Image> labObjectList = new ArrayList<Image>();
-  private List<Image> dragonObjectList = new ArrayList<Image>();
-  private List<String> stringScrollListOrder = new ArrayList<String>();
-  private List<String> imgCauldronList = new ArrayList<String>();
-
-  // Animations and counters
-  private ImagePulseAnimation leverAnimation;
-  private ImagePulseAnimation jewelleryAnimation;
-  private int imagesDropped = 0;
-  private Thread animationJewelleryThread;
-
-  // Other fields
-  private static TimeManager timeManagerlab;
-  private ChatCompletionRequest chatCompletionRequest;
 
   /**
    * Initialises the lab scene when called.
