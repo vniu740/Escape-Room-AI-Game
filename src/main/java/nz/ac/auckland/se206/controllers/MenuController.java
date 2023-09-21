@@ -69,6 +69,9 @@ public class MenuController {
     try {
       song = new Media(App.class.getResource("/sounds/themeSound.mp3").toURI().toString());
       MediaPlayer player = new MediaPlayer(song);
+      player.setCycleCount(MediaPlayer.INDEFINITE);
+      //set volume
+      player.setVolume(0.05);
       player.play(); 
     } catch (URISyntaxException e) {
       // TODO Auto-generated catch block
