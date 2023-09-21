@@ -9,10 +9,12 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -105,7 +107,10 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imgViewWizard;
   @FXML private Pane pnIntro;
   @FXML private Text txtIntro;
-  @FXML private Button btnIntroExit;
+  @FXML
+  private Button btnIntroExit;
+  @FXML
+  private ProgressIndicator progressIndicator; 
 
   /**
    * Initialises the lab scene when called.
@@ -120,6 +125,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+            //set the cursor to be a spinning wheel
+            progressIndicator.setVisible(true);
+            
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
@@ -133,6 +141,16 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
     Thread introThread = new Thread(getIntroTask, "Intro Thread");
     introThread.start();
+    //when thread finishes, set the progress indicator to be invisible
+    getIntroTask.setOnSucceeded(
+        e -> {
+          progressIndicator.setVisible(false);
+        });
+    //when the introthread finishes, set the progress indicator to be invisible
+    // introThread.setOnSucceeded(
+    //     e -> {
+    //       progressIndicator.setVisible(false);
+    //     });
 
     setPotionRecipe();
     setCauldronOrder();
@@ -606,7 +624,12 @@ public class LabController implements TimeManager.TimeUpdateListener {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      txtIntro.setText(result.getChatMessage().getContent());
+      //txtIntro.setText(result.getChatMessage().getContent());
+      Platform.runLater(() -> {
+        txtIntro.setText(result.getChatMessage().getContent());
+    });
+      //set progress indicator to be invisible when the result is returned
+      //progressIndicator.setVisible(false);
 
     } catch (ApiProxyException e) {
       System.out.println("Problem calling API: " + e.getMessage());

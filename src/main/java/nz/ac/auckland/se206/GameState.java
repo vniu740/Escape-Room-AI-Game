@@ -51,6 +51,8 @@ public class GameState {
   /** Indicates if the game has been won */
   public static boolean isWon = false;
 
+  public static String correctAnswer;
+
   /** Resets the game state */
   public static void reset() {
     isRiddleResolved = false;

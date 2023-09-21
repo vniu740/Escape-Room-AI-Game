@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.ArrayList;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -129,6 +131,14 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     // sp_main.setStyle("-fx-background-radius: 10px;");
     // round the content of scrollpaneBack
     vbox_message.setStyle("-fx-background-radius: 10px;");
+    ArrayList<String> riddleAnswers = new ArrayList<String>();
+    riddleAnswers.add("potion");
+    riddleAnswers.add("Wizard");
+    riddleAnswers.add("wand");
+    riddleAnswers.add("spell");
+    riddleAnswers.add("magic");
+    //choose one of the answers randomly and set it as the correct answer
+    GameState.correctAnswer = riddleAnswers.get((int)(Math.random() * riddleAnswers.size()));
     Task<Void> getRiddleTask =
         new Task<Void>() {
           @Override
@@ -142,7 +152,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
             ChatMessage msg =
                 runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("potion")));
+                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord(GameState.correctAnswer)));
             // Add label for msg
             addLabel(msg.getContent(), vbox_message, sp_main);
             tf_message.clear();
