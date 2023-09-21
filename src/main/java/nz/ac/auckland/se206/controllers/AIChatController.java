@@ -295,7 +295,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       Text text = new Text(messageToSend);
       TextFlow textFlow = new TextFlow(text);
 
-      textFlow.setStyle("-fx-background-color: #55cfff; -fx-background-radius: 20;");
+      //textFlow.setStyle("-fx-background-color: #55cfff; -fx-background-radius: 20;");
+      textFlow.setStyle("-fx-background-color: #9c42b4; -fx-background-radius: 20;");
       textFlow.setPadding(new Insets(5, 5, 10, 10));
 
       hbox.getChildren().add(textFlow);

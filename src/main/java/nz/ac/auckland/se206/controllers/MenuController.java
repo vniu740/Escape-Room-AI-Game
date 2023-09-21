@@ -22,6 +22,26 @@ import javafx.scene.media.MediaPlayer;
 
 public class MenuController {
 
+  private static Media song;
+  static {
+    try {
+      song = new Media(App.class.getResource("/sounds/themeSound.mp3").toURI().toString());
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
+  }
+  static {
+    try {
+      song = new Media(App.class.getResource("/sounds/themeSound.mp3").toURI().toString());
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
+    }
+  }
+  final static MediaPlayer player = new MediaPlayer(song);
+    //method for stopping the music
+public static void stopMusic() {
+  player.stop();
+}
   private boolean isHidden;
   private boolean isEasyHidden;
   private boolean isMediumHidden;
@@ -66,19 +86,17 @@ public class MenuController {
     imgEasy = new Image("images/easy.png");
     imgMedium = new Image("images/medium.png");
     imgHard = new Image("images/hard.png");
-        Media song;
     try {
       song = new Media(App.class.getResource("/sounds/themeSound.mp3").toURI().toString());
-      MediaPlayer player = new MediaPlayer(song);
+      //final MediaPlayer player = new MediaPlayer(song);
       player.setCycleCount(MediaPlayer.INDEFINITE);
       //set volume
       player.setVolume(0.05);
-      player.play(); 
+      player.play();
     } catch (URISyntaxException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } 
+    }
   }
+  
 
   /**
    * Handles the ActionEvent on the button btnEasyMode.
@@ -313,6 +331,7 @@ public class MenuController {
     sceneButtonIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
     // start timer of timer manager by getting the instance
     ForestRoomController.getTimeManager().startTimer(timeRemaining);
+    
   }
 
   /** Helper method that translates the pane pnDifficultyMenu upwards. */
