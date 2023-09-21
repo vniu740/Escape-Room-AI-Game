@@ -454,6 +454,35 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   private void onSpriteClick(MouseEvent event) {
     txtSpeak.setText("GOT HIM!");
     circle.setFill(new ImagePattern(new Image("/Images/explosion.png")));
+    delay(400, () -> circle.setVisible(false));
+    delay(600, () -> circle.setFill(new ImagePattern(new Image("/Images/soot.png"))));
+    delay(400, () -> circle.setVisible(true));
+    delay(400, () -> txtSpeak.setText("CATCH THAT SPRITE!"));
+  }
+
+  /**
+   * Helper method that delays the call of a runnable.
+   *
+   * @param time How long the delay will be
+   * @param continuation the runnable that will be called after the delay
+   */
+  private void delay(int time, Runnable continuation) {
+    Task<Void> sleep =
+        new Task<Void>() {
+
+          @Override
+          protected Void call() throws Exception {
+            try {
+              Thread.sleep(time);
+            } catch (InterruptedException e) {
+              return null;
+            }
+            return null;
+          }
+        };
+    sleep.setOnSucceeded(event -> continuation.run());
+    Thread sleepThread = new Thread(sleep, "Sleep Thread");
+    sleepThread.start();
   }
 
   public static void setHintCounter() {
