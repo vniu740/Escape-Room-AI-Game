@@ -245,9 +245,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       Text text = new Text(messageToSend);
       TextFlow textFlow = new TextFlow(text);
 
-      textFlow.setStyle("-fx-background-color: #ff6620; -fx-background-radius: 20;");
+      textFlow.setStyle("-fx-background-color: #55cfff; -fx-background-radius: 20;");
       textFlow.setPadding(new Insets(5, 5, 10, 10));
-      text.setFill(Color.color(0.934, 0.945, 0.996));
 
       hbox.getChildren().add(textFlow);
       vbox_message.getChildren().add(hbox);
@@ -334,7 +333,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     Text text = new Text(messageFromClient);
     TextFlow textFlow = new TextFlow(text);
     textFlow.setStyle(
-        "-fx-background-color: #ea00ff; -fx-background-radius: 10px; -fx-padding: 5px;");
+        "-fx-background-color: #ffb25b; -fx-background-radius: 10px; -fx-padding: 5px;");
     textFlow.setPadding(new Insets(5, 10, 5, 10));
 
     hbox.getChildren().add(textFlow);

@@ -18,7 +18,7 @@
    <children>
       <Pane fx:id="paneBack" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="button_send" layoutX="371.0" layoutY="337.0" mnemonicParsing="false" onAction="#onSend" prefHeight="0.0" prefWidth="81.0" text="send" />
+            <Button fx:id="button_send" layoutX="370.0" layoutY="336.0" mnemonicParsing="false" onAction="#onSend" prefHeight="0.0" prefWidth="81.0" text="send" />
             <TextField fx:id="tf_message" layoutX="25.0" layoutY="337.0" opacity="0.7" prefHeight="40.0" prefWidth="345.0" promptText="Enter your message here">
                <font>
                   <Font name="Lucida Calligraphy Italic" size="15.0" />
@@ -33,7 +33,6 @@
                   <Image url="@../images/wizard.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonBack" layoutX="478.0" layoutY="107.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="52.0" prefWidth="91.0" text="Back" />
             <ImageView fx:id="imgViewWizardCast" fitHeight="180.0" fitWidth="162.0" layoutX="436.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/wizardCast.gif" />
@@ -49,6 +48,11 @@
                <font>
                   <Font name="Lucida Calligraphy Italic" size="12.0" />
                </font></Label>
+            <Button fx:id="buttonBack" layoutX="504.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" opacity="0.65" prefHeight="19.0" prefWidth="39.0" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
       <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="480.0" pickOnBounds="true">
