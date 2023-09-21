@@ -18,10 +18,8 @@ public class LoseController {
   @FXML private static Label itemCounter;
   @FXML private Label topTitle;
   @FXML private Label botTitle;
-  @FXML
-  private Pane loseBackground;
-  @FXML
-  private ProgressIndicator progressIndicator; 
+  @FXML private Pane loseBackground;
+  @FXML private ProgressIndicator progressIndicator;
 
   @FXML
   public void initialize() {
@@ -62,24 +60,26 @@ public class LoseController {
   @FXML
   public void onRetryClicked() throws IOException {
     // Reset the game state
-    //progressIndictor to be visible 
+    // progressIndictor to be visible
     progressIndicator.setVisible(true);
-    //another thread to restart the game
-    Thread restartApp = new Thread(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          //Thread.sleep(1000);
-          App.restartGame();
-        } catch (IOException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-        }
-      }
-    });
+    // another thread to restart the game
+    Thread restartApp =
+        new Thread(
+            new Runnable() {
+              @Override
+              public void run() {
+                try {
+                  // Thread.sleep(1000);
+                  App.restartGame();
+                } catch (IOException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+                }
+              }
+            });
     restartApp.start();
 
-    //App.restartGame();
+    // App.restartGame();
   }
 
   @FXML
