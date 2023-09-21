@@ -330,9 +330,10 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   }
                   if (GameState.isLabCollected == false
                       && GameState.isForestCollected == false
-                      && GameState.isScaleCollected == false) {
-                    lastMsg =
-                        runGptChat(new ChatMessage("user", GptPromptEngineering.getContext()));
+                      && GameState.isScaleCollected == false
+                      && GameState.level.equals("easy")) {
+                    addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
+                    Platform.runLater(() -> stopAnimation());
                   }
                   if (GameState.isLabCollected == true
                       && GameState.isForestCollected == true
