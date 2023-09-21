@@ -43,8 +43,40 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LabController implements TimeManager.TimeUpdateListener {
 
+  private static TimeManager timeManagerlab;
+
+  public static TimeManager getTimeManager() {
+    return timeManagerlab;
+  }
+
+  // Animations and counters
+  private ImagePulseAnimation leverAnimation;
+  private ImagePulseAnimation jewelleryAnimation;
+  private Thread animationJewelleryThread;
+
+  // Other fields
+  private ChatCompletionRequest chatCompletionRequest;
+  
   // FXML elements
-  @FXML private HBox hboxScroll;
+  @FXML private Button btnIntroExit;
+  @FXML private Button btnCauldronExit;
+  @FXML private Button btnSpeechExit;
+  @FXML private HBox scrollBox;
+  @FXML private Image imgBottleBug;
+  @FXML private Image imgBottleEyes;
+  @FXML private Image imgBottleRedMushRoom;
+  @FXML private Image imgBottleBlueMushroom;
+  @FXML private Image imgBottleSnake;
+  @FXML private Image imgBottleSeaShell;
+  @FXML private Image imgBottleLiquid;
+  @FXML private Image imgDiamond;
+  @FXML private Image imgGreenGem;
+  @FXML private Image imgMineral;
+  @FXML private Image imgOrangeGem;
+  @FXML private Image imgDragonBlood;
+  @FXML private Image imgDragonFire;
+  @FXML private Image imgCrystal;
+  @FXML private Image imgScale;
   @FXML private ImageView imgViewOne;
   @FXML private ImageView imgViewTwo;
   @FXML private ImageView imgViewThree;
@@ -64,36 +96,18 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imgViewCauldronLab;
   @FXML private ImageView imgViewCauldronDragon;
   @FXML private ImageView imgViewIngredient;
-  @FXML private Image imgBottleBug;
-  @FXML private Image imgBottleEyes;
-  @FXML private Image imgBottleRedMushRoom;
-  @FXML private Image imgBottleBlueMushroom;
-  @FXML private Image imgBottleSnake;
-  @FXML private Image imgBottleSeaShell;
-  @FXML private Image imgBottleLiquid;
-  @FXML private Image imgDiamond;
-  @FXML private Image imgGreenGem;
-  @FXML private Image imgMineral;
-  @FXML private Image imgOrangeGem;
-  @FXML private Image imgDragonBlood;
-  @FXML private Image imgDragonFire;
-  @FXML private Image imgCrystal;
-  @FXML private Image imgScale;
+  @FXML private ImageView imgViewWizard;
+  @FXML private Label timerLblLab;
   @FXML private Pane pnCauldron;
   @FXML private Pane pnCauldronOpacity;
   @FXML private Pane pnScroll;
+  @FXML private Pane pnSpeech;
+  @FXML private Pane pnIntro;
+  @FXML private ProgressIndicator progressIndicator;
   @FXML private Text txtTryAgain;
   @FXML private Text txtCorrect;
-  @FXML private Button btnCauldronExit;
-  @FXML private Label timerLblLab;
-  @FXML private Button btnSpeechExit;
-  @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
-  @FXML private ImageView imgViewWizard;
-  @FXML private Pane pnIntro;
   @FXML private Text txtIntro;
-  @FXML private Button btnIntroExit;
-  @FXML private ProgressIndicator progressIndicator;
 
   // Lists and collections
   private List<Image> imgScrollList = new ArrayList<Image>();
@@ -102,16 +116,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private List<Image> dragonObjectList = new ArrayList<Image>();
   private List<String> stringScrollListOrder = new ArrayList<String>();
   private List<String> imgCauldronList = new ArrayList<String>();
-
-  // Animations and counters
-  private ImagePulseAnimation leverAnimation;
-  private ImagePulseAnimation jewelleryAnimation;
   private int imagesDropped = 0;
-  private Thread animationJewelleryThread;
-
-  // Other fields
-  private static TimeManager timeManagerlab;
-  private ChatCompletionRequest chatCompletionRequest;
 
   /**
    * Initialises the lab scene when called.
@@ -231,10 +236,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  public static TimeManager getTimeManager() {
-    return timeManagerlab;
-  }
-
   /** Helper method that randomises and sets the order of the ingredients of the potion recipe. */
   private void setPotionRecipe() {
     int listCounter = 0;
@@ -293,7 +294,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     PotionManager.setImageScrollList(imgScrollList);
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
-    for (Node child : hboxScroll.getChildren()) {
+    for (Node child : scrollBox.getChildren()) {
       if (child instanceof ImageView) {
         ImageView childImageView = (ImageView) child;
         childImageView.setImage(imgScrollList.get(listCounter));
@@ -358,6 +359,11 @@ public class LabController implements TimeManager.TimeUpdateListener {
     //
     if (GameState.isRiddleResolved && !GameState.isLabCollected) {
       imgViewIngredient.setVisible(true);
+      txtSpeech.setText("What a pretty gem!");
+      pnSpeech.setVisible(true);
+    } else {
+      txtSpeech.setText("The jewellery box is locked");
+      pnSpeech.setVisible(true);
     }
   }
 
@@ -543,6 +549,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     pnCauldronOpacity.setVisible(false);
     imgViewCauldronBubbles.setVisible(false);
     txtTryAgain.setVisible(false);
+    pnSpeech.setVisible(false);
   }
 
   /**
@@ -614,10 +621,15 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onWindowClicked() {
+    // Check if the potion has been created correctly
     if (GameState.isPotionComplete) {
+      // If the potion has been created correctly, the user has won
       GameState.isWon = true;
       TimeManager.getInstance().stopTimer();
       App.setUi(AppUi.WIN);
+    } else {
+      txtSpeech.setText("You can't escape yet! The potion hasn't been made");
+      pnSpeech.setVisible(true);
     }
   }
 

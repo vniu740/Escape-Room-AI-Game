@@ -7,9 +7,19 @@ import java.util.TimerTask;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class TimeManager {
+  
   private static TimeManager instance;
-  private Timer timer;
   public static int timeRemaining = 121;
+  
+  /** Gets the instance of the time manager. */
+  public static TimeManager getInstance() {
+    if (instance == null) {
+      instance = new TimeManager();
+    }
+    return instance;
+  
+  }
+  private Timer timer;
   private List<TimeUpdateListener> listeners = new ArrayList<>();
 
   /** Starts the game timer. */
@@ -32,21 +42,12 @@ public class TimeManager {
               stopTimer();
               for (TimeUpdateListener listener : listeners) {
                 listener.onTimerUpdate("00:00");
-                // listener.getTimerLbl().setText("00:00");
               }
             }
           }
         },
         0,
         1000);
-  }
-
-  /** Gets the instance of the time manager. */
-  public static TimeManager getInstance() {
-    if (instance == null) {
-      instance = new TimeManager();
-    }
-    return instance;
   }
 
   /** Updates the timer text for each second. */

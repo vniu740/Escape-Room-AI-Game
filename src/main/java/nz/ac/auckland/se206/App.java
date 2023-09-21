@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.media.Media;
@@ -59,17 +58,9 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     // Adding rooms into the scenemanager hashmap
-    SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
-    SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
-    SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
-    SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
-    SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
-    SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
-    SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
-    SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
-    SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
+    addRooms();
 
-    // Parent root = SceneManager.getUi(AppUi.START_PAGE);
+    // Setting the scene to the start page
     Parent root = SceneManager.getUi(AppUi.START_PAGE);
     scene = new Scene(root, 600, 399);
     stage.setScene(scene);
@@ -80,11 +71,8 @@ public class App extends Application {
     
   }
 
-  public static void restartGame() throws IOException {
-    SceneManager.resetUiMap();
-    GameState.reset();
-
-    // Adding new room instances into the scenemanager hashmap
+  public static void addRooms() throws IOException {
+    // Adding rooms into the scenemanager hashmap
     SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
     SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
     SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
@@ -92,11 +80,18 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
-    SceneManager.addAppUi(AppUi.CHAT, loadFxml("chat"));
     SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
+  }
+
+  public static void restartGame() throws IOException {
+    // Clear the hashmap and reset the game state
+    SceneManager.resetUiMap();
+    GameState.reset();
+
+    // Adding rooms into the scenemanager hashmap
+    addRooms();
 
     setUi(AppUi.START_PAGE);
             Media song;
   }
-
 }

@@ -14,18 +14,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/aichat.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
+<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/aichat.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
    <children>
       <Pane fx:id="paneBack" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="button_send" layoutX="370.0" layoutY="336.0" mnemonicParsing="false" onAction="#onSend" prefHeight="0.0" prefWidth="81.0" text="send" />
-            <TextField fx:id="tf_message" layoutX="25.0" layoutY="337.0" opacity="0.7" prefHeight="40.0" prefWidth="345.0" promptText="Enter your message here">
+            <Button fx:id="btnSend" layoutX="370.0" layoutY="336.0" mnemonicParsing="false" onAction="#onSend" prefHeight="0.0" prefWidth="81.0" text="send" />
+            <TextField fx:id="txtFieldMessage" layoutX="25.0" layoutY="337.0" opacity="0.7" prefHeight="40.0" prefWidth="345.0" promptText="Enter your message here">
                <font>
                   <Font name="Lucida Calligraphy Italic" size="15.0" />
                </font></TextField>
-            <ScrollPane fx:id="sp_main" layoutX="25.0" layoutY="30.0" opacity="0.9" prefHeight="307.0" prefWidth="426.0">
+            <ScrollPane fx:id="scrollPaneMain" layoutX="25.0" layoutY="30.0" opacity="0.9" prefHeight="307.0" prefWidth="426.0">
                <content>
-                  <VBox fx:id="vbox_message" prefHeight="305.0" prefWidth="398.0" />
+                  <VBox fx:id="messageBox" prefHeight="305.0" prefWidth="398.0" />
                </content>
             </ScrollPane>
             <ImageView fx:id="imgViewWizard" fitHeight="203.0" fitWidth="124.0" layoutX="462.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" visible="false">

@@ -13,9 +13,15 @@ import nz.ac.auckland.se206.GameState;
 
 public class LoseController {
 
+  @FXML private static Label itemCounter;
+  
+  @FXML
+  public static void setItemCounter() {
+    itemCounter.setText(Integer.toString(GameState.itemsCollected));
+  }
+
   @FXML private Button buttonRetry;
   @FXML private Button buttonClose;
-  @FXML private static Label itemCounter;
   @FXML private Label topTitle;
   @FXML private Label botTitle;
   @FXML private Pane loseBackground;
@@ -53,12 +59,12 @@ public class LoseController {
   }
 
   @FXML
-  public void onCloseClicked() {
+  private void onCloseClicked() {
     System.exit(0);
   }
 
   @FXML
-  public void onRetryClicked() throws IOException {
+  private void onRetryClicked() throws IOException {
     // Reset the game state
     // progressIndictor to be visible
     progressIndicator.setVisible(true);
@@ -78,12 +84,6 @@ public class LoseController {
               }
             });
     restartApp.start();
-
-    // App.restartGame();
   }
 
-  @FXML
-  public static void setItemCounter() {
-    itemCounter.setText(Integer.toString(GameState.itemsCollected));
-  }
 }

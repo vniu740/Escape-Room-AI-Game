@@ -26,6 +26,16 @@ import nz.ac.auckland.se206.Tile;
 import nz.ac.auckland.se206.TimeManager;
 
 public class MatchingGameController implements TimeManager.TimeUpdateListener {
+
+  private static TimeManager timeManager;
+
+  public static TimeManager getTimeManager() {
+    return timeManager;
+  }
+  
+  private ImageView[] tiles; // Array of tile ImageViews
+  private Tile[][] gameBoard; // Represents the game board (3x3 grid)
+  
   @FXML private Button btnSpeechExit;
   @FXML private Button buttonBack;
   @FXML private GridPane gameGrid;
@@ -45,12 +55,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   @FXML private Label timerLblMatchGame;
   @FXML private Text txtSpeech;
   @FXML private VBox gameBox;
-
-  private static TimeManager timeManager;
-
-  private ImageView[] tiles; // Array of tile ImageViews
-  private Tile[][] gameBoard; // Represents the game board (3x3 grid)
-
+  
   private int lastClickedTileIndex = -1; // Index of the last clicked tile
   private int lastCol = -1;
   private int lastRow = -1;
@@ -115,13 +120,14 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  public static TimeManager getTimeManager() {
-    return timeManager;
-  }
 
   // Implement event handler for tile clicks
   @FXML
   public void onTileClicked(MouseEvent event, ImageView clickedTile) {
+    txtSpeech.setVisible(false);
+    imgViewSpeech.setVisible(false);
+    btnSpeechExit.setVisible(false);
+
     // Check if the user is already matching tiles
     if (GameState.matching) {
       return;
@@ -226,6 +232,10 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     if (GameState.dragonMatches == 3) {
       GameState.isMatchGameWon = true;
       System.out.println("Game won");
+      txtSpeech.setText("You found 3 pairs! Dragon ingredient is now unlocked");
+      txtSpeech.setVisible(true);
+      btnSpeechExit.setVisible(true);
+      imgViewSpeech.setVisible(true);
     }
   }
 
