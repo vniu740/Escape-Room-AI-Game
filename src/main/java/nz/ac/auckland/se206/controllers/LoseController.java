@@ -53,12 +53,12 @@ public class LoseController {
   }
 
   @FXML
-  public void onCloseClicked() {
+  private void onCloseClicked() {
     System.exit(0);
   }
 
   @FXML
-  public void onRetryClicked() throws IOException {
+  private void onRetryClicked() throws IOException {
     // Reset the game state
     // progressIndictor to be visible
     progressIndicator.setVisible(true);
@@ -78,8 +78,6 @@ public class LoseController {
               }
             });
     restartApp.start();
-
-    // App.restartGame();
   }
 
   @FXML

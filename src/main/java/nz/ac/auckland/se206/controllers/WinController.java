@@ -24,12 +24,12 @@ public class WinController {
   }
 
   @FXML
-  public void onCloseClicked() {
+  private void onCloseClicked() {
     System.exit(0);
   }
 
   @FXML
-  public void onRetryClicked() throws IOException {
+  private void onRetryClicked() throws IOException {
     // Reset the game state
     App.restartGame();
   }
