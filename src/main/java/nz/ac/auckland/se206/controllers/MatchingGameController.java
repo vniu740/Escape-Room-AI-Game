@@ -125,6 +125,10 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   // Implement event handler for tile clicks
   @FXML
   public void onTileClicked(MouseEvent event, ImageView clickedTile) {
+    txtSpeech.setVisible(false);
+    imgViewSpeech.setVisible(false);
+    btnSpeechExit.setVisible(false);
+
     // Check if the user is already matching tiles
     if (GameState.matching) {
       return; // Do nothing
@@ -229,6 +233,10 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     if (GameState.dragonMatches == 3) {
       GameState.isMatchGameWon = true;
       System.out.println("Game won");
+      txtSpeech.setText("You found 3 pairs! The dragon ingredient is now unlocked");
+      txtSpeech.setVisible(true);
+      btnSpeechExit.setVisible(true);
+      imgViewSpeech.setVisible(true);
     }
   }
 

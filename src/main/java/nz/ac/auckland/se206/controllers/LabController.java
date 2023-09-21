@@ -140,7 +140,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
         };
 
     Thread introThread = new Thread(getIntroTask, "Intro Thread");
-    introThread.start();
+    // introThread.start();
     //when thread finishes, set the progress indicator to be invisible
     getIntroTask.setOnSucceeded(
         e -> {
@@ -540,6 +540,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     pnCauldronOpacity.setVisible(false);
     imgViewCauldronBubbles.setVisible(false);
     txtTryAgain.setVisible(false);
+    pnSpeech.setVisible(false);
   }
 
   /**
@@ -615,6 +616,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
       GameState.isWon = true;
       TimeManager.getInstance().stopTimer();
       App.setUi(AppUi.WIN);
+    } else {
+      txtSpeech.setText("You can't escape yet! The potion hasn't been made");
     }
   }
 

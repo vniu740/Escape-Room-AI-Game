@@ -180,7 +180,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         };
 
     Thread riddleThread = new Thread(getRiddleTask, "Riddle Thread");
-    riddleThread.start();
+    // riddleThread.start();
     circle.setFill(new ImagePattern(new Image("/Images/soot.png")));
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();

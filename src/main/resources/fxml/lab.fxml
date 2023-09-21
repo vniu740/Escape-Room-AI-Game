@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
+<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
    <children>
       <ImageView fitHeight="424.0" fitWidth="625.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -119,6 +119,28 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Pane fx:id="pnSpeech" layoutX="342.0" layoutY="135.0" prefHeight="130.0" prefWidth="173.0" visible="false">
+         <children>
+            <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="19.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/speechBubble.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnSpeechExit" layoutX="29.0" layoutY="82.0" mnemonicParsing="false" onAction="#onSpeechExit" opacity="0.65" prefHeight="0.0" prefWidth="9.0" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Text fx:id="txtSpeech" layoutX="31.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.21630859375">
+               <font>
+                  <Font name="Herculanum" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
       <Pane fx:id="pnScroll" layoutX="90.0" layoutY="45.0" prefHeight="325.0" prefWidth="427.0" visible="false">
          <children>
             <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
@@ -149,28 +171,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane fx:id="pnSpeech" layoutX="342.0" layoutY="135.0" prefHeight="130.0" prefWidth="173.0" visible="false">
-         <children>
-            <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="19.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/speechBubble.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSpeechExit" layoutX="29.0" layoutY="82.0" mnemonicParsing="false" onAction="#onSpeechExit" opacity="0.65" prefHeight="0.0" prefWidth="9.0" style="-fx-background-color: white;" text="X">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font size="9.0" />
-               </font>
-            </Button>
-            <Text fx:id="txtSpeech" layoutX="31.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.21630859375">
-               <font>
-                  <Font name="Herculanum" size="13.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
       <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="521.0" layoutY="19.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
