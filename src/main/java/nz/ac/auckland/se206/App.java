@@ -3,7 +3,6 @@ package nz.ac.auckland.se206;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -64,7 +63,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
     SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
 
-    // Parent root = SceneManager.getUi(AppUi.START_PAGE);
+    // Setting the scene to the start page
     Parent root = SceneManager.getUi(AppUi.START_PAGE);
     scene = new Scene(root, 600, 399);
     stage.setScene(scene);
@@ -88,5 +87,4 @@ public class App extends Application {
 
     setUi(AppUi.START_PAGE);
   }
-
 }

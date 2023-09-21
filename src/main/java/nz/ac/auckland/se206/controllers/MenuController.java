@@ -29,18 +29,18 @@ public class MenuController {
 
   private int timeRemaining;
 
-  @FXML Button btnEasyMode;
-  @FXML Button btnMediumMode;
-  @FXML Button btnHardMode;
-  @FXML Button btnPlay;
-  @FXML ToggleButton toggleBtnTwoMins;
-  @FXML ToggleButton toggleBtnFourMins;
-  @FXML ToggleButton toggleBtnSixMins;
-  @FXML Pane pnDifficultyMenu;
-  @FXML ImageView imgViewDifficultyMenu;
-  @FXML Image imgEasy;
-  @FXML Image imgMedium;
-  @FXML Image imgHard;
+  @FXML private Button btnEasyMode;
+  @FXML private Button btnMediumMode;
+  @FXML private Button btnHardMode;
+  @FXML private Button btnPlay;
+  @FXML private ToggleButton toggleBtnTwoMins;
+  @FXML private ToggleButton toggleBtnFourMins;
+  @FXML private ToggleButton toggleBtnSixMins;
+  @FXML private Pane pnDifficultyMenu;
+  @FXML private ImageView imgViewDifficultyMenu;
+  @FXML private Image imgEasy;
+  @FXML private Image imgMedium;
+  @FXML private Image imgHard;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {

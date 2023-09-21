@@ -55,6 +55,7 @@ public class GameState {
 
   /** Resets the game state */
   public static void reset() {
+    // reset all variables to default values
     isRiddleResolved = false;
     isKeyFound = false;
     isLeverPulled = false;

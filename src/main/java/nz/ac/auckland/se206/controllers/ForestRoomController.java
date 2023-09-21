@@ -37,8 +37,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
   // Other fields
   private static TimeManager timeManager;
-  public String[] images = {"bottle.png", "bottleEyes.png", "BottleM.png"};
-
   // FXML elements for the main scene
   @FXML private Rectangle door;
   @FXML private Rectangle window;
