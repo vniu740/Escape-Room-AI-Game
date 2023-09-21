@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -51,6 +50,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private static Label hintCounter;
 
   private ChatCompletionRequest chatCompletionRequest;
+  private ChatCompletionRequest chatCompletionRequestChat;
 
   private static int numHints; // number of hints given to the user
   private String gameLevel;
@@ -155,8 +155,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     riddleAnswers.add("wand");
     riddleAnswers.add("spell");
     riddleAnswers.add("magic");
-    //choose one of the answers randomly and set it as the correct answer
-    GameState.correctAnswer = riddleAnswers.get((int)(Math.random() * riddleAnswers.size()));
+    // choose one of the answers randomly and set it as the correct answer
+    GameState.correctAnswer = riddleAnswers.get((int) (Math.random() * riddleAnswers.size()));
     Task<Void> getRiddleTask =
         new Task<Void>() {
           @Override
@@ -170,11 +170,22 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
             ChatMessage msg =
                 runGpt(
-                    new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord(GameState.correctAnswer)));
+                    new ChatMessage(
+                        "user",
+                        GptPromptEngineering.getRiddleWithGivenWord(GameState.correctAnswer)));
             // Add label for msg
             addLabel(msg.getContent(), vbox_message, sp_main);
+            Platform.runLater(() -> stopAnimation());
             tf_message.clear();
             tf_message.setEditable(true);
+
+            chatCompletionRequestChat =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.4)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            runGptChat(new ChatMessage("user", GptPromptEngineering.getContext()));
             return null;
           }
         };
@@ -224,14 +235,19 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-      Platform.runLater(
-          () -> {
-            imgViewWizardCast.setVisible(false);
-            imgViewWizard.setVisible(true);
-            timeline.pause();
-            circle.setVisible(false);
-            txtSpeak.setVisible(false);
-          });
+      return result.getChatMessage();
+    } catch (ApiProxyException e) {
+      System.out.println("Problem calling API: " + e.getMessage());
+      return null;
+    }
+  }
+
+  private ChatMessage runGptChat(ChatMessage msg) throws ApiProxyException {
+    chatCompletionRequestChat.addMessage(msg);
+    try {
+      ChatCompletionResult chatCompletionResult = chatCompletionRequestChat.execute();
+      Choice result = chatCompletionResult.getChoices().iterator().next();
+      chatCompletionRequestChat.addMessage(result.getChatMessage());
       return result.getChatMessage();
     } catch (ApiProxyException e) {
       System.out.println("Problem calling API: " + e.getMessage());
@@ -274,50 +290,73 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
           new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-              ChatMessage lastMsg = runGpt(msg);
-
+              ChatMessage lastMsg;
+              if (!GameState.isRiddleResolved) {
+                lastMsg = runGpt(msg);
+              } else {
+                lastMsg = runGptChat(msg);
+              }
+              System.out.println(lastMsg.getContent());
               // Call containsHintPhrase to check if the message contains a hint
               if (containsHintPhrase(lastMsg.getContent())) {
-              numHints++;
-                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == false
-                    && GameState.isMatchGameWon == true) {
-                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintForest()));
-                }
-                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == true
-                    && GameState.isMatchGameWon == false) {
-                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintDragon()));
-                }
-                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == false
-                    && GameState.isMatchGameWon == false) {
-                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintActivity()));
-                }
-                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == true
-                    && GameState.isMatchGameWon == true) {
-                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintPotion()));
-                }
+                numHints++;
 
                 // Check the game level and limit the hints accordingly
-                if (gameLevel.equals("medium")) {
+                if (gameLevel.equals("easy") || (gameLevel.equals("medium") && numHints <= 5)) {
+                  if (GameState.isRiddleResolved == true
+                      && GameState.isForestCollected == false
+                      && GameState.isScaleCollected == true) {
+                    runGptChat(new ChatMessage("user", GptPromptEngineering.getHintGem()));
+                  }
 
-                  if (numHints > 5) {
-                    // Send a message to the user that they have used up all their hints
-                    addLabel("You have used up all your hints", vbox_message, sp_main);
-                  } else {
+                  if (GameState.isLabCollected == true
+                      && GameState.isForestCollected == false
+                      && GameState.isScaleCollected == true) {
+                    lastMsg =
+                        runGptChat(new ChatMessage("user", GptPromptEngineering.getHintForest()));
+                  }
+                  if (GameState.isLabCollected == false
+                      && GameState.isForestCollected == true
+                      && GameState.isScaleCollected == false) {
+                    lastMsg =
+                        runGptChat(new ChatMessage("user", GptPromptEngineering.getHintDragon()));
+                  }
+                  if (GameState.isLabCollected == true
+                      && GameState.isForestCollected == false
+                      && GameState.isScaleCollected == false) {
+                    lastMsg =
+                        runGptChat(new ChatMessage("user", GptPromptEngineering.getHintActivity()));
+                  }
+                  if (GameState.isLabCollected == true
+                      && GameState.isForestCollected == true
+                      && GameState.isScaleCollected == true) {
+                    lastMsg =
+                        runGptChat(new ChatMessage("user", GptPromptEngineering.getHintPotion()));
+                  }
+                  if (gameLevel.equals("medium")) {
                     // Update the hint counter
                     Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
                     addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                    Platform.runLater(() -> stopAnimation());
                   }
 
+                } else if (gameLevel.equals("medium") && numHints > 5) {
+                  // Send a message to the user that they have used up all their hints
+                  addLabel("You have used up all your hints", vbox_message, sp_main);
+                  Platform.runLater(() -> stopAnimation());
                 } else if (gameLevel.equals("hard")) {
                   // Send a message to the user that they can't ask for hints
                   addLabel("You can't ask for hints", vbox_message, sp_main);
+                  Platform.runLater(() -> stopAnimation());
                 } else {
                   // Call addLabel to add the hint message to the vbox
                   addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                  Platform.runLater(() -> stopAnimation());
                 }
               } else {
                 // Call addLabel to add the message to the vbox
                 addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                Platform.runLater(() -> stopAnimation());
               }
 
               tf_message.setEditable(true);
@@ -326,9 +365,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
                 GameState.isRiddleResolved = true;
-
               }
- 
+
               return null;
             }
           };
@@ -378,7 +416,13 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   public boolean containsHintPhrase(String input) {
     // Use a case-insensitive regular expression to check for either phrase
     return input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint\\b.*")
-        || input.matches("(?i).*\\bhere\\s+is\\s+another\\s+hint\\b.*");
+        || input.matches("(?i).*\\bhere\\s+is\\s+another\\s+hint\\b.*")
+        || input.matches("(?i).*\\bhere's\\s+a\\s+hint\\b.*")
+        || input.matches("(?i).*\\bhere's\\s+another\\s+hint\\b.*")
+        || input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint:\\b.*")
+        || input.matches("(?i).*\\bhere\\s+is\\s+another\\s+hint:\\b.*")
+        || input.matches("(?i).*\\bhere's\\s+a\\s+hint:\\b.*")
+        || input.matches("(?i).*\\bhere's\\s+another\\s+hint:\\b.*");
   }
 
   public static void setBackground() {
@@ -398,6 +442,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     txtSpeak.setText("GOT HIM!");
     circle.setFill(new ImagePattern(new Image("/Images/explosion.png")));
     delay(400, () -> circle.setVisible(false));
+    delay(600, () -> circle.setFill(new ImagePattern(new Image("/Images/soot.png"))));
+    delay(400, () -> circle.setVisible(true));
+    delay(400, () -> txtSpeak.setText("CATCH THAT SPRITE!"));
   }
 
   /**
@@ -433,5 +480,13 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     } else {
       hintCounter.setText("Unlimited");
     }
+  }
+
+  private void stopAnimation() {
+    imgViewWizardCast.setVisible(false);
+    imgViewWizard.setVisible(true);
+    timeline.pause();
+    circle.setVisible(false);
+    txtSpeak.setVisible(false);
   }
 }
