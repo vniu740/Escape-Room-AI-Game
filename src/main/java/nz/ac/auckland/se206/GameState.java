@@ -67,6 +67,7 @@ public class GameState {
     isForestCollected = false;
     isLabCollected = false;
     numberOfHints = 0;
+    currentRoom = "lab";
     isPotionComplete = false;
     isWon = false;
   }

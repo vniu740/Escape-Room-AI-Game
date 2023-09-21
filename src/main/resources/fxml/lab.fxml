@@ -99,7 +99,7 @@
                   <Font name="Herculanum" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="btnCauldronExit" layoutX="388.0" layoutY="30.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" prefHeight="60.0" prefWidth="62.0" style="-fx-background-color: white;" text="X">
+            <Button fx:id="btnCauldronExit" layoutX="400.0" layoutY="40.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: white;" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

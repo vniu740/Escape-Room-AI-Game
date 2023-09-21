@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -293,21 +292,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
   public static TimeManager getTimeManager() {
     return timeManager;
-  }
-
-  /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message the message content of the dialog box
-   */
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
   }
 
   @FXML

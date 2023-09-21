@@ -11,15 +11,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/aichat.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
+<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/aichat.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
    <children>
       <Pane fx:id="paneBack" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="button_send" layoutX="392.0" layoutY="337.0" mnemonicParsing="false" onAction="#onSend" prefHeight="12.0" prefWidth="60.0" text="send" />
-            <TextField fx:id="tf_message" layoutX="25.0" layoutY="337.0" prefHeight="25.0" prefWidth="367.0" />
-            <ScrollPane fx:id="sp_main" layoutX="25.0" layoutY="30.0" prefHeight="307.0" prefWidth="426.0">
+            <Button fx:id="button_send" layoutX="370.0" layoutY="336.0" mnemonicParsing="false" onAction="#onSend" prefHeight="0.0" prefWidth="81.0" text="send" />
+            <TextField fx:id="tf_message" layoutX="25.0" layoutY="337.0" opacity="0.7" prefHeight="40.0" prefWidth="345.0" promptText="Enter your message here">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="15.0" />
+               </font></TextField>
+            <ScrollPane fx:id="sp_main" layoutX="25.0" layoutY="30.0" opacity="0.9" prefHeight="307.0" prefWidth="426.0">
                <content>
                   <VBox fx:id="vbox_message" prefHeight="305.0" prefWidth="398.0" />
                </content>
@@ -29,7 +33,6 @@
                   <Image url="@../images/wizard.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonBack" layoutX="436.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="58.0" prefWidth="98.0" text="Back" />
             <ImageView fx:id="imgViewWizardCast" fitHeight="180.0" fitWidth="162.0" layoutX="436.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/wizardCast.gif" />
@@ -41,14 +44,23 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Circle>
+            <Label layoutX="25.0" layoutY="5.0" prefHeight="19.0" prefWidth="124.0" text="Hints remaining: " textFill="#ae1bae">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="12.0" />
+               </font></Label>
+            <Button fx:id="buttonBack" layoutX="504.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" opacity="0.65" prefHeight="19.0" prefWidth="39.0" style="-fx-background-color: white;" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
-      <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="521.0" layoutY="19.0" pickOnBounds="true">
+      <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="480.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
          </image>
       </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="566.0" layoutY="78.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Label fx:id="timerLblChat" alignment="CENTER" layoutX="498.0" layoutY="61.0" prefHeight="34.0" prefWidth="136.0" text="00:00" />
+      <Circle fill="DODGERBLUE" layoutX="525.0" layoutY="59.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLblChat" alignment="CENTER" layoutX="457.0" layoutY="42.0" prefHeight="34.0" prefWidth="136.0" text="00:00" />
    </children>
 </AnchorPane>

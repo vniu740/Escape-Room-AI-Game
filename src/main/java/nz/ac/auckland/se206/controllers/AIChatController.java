@@ -48,10 +48,11 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private static ImageView chatBackground;
   @FXML private Pane paneBack;
   @FXML private Button buttonBack;
+  @FXML private static Label hintCounter;
 
   private ChatCompletionRequest chatCompletionRequest;
 
-  private int numHints; // number of hints given to the user
+  private static int numHints; // number of hints given to the user
   private String gameLevel;
 
   @FXML private Label timerLblChat;
@@ -122,6 +123,23 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     paneBack.getChildren().add(chatBackground);
     // Move the background image to the back
     chatBackground.toBack();
+
+    // Add hintCounter
+    hintCounter = new Label();
+    // set the text colour to #ad1cad
+    hintCounter.setTextFill(Color.web("#ad1cad"));
+    // set styles
+    hintCounter.setStyle(
+        "-fx-font-size: 23px; "
+            + "-fx-font-weight: bold; "
+            + "-fx-font-family: 'lucida calligraphy'; "
+            + "-fx-font-style: italic; "
+            + "-fx-underline: true;");
+    // set the layout
+    hintCounter.setLayoutX(140);
+    hintCounter.setLayoutY(-7);
+    // add the hintCounter to the paneBack
+    paneBack.getChildren().add(hintCounter);
 
     // set the number of hints given to 0
     numHints = 0;
@@ -206,7 +224,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
-            Platform.runLater(
+      Platform.runLater(
           () -> {
             imgViewWizardCast.setVisible(false);
             imgViewWizard.setVisible(true);
@@ -237,21 +255,20 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       Text text = new Text(messageToSend);
       TextFlow textFlow = new TextFlow(text);
 
-      textFlow.setStyle("-fx-background-color: #00bfff; -fx-background-radius: 20;");
+      textFlow.setStyle("-fx-background-color: #55cfff; -fx-background-radius: 20;");
       textFlow.setPadding(new Insets(5, 5, 10, 10));
-      text.setFill(Color.color(0.934, 0.945, 0.996));
 
       hbox.getChildren().add(textFlow);
       vbox_message.getChildren().add(hbox);
       tf_message.clear();
 
-    txtSpeak.setText("CATCH THAT SPRITE!");
-    txtSpeak.setVisible(true);
-    imgViewWizard.setVisible(false);
-    imgViewWizardCast.setVisible(true);
-    circle.setVisible(true);
-    circle.setFill(new ImagePattern(new Image("/Images/soot.png")));
-    timeline.play();
+      txtSpeak.setText("CATCH THAT SPRITE!");
+      txtSpeak.setVisible(true);
+      imgViewWizard.setVisible(false);
+      imgViewWizardCast.setVisible(true);
+      circle.setVisible(true);
+      circle.setFill(new ImagePattern(new Image("/Images/soot.png")));
+      timeline.play();
 
       Task<Void> sendChatMessageTask =
           new Task<Void>() {
@@ -262,10 +279,19 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               // Call containsHintPhrase to check if the message contains a hint
               if (containsHintPhrase(lastMsg.getContent())) {
                 numHints++;
+
                 // Check the game level and limit the hints accordingly
-                if (gameLevel.equals("medium") && numHints > 5) {
-                  // Send a message to the user that they have used up all their hints
-                  addLabel("You have used up all your hints", vbox_message, sp_main);
+                if (gameLevel.equals("medium")) {
+
+                  if (numHints > 5) {
+                    // Send a message to the user that they have used up all their hints
+                    addLabel("You have used up all your hints", vbox_message, sp_main);
+                  } else {
+                    // Update the hint counter
+                    Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
+                    addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                  }
+
                 } else if (gameLevel.equals("hard")) {
                   // Send a message to the user that they can't ask for hints
                   addLabel("You can't ask for hints", vbox_message, sp_main);
@@ -284,7 +310,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
                 GameState.isRiddleResolved = true;
-                tf_message.setEditable(false);
               }
 
               return null;
@@ -318,7 +343,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     Text text = new Text(messageFromClient);
     TextFlow textFlow = new TextFlow(text);
     textFlow.setStyle(
-        "-fx-background-color: #e6e6e6; -fx-background-radius: 10px; -fx-padding: 5px;");
+        "-fx-background-color: #ffb25b; -fx-background-radius: 10px; -fx-padding: 5px;");
     textFlow.setPadding(new Insets(5, 10, 5, 10));
 
     hbox.getChildren().add(textFlow);
@@ -351,14 +376,14 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
-    @FXML
+  @FXML
   private void onSpriteClick(MouseEvent event) {
     txtSpeak.setText("GOT HIM!");
     circle.setFill(new ImagePattern(new Image("/Images/explosion.png")));
     delay(400, () -> circle.setVisible(false));
   }
 
-    /**
+  /**
    * Helper method that delays the call of a runnable.
    *
    * @param time How long the delay will be
@@ -381,5 +406,15 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     sleep.setOnSucceeded(event -> continuation.run());
     Thread sleepThread = new Thread(sleep, "Sleep Thread");
     sleepThread.start();
+  }
+
+  public static void setHintCounter() {
+    if (GameState.level.equals("medium")) {
+      hintCounter.setText(Integer.toString(5 - numHints));
+    } else if (GameState.level.equals("hard")) {
+      hintCounter.setText("0");
+    } else {
+      hintCounter.setText("Unlimited");
+    }
   }
 }
