@@ -455,9 +455,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     txtSpeak.setText("GOT HIM!");
     circle.setFill(new ImagePattern(new Image("/Images/explosion.png")));
     delay(400, () -> circle.setVisible(false));
-    delay(600, () -> circle.setFill(new ImagePattern(new Image("/Images/soot.png"))));
-    delay(400, () -> circle.setVisible(true));
-    delay(400, () -> txtSpeak.setText("CATCH THAT SPRITE!"));
   }
 
   /**
