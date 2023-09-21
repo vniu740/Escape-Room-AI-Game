@@ -1,11 +1,15 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
@@ -92,6 +96,19 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
 
     setUi(AppUi.START_PAGE);
+            Media song;
+    try {
+      song = new Media(App.class.getResource("/sounds/themeSound.mp3").toURI().toString());
+      MediaPlayer player = new MediaPlayer(song);
+      player.setCycleCount(MediaPlayer.INDEFINITE);
+      //set volume
+      player.setVolume(0.05);
+      
+      player.play(); 
+    } catch (URISyntaxException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } 
   }
 
 }

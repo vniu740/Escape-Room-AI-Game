@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.List;
 import javafx.application.Platform;
@@ -18,6 +19,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -82,33 +85,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
-    // start the
-    // timeManager.startTimer();
-
-    // Kimia's original shuffling code
-    // //list of images that we can select from randomly
-    // Image[] images = { new Image("/images/bottleBug.png"), new Image("/images/bottleEyes.png"),
-    //     new Image("/images/BottleRedMushroom.png"), new Image("/images/bottleBlueMushroom.png"),
-    // new Image("/images/bottleSnake.png"), new Image("/images/bottleSeaShell.png"), new
-    // Image("/images/bottleGreenLiq.png")};
-    //   List<Image> uniqueImages = new ArrayList<>();
-
-    //     // Add unique images to the list
-    //     for (Image image : images) {
-    //         if (!uniqueImages.contains(image)) {
-    //             uniqueImages.add(image);
-    //         }
-    //     }
-
-    // Shuffle the list
-    // Collections.shuffle(uniqueImages);
-
-    // Convert the shuffled list back to an array
-    // Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
-    // random index to select an image from the list
-    // Random rand = new Random();
-    // int randomIndex = rand.nextInt(3);
-    // int randomIndex = 0; //for testing purposes
 
     // Get the list of all possible forest images instantiated in LabController
     List<Image> uniqueImages = PotionManager.getForestObjectList();
