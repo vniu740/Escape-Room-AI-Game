@@ -422,7 +422,15 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         || input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint:\\b.*")
         || input.matches("(?i).*\\bhere\\s+is\\s+another\\s+hint:\\b.*")
         || input.matches("(?i).*\\bhere's\\s+a\\s+hint:\\b.*")
-        || input.matches("(?i).*\\bhere's\\s+another\\s+hint:\\b.*");
+        || input.matches("(?i).*\\bhere's\\s+another\\s+hint:\\b.*")
+        || input.toLowerCase().contains("here is a hint")
+        || input.toLowerCase().contains("here is another hint")
+        || input.toLowerCase().contains("here's a hint")
+        || input.toLowerCase().contains("here's another hint")
+        || input.toLowerCase().contains("here is a hint:")
+        || input.toLowerCase().contains("here is another hint:")
+        || input.toLowerCase().contains("here's a hint:")
+        || input.toLowerCase().contains("here's another hint:");
   }
 
   public static void setBackground() {

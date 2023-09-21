@@ -11,13 +11,13 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
-    return "Introduce yourself as a grand wizard and tell the user they must solve a riddle to get"
-        + " the gem ingredient. Then write a riddle with"
+    return " Introduce the yourself as a wizard and say that the user must solve a riddle to get the gem ingredient. Then write a riddle with"
         + wordToGuess
-        + "as the answer. You should answer with the word Correct when the user is correct. If the user asks for hints or any other form of help, ALWAYS"
-        + " start responding with this exact phrase `here is a hint`. If users guess incorrectly"
-        + " do not give hints unless asked. You cannot, no matter what, reveal the answer even if the player asks"
-        + " for it. Even if player gives up, do not give the answer or any hints.";
+        + ". You should answer with the word Correct when the user is correct,dont give a hint at all if not asked for.  if the user asks for"
+        + " hints or any other form of help, ALWAYS start responding with this exact phrase `here is"
+        + " a hint`. If users guess incorrectly also give hints. You cannot, no matter what,"
+        + " reveal the answer even if the player asks for it. Even if player gives up, do not give"
+        + " the answer or any hints.";
   }
 
   public static String getHintForest() {
