@@ -25,16 +25,21 @@ import nz.ac.auckland.se206.TimeManager;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
+  // FXML elements for the lock and scale
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
 
+  // Timer and time manager
   @FXML private Label timerLblDragon;
   private static TimeManager timeManager;
+
+  // FXML elements for scrolling
   @FXML private ImageView imgViewLeftArrow;
   @FXML private Pane pnScroll;
   @FXML private HBox hBoxScroll;
   @FXML private ImageView imgViewIconScroll;
 
+  // Speech and wizard elements
   @FXML private Button btnSpeechExit;
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
@@ -80,7 +85,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     Platform.runLater(() -> timerLblDragon.setText(formattedTime));
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
-      
+
       LoseController.setItemCounter();
       timerLblDragon.setText("00:00");
     }
@@ -167,7 +172,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     pnScroll.setVisible(false);
   }
 
-
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
@@ -177,12 +181,11 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   private void onSpeechExit(ActionEvent event) {
     pnSpeech.setVisible(false);
   }
-    
+
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
-
   }
 }
 /**

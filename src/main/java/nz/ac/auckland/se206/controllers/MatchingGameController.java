@@ -26,8 +26,12 @@ import nz.ac.auckland.se206.Tile;
 import nz.ac.auckland.se206.TimeManager;
 
 public class MatchingGameController implements TimeManager.TimeUpdateListener {
-  @FXML private VBox gameBox;
+  @FXML private Button btnSpeechExit;
+  @FXML private Button buttonBack;
   @FXML private GridPane gameGrid;
+  @FXML private ImageView counterBack;
+  @FXML private ImageView imgViewWizard;
+  @FXML private ImageView imgViewSpeech;
   @FXML private ImageView tile1;
   @FXML private ImageView tile2;
   @FXML private ImageView tile3;
@@ -37,23 +41,19 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView tile7;
   @FXML private ImageView tile8;
   @FXML private ImageView tile9;
-  @FXML private Button buttonBack;
   @FXML private Label counter;
-  @FXML private ImageView counterBack;
-
   @FXML private Label timerLblMatchGame;
+  @FXML private Text txtSpeech;
+  @FXML private VBox gameBox;
+
   private static TimeManager timeManager;
 
-  @FXML private Button btnSpeechExit;
-  @FXML private Text txtSpeech;
-  @FXML private ImageView imgViewWizard;
-  @FXML private ImageView imgViewSpeech;
-
-  private Tile[][] gameBoard; // Represents the game board (3x3 grid)
   private ImageView[] tiles; // Array of tile ImageViews
+  private Tile[][] gameBoard; // Represents the game board (3x3 grid)
+
   private int lastClickedTileIndex = -1; // Index of the last clicked tile
-  private int lastrow = -1;
-  private int lastcol = -1;
+  private int lastCol = -1;
+  private int lastRow = -1;
 
   // Initialize the game and set up event handlers
   public void initialize() throws IOException {
@@ -109,9 +109,6 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
 
-      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
-      // out of time!"));
-
       LoseController.setItemCounter();
 
       timerLblMatchGame.setText("00:00");
@@ -131,7 +128,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
     // Check if the user is already matching tiles
     if (GameState.matching) {
-      return; // Do nothing
+      return;
     }
 
     int clickedTileIndex = -1;
@@ -150,7 +147,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
     // Check if the clicked tile is already face up or if it's the same as the last clicked tile
     if (clickedTileIndex == lastClickedTileIndex || gameBoard[row - 1][col - 1].isFaceUp()) {
-      return; // Do nothing
+      return;
     }
 
     // Flip the clicked tile
@@ -188,7 +185,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
     // Check for a match with the last clicked tile
     if (lastClickedTileIndex != -1) {
-      Tile lastTileValue = gameBoard[lastrow - 1][lastcol - 1];
+      Tile lastTileValue = gameBoard[lastRow - 1][lastCol - 1];
       if (tileValue == lastTileValue.getValue()) {
         // Handle matching tiles (e.g., set them as matched)
         clickedGameTile.setMatched(true);
@@ -210,7 +207,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
         System.out.println("Not matched");
 
-        Timer t = new java.util.Timer();
+        Timer t = new Timer();
         t.schedule(
             new java.util.TimerTask() {
               @Override
@@ -227,8 +224,8 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
       lastClickedTileIndex = -1; // Reset the last clicked tile index
     } else {
       lastClickedTileIndex = clickedTileIndex; // Set the last clicked tile index
-      lastrow = row;
-      lastcol = col;
+      lastRow = row;
+      lastCol = col;
     }
     if (GameState.dragonMatches == 3) {
       GameState.isMatchGameWon = true;
@@ -247,7 +244,6 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     App.setUi(AppUi.DRAGON_ROOM);
   }
 
-
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
@@ -259,11 +255,11 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     btnSpeechExit.setVisible(false);
     txtSpeech.setVisible(false);
   }
+
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
-
   }
 }
 
