@@ -278,7 +278,23 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
               // Call containsHintPhrase to check if the message contains a hint
               if (containsHintPhrase(lastMsg.getContent())) {
-                numHints++;
+              numHints++;
+                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == false
+                    && GameState.isMatchGameWon == true) {
+                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintForest()));
+                }
+                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == true
+                    && GameState.isMatchGameWon == false) {
+                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintDragon()));
+                }
+                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == false
+                    && GameState.isMatchGameWon == false) {
+                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintActivity()));
+                }
+                if (GameState.isRiddleResolved == true && GameState.isFishingComplete == true
+                    && GameState.isMatchGameWon == true) {
+                  lastMsg = runGpt(new ChatMessage("user", GptPromptEngineering.getHintPotion()));
+                }
 
                 // Check the game level and limit the hints accordingly
                 if (gameLevel.equals("medium")) {
@@ -310,8 +326,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               if (lastMsg.getRole().equals("assistant")
                   && lastMsg.getContent().startsWith("Correct")) {
                 GameState.isRiddleResolved = true;
-              }
 
+              }
+ 
               return null;
             }
           };
