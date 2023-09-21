@@ -35,44 +35,43 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 /** Controller class for the room view. */
 public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
-  // Other fields
   private static TimeManager timeManager;
-  // FXML elements for the main scene
-  @FXML private Rectangle door;
-  @FXML private Rectangle window;
-  @FXML private Rectangle vase;
-  @FXML private Label timerLbl;
+
+  public static TimeManager getTimeManager() {
+    return timeManager;
+  }
+  
+  @FXML private Button btnSpeechExit;
   @FXML private Button switchScenes;
+  @FXML private Button btnFishingExit;
+  @FXML private HBox scrollBox;
+  @FXML private Image correctIngredient;
   @FXML private ImageView imgViewSpiralPond;
-  @FXML private Slider sldOne;
-  @FXML private Slider sldTwo;
-  @FXML private Slider sldThree;
   @FXML private ImageView imgViewSpiralFrog;
   @FXML private ImageView imgViewMushroom;
   @FXML private ImageView imgViewBug;
-  @FXML private Pane pnFishing;
-  @FXML private Pane pnFishingOpacity;
-  @FXML private Button btnFishingExit;
-  @FXML private Pane sldOneDisablePane;
-  @FXML private Pane sldTwoDisablePane;
-  @FXML private Pane sldThreeDisablePane;
+  @FXML private ImageView imgViewRightArrow;
+  @FXML private ImageView imgViewIconScroll;
+  @FXML private ImageView imgViewIngredient;
+  @FXML private ImageView imgViewWizard;
+  @FXML private Label timerLbl;
   @FXML private Line threadOne;
   @FXML private Line threadTwo;
   @FXML private Line threadThree;
-  @FXML private ImageView imgViewRightArrow;
-
-  // FXML elements for the scrolling section
+  @FXML private Pane pnFishing;
+  @FXML private Pane pnFishingOpacity;
+  @FXML private Pane sldOneDisablePane;
+  @FXML private Pane sldTwoDisablePane;
+  @FXML private Pane sldThreeDisablePane;
   @FXML private Pane pnScroll;
-  @FXML private HBox hBoxScroll;
-  @FXML private ImageView imgViewIconScroll;
-  @FXML private ImageView imgViewIngredient;
-  @FXML private Image correctIngredient;
-
-  // Speech and wizard elements
-  @FXML private Button btnSpeechExit;
   @FXML private Pane pnSpeech;
+  @FXML private Rectangle door;
+  @FXML private Rectangle window;
+  @FXML private Rectangle vase;
+  @FXML private Slider sldOne;
+  @FXML private Slider sldTwo;
+  @FXML private Slider sldThree;
   @FXML private Text txtSpeech;
-  @FXML private ImageView imgViewWizard;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -80,33 +79,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
-    // start the
-    // timeManager.startTimer();
-
-    // Kimia's original shuffling code
-    // //list of images that we can select from randomly
-    // Image[] images = { new Image("/images/bottleBug.png"), new Image("/images/bottleEyes.png"),
-    //     new Image("/images/BottleRedMushroom.png"), new Image("/images/bottleBlueMushroom.png"),
-    // new Image("/images/bottleSnake.png"), new Image("/images/bottleSeaShell.png"), new
-    // Image("/images/bottleGreenLiq.png")};
-    //   List<Image> uniqueImages = new ArrayList<>();
-
-    //     // Add unique images to the list
-    //     for (Image image : images) {
-    //         if (!uniqueImages.contains(image)) {
-    //             uniqueImages.add(image);
-    //         }
-    //     }
-
-    // Shuffle the list
-    // Collections.shuffle(uniqueImages);
-
-    // Convert the shuffled list back to an array
-    // Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
-    // random index to select an image from the list
-    // Random rand = new Random();
-    // int randomIndex = rand.nextInt(3);
-    // int randomIndex = 0; //for testing purposes
 
     // Get the list of all possible forest images instantiated in LabController
     List<Image> uniqueImages = PotionManager.getForestObjectList();
@@ -156,13 +128,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 imgViewSpiralFrog.setImage(selectedImage);
                 if (selectedImage == correctIngredient) {
                   // alert the user that they have found the correct image
-                  // Platform.runLater(
-                  //     () ->
-                  //         showDialog(
-                  //             "Congratulations!",
-                  //             "You have found the correct ingredient in this room!",
-                  //             "You have found the correct ingredient!"));
-
                   Platform.runLater(
                       () -> {
                         txtSpeech.setText("You fished up the correct ingredient!");
@@ -192,12 +157,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 imgViewMushroom.setImage(selectedImage);
                 if (selectedImage == correctIngredient) {
                   // alert the user that they have found the correct image
-                  // Platform.runLater(
-                  //     () ->
-                  //         showDialog(
-                  //             "Congratulations!",
-                  //             "You have found the correct ingredient in this room!",
-                  //             "You have found the correct ingredient!"));
                   Platform.runLater(
                       () -> {
                         txtSpeech.setText("You fished up the correct ingredient!");
@@ -228,12 +187,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 // he slider should not move anymore
                 if (selectedImage == correctIngredient) {
                   // alert the user that they have found the correct image
-                  // Platform.runLater(
-                  //     () ->
-                  //         showDialog(
-                  //             "Congratulations!",
-                  //             "You have found the correct ingredient in this room!",
-                  //             "You have found the correct ingredient!"));
                   Platform.runLater(
                       () -> {
                         txtSpeech.setText("You fished up the correct ingredient!");
@@ -279,10 +232,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
       LoseController.setItemCounter();
       timerLbl.setText("00:00");
     }
-  }
-
-  public static TimeManager getTimeManager() {
-    return timeManager;
   }
 
   @FXML
@@ -344,7 +293,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     List<Image> imgScrollList = PotionManager.getImgScrollList();
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
-    for (Node child : hBoxScroll.getChildren()) {
+    for (Node child : scrollBox.getChildren()) {
       if (child instanceof ImageView) {
         ImageView childImageView = (ImageView) child;
         childImageView.setImage(imgScrollList.get(listCounter));

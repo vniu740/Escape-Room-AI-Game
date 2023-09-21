@@ -73,7 +73,7 @@
                   <Image url="@../images/scroll.png" />
                </image>
             </ImageView>
-            <HBox fx:id="hBoxScroll" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0" style="-fx-spacing: 30;">
+            <HBox fx:id="scrollBox" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0" style="-fx-spacing: 30;">
                <children>
                   <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
