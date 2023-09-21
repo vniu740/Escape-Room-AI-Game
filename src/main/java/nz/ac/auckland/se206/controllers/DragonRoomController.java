@@ -28,24 +28,22 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
 
-  // FXML elements for the lock and scale
+  public static TimeManager getTimeManager() {
+    return timeManager;
+  }
+
+  // FXML elements
+  @FXML private Button btnSpeechExit;
   @FXML private ImageView imageLock;
   @FXML private ImageView imageScale;
-
-  // Timer and time manager
-  @FXML private Label timerLblDragon;
-
-  // FXML elements for scrolling
-  @FXML private ImageView imgViewLeftArrow;
-  @FXML private Pane pnScroll;
-  @FXML private HBox hBoxScroll;
   @FXML private ImageView imgViewIconScroll;
-
-  // Speech and wizard elements
-  @FXML private Button btnSpeechExit;
+  @FXML private ImageView imgViewWizard;
+  @FXML private ImageView imgViewLeftArrow;
+  @FXML private HBox scrollBox;
+  @FXML private Label timerLblDragon;
+  @FXML private Pane pnScroll;
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
-  @FXML private ImageView imgViewWizard;
 
   @FXML
   public void initialize() throws IOException {
@@ -91,10 +89,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       LoseController.setItemCounter();
       timerLblDragon.setText("00:00");
     }
-  }
-
-  public static TimeManager getTimeManager() {
-    return timeManager;
   }
 
   @FXML
@@ -145,7 +139,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     List<Image> imgScrollList = PotionManager.getImgScrollList();
 
     // Set each of the images to the imageViews in the HBox of the Pane pnScroll
-    for (Node child : hBoxScroll.getChildren()) {
+    for (Node child : scrollBox.getChildren()) {
       if (child instanceof ImageView) {
         ImageView childImageView = (ImageView) child;
         childImageView.setImage(imgScrollList.get(listCounter));

@@ -8,8 +8,8 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class TimeManager {
   private static TimeManager instance;
-  private Timer timer;
   public static int timeRemaining = 121;
+  private Timer timer;
   private List<TimeUpdateListener> listeners = new ArrayList<>();
 
   /** Starts the game timer. */

@@ -43,24 +43,28 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
   private static int numHints; // number of hints given to the user
+  @FXML private static ImageView chatBackground;
+  @FXML private static Label hintCounter;
+
+  public static TimeManager getTimeManager() {
+    return timeManager;
+  }
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatCompletionRequest chatCompletionRequestChat;
   private String gameLevel;
 
-  @FXML private Button button_send;
-  @FXML private TextField tf_message;
-  @FXML private VBox vbox_message;
-  @FXML private ScrollPane sp_main;
-  @FXML private static ImageView chatBackground;
-  @FXML private Pane paneBack;
+  @FXML private Button btnSend;
   @FXML private Button buttonBack;
-  @FXML private static Label hintCounter;
-  @FXML private Label timerLblChat;
+  @FXML private Circle circle;
   @FXML private ImageView imgViewWizard;
   @FXML private ImageView imgViewWizardCast;
+  @FXML private Label timerLblChat;
+  @FXML private Pane paneBack;
+  @FXML private ScrollPane scrollPaneMain;
+  @FXML private TextField txtFieldMessage;
   @FXML private Text txtSpeak;
-  @FXML private Circle circle;
+  @FXML private VBox messageBox;
 
   private Timeline timeline =
       new Timeline(
@@ -143,11 +147,11 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     // set the number of hints given to 0
     numHints = 0;
 
-    tf_message.setEditable(false);
+    txtFieldMessage.setEditable(false);
     // round the corners of scrollpaneBack
-    // sp_main.setStyle("-fx-background-radius: 10px;");
+    // scrollPaneMain.setStyle("-fx-background-radius: 10px;");
     // round the content of scrollpaneBack
-    vbox_message.setStyle("-fx-background-radius: 10px;");
+    messageBox.setStyle("-fx-background-radius: 10px;");
     ArrayList<String> riddleAnswers = new ArrayList<String>();
     riddleAnswers.add("potion");
     riddleAnswers.add("Wizard");
@@ -174,10 +178,10 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                         "user",
                         GptPromptEngineering.getRiddleWithGivenWord(GameState.correctAnswer)));
             // Add label for msg
-            addLabel(msg.getContent(), vbox_message, sp_main);
+            addLabel(msg.getContent(), messageBox, scrollPaneMain);
             Platform.runLater(() -> stopAnimation());
-            tf_message.clear();
-            tf_message.setEditable(true);
+            txtFieldMessage.clear();
+            txtFieldMessage.setEditable(true);
 
             chatCompletionRequestChat =
                 new ChatCompletionRequest()
@@ -196,11 +200,11 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
 
-    vbox_message
+    messageBox
         .heightProperty()
         .addListener(
             (observable, oldValue, newValue) -> {
-              sp_main.setVvalue((Double) newValue);
+              scrollPaneMain.setVvalue((Double) newValue);
             });
   }
 
@@ -220,10 +224,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
       timerLblChat.setText("00:00");
     }
-  }
-
-  public static TimeManager getTimeManager() {
-    return timeManager;
   }
 
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
@@ -261,7 +261,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     // get the game level
     gameLevel = GameState.getLevel();
 
-    String messageToSend = tf_message.getText();
+    String messageToSend = txtFieldMessage.getText();
     // Message to give to GPT
     ChatMessage msg = new ChatMessage("user", messageToSend);
     if (!messageToSend.isEmpty()) {
@@ -276,8 +276,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       textFlow.setPadding(new Insets(5, 5, 10, 10));
 
       hbox.getChildren().add(textFlow);
-      vbox_message.getChildren().add(hbox);
-      tf_message.clear();
+      messageBox.getChildren().add(hbox);
+      txtFieldMessage.clear();
 
       txtSpeak.setText("CATCH THAT SPRITE!");
       txtSpeak.setVisible(true);
@@ -337,30 +337,30 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   if (gameLevel.equals("medium")) {
                     // Update the hint counter
                     Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
-                    addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                    addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
                     Platform.runLater(() -> stopAnimation());
                   }
 
                 } else if (gameLevel.equals("medium") && numHints > 5) {
                   // Send a message to the user that they have used up all their hints
-                  addLabel("You have used up all your hints", vbox_message, sp_main);
+                  addLabel("You have used up all your hints", messageBox, scrollPaneMain);
                   Platform.runLater(() -> stopAnimation());
                 } else if (gameLevel.equals("hard")) {
                   // Send a message to the user that they can't ask for hints
-                  addLabel("You can't ask for hints", vbox_message, sp_main);
+                  addLabel("You can't ask for hints", messageBox, scrollPaneMain);
                   Platform.runLater(() -> stopAnimation());
                 } else {
                   // Call addLabel to add the hint message to the vbox
-                  addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                  addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
                   Platform.runLater(() -> stopAnimation());
                 }
               } else {
                 // Call addLabel to add the message to the vbox
-                addLabel(lastMsg.getContent(), vbox_message, sp_main);
+                addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
                 Platform.runLater(() -> stopAnimation());
               }
 
-              tf_message.setEditable(true);
+              txtFieldMessage.setEditable(true);
 
               // If the user's input is correct, update the gameState
               if (lastMsg.getRole().equals("assistant")
@@ -392,7 +392,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  public static void addLabel(String messageFromClient, VBox vbox, ScrollPane sp_main) {
+  public static void addLabel(String messageFromClient, VBox vbox, ScrollPane scrollPaneMain) {
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER_RIGHT); // Align to the right
     hbox.setPadding(new Insets(5, 10, 5, 10));
@@ -412,7 +412,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         });
 
     // Scroll to the bottom of the ScrollPane to show the latest message
-    sp_main.setVvalue(1.0);
+    scrollPaneMain.setVvalue(1.0);
   }
 
   public boolean containsHintPhrase(String input) {
