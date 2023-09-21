@@ -72,7 +72,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
                 @Override
                 public void handle(ActionEvent event) {
-                  double initialScaleX = 1.0;
+                  double initialScaleX;
                   circle.setLayoutX(circle.getLayoutX() + X);
                   circle.setLayoutY(circle.getLayoutY() + Y);
 
@@ -216,9 +216,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     // when time is up, show an alert that they have lost
     if (formattedTime.equals("00:01")) {
 
-      // Platform.runLater(() -> showDialog("Game Over", "You have run out of time!", "You have ran
-      // out of time!"));
-
       LoseController.setItemCounter();
 
       timerLblChat.setText("00:00");
@@ -260,7 +257,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   }
 
   @FXML
-  public void onSend() throws ApiProxyException {
+  private void onSend() throws ApiProxyException {
     // get the game level
     gameLevel = GameState.getLevel();
 
