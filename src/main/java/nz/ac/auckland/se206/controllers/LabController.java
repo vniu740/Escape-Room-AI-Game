@@ -152,11 +152,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
         e -> {
           progressIndicator.setVisible(false);
         });
-    // when the introthread finishes, set the progress indicator to be invisible
-    // introThread.setOnSucceeded(
-    //     e -> {
-    //       progressIndicator.setVisible(false);
-    //     });
 
     setPotionRecipe();
     setCauldronOrder();

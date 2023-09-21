@@ -42,7 +42,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 public class AIChatController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
-  private static int numHints; // number of hints given to the user
+  private static int numHints;
   @FXML private static ImageView chatBackground;
   @FXML private static Label hintCounter;
 
@@ -73,22 +73,32 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     scrollPaneMain.setVvalue(1.0);
   }
 
+  public static void setBackground() {
+    // Set the background image according to the current room
+    if (GameState.currentRoom.equals("dragon")) {
+      chatBackground.setImage(new Image("/images/roomDragon.jpg"));
+    } else if (GameState.currentRoom.equals("lab")) {
+      chatBackground.setImage(new Image("/images/lab.jpg"));
+    } else if (GameState.currentRoom.equals("forest")) {
+      chatBackground.setImage(new Image("/images/forest.jpg"));
+    } else if (GameState.currentRoom.equals("matchGame")) {
+      chatBackground.setImage(new Image("/images/candlewall.jpg"));
+    }
+  }
+  public static void setHintCounter() {
+    if (GameState.level.equals("medium")) {
+      hintCounter.setText(Integer.toString(5 - numHints));
+    } else if (GameState.level.equals("hard")) {
+      hintCounter.setText("0");
+    } else {
+      hintCounter.setText("Unlimited");
+    }
+  }
+
+  
   private ChatCompletionRequest chatCompletionRequest;
   private ChatCompletionRequest chatCompletionRequestChat;
   private String gameLevel;
-
-  @FXML private Button btnSend;
-  @FXML private Button buttonBack;
-  @FXML private Circle circle;
-  @FXML private ImageView imgViewWizard;
-  @FXML private ImageView imgViewWizardCast;
-  @FXML private Label timerLblChat;
-  @FXML private Pane paneBack;
-  @FXML private ScrollPane scrollPaneMain;
-  @FXML private TextField txtFieldMessage;
-  @FXML private Text txtSpeak;
-  @FXML private VBox messageBox;
-
   private Timeline timeline =
       new Timeline(
           new KeyFrame(
@@ -132,6 +142,18 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   }
                 }
               }));
+
+  @FXML private Button btnSend;
+  @FXML private Button buttonBack;
+  @FXML private Circle circle;
+  @FXML private ImageView imgViewWizard;
+  @FXML private ImageView imgViewWizardCast;
+  @FXML private Label timerLblChat;
+  @FXML private Pane paneBack;
+  @FXML private ScrollPane scrollPaneMain;
+  @FXML private TextField txtFieldMessage;
+  @FXML private Text txtSpeak;
+  @FXML private VBox messageBox;
 
   @FXML
   public void initialize() throws ApiProxyException {
@@ -248,6 +270,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       timerLblChat.setText("00:00");
     }
   }
+
+
+  
 
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     // Add the message to the request
@@ -450,18 +475,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         || input.toLowerCase().contains("a final hint");
   }
 
-  public static void setBackground() {
-    // Set the background image according to the current room
-    if (GameState.currentRoom.equals("dragon")) {
-      chatBackground.setImage(new Image("/images/roomDragon.jpg"));
-    } else if (GameState.currentRoom.equals("lab")) {
-      chatBackground.setImage(new Image("/images/lab.jpg"));
-    } else if (GameState.currentRoom.equals("forest")) {
-      chatBackground.setImage(new Image("/images/forest.jpg"));
-    } else if (GameState.currentRoom.equals("matchGame")) {
-      chatBackground.setImage(new Image("/images/candlewall.jpg"));
-    }
-  }
+  
 
   @FXML
   private void onSpriteClick(MouseEvent event) {
@@ -498,15 +512,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     sleepThread.start();
   }
 
-  public static void setHintCounter() {
-    if (GameState.level.equals("medium")) {
-      hintCounter.setText(Integer.toString(5 - numHints));
-    } else if (GameState.level.equals("hard")) {
-      hintCounter.setText("0");
-    } else {
-      hintCounter.setText("Unlimited");
-    }
-  }
+
 
   private void stopAnimation() {
     imgViewWizardCast.setVisible(false);
