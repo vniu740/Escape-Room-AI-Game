@@ -358,6 +358,11 @@ public class LabController implements TimeManager.TimeUpdateListener {
     //
     if (GameState.isRiddleResolved && !GameState.isLabCollected) {
       imgViewIngredient.setVisible(true);
+      txtSpeech.setText("What a pretty gem!");
+      pnSpeech.setVisible(true);
+    } else {
+      txtSpeech.setText("The jewellery box is locked");
+      pnSpeech.setVisible(true);
     }
   }
 
@@ -543,6 +548,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
     pnCauldronOpacity.setVisible(false);
     imgViewCauldronBubbles.setVisible(false);
     txtTryAgain.setVisible(false);
+    pnSpeech.setVisible(false);
   }
 
   /**
@@ -618,6 +624,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
       GameState.isWon = true;
       TimeManager.getInstance().stopTimer();
       App.setUi(AppUi.WIN);
+    } else {
+      txtSpeech.setText("You can't escape yet! The potion hasn't been made");
+      pnSpeech.setVisible(true);
     }
   }
 
