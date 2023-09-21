@@ -25,7 +25,7 @@ public class PotionManager {
     return forestObjectList;
   }
 
-    public static void setDragonObjectList(List<Image> list) {
+  public static void setDragonObjectList(List<Image> list) {
     dragonObjectList = list;
   }
 

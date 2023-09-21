@@ -67,8 +67,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
           new KeyFrame(
               Duration.millis(15),
               new EventHandler<ActionEvent>() {
-                double X = 2;
-                double Y = 2;
+                private double X = 2;
+                private double Y = 2;
 
                 @Override
                 public void handle(ActionEvent event) {
@@ -160,6 +160,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         new Task<Void>() {
           @Override
           protected Void call() throws Exception {
+            // Creating a new instance of ChatCompletionRequest and setting the parameters
             chatCompletionRequest =
                 new ChatCompletionRequest()
                     .setN(1)
@@ -229,8 +230,10 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   }
 
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+    // Add the message to the request
     chatCompletionRequest.addMessage(msg);
     try {
+      // Execute the request
       ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequest.addMessage(result.getChatMessage());
@@ -242,8 +245,10 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   }
 
   private ChatMessage runGptChat(ChatMessage msg) throws ApiProxyException {
+    // Add the message to the request
     chatCompletionRequestChat.addMessage(msg);
     try {
+      // Execute the request
       ChatCompletionResult chatCompletionResult = chatCompletionRequestChat.execute();
       Choice result = chatCompletionResult.getChoices().iterator().next();
       chatCompletionRequestChat.addMessage(result.getChatMessage());
@@ -378,6 +383,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
   @FXML
   public void onBackClicked() {
+    // Set the background image according to the current room
     if (GameState.currentRoom.equals("dragon")) {
       App.setUi(AppUi.DRAGON_ROOM);
     } else if (GameState.currentRoom.equals("lab")) {
@@ -413,7 +419,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   }
 
   public boolean containsHintPhrase(String input) {
-    // Use a case-insensitive regular expression to check for either phrase
+    // Use a case-insensitive regular expression to check for either phrase using regex
     return input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint\\b.*")
         || input.matches("(?i).*\\bhere\\s+is\\s+another\\s+hint\\b.*")
         || input.matches("(?i).*\\bhere's\\s+a\\s+hint\\b.*")
@@ -425,6 +431,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         || input.matches("(?i).*\\bwill\\s+provide\\s+you\\s+with\\s+another\\s+hint:\\b.*")
         || input.matches("(?i).*\\bwill\\s+provide\\s+you\\s+with\\s+another\\s+hint\\.\\b.*")
         || input.matches("(?i).*\\bwill\\s+provide\\s+you\\s+with\\s+a\\s+hint\\.\\b.*")
+        // Use a case-insensitive regular expression to check for either phrase using contains for
+        // more flexibility
         || input.toLowerCase().contains("here is a hint")
         || input.toLowerCase().contains("here is another hint")
         || input.toLowerCase().contains("here's a hint")
@@ -439,6 +447,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   }
 
   public static void setBackground() {
+    // Set the background image according to the current room
     if (GameState.currentRoom.equals("dragon")) {
       chatBackground.setImage(new Image("/images/roomDragon.jpg"));
     } else if (GameState.currentRoom.equals("lab")) {

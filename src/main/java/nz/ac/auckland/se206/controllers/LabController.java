@@ -621,7 +621,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onWindowClicked() {
+    // Check if the potion has been created correctly
     if (GameState.isPotionComplete) {
+      // If the potion has been created correctly, the user has won
       GameState.isWon = true;
       TimeManager.getInstance().stopTimer();
       App.setUi(AppUi.WIN);
