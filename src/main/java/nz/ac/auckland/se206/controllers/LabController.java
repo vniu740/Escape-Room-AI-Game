@@ -9,10 +9,12 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +34,12 @@ import nz.ac.auckland.se206.PotionManager;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class LabController implements TimeManager.TimeUpdateListener {
@@ -47,6 +55,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private int imagesDropped = 0;
   private Thread animationJewelleryThread;
   private static TimeManager timeManagerlab;
+  private ChatCompletionRequest chatCompletionRequest;
 
   @FXML private HBox hBoxScroll;
   @FXML private ImageView imgViewOne;
@@ -96,8 +105,12 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Pane pnSpeech;
   @FXML private Text txtSpeech;
   @FXML private ImageView imgViewWizard;
-
-
+  @FXML private Pane pnIntro;
+  @FXML private Text txtIntro;
+  @FXML
+  private Button btnIntroExit;
+  @FXML
+  private ProgressIndicator progressIndicator; 
 
   /**
    * Initialises the lab scene when called.
@@ -108,8 +121,40 @@ public class LabController implements TimeManager.TimeUpdateListener {
   public void initialize() throws URISyntaxException {
     timeManagerlab = TimeManager.getInstance();
     timeManagerlab.registerListener(this);
+    Task<Void> getIntroTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            //set the cursor to be a spinning wheel
+            progressIndicator.setVisible(true);
+            
+            chatCompletionRequest =
+                new ChatCompletionRequest()
+                    .setN(1)
+                    .setTemperature(0.4)
+                    .setTopP(0.5)
+                    .setMaxTokens(100);
+            runGpt(new ChatMessage("user", GptPromptEngineering.getIntro()));
+            return null;
+          }
+        };
+
+    Thread introThread = new Thread(getIntroTask, "Intro Thread");
+    introThread.start();
+    //when thread finishes, set the progress indicator to be invisible
+    getIntroTask.setOnSucceeded(
+        e -> {
+          progressIndicator.setVisible(false);
+        });
+    //when the introthread finishes, set the progress indicator to be invisible
+    // introThread.setOnSucceeded(
+    //     e -> {
+    //       progressIndicator.setVisible(false);
+    //     });
+
     setPotionRecipe();
     setCauldronOrder();
+    imgViewIngredient.setVisible(false);
 
     // Set specific nodes visibility to false
     imgViewJewellery.setVisible(false);
@@ -309,13 +354,10 @@ public class LabController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onJewelleryClick(MouseEvent event) throws IOException {
-    // ImageView imgView = (ImageView) event.getSource();
-    // Scene sceneImageViewIsIn = imgView.getScene();
-    // sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.CHAT));
-
-    // App.setRoot("aichat");
-    // set the scene to aichat
-    App.setUi(AppUi.AICHAT);
+    //
+    if (GameState.isRiddleResolved && !GameState.isLabCollected) {
+      imgViewIngredient.setVisible(true);
+    }
   }
 
   /**
@@ -340,23 +382,25 @@ public class LabController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onCauldronClick(MouseEvent event) {
-    if (GameState.isLabCollected) {
-      // If the item in the lab is collected, make it not blurred in the cauldron
-      imgViewCauldronLab.setEffect(null);
+    if (!GameState.isPotionComplete) {
+      if (GameState.isLabCollected) {
+        // If the item in the lab is collected, make it not blurred in the cauldron
+        imgViewCauldronLab.setEffect(null);
+      }
+      if (GameState.isForestCollected) {
+        // If the item in the forest is collected, make it not blurred in the cauldron
+        imgViewCauldronForest.setEffect(null);
+      }
+      if (GameState.isScaleCollected) {
+        // If the item in the dragon room is collected, make it not blurred in the cauldron
+        imgViewCauldronDragon.setEffect(null);
+      }
+      pnCauldron.setVisible(true);
+      pnCauldronOpacity.setVisible(true);
+      // Make the wizard inform the user on what to do
+      txtSpeech.setText("Follow the recipe to make the shrinking potion!");
+      pnSpeech.setVisible(true);
     }
-    if (GameState.isForestCollected) {
-      // If the item in the forest is collected, make it not blurred in the cauldron
-      imgViewCauldronForest.setEffect(null);
-    }
-    if (GameState.isScaleCollected) {
-      // If the item in the dragon room is collected, make it not blurred in the cauldron
-      imgViewCauldronDragon.setEffect(null);
-    }
-    pnCauldron.setVisible(true);
-    pnCauldronOpacity.setVisible(true);
-    // Make the wizard inform the user on what to do
-    txtSpeech.setText("Follow the recipe to make the shrinking potion!");
-    pnSpeech.setVisible(true);
   }
 
   /**
@@ -474,6 +518,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
       // Display corresponding image
       if (isCorrectOrder) {
         txtCorrect.setVisible(true);
+        GameState.isPotionComplete = true;
       } else {
         txtTryAgain.setVisible(true);
       }
@@ -548,7 +593,6 @@ public class LabController implements TimeManager.TimeUpdateListener {
     }
   }
 
-
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
@@ -558,10 +602,42 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private void onSpeechExit(ActionEvent event) {
     pnSpeech.setVisible(false);
   }
+
   @FXML
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
+  }
 
+  @FXML
+  private void onWindowClicked() {
+    if (GameState.isPotionComplete) {
+      GameState.isWon = true;
+      TimeManager.getInstance().stopTimer();
+      App.setUi(AppUi.WIN);
+    }
+  }
+
+  private void runGpt(ChatMessage msg) throws ApiProxyException {
+    chatCompletionRequest.addMessage(msg);
+    try {
+      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+      Choice result = chatCompletionResult.getChoices().iterator().next();
+      chatCompletionRequest.addMessage(result.getChatMessage());
+      //txtIntro.setText(result.getChatMessage().getContent());
+      Platform.runLater(() -> {
+        txtIntro.setText(result.getChatMessage().getContent());
+    });
+      //set progress indicator to be invisible when the result is returned
+      //progressIndicator.setVisible(false);
+
+    } catch (ApiProxyException e) {
+      System.out.println("Problem calling API: " + e.getMessage());
+    }
+  }
+
+  @FXML
+  private void onIntroExit(ActionEvent event) {
+    pnIntro.setVisible(false);
   }
 }

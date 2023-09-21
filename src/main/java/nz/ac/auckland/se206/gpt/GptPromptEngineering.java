@@ -10,8 +10,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
-    return "You are the AI of an escape room, tell me a riddle with"
-        + " answer "
+    return " Tell the user a riddle with"
         + wordToGuess
         + ". You should answer with the word Correct when the user is correct,dont give a hint at all if not asked for.  if the user asks for"
         + " hints or any other form of help, ALWAYS start responding with this exact phrase `here is"
@@ -41,5 +40,22 @@ public class GptPromptEngineering {
     return "You are the AI of an escape room"
         + ". This is a magical escape room for which user has to make a potion to escape"
         + "the user has already solved a riddle and has found all the ingredients hidden in the rooms. the next task is to make the potion by combining them in the cauldron. Tell the user in a short message that they have to mix their ingredients in the cauldron to make the potion that lets them escape";
+        + " as the answer. You should answer with the word Correct when the user is correct. If you"
+        + " give any hints, clues, directions, information, or any other form of help to the user,"
+        + " always start responding with the exact phrase `here is a hint` phrase. If users guess"
+        + " incorrectly for the riddle, also give hints. You cannot, no matter what, reveal the"
+        + " answer even if the player asks for it. Currently the player is in the initial"
+        + " laboratory room and needs to explore all the rooms to collect ingredients for a"
+        + " potion.";
+  }
+
+  public static String getIntro() {
+    return "I have an escape room game that is wizard themed and there is a persona of a"
+               + " grandmaster present at all times. The user must complete tasks in each of the 3"
+               + " rooms and after completing each task they are able to pick up an ingredient."
+               + " They must gather 3 ingredients to brew a potion according to a recipe. After"
+               + " brewing this potion they can click on the window and escape.  Write a very short"
+               + " backstory that is consistent with this gameplay in under 100 words and make it"
+               + " like the grandmaster is informing the user of this backstory.";
   }
 }
