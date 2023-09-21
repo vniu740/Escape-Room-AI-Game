@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.net.URISyntaxException;
+
 import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -11,9 +13,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class MenuController {
   @FXML Button btnEasyMode;
@@ -60,6 +65,15 @@ public class MenuController {
     imgEasy = new Image("images/easy.png");
     imgMedium = new Image("images/medium.png");
     imgHard = new Image("images/hard.png");
+        Media song;
+    try {
+      song = new Media(App.class.getResource("/sounds/themeSound.mp3").toURI().toString());
+      MediaPlayer player = new MediaPlayer(song);
+      player.play(); 
+    } catch (URISyntaxException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } 
   }
 
   /**
