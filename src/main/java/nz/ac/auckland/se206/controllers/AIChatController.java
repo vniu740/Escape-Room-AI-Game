@@ -40,6 +40,14 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class AIChatController implements TimeManager.TimeUpdateListener {
+
+  private static TimeManager timeManager;
+  private static int numHints; // number of hints given to the user
+
+  private ChatCompletionRequest chatCompletionRequest;
+  private ChatCompletionRequest chatCompletionRequestChat;
+  private String gameLevel;
+
   @FXML private Button button_send;
   @FXML private TextField tf_message;
   @FXML private VBox vbox_message;
@@ -48,16 +56,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private Pane paneBack;
   @FXML private Button buttonBack;
   @FXML private static Label hintCounter;
-
-  private ChatCompletionRequest chatCompletionRequest;
-  private ChatCompletionRequest chatCompletionRequestChat;
-
-  private static int numHints; // number of hints given to the user
-  private String gameLevel;
-
   @FXML private Label timerLblChat;
-  private static TimeManager timeManager;
-
   @FXML private ImageView imgViewWizard;
   @FXML private ImageView imgViewWizardCast;
   @FXML private Text txtSpeak;
