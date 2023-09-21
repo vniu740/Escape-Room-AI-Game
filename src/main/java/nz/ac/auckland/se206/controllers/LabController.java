@@ -140,7 +140,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
         };
 
     Thread introThread = new Thread(getIntroTask, "Intro Thread");
-    // introThread.start();
+    introThread.start();
     //when thread finishes, set the progress indicator to be invisible
     getIntroTask.setOnSucceeded(
         e -> {
@@ -357,6 +357,11 @@ public class LabController implements TimeManager.TimeUpdateListener {
     //
     if (GameState.isRiddleResolved && !GameState.isLabCollected) {
       imgViewIngredient.setVisible(true);
+      txtSpeech.setText("What a pretty gem!");
+      pnSpeech.setVisible(true);
+    } else {
+      txtSpeech.setText("The jewellery box is locked");
+      pnSpeech.setVisible(true);
     }
   }
 
@@ -618,6 +623,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
       App.setUi(AppUi.WIN);
     } else {
       txtSpeech.setText("You can't escape yet! The potion hasn't been made");
+      pnSpeech.setVisible(true);
     }
   }
 

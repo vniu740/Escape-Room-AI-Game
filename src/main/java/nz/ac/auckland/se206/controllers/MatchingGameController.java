@@ -233,7 +233,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     if (GameState.dragonMatches == 3) {
       GameState.isMatchGameWon = true;
       System.out.println("Game won");
-      txtSpeech.setText("You found 3 pairs! The dragon ingredient is now unlocked");
+      txtSpeech.setText("You found 3 pairs! Dragon ingredient is now unlocked");
       txtSpeech.setVisible(true);
       btnSpeechExit.setVisible(true);
       imgViewSpeech.setVisible(true);
