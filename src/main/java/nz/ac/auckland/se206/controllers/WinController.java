@@ -32,8 +32,6 @@ public class WinController {
 
   @FXML
   private void onRetryClicked() throws IOException {
-    //stop music 
-    MenuController.stopMusic();
     progressIndicator.setVisible(true);
        // another thread to restart the game
     Thread restartApp =
