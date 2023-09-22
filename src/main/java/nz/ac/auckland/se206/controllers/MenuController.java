@@ -30,18 +30,11 @@ public class MenuController {
       e.printStackTrace();
     }
   }
-  static {
-    try {
-      song = new Media(App.class.getResource("/sounds/themeSound.mp3").toURI().toString());
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
-    }
-  }
   final static MediaPlayer player = new MediaPlayer(song);
     //method for stopping the music
-public static void stopMusic() {
-  player.stop();
-}
+  public static void stopMusic() {
+    player.stop();
+  }
   private boolean isHidden;
   private boolean isEasyHidden;
   private boolean isMediumHidden;
