@@ -85,6 +85,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       chatBackground.setImage(new Image("/images/candlewall.jpg"));
     }
   }
+
   public static void setHintCounter() {
     if (GameState.level.equals("medium")) {
       hintCounter.setText(Integer.toString(5 - numHints));
@@ -95,7 +96,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  
   private ChatCompletionRequest chatCompletionRequest;
   private ChatCompletionRequest chatCompletionRequestChat;
   private String gameLevel;
@@ -271,9 +271,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
-
-  
-
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     // Add the message to the request
     chatCompletionRequest.addMessage(msg);
@@ -320,7 +317,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       Text text = new Text(messageToSend);
       TextFlow textFlow = new TextFlow(text);
 
-      //textFlow.setStyle("-fx-background-color: #55cfff; -fx-background-radius: 20;");
+      // textFlow.setStyle("-fx-background-color: #55cfff; -fx-background-radius: 20;");
       textFlow.setStyle("-fx-background-color: #9c42b4; -fx-background-radius: 20;");
       textFlow.setPadding(new Insets(5, 5, 10, 10));
 
@@ -353,10 +350,17 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
                 // Check the game level and limit the hints accordingly
                 if (gameLevel.equals("easy") || (gameLevel.equals("medium") && numHints <= 5)) {
-                  if (GameState.isRiddleResolved == true
-                      && GameState.isForestCollected == false
-                      && GameState.isScaleCollected == true) {
-                    runGptChat(new ChatMessage("user", GptPromptEngineering.getHintGem()));
+
+                  if (GameState.isRiddleResolved == false && GameState.level.equals("easy")) {
+                    addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
+                    Platform.runLater(() -> stopAnimation());
+                    txtFieldMessage.setEditable(true);
+                    checkIfRiddleCorrect(lastMsg);
+                    return null;
+                  }
+                  if (GameState.isLabCollected == false
+                      && GameState.isRiddleResolved == true) {
+                    lastMsg = runGptChat(new ChatMessage("user", GptPromptEngineering.getHintGem()));
                   }
 
                   if (GameState.isLabCollected == true
@@ -365,7 +369,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                     lastMsg =
                         runGptChat(new ChatMessage("user", GptPromptEngineering.getHintForest()));
                   }
-                  if (GameState.isLabCollected == false
+                  if (GameState.isLabCollected == true
                       && GameState.isForestCollected == true
                       && GameState.isScaleCollected == false) {
                     lastMsg =
@@ -377,22 +381,23 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                     lastMsg =
                         runGptChat(new ChatMessage("user", GptPromptEngineering.getHintActivity()));
                   }
-                  if (GameState.isLabCollected == false
-                      && GameState.isForestCollected == false
-                      && GameState.isScaleCollected == false
-                      && GameState.level.equals("easy")) {
-                    addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
-                    Platform.runLater(() -> stopAnimation());
-                  }
                   if (GameState.isLabCollected == true
                       && GameState.isForestCollected == true
-                      && GameState.isScaleCollected == true) {
+                      && GameState.isScaleCollected == true && GameState.isPotionComplete == false) {
                     lastMsg =
                         runGptChat(new ChatMessage("user", GptPromptEngineering.getHintPotion()));
+                  }
+                  if (GameState.isPotionComplete == true) {
+                    lastMsg = runGptChat(new ChatMessage("user", GptPromptEngineering.getHintEscape()));
                   }
                   if (gameLevel.equals("medium")) {
                     // Update the hint counter
                     Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
+                    addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
+                    Platform.runLater(() -> stopAnimation());
+                  }
+                  if (gameLevel.equals("easy")) {
+                    // Update the hint counter
                     addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
                     Platform.runLater(() -> stopAnimation());
                   }
@@ -417,12 +422,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               }
 
               txtFieldMessage.setEditable(true);
-
-              // If the user's input is correct, update the gameState
-              if (lastMsg.getRole().equals("assistant")
-                  && lastMsg.getContent().startsWith("Correct")) {
-                GameState.isRiddleResolved = true;
-              }
+              // check if the answer to the riddle is correct
+              checkIfRiddleCorrect(lastMsg);
 
               return null;
             }
@@ -476,8 +477,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
         || input.toLowerCase().contains("a final hint");
   }
 
-  
-
   @FXML
   private void onSpriteClick(MouseEvent event) {
     txtSpeak.setText("GOT HIM!");
@@ -513,13 +512,18 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     sleepThread.start();
   }
 
-
-
   private void stopAnimation() {
     imgViewWizardCast.setVisible(false);
     imgViewWizard.setVisible(true);
     timeline.pause();
     circle.setVisible(false);
     txtSpeak.setVisible(false);
+  }
+
+  private void checkIfRiddleCorrect(ChatMessage lastMsg) {
+    // If the user's input is correct, update the gameState
+    if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
+      GameState.isRiddleResolved = true;
+    }
   }
 }

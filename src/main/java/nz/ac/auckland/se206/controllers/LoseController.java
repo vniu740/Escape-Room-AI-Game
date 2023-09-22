@@ -68,8 +68,6 @@ public class LoseController {
     // Reset the game state
     // progressIndictor to be visible
     progressIndicator.setVisible(true);
-    //stop the music 
-    MenuController.stopMusic();
     // another thread to restart the game
     Thread restartApp =
         new Thread(
