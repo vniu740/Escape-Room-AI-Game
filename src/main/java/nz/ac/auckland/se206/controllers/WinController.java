@@ -5,6 +5,7 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 
@@ -13,6 +14,7 @@ public class WinController {
   @FXML private Button buttonRetryWin;
   @FXML private Button buttonCloseWin;
   @FXML private Label winTitle;
+  @FXML private ProgressIndicator progressIndicator;
 
   @FXML
   public void initialize() {
@@ -30,7 +32,26 @@ public class WinController {
 
   @FXML
   private void onRetryClicked() throws IOException {
-    // Reset the game state
-    App.restartGame();
+    //stop music 
+    MenuController.stopMusic();
+    progressIndicator.setVisible(true);
+       // another thread to restart the game
+    Thread restartApp =
+      new Thread(
+        new Runnable() {
+          @Override
+            public void run() {
+             try {
+             // Thread.sleep(1000);
+               App.restartGame();
+                } catch (IOException e) {
+               // TODO Auto-generated catch block
+                e.printStackTrace();
+                   }
+                 }
+               });
+       restartApp.start();
+   
+   }
   }
-}
+

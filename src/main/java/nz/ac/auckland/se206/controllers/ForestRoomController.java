@@ -127,6 +127,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 Image selectedImage = shuffledImages[0];
                 imgViewSpiralFrog.setImage(selectedImage);
                 if (selectedImage == correctIngredient) {
+
                   // alert the user that they have found the correct image
                   Platform.runLater(
                       () -> {
@@ -156,6 +157,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 Image selectedImage = shuffledImages[1];
                 imgViewMushroom.setImage(selectedImage);
                 if (selectedImage == correctIngredient) {
+
                   // alert the user that they have found the correct image
                   Platform.runLater(
                       () -> {
@@ -186,6 +188,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                 imgViewBug.setImage(selectedImage);
                 // he slider should not move anymore
                 if (selectedImage == correctIngredient) {
+
                   // alert the user that they have found the correct image
                   Platform.runLater(
                       () -> {
@@ -359,3 +362,9 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     App.setUi(AppUi.AICHAT);
   }
 }
+
+/**
+ * Attribution: imageLock: <a
+ * href="https://www.freepik.com/free-vector/set-lockpad-icon_4150202.htm#query=cartoon%20lock&position=16&from_view=keyword&track=ais">Image
+ * by brgfx</a> on Freepik
+ */
