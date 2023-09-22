@@ -33,23 +33,21 @@ public class WinController {
   @FXML
   private void onRetryClicked() throws IOException {
     progressIndicator.setVisible(true);
-       // another thread to restart the game
+    // another thread to restart the game
     Thread restartApp =
-      new Thread(
-        new Runnable() {
-          @Override
-            public void run() {
-             try {
-             // Thread.sleep(1000);
-               App.restartGame();
+        new Thread(
+            new Runnable() {
+              @Override
+              public void run() {
+                try {
+                  // Thread.sleep(1000);
+                  App.restartGame();
                 } catch (IOException e) {
-               // TODO Auto-generated catch block
-                e.printStackTrace();
-                   }
-                 }
-               });
-       restartApp.start();
-   
-   }
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+                }
+              }
+            });
+    restartApp.start();
   }
-
+}
