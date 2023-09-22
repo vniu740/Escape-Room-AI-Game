@@ -16,6 +16,7 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 public class App extends Application {
 
   private static Scene scene;
+  private static Parent menu;
 
   public static void main(final String[] args) {
     launch();
@@ -55,6 +56,7 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     // Adding rooms into the scenemanager hashmap
+    menu = loadFxml("menu");
     addRooms();
 
     // Setting the scene to the start page
@@ -74,7 +76,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
     SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
     SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
-    SceneManager.addAppUi(AppUi.START_PAGE, loadFxml("menu"));
+    SceneManager.addAppUi(AppUi.START_PAGE, menu);
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
     SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
