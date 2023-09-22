@@ -184,8 +184,13 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     App.setUi(AppUi.AICHAT);
   }
 }
+
 /**
- * Attribution: imageLock: <a
+ * Attribution:
+ *
+ * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
+ *
+ * <p>imageLock: <a
  * href="https://www.freepik.com/free-vector/set-lockpad-icon_4150202.htm#query=cartoon%20lock&position=16&from_view=keyword&track=ais">Image
  * by brgfx</a> on Freepik
  */

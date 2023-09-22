@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.GameState;
 public class LoseController {
 
   @FXML private static Label itemCounter;
-  
+
   @FXML
   public static void setItemCounter() {
     itemCounter.setText(Integer.toString(GameState.itemsCollected));
@@ -85,5 +85,13 @@ public class LoseController {
             });
     restartApp.start();
   }
-
 }
+
+/**
+ * Attribution:
+ *
+ * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
+ *
+ * <p>counterBack: Source: https://freesvg.org/parchment-background-vector Liscence:
+ * https://creativecommons.org/licenses/by/4.0/ Published by: https://freesvg.org/by/OpenClipart
+ */

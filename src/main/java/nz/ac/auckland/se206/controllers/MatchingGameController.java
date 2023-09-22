@@ -32,10 +32,10 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   public static TimeManager getTimeManager() {
     return timeManager;
   }
-  
+
   private ImageView[] tiles; // Array of tile ImageViews
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
-  
+
   @FXML private Button btnSpeechExit;
   @FXML private Button buttonBack;
   @FXML private GridPane gameGrid;
@@ -55,7 +55,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   @FXML private Label timerLblMatchGame;
   @FXML private Text txtSpeech;
   @FXML private VBox gameBox;
-  
+
   private int lastClickedTileIndex = -1; // Index of the last clicked tile
   private int lastCol = -1;
   private int lastRow = -1;
@@ -119,7 +119,6 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
       timerLblMatchGame.setText("00:00");
     }
   }
-
 
   // Implement event handler for tile clicks
   @FXML
@@ -265,4 +264,11 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   }
 }
 
-/** Attribution: counterBack https://freesvg.org/parchment-background-vector */
+/**
+ * Attribution:
+ *
+ * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
+ *
+ * <p>counterBack: Source: https://freesvg.org/parchment-background-vector Liscence:
+ * https://creativecommons.org/licenses/by/4.0/ Published by: https://freesvg.org/by/OpenClipart
+ */

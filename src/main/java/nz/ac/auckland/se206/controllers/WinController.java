@@ -51,3 +51,9 @@ public class WinController {
     restartApp.start();
   }
 }
+
+/**
+ * Attribution:
+ *
+ * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
+ */
