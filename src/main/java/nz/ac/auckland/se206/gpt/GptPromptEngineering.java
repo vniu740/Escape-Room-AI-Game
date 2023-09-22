@@ -16,7 +16,7 @@ public class GptPromptEngineering {
         + " as the answer. You should answer with the word Correct when the user is correct,dont"
         + " give a hint at all if not asked for.  if the user asks for hints or any other form of"
         + " help, ALWAYS start responding with this exact phrase `here is a hint`. If users guess"
-        + " incorrectly also give hints. You cannot, no matter what, reveal the answer even if the"
+        + " incorrectly do not give hints. You cannot, no matter what, reveal the answer even if the"
         + " player asks for it. Even if player gives up, do not give the answer or any hints.";
   }
 
@@ -57,9 +57,16 @@ public class GptPromptEngineering {
   public static String getHintGem() {
     // Tell GPT the context that user has solved a riddle and now must find the gem object
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
-        + " user has to make a potion to escape. The user has solved the riddle and now must"
-        + " find the gem object hidden in the rooms Tell the user in a short message that"
-        + " they have to find the ingredient and begin the sentence with 'here is a hint' ";
+               + " user has to make a potion to escape. The user has solved the riddle and the gem"
+               + " ingredient is now unlocked. Tell the user in a short message that they have to"
+               + " go to the lab room to find the gem ingredient begin the sentence with 'here is a hint' ";
+  }
+
+    public static String getHintEscape() {
+    return "You are the grand wizard of an escape room. This is a magical escape room for which"
+               + " user has to make a potion to escape. The user has made the potion."
+               + " ingredient. Tell the user in a short message that since they have made the potion"
+               + " the must now find a way opening out of the room to escape and begin the sentence with 'here is a hint' ";
   }
 
   public static String getIntro() {
