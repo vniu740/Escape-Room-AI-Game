@@ -358,9 +358,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                     checkIfRiddleCorrect(lastMsg);
                     return null;
                   }
-                  if (GameState.isLabCollected == false
-                      && GameState.isRiddleResolved == true) {
-                    lastMsg = runGptChat(new ChatMessage("user", GptPromptEngineering.getHintGem()));
+                  if (GameState.isLabCollected == false && GameState.isRiddleResolved == true) {
+                    lastMsg =
+                        runGptChat(new ChatMessage("user", GptPromptEngineering.getHintGem()));
                   }
 
                   if (GameState.isLabCollected == true
@@ -383,12 +383,14 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   }
                   if (GameState.isLabCollected == true
                       && GameState.isForestCollected == true
-                      && GameState.isScaleCollected == true && GameState.isPotionComplete == false) {
+                      && GameState.isScaleCollected == true
+                      && GameState.isPotionComplete == false) {
                     lastMsg =
                         runGptChat(new ChatMessage("user", GptPromptEngineering.getHintPotion()));
                   }
                   if (GameState.isPotionComplete == true) {
-                    lastMsg = runGptChat(new ChatMessage("user", GptPromptEngineering.getHintEscape()));
+                    lastMsg =
+                        runGptChat(new ChatMessage("user", GptPromptEngineering.getHintEscape()));
                   }
                   if (gameLevel.equals("medium")) {
                     // Update the hint counter

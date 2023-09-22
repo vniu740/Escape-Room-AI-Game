@@ -7,18 +7,18 @@ import java.util.TimerTask;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
 public class TimeManager {
-  
-  private static TimeManager instance;
+
   public static int timeRemaining = 121;
-  
+  private static TimeManager instance;
+
   /** Gets the instance of the time manager. */
   public static TimeManager getInstance() {
     if (instance == null) {
       instance = new TimeManager();
     }
     return instance;
-  
   }
+
   private Timer timer;
   private List<TimeUpdateListener> listeners = new ArrayList<>();
 
