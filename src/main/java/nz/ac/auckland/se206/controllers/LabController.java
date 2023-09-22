@@ -24,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -56,7 +58,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
   // Other fields
   private ChatCompletionRequest chatCompletionRequest;
-  
+  private MediaPlayer mediaPlayerBubbles;
+
   // FXML elements
   @FXML private Button btnIntroExit;
   @FXML private Button btnCauldronExit;
@@ -155,6 +158,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
     setPotionRecipe();
     setCauldronOrder();
+    createBubbleMediaPlayer();
     imgViewIngredient.setVisible(false);
 
     // Set specific nodes visibility to false
@@ -494,6 +498,10 @@ public class LabController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onDragDroppedDestination(DragEvent event) {
+    // play the bubbling sound effect
+    mediaPlayerBubbles.seek(mediaPlayerBubbles.getStartTime());
+    mediaPlayerBubbles.play();
+
     // Make the image of the bubbles appear
     imgViewCauldronBubbles.setVisible(true);
 
@@ -650,5 +658,18 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onIntroExit(ActionEvent event) {
     pnIntro.setVisible(false);
+  }
+
+  /**
+   * Creates a new mediaPlayer instance that runs for the sound bubbles.mp3
+   *
+   * @throws URISyntaxException
+   */
+  public void createBubbleMediaPlayer() throws URISyntaxException {
+    // Create the media player that runs the sound bubbles.mp3
+    String path = getClass().getResource("/sounds/bubbles.mp3").toURI().toString();
+    Media mediaBubbles = new Media(path);
+    mediaPlayerBubbles = new MediaPlayer(mediaBubbles);
+    mediaPlayerBubbles.setVolume(1);
   }
 }

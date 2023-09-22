@@ -89,7 +89,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     Collections.shuffle(uniqueImages);
     // Make the list a size of 3 ingredients
     uniqueImages.subList(3, 6).clear();
-    ;
     // Add the correct ingredient back into the list so that the two wrong ingredients are random
     // and the correct ingredient is in the list
     uniqueImages.set(0, correctIngredient);
