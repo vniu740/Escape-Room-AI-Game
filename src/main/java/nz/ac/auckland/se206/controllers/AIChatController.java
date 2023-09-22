@@ -422,12 +422,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
               }
 
               txtFieldMessage.setEditable(true);
-
-              // // If the user's input is correct, update the gameState
-              // if (lastMsg.getRole().equals("assistant")
-              //     && lastMsg.getContent().startsWith("Correct")) {
-              //   GameState.isRiddleResolved = true;
-              // }
+              // check if the answer to the riddle is correct
               checkIfRiddleCorrect(lastMsg);
 
               return null;
