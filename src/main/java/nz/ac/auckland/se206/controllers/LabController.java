@@ -673,3 +673,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
     mediaPlayerBubbles.setVolume(1);
   }
 }
+
+/**
+ * Attribution:
+ *
+ * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
+ */
