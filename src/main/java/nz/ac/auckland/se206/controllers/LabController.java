@@ -100,6 +100,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imgViewCauldronDragon;
   @FXML private ImageView imgViewIngredient;
   @FXML private ImageView imgViewWizard;
+  @FXML private ImageView imgViewSettings;
   @FXML private Label timerLblLab;
   @FXML private Pane pnCauldron;
   @FXML private Pane pnCauldronOpacity;
@@ -498,9 +499,11 @@ public class LabController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onDragDroppedDestination(DragEvent event) {
-    // play the bubbling sound effect
-    mediaPlayerBubbles.seek(mediaPlayerBubbles.getStartTime());
-    mediaPlayerBubbles.play();
+    // play the bubbling sound effect if sound is enabled
+    if (GameState.isSoundEnabled == true) {
+      mediaPlayerBubbles.seek(mediaPlayerBubbles.getStartTime());
+      mediaPlayerBubbles.play();
+    }
 
     // Make the image of the bubbles appear
     imgViewCauldronBubbles.setVisible(true);
@@ -671,6 +674,16 @@ public class LabController implements TimeManager.TimeUpdateListener {
     Media mediaBubbles = new Media(path);
     mediaPlayerBubbles = new MediaPlayer(mediaBubbles);
     mediaPlayerBubbles.setVolume(1);
+  }
+
+  /**
+   * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSettingsClicked(MouseEvent event) {
+    App.setUi(AppUi.SETTINGS);
   }
 }
 

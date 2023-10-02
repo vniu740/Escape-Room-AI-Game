@@ -40,7 +40,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   public static TimeManager getTimeManager() {
     return timeManager;
   }
-  
+
   @FXML private Button btnSpeechExit;
   @FXML private Button switchScenes;
   @FXML private Button btnFishingExit;
@@ -359,6 +359,16 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   private void onWizardClicked() {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
+  }
+
+  /**
+   * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSettingsClicked(MouseEvent event) {
+    App.setUi(AppUi.SETTINGS);
   }
 }
 

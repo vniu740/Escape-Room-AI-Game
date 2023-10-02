@@ -80,6 +80,7 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
     SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
+    SceneManager.addAppUi(AppUi.SETTINGS, loadFxml("settings"));
   }
 
   public static void restartGame() throws IOException {
