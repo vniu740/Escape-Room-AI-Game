@@ -55,6 +55,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private ImagePulseAnimation leverAnimation;
   private ImagePulseAnimation jewelleryAnimation;
   private Thread animationJewelleryThread;
+  private Thread animationLabObjectThread;
 
   // Other fields
   private ChatCompletionRequest chatCompletionRequest;
@@ -213,10 +214,21 @@ public class LabController implements TimeManager.TimeUpdateListener {
             return null;
           }
         };
+
+    Task<Void> animationLabObjectTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            ImagePulseAnimation objectAnimation = new ImagePulseAnimation(imgViewIngredient);
+            objectAnimation.playAnimation();
+            return null;
+          }
+        };
     // Create threads that run each animation task. Start the main animation thread
     Thread animationThread = new Thread(animationTask, "Animation Thread");
     animationThread.start();
     animationJewelleryThread = new Thread(animationJewelleryTask, "Animation Thread");
+    animationLabObjectThread = new Thread(animationLabObjectTask, "Animation Thread");
   }
 
   // .
@@ -360,6 +372,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
       imgViewIngredient.setVisible(true);
       txtSpeech.setText("What a pretty gem!");
       pnSpeech.setVisible(true);
+      imgViewJewellery.setVisible(false);
+      animationLabObjectThread.start();
     } else {
       txtSpeech.setText("The jewellery box is locked");
       pnSpeech.setVisible(true);
