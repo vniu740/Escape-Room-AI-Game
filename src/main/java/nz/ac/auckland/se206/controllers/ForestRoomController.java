@@ -54,6 +54,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imgViewIconScroll;
   @FXML private ImageView imgViewIngredient;
   @FXML private ImageView imgViewWizard;
+  @FXML private ImageView correctImageView;
   @FXML private Label timerLbl;
   @FXML private Line threadOne;
   @FXML private Line threadTwo;
@@ -134,6 +135,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         pnSpeech.setVisible(true);
                       });
                   GameState.isFishingComplete = true;
+                  correctImageView = imgViewSpiralFrog;
+
                 }
 
                 // he slider should not move anymore
@@ -164,6 +167,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         pnSpeech.setVisible(true);
                       });
                   GameState.isFishingComplete = true;
+                  correctImageView = imgViewMushroom;
                 }
                 // he slider should not move anymore
                 sldTwo.lookup(".thumb").setPickOnBounds(false);
@@ -195,6 +199,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         pnSpeech.setVisible(true);
                       });
                   GameState.isFishingComplete = true;
+                  correctImageView = imgViewBug;
                 }
                 sldThree.lookup(".thumb").setPickOnBounds(false);
                 sldThreeDisablePane.setVisible(true);
@@ -245,8 +250,9 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // Remove the option to change room
     imgViewRightArrow.setVisible(false);
     if (GameState.isFishingComplete) {
-      txtSpeech.setText("You fished up the correct ingredient!");
+      txtSpeech.setText("You have already fished up the correct ingredient!");
       pnSpeech.setVisible(true);
+      correctImageView.setVisible(false);
     }
   }
 
@@ -259,7 +265,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     imgViewRightArrow.setVisible(true);
     pnSpeech.setVisible(false);
 
-    if (GameState.isFishingComplete == true) {
+    if (GameState.isFishingComplete == true && GameState.isForestCollected != true) {
       imgViewIngredient.setImage(correctIngredient);
       imgViewIngredient.setVisible(true);
       // Create a new thread for the animation
