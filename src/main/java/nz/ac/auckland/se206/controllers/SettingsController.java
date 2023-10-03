@@ -32,6 +32,14 @@ public class SettingsController implements TimeManager.TimeUpdateListener{
   public void initialize() throws IOException {
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
+
+    if (GameState.isSoundEnabled == false) {
+      btnSounds.setText("Off");
+    } 
+
+    if (GameState.isTextToSpeechEnabled == false) {
+      btnTextToSpeech.setText("Off");
+    }
   }
 
   @FXML
