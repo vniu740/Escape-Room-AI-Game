@@ -8,10 +8,6 @@
         #ac4fa0,
         #603263,
         radial-gradient(center 50% 50%, radius 100%, #ac4fa0, #603263);
-        background-color: linear-gradient(from 0% 93% to 0% 100%, #ac4fa0 0%, #603263 100%),
-        #ac4fa0,
-        #603263,
-        radial-gradient(center 50% 50%, radius 100%, #ac4fa0, #603263);
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
     -fx-font-weight: bold;
     font-weight: bold;
@@ -23,27 +19,6 @@
     -fx-border-radius: 8;
     border-radius: 8;
 }
-
-.button {
-    -fx-background-color:
-        linear-gradient(from 0% 93% to 0% 100%, #ac4fa0 0%, #603263 100),
-        #3b71b9,
-        #603263,
-        radial-gradient(center 50% 50%, radius 100%, #ac4fa0, #603263);
-    background-color: linear-gradient(from 0% 93% to 0% 100%, #ac4fa0 0%, #603263 100),
-        #603263,
-        #ac4fa0,
-        radial-gradient(center 50% 50%, radius 100%, #ac4fa0, #603263);
-}
-
-.button {
-    -fx-padding: 10 15 13 15;
-    padding: 10 15 13 15;
-    -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
-    -fx-font-family: "Arial Rounded MT Bold";
-    font-family: "Arial Rounded MT Bold";
-}
-
 
 .button:hover {
     -fx-text-fill: #588592;
@@ -59,10 +34,6 @@
         #e4aef4,
         #ac4fa0,
         radial-gradient(center 50% 50%, radius 100%, #e4aef4, #ac4fa0);
-    background-color: linear-gradient(to bottom, #e4aef4 0%, #ac4fa0 100%),
-        #e4aef4,
-        #ac4fa0,
-        radial-gradient(center 50% 50%, radius 100%, #e4aef4, #ac4fa0);
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
     -fx-font-weight: bold;
     font-weight: bold;
@@ -75,7 +46,6 @@
     -fx-text-fill: #588592;
 }
 
-
 #txtBack {
     -fx-fill: #f9ef77;
     fill: #f9ef77;
@@ -83,5 +53,4 @@
 
 #txtBack:hover {
     -fx-fill: #588592;
-    fill: #588592;
 }
