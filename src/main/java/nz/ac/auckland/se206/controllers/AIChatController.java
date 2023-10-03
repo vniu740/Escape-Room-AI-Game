@@ -17,6 +17,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -157,6 +158,16 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
   @FXML
   public void initialize() throws ApiProxyException {
+
+    // Add a key pressed event handler to the text field
+    txtFieldMessage.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            // Trigger the button's action when Enter is pressed
+            btnSend.fire();
+          }
+        });
+
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
 
