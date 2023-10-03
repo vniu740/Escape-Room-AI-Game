@@ -72,6 +72,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Slider sldTwo;
   @FXML private Slider sldThree;
   @FXML private Text txtSpeech;
+  private TextToSpeech textToSpeech = new TextToSpeech();
+
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -133,6 +135,14 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         txtSpeech.setText("You fished up the correct ingredient!");
                         pnSpeech.setVisible(true);
                       });
+                  Thread speachThread =
+                   new Thread(
+                          () -> {
+                            textToSpeech.speak("You fished up the correct ingredient!");;
+                          });
+                  speachThread.start();
+                      
+                      
                   GameState.isFishingComplete = true;
                 }
 
@@ -194,6 +204,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         txtSpeech.setText("You fished up the correct ingredient!");
                         pnSpeech.setVisible(true);
                       });
+                  Thread speachThread =new Thread(() -> {
+                            textToSpeech.speak("You fished up the correct ingredient!");;
+                          });
+                  speachThread.start();
                   GameState.isFishingComplete = true;
                 }
                 sldThree.lookup(".thumb").setPickOnBounds(false);
@@ -246,6 +260,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     imgViewRightArrow.setVisible(false);
     if (GameState.isFishingComplete) {
       txtSpeech.setText("You fished up the correct ingredient!");
+        Thread speachThread =new Thread(() -> {
+               textToSpeech.speak("You fished up the correct ingredient!");;
+                  });
+              speachThread.start();
       pnSpeech.setVisible(true);
     }
   }
