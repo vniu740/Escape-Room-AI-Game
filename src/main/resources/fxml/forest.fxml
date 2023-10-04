@@ -13,48 +13,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
-      <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
+      <ImageView fitHeight="499.0" fitWidth="800.0" pickOnBounds="true">
          <image>
             <Image url="@../images/forest.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="86.0" fitWidth="142.0" layoutX="189.0" layoutY="204.0" pickOnBounds="true">
+      <ImageView fitHeight="86.0" fitWidth="142.0" layoutX="273.0" layoutY="258.0" pickOnBounds="true">
          <image>
             <Image url="@../images/splash.gif" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgViewSpiralPond" fitHeight="68.0" fitWidth="142.0" layoutX="189.0" layoutY="239.0" onMouseClicked="#onPondClick" pickOnBounds="true">
+      <ImageView fx:id="imgViewSpiralPond" fitHeight="68.0" fitWidth="142.0" layoutX="273.0" layoutY="301.0" onMouseClicked="#onPondClick" pickOnBounds="true">
          <image>
             <Image url="@../images/pond.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgViewIconScroll" fitHeight="92.0" fitWidth="85.0" layoutX="-1.0" layoutY="316.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/potionRecipeIcon.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
-      <Pane fx:id="pnFishingOpacity" layoutX="-1.0" layoutY="-1.0" opacity="0.7" prefHeight="399.0" prefWidth="600.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
+      <Pane fx:id="pnFishingOpacity" layoutX="125.0" layoutY="12.0" opacity="0.7" prefHeight="386.0" prefWidth="550.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
          <children>
-            <Button fx:id="btnFishingExit" layoutX="475.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#onFishingExit" opacity="0.65" style="-fx-background-color: white;" text="X">
+            <Button fx:id="btnFishingExit" layoutX="505.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#onFishingExit" opacity="0.65" style="-fx-background-color: white;" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text fill="WHITE" layoutX="135.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fish up the correct ingredient!" textAlignment="CENTER" wrappingWidth="327.00001580328717">
+            <Text fill="WHITE" layoutX="111.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fish up the correct ingredient!" textAlignment="CENTER" wrappingWidth="327.00001580328717">
                <font>
                   <Font name="Herculanum" size="26.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="pnFishing" layoutX="130.0" layoutY="84.0" prefHeight="285.0" prefWidth="327.0" visible="false">
+      <Pane fx:id="pnFishing" layoutX="170.0" layoutY="101.0" prefHeight="268.0" prefWidth="464.0" visible="false">
          <children>
-            <ImageView fitHeight="285.0" fitWidth="327.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true">
+            <ImageView fitHeight="277.0" fitWidth="464.0" layoutX="-3.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/water.jpg" />
                </image>
@@ -82,33 +74,11 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="sldThreeDisablePane" layoutX="317.0" layoutY="83.0" prefHeight="170.0" prefWidth="135.0" visible="false" />
-      <Pane fx:id="sldOneDisablePane" layoutX="127.0" layoutY="80.0" prefHeight="180.0" prefWidth="142.0" visible="false" />
-      <Pane fx:id="sldTwoDisablePane" layoutX="242.0" layoutY="29.0" prefHeight="218.0" prefWidth="102.0" visible="false" />
-      <Pane fx:id="pnScroll" layoutX="100.0" layoutY="55.0" prefHeight="325.0" prefWidth="427.0" visible="false">
-         <children>
-            <ImageView fitHeight="284.0" fitWidth="442.0" layoutX="-7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/scroll.png" />
-               </image>
-            </ImageView>
-            <HBox fx:id="scrollBox" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="337.0" style="-fx-spacing: 30;">
-               <children>
-                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </HBox>
-         </children>
-      </Pane>
+      <Pane fx:id="sldThreeDisablePane" layoutX="383.0" layoutY="83.0" prefHeight="170.0" prefWidth="69.0" visible="false" />
+      <Pane fx:id="sldOneDisablePane" layoutX="239.0" layoutY="80.0" prefHeight="180.0" prefWidth="69.0" visible="false" />
+      <Pane fx:id="sldTwoDisablePane" layoutX="309.0" layoutY="29.0" prefHeight="218.0" prefWidth="69.0" visible="false" />
       <ImageView fx:id="imgViewIngredient" fitHeight="68.0" fitWidth="76.0" layoutX="331.0" layoutY="200.0" onMouseClicked="#onIngredientClicked" pickOnBounds="true" preserveRatio="true" visible="false" />
-
-      <ImageView fx:id="imgViewWizard" fitHeight="205.0" fitWidth="136.0" layoutX="444.0" layoutY="213.0" onMouseClicked="#onWizardClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/wizard.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgViewRightArrow" fitHeight="111.0" fitWidth="40.0" layoutX="546.0" layoutY="161.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewRightArrow" fitHeight="111.0" fitWidth="40.0" layoutX="746.0" layoutY="209.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightArrow.png" />
          </image>
@@ -116,7 +86,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane fx:id="pnSpeech" layoutX="344.0" layoutY="127.0" prefHeight="130.0" prefWidth="159.0" visible="false">
+      <Pane fx:id="pnSpeech" layoutX="560.0" layoutY="193.0" prefHeight="130.0" prefWidth="159.0" visible="false">
          <children>
             <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="12.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -138,12 +108,41 @@
             </Text>
          </children>
       </Pane>
-      <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="501.0" layoutY="-1.0" pickOnBounds="true">
+      <ImageView fx:id="imgViewIconScroll1" fitHeight="112.0" fitWidth="126.0" layoutX="9.0" layoutY="369.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
+         <image>
+            <Image url="@../images/potionRecipeIcon.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="imgViewWizard1" fitHeight="201.0" fitWidth="147.0" layoutX="639.0" layoutY="308.0" onMouseClicked="#onWizardClicked" pickOnBounds="true">
+         <image>
+            <Image url="@../images/wizard.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="697.0" layoutY="28.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
          </image>
       </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="546.0" layoutY="58.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Label fx:id="timerLbl" alignment="CENTER" layoutX="496.0" layoutY="41.0" prefHeight="34.0" prefWidth="102.0" text="00:00" />
+      <Circle fill="DODGERBLUE" layoutX="743.0" layoutY="85.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLbl" alignment="CENTER" layoutX="692.0" layoutY="68.0" prefHeight="34.0" prefWidth="102.0" text="00:00" />
+      <Pane fx:id="pnScroll" layoutX="100.0" layoutY="55.0" prefHeight="325.0" prefWidth="525.0" visible="false">
+         <children>
+            <ImageView fitHeight="316.0" fitWidth="550.0" layoutX="-7.0" layoutY="6.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/scroll.png" />
+               </image>
+            </ImageView>
+            <HBox fx:id="scrollBox" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="448.0" style="-fx-spacing: 30;">
+               <children>
+                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
    </children>
 </Pane>
