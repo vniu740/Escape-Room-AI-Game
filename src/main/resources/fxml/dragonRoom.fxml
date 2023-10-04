@@ -28,14 +28,6 @@
             <Image url="@../images/scale.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgViewLeftArrow" fitHeight="80.0" fitWidth="36.0" layoutX="14.0" layoutY="164.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/leftArrow.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fx:id="imgViewIconScroll" fitHeight="112.0" fitWidth="126.0" layoutX="14.0" layoutY="359.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
          <image>
             <Image url="@../images/potionRecipeIcon.png" />
@@ -46,7 +38,7 @@
       </ImageView>
       <Pane fx:id="pnSpeech" layoutX="527.0" layoutY="210.0" prefHeight="130.0" prefWidth="159.0" visible="false">
          <children>
-            <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="12.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="130.0" fitWidth="166.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/speechBubble.png" />
                </image>
@@ -89,10 +81,18 @@
             </HBox>
          </children>
       </Pane>
-      <ImageView fx:id="imgViewWizard1" fitHeight="201.0" fitWidth="147.0" layoutX="642.0" layoutY="318.0" onMouseClicked="#onWizardClicked" pickOnBounds="true">
+      <ImageView fx:id="imgViewWizard1" fitHeight="201.0" fitWidth="147.0" layoutX="640.0" layoutY="302.0" onMouseClicked="#onWizardClicked" pickOnBounds="true">
          <image>
             <Image url="@../images/wizard.png" />
          </image>
+      </ImageView>
+      <ImageView fx:id="imgViewLeftArrow1" fitHeight="71.0" fitWidth="40.0" layoutX="10.0" layoutY="221.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/leftArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </Pane>

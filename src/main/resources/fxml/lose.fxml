@@ -42,6 +42,6 @@
             <Font name="Lucida Calligraphy Italic" size="23.0" />
          </font>
       </Label>
-      <ProgressIndicator fx:id="progressIndicator" layoutX="264.0" layoutY="147.0" prefHeight="53.0" prefWidth="67.0" visible="false" />
+      <ProgressIndicator fx:id="progressIndicator" layoutX="357.0" layoutY="55.0" prefHeight="53.0" prefWidth="67.0" visible="false" />
    </children>
 </Pane>

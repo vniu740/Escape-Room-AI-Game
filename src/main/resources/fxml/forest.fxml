@@ -78,14 +78,6 @@
       <Pane fx:id="sldOneDisablePane" layoutX="239.0" layoutY="80.0" prefHeight="180.0" prefWidth="69.0" visible="false" />
       <Pane fx:id="sldTwoDisablePane" layoutX="309.0" layoutY="29.0" prefHeight="218.0" prefWidth="69.0" visible="false" />
       <ImageView fx:id="imgViewIngredient" fitHeight="68.0" fitWidth="76.0" layoutX="331.0" layoutY="200.0" onMouseClicked="#onIngredientClicked" pickOnBounds="true" preserveRatio="true" visible="false" />
-      <ImageView fx:id="imgViewRightArrow" fitHeight="111.0" fitWidth="40.0" layoutX="746.0" layoutY="209.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/rightArrow.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Pane fx:id="pnSpeech" layoutX="560.0" layoutY="193.0" prefHeight="130.0" prefWidth="159.0" visible="false">
          <children>
             <ImageView fitHeight="130.0" fitWidth="136.0" layoutX="12.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
@@ -144,5 +136,13 @@
             </HBox>
          </children>
       </Pane>
+      <ImageView fx:id="imgViewRightArrow1" fitHeight="80.0" fitWidth="36.0" layoutX="760.0" layoutY="223.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/rightArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>
