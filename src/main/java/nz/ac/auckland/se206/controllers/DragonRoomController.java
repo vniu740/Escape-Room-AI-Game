@@ -9,12 +9,15 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.ImagePulseAnimation;
@@ -27,6 +30,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
+  @FXML private static Label hintCounter;
 
   public static TimeManager getTimeManager() {
     return timeManager;
@@ -43,6 +47,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Label timerLblDragon;
   @FXML private Pane pnScroll;
   @FXML private Pane pnSpeech;
+  @FXML private Pane dragonPane;
   @FXML private Text txtSpeech;
 
   @FXML
@@ -56,6 +61,10 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     // Set image to correct ingredient
     imageScale.setImage(correctIngredient);
 
+    Tooltip lockTooltip = new Tooltip("Lock");
+    lockTooltip.setShowDelay(Duration.millis(0));
+    Tooltip.install(imageLock, lockTooltip);
+
     // Create a new thread for the animation
     Thread animationThread =
         new Thread(
@@ -67,6 +76,24 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
               image2Animation.playAnimation();
               leftArrowAnimation.playAnimation();
             });
+
+    // Add hintCounter
+    hintCounter = new Label();
+    // set the text colour to #ad1cad
+    hintCounter.setTextFill(Color.web("#ad1cad"));
+    // set styles
+    hintCounter.setStyle(
+        "-fx-font-size: 23px; "
+            + "-fx-font-weight: bold; "
+            + "-fx-font-family: 'lucida calligraphy'; "
+            + "-fx-font-style: italic; "
+            + "-fx-underline: true;");
+    // set the layout
+    hintCounter.setLayoutX(140);
+    hintCounter.setLayoutY(-7);
+    // add the hintCounter to the dragonPane
+    dragonPane.getChildren().add(hintCounter);
+    hintCounter.setText(Integer.toString(5));
 
     // Start the animation thread
     animationThread.start();
