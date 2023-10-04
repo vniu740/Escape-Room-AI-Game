@@ -136,7 +136,7 @@
             </HBox>
          </children>
       </Pane>
-      <ImageView fx:id="imgViewRightArrow1" fitHeight="80.0" fitWidth="36.0" layoutX="760.0" layoutY="223.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="760.0" layoutY="223.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightArrow.png" />
          </image>

@@ -86,7 +86,7 @@
             <Image url="@../images/wizard.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgViewLeftArrow1" fitHeight="71.0" fitWidth="40.0" layoutX="10.0" layoutY="221.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgViewLeftArrow" fitHeight="71.0" fitWidth="40.0" layoutX="10.0" layoutY="221.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/leftArrow.png" />
          </image>
