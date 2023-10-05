@@ -331,8 +331,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onSend() throws ApiProxyException {
-    // Disable the button
-    btnSend.setDisable(true);
+    // Disable the text field
+    txtFieldMessage.setEditable(false);
 
     // get the game level
     gameLevel = GameState.getLevel();
@@ -471,9 +471,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       Thread sendChatMessageThread = new Thread(sendChatMessageTask, "Send Chat Message Thread");
       sendChatMessageThread.start();
     }
-
-    // Enable the button
-    btnSend.setDisable(false);
   }
 
   @FXML
