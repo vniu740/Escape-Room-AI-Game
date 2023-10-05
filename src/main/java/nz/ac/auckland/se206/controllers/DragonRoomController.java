@@ -30,7 +30,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
-  @FXML private static Label hintCounter;
+  @FXML static Label hintCounter;
 
   public static TimeManager getTimeManager() {
     return timeManager;
@@ -93,7 +93,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     hintCounter.setLayoutY(-7);
     // add the hintCounter to the dragonPane
     dragonPane.getChildren().add(hintCounter);
-    hintCounter.setText(Integer.toString(5));
 
     // Start the animation thread
     animationThread.start();

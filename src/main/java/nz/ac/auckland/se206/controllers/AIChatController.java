@@ -43,7 +43,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 public class AIChatController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
-  private static int numHints;
+  static int numHints;
   @FXML private static ImageView chatBackground;
   @FXML private static Label hintCounter;
 
@@ -89,6 +89,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
   public static void setHintCounter() {
     if (GameState.level.equals("medium")) {
+      DragonRoomController.hintCounter.setText(Integer.toString(5 - numHints));
       hintCounter.setText(Integer.toString(5 - numHints));
     } else if (GameState.level.equals("hard")) {
       hintCounter.setText("0");
@@ -408,7 +409,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   }
                   if (gameLevel.equals("medium")) {
                     // Update the hint counter
-                    Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
+                    Platform.runLater(() -> setHintCounter());
                     addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
                     Platform.runLater(() -> stopAnimation());
                   }
