@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -36,11 +37,12 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
+  @FXML static Label hintCounter;
 
   public static TimeManager getTimeManager() {
     return timeManager;
   }
-  
+
   @FXML private Button btnSpeechExit;
   @FXML private Button switchScenes;
   @FXML private Button btnFishingExit;
@@ -65,6 +67,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Pane sldThreeDisablePane;
   @FXML private Pane pnScroll;
   @FXML private Pane pnSpeech;
+  @FXML private Pane paneForest;
   @FXML private Rectangle door;
   @FXML private Rectangle window;
   @FXML private Rectangle vase;
@@ -79,6 +82,23 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
+
+    // Add hintCounter
+    hintCounter = new Label();
+    // set the text colour to #ad1cad
+    hintCounter.setTextFill(Color.web("#ad1cad"));
+    // set styles
+    hintCounter.setStyle(
+        "-fx-font-size: 23px; "
+            + "-fx-font-weight: bold; "
+            + "-fx-font-family: 'lucida calligraphy'; "
+            + "-fx-font-style: italic; "
+            + "-fx-underline: true;");
+    // set the layout
+    hintCounter.setLayoutX(140);
+    hintCounter.setLayoutY(-7);
+    // add the hintCounter to the dragonPane
+    paneForest.getChildren().add(hintCounter);
 
     // Get the list of all possible forest images instantiated in LabController
     List<Image> uniqueImages = PotionManager.getForestObjectList();
