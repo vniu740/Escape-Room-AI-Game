@@ -98,7 +98,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     Collections.shuffle(uniqueImages);
     Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
 
-    Tooltip pondTooltip = new Tooltip("pondimagespiral");
+    Tooltip pondTooltip = new Tooltip("Pond");
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
 
