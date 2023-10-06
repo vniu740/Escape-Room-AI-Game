@@ -15,7 +15,7 @@
 
 <Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
    <children>
-      <ImageView fitHeight="509.0" fitWidth="800.0" layoutY="-8.0" pickOnBounds="true">
+      <ImageView fitHeight="509.0" fitWidth="800.0" layoutY="-5.0" pickOnBounds="true">
          <image>
             <Image url="@../images/lab.jpg" />
          </image>
@@ -133,22 +133,6 @@
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="pnScroll" layoutX="90.0" layoutY="45.0" prefHeight="325.0" prefWidth="525.0" visible="false">
-         <children>
-            <ImageView fitHeight="316.0" fitWidth="550.0" layoutX="-7.0" layoutY="6.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/scroll.png" />
-               </image>
-            </ImageView>
-            <HBox fx:id="scrollBox" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="448.0" style="-fx-spacing: 30;">
-               <children>
-                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" />
-               </children>
-            </HBox>
-         </children>
-      </Pane>
       <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="750.0" layoutY="213.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightArrow.png" />
@@ -164,7 +148,7 @@
                   <Image url="@../images/introBoard.jpg" />
                </image>
             </ImageView>
-            <Text fx:id="txtIntro" layoutX="25.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="318.21630859375" />
+            <Text fx:id="txtIntro" layoutX="26.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="318.21630859375" />
             <Button fx:id="btnIntroExit" layoutX="327.0" layoutY="269.0" mnemonicParsing="false" onAction="#onIntroExit" opacity="0.65" prefHeight="24.0" prefWidth="28.0" style="-fx-background-color: white;" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -193,5 +177,21 @@
          </cursor>
       </ImageView>
       <Label fx:id="timerLblLab" alignment="CENTER" layoutX="701.0" layoutY="68.0" prefHeight="34.0" prefWidth="85.0" text="00:00" />
+      <Pane fx:id="pnScroll" layoutX="110.0" layoutY="65.0" prefHeight="325.0" prefWidth="525.0" visible="false">
+         <children>
+            <ImageView fitHeight="316.0" fitWidth="550.0" layoutX="-7.0" layoutY="6.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/scroll.png" />
+               </image>
+            </ImageView>
+            <HBox fx:id="scrollBox" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="448.0" style="-fx-spacing: 30;">
+               <children>
+                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
    </children>
 </Pane>
