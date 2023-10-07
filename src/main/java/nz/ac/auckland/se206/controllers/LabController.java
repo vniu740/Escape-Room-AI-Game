@@ -26,6 +26,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -46,6 +47,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class LabController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManagerlab;
+  @FXML static Label hintCounter;
 
   public static TimeManager getTimeManager() {
     return timeManagerlab;
@@ -55,6 +57,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private ImagePulseAnimation leverAnimation;
   private ImagePulseAnimation jewelleryAnimation;
   private Thread animationJewelleryThread;
+  private Thread animationLabObjectThread;
 
   // Other fields
   private ChatCompletionRequest chatCompletionRequest;
@@ -107,6 +110,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Pane pnScroll;
   @FXML private Pane pnSpeech;
   @FXML private Pane pnIntro;
+  @FXML private Pane pnBack;
   @FXML private ProgressIndicator progressIndicator;
   @FXML private Text txtTryAgain;
   @FXML private Text txtCorrect;
@@ -156,6 +160,23 @@ public class LabController implements TimeManager.TimeUpdateListener {
         e -> {
           progressIndicator.setVisible(false);
         });
+
+    // Add hintCounter
+    hintCounter = new Label();
+    // set the text colour to #ad1cad
+    hintCounter.setTextFill(Color.web("#ad1cad"));
+    // set styles
+    hintCounter.setStyle(
+        "-fx-font-size: 18px; "
+            + "-fx-font-weight: bold; "
+            + "-fx-font-family: 'lucida calligraphy'; "
+            + "-fx-font-style: italic; "
+            + "-fx-underline: true;");
+    // set the layout
+    hintCounter.setLayoutX(140);
+    hintCounter.setLayoutY(0);
+    // add the hintCounter to the dragonPane
+    pnBack.getChildren().add(hintCounter);
 
     setPotionRecipe();
     setCauldronOrder();
@@ -214,10 +235,21 @@ public class LabController implements TimeManager.TimeUpdateListener {
             return null;
           }
         };
+
+    Task<Void> animationLabObjectTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            ImagePulseAnimation objectAnimation = new ImagePulseAnimation(imgViewIngredient);
+            objectAnimation.playAnimation();
+            return null;
+          }
+        };
     // Create threads that run each animation task. Start the main animation thread
     Thread animationThread = new Thread(animationTask, "Animation Thread");
     animationThread.start();
     animationJewelleryThread = new Thread(animationJewelleryTask, "Animation Thread");
+    animationLabObjectThread = new Thread(animationLabObjectTask, "Animation Thread");
   }
 
   // .
@@ -361,6 +393,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
       imgViewIngredient.setVisible(true);
       txtSpeech.setText("What a pretty gem!");
       pnSpeech.setVisible(true);
+      imgViewJewellery.setVisible(false);
+      animationLabObjectThread.start();
     } else {
       txtSpeech.setText("The jewellery box is locked");
       pnSpeech.setVisible(true);

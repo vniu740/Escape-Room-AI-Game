@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -36,6 +37,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
+  @FXML static Label hintCounter;
 
   public static TimeManager getTimeManager() {
     return timeManager;
@@ -54,6 +56,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private ImageView imgViewIconScroll;
   @FXML private ImageView imgViewIngredient;
   @FXML private ImageView imgViewWizard;
+  @FXML private ImageView correctImageView;
   @FXML private Label timerLbl;
   @FXML private Line threadOne;
   @FXML private Line threadTwo;
@@ -65,6 +68,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Pane sldThreeDisablePane;
   @FXML private Pane pnScroll;
   @FXML private Pane pnSpeech;
+  @FXML private Pane paneForest;
   @FXML private Rectangle door;
   @FXML private Rectangle window;
   @FXML private Rectangle vase;
@@ -79,6 +83,23 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // Initialization code goes here
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
+
+    // Add hintCounter
+    hintCounter = new Label();
+    // set the text colour to #ad1cad
+    hintCounter.setTextFill(Color.web("#ad1cad"));
+    // set styles
+    hintCounter.setStyle(
+        "-fx-font-size: 18px; "
+            + "-fx-font-weight: bold; "
+            + "-fx-font-family: 'lucida calligraphy'; "
+            + "-fx-font-style: italic; "
+            + "-fx-underline: true;");
+    // set the layout
+    hintCounter.setLayoutX(140);
+    hintCounter.setLayoutY(0);
+    // add the hintCounter to the dragonPane
+    paneForest.getChildren().add(hintCounter);
 
     // Get the list of all possible forest images instantiated in LabController
     List<Image> uniqueImages = PotionManager.getForestObjectList();
@@ -97,7 +118,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     Collections.shuffle(uniqueImages);
     Image[] shuffledImages = uniqueImages.toArray(new Image[0]);
 
-    Tooltip pondTooltip = new Tooltip("pondimagespiral");
+    Tooltip pondTooltip = new Tooltip("Pond");
     pondTooltip.setShowDelay(Duration.millis(0));
     Tooltip.install(imgViewSpiralPond, pondTooltip);
 
@@ -134,6 +155,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         pnSpeech.setVisible(true);
                       });
                   GameState.isFishingComplete = true;
+                  correctImageView = imgViewSpiralFrog;
+
                 }
 
                 // he slider should not move anymore
@@ -164,6 +187,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         pnSpeech.setVisible(true);
                       });
                   GameState.isFishingComplete = true;
+                  correctImageView = imgViewMushroom;
                 }
                 // he slider should not move anymore
                 sldTwo.lookup(".thumb").setPickOnBounds(false);
@@ -195,6 +219,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         pnSpeech.setVisible(true);
                       });
                   GameState.isFishingComplete = true;
+                  correctImageView = imgViewBug;
                 }
                 sldThree.lookup(".thumb").setPickOnBounds(false);
                 sldThreeDisablePane.setVisible(true);
@@ -245,8 +270,9 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // Remove the option to change room
     imgViewRightArrow.setVisible(false);
     if (GameState.isFishingComplete) {
-      txtSpeech.setText("You fished up the correct ingredient!");
+      txtSpeech.setText("You have already fished up the correct ingredient!");
       pnSpeech.setVisible(true);
+      correctImageView.setVisible(false);
     }
   }
 
@@ -259,7 +285,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     imgViewRightArrow.setVisible(true);
     pnSpeech.setVisible(false);
 
-    if (GameState.isFishingComplete == true) {
+    if (GameState.isFishingComplete == true && GameState.isForestCollected != true) {
       imgViewIngredient.setImage(correctIngredient);
       imgViewIngredient.setVisible(true);
       // Create a new thread for the animation
