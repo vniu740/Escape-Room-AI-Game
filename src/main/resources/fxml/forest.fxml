@@ -102,7 +102,7 @@
             </Text>
          </children>
       </Pane>
-      <ImageView fx:id="imgViewIconScroll1" fitHeight="112.0" fitWidth="126.0" layoutX="9.0" layoutY="369.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
+      <ImageView fx:id="imgViewIconScroll1" fitHeight="112.0" fitWidth="126.0" layoutY="387.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
          <image>
             <Image url="@../images/potionRecipeIcon.png" />
          </image>
@@ -110,20 +110,15 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewWizard1" fitHeight="201.0" fitWidth="147.0" layoutX="639.0" layoutY="308.0" onMouseClicked="#onWizardClicked" pickOnBounds="true">
-         <image>
-            <Image url="@../images/wizard.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="697.0" layoutY="28.0" pickOnBounds="true">
+      <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="699.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
          </image>
       </ImageView>
 
-      <Circle fill="DODGERBLUE" layoutX="743.0" layoutY="85.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Label fx:id="timerLbl" alignment="CENTER" layoutX="692.0" layoutY="68.0" prefHeight="34.0" prefWidth="102.0" text="00:00" />
-      <Pane fx:id="pnScroll" layoutX="100.0" layoutY="55.0" prefHeight="325.0" prefWidth="525.0" visible="false">
+      <Circle fill="DODGERBLUE" layoutX="745.0" layoutY="57.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLbl" alignment="CENTER" layoutX="694.0" layoutY="40.0" prefHeight="34.0" prefWidth="102.0" text="00:00" />
+      <Pane fx:id="pnScroll" layoutX="121.0" layoutY="61.0" prefHeight="325.0" prefWidth="525.0" visible="false">
          <children>
             <ImageView fitHeight="316.0" fitWidth="550.0" layoutX="-7.0" layoutY="6.0" pickOnBounds="true">
                <image>
@@ -139,6 +134,11 @@
             </HBox>
          </children>
       </Pane>
+      <ImageView fx:id="imgViewWizard1" fitHeight="201.0" fitWidth="147.0" layoutX="632.0" layoutY="308.0" onMouseClicked="#onWizardClicked" pickOnBounds="true">
+         <image>
+            <Image url="@../images/wizard.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="760.0" layoutY="223.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightArrow.png" />
