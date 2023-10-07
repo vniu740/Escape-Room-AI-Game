@@ -26,6 +26,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -46,6 +47,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class LabController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManagerlab;
+  @FXML static Label hintCounter;
 
   public static TimeManager getTimeManager() {
     return timeManagerlab;
@@ -107,6 +109,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML private Pane pnScroll;
   @FXML private Pane pnSpeech;
   @FXML private Pane pnIntro;
+  @FXML private Pane pnBack;
   @FXML private ProgressIndicator progressIndicator;
   @FXML private Text txtTryAgain;
   @FXML private Text txtCorrect;
@@ -156,6 +159,23 @@ public class LabController implements TimeManager.TimeUpdateListener {
         e -> {
           progressIndicator.setVisible(false);
         });
+
+    // Add hintCounter
+    hintCounter = new Label();
+    // set the text colour to #ad1cad
+    hintCounter.setTextFill(Color.web("#ad1cad"));
+    // set styles
+    hintCounter.setStyle(
+        "-fx-font-size: 18px; "
+            + "-fx-font-weight: bold; "
+            + "-fx-font-family: 'lucida calligraphy'; "
+            + "-fx-font-style: italic; "
+            + "-fx-underline: true;");
+    // set the layout
+    hintCounter.setLayoutX(140);
+    hintCounter.setLayoutY(0);
+    // add the hintCounter to the dragonPane
+    pnBack.getChildren().add(hintCounter);
 
     setPotionRecipe();
     setCauldronOrder();

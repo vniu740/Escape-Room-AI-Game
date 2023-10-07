@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
+<Pane fx:id="paneForest" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/slides.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ForestRoomController">
    <children>
       <ImageView fitHeight="399.0" fitWidth="600.0" pickOnBounds="true">
          <image>
@@ -145,5 +146,11 @@
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="546.0" layoutY="58.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
       <Label fx:id="timerLbl" alignment="CENTER" layoutX="496.0" layoutY="41.0" prefHeight="34.0" prefWidth="102.0" text="00:00" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="22.0" layoutX="23.0" layoutY="4.0" stroke="BLACK" strokeType="INSIDE" width="230.0" />
+      <Label layoutX="23.0" layoutY="5.0" prefHeight="19.0" prefWidth="124.0" text="Hints remaining: " textFill="#ae1bae">
+         <font>
+            <Font name="Lucida Calligraphy Italic" size="12.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
