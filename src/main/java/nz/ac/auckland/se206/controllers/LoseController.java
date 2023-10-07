@@ -39,8 +39,8 @@ public class LoseController {
     // Set the text to 0
     itemCounter.setText(Integer.toString(GameState.itemsCollected));
     // Have itemCounter in the middle of the screen
-    itemCounter.setLayoutX(263);
-    itemCounter.setLayoutY(200);
+    itemCounter.setLayoutX(310);
+    itemCounter.setLayoutY(260);
     // Set width to 53
     itemCounter.setMinWidth(53);
     // Set height to 123

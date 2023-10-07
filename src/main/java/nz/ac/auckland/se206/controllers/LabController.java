@@ -125,6 +125,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   private List<String> stringScrollListOrder = new ArrayList<String>();
   private List<String> imgCauldronList = new ArrayList<String>();
   private int imagesDropped = 0;
+  private TextToSpeech textToSpeech = new TextToSpeech();
 
   /**
    * Initialises the lab scene when called.
@@ -392,11 +393,25 @@ public class LabController implements TimeManager.TimeUpdateListener {
     if (GameState.isRiddleResolved && !GameState.isLabCollected) {
       imgViewIngredient.setVisible(true);
       txtSpeech.setText("What a pretty gem!");
+      // textToSpeech.speak("What a pretty gem!");
+            Thread speachThread =
+          new Thread(
+              () -> {
+                textToSpeech.speak("What a pretty gem!");;
+              });
+      speachThread.start();
       pnSpeech.setVisible(true);
       imgViewJewellery.setVisible(false);
       animationLabObjectThread.start();
     } else {
       txtSpeech.setText("The jewellery box is locked");
+      //textToSpeech.speak("The jewellery box is locked");
+      Thread speachThread =
+      new Thread(
+          () -> {
+             textToSpeech.speak("The jewellery box is locked");
+          });
+    speachThread.start();
       pnSpeech.setVisible(true);
     }
   }
@@ -411,6 +426,13 @@ public class LabController implements TimeManager.TimeUpdateListener {
     // Indicate that the lever is pulled
     GameState.isLeverPulled = true;
     txtSpeech.setText("The jewellery box is playing music!");
+    // textToSpeech.speak("The jewellery box is playing music!");
+    Thread speachThread =
+      new Thread(
+          () -> {
+              textToSpeech.speak("The jewellery box is playing music!");
+          });
+    speachThread.start();
     pnSpeech.setVisible(true);
     imgViewJewellery.setVisible(true);
     // Start the animtion of the jewellery box
@@ -442,6 +464,14 @@ public class LabController implements TimeManager.TimeUpdateListener {
       pnCauldronOpacity.setVisible(true);
       // Make the wizard inform the user on what to do
       txtSpeech.setText("Follow the recipe to make the shrinking potion!");
+      // textToSpeech.speak("Follow the recipe to make the shrinking potion!");
+      Thread speachThread =
+      new Thread(
+          () -> {
+              textToSpeech.speak("Follow the recipe to make the shrinking potion!");
+          });
+    speachThread.start();
+
       pnSpeech.setVisible(true);
     }
   }
@@ -632,7 +662,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
       Thread speachThread =
           new Thread(
               () -> {
-                TextToSpeech textToSpeech = new TextToSpeech();
+                //TextToSpeech textToSpeech = new TextToSpeech();
                 textToSpeech.speak("Item picked up");
               });
       speachThread.start();
@@ -669,6 +699,13 @@ public class LabController implements TimeManager.TimeUpdateListener {
       App.setUi(AppUi.WIN);
     } else {
       txtSpeech.setText("You can't escape yet! The potion hasn't been made");
+      // textToSpeech.speak("You can't escape yet! The potion hasn't been made");
+      Thread speachThread =
+      new Thread(
+          () -> {
+              textToSpeech.speak("You can't escape yet! The potion hasn't been made");
+          });
+    speachThread.start();
       pnSpeech.setVisible(true);
     }
   }

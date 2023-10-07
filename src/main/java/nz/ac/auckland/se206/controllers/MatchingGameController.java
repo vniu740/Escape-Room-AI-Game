@@ -24,6 +24,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.Tile;
 import nz.ac.auckland.se206.TimeManager;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
@@ -35,6 +36,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   private ImageView[] tiles; // Array of tile ImageViews
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
+  private TextToSpeech textToSpeech = new TextToSpeech();
 
   @FXML private Button btnSpeechExit;
   @FXML private Button buttonBack;
@@ -232,6 +234,14 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
       GameState.isMatchGameWon = true;
       System.out.println("Game won");
       txtSpeech.setText("You found 3 pairs! Dragon ingredient is now unlocked");
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("You found 3 pairs! Dragon ingredient is now unlocked");
+              });
+      speachThread.start();
+
       txtSpeech.setVisible(true);
       btnSpeechExit.setVisible(true);
       imgViewSpeech.setVisible(true);

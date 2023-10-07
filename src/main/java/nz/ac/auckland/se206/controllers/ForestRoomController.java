@@ -76,6 +76,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Slider sldTwo;
   @FXML private Slider sldThree;
   @FXML private Text txtSpeech;
+  private TextToSpeech textToSpeech = new TextToSpeech();
+
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -154,6 +156,14 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         txtSpeech.setText("You fished up the correct ingredient!");
                         pnSpeech.setVisible(true);
                       });
+                  Thread speachThread =
+                   new Thread(
+                          () -> {
+                            textToSpeech.speak("You fished up the correct ingredient!");;
+                          });
+                  speachThread.start();
+                      
+                      
                   GameState.isFishingComplete = true;
                   correctImageView = imgViewSpiralFrog;
 
@@ -218,6 +228,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         txtSpeech.setText("You fished up the correct ingredient!");
                         pnSpeech.setVisible(true);
                       });
+                  Thread speachThread =new Thread(() -> {
+                            textToSpeech.speak("You fished up the correct ingredient!");;
+                          });
+                  speachThread.start();
                   GameState.isFishingComplete = true;
                   correctImageView = imgViewBug;
                 }
@@ -270,7 +284,13 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     // Remove the option to change room
     imgViewRightArrow.setVisible(false);
     if (GameState.isFishingComplete) {
-      txtSpeech.setText("You have already fished up the correct ingredient!");
+
+      txtSpeech.setText("You fished up the correct ingredient!");
+        Thread speachThread =new Thread(() -> {
+               textToSpeech.speak("You fished up the correct ingredient!");;
+                  });
+              speachThread.start();
+
       pnSpeech.setVisible(true);
       correctImageView.setVisible(false);
     }

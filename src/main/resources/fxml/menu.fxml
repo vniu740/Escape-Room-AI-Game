@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="486.0" maxWidth="496.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
+<Pane maxHeight="486.0" maxWidth="496.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MenuController">
    <children>
-      <ImageView fx:id="btnEasy" fitHeight="420.0" fitWidth="600.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnEasy" fitHeight="507.0" fitWidth="800.0" layoutY="-5.0" pickOnBounds="true">
          <image>
             <Image url="@../images/stars.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnMediumMode" layoutX="239.0" layoutY="82.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onMediumClick" prefHeight="38.0" prefWidth="124.0" text="MEDIUM">
+      <Button fx:id="btnMediumMode" layoutX="338.0" layoutY="98.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onMediumClick" prefHeight="38.0" prefWidth="124.0" text="MEDIUM">
          <font>
             <Font name="Herculanum" size="19.0" />
          </font>
@@ -27,7 +27,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnHardMode" layoutX="368.0" layoutY="82.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHardClick" prefHeight="38.0" prefWidth="124.0" text="HARD">
+      <Button fx:id="btnHardMode" layoutX="487.0" layoutY="98.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHardClick" prefHeight="38.0" prefWidth="124.0" text="HARD">
          <font>
             <Font name="Herculanum" size="19.0" />
          </font>
@@ -38,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnEasyMode" layoutX="110.0" layoutY="82.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onEasyClick" prefHeight="38.0" prefWidth="124.0" text="EASY">
+      <Button fx:id="btnEasyMode" layoutX="194.0" layoutY="98.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onEasyClick" prefHeight="38.0" prefWidth="124.0" text="EASY">
          <font>
             <Font name="Herculanum" size="19.0" />
          </font>
@@ -49,13 +49,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Pane fx:id="pnDifficultyMenu" layoutX="110.0" layoutY="130.0" prefHeight="263.0" prefWidth="382.0">
+      <Pane fx:id="pnDifficultyMenu" layoutX="221.0" layoutY="136.0" prefHeight="263.0" prefWidth="489.0">
          <children>
-            <ImageView fx:id="imgViewDifficultyMenu" fitHeight="263.0" fitWidth="382.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgViewDifficultyMenu" fitHeight="301.0" fitWidth="465.0" layoutX="-45.0" layoutY="12.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/easy.png" />
                </image></ImageView>
-            <ToggleButton fx:id="toggleBtnFourMins" layoutX="142.0" layoutY="154.0" mnemonicParsing="false" onAction="#onFourMinsClick" prefHeight="27.0" prefWidth="91.0" text="4 Mins">
+            <ToggleButton fx:id="toggleBtnFourMins" layoutX="142.0" layoutY="195.0" mnemonicParsing="false" onAction="#onFourMinsClick" prefHeight="27.0" prefWidth="91.0" text="4 Mins">
                <font>
                   <Font name="Herculanum" size="13.0" />
                </font>
@@ -66,7 +66,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ToggleButton>
-            <ToggleButton fx:id="toggleBtnTwoMins" layoutX="46.0" layoutY="154.0" mnemonicParsing="false" onAction="#onTwoMinsClick" prefHeight="27.0" prefWidth="91.0" text="2 Mins">
+            <ToggleButton fx:id="toggleBtnTwoMins" layoutX="14.0" layoutY="195.0" mnemonicParsing="false" onAction="#onTwoMinsClick" prefHeight="27.0" prefWidth="91.0" text="2 Mins">
                <font>
                   <Font name="Herculanum" size="13.0" />
                </font>
@@ -77,7 +77,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ToggleButton>
-            <ToggleButton fx:id="toggleBtnSixMins" layoutX="237.0" layoutY="154.0" mnemonicParsing="false" onAction="#onSixMinsClick" prefHeight="27.0" prefWidth="91.0" text="6 Mins">
+            <ToggleButton fx:id="toggleBtnSixMins" layoutX="263.0" layoutY="195.0" mnemonicParsing="false" onAction="#onSixMinsClick" prefHeight="27.0" prefWidth="91.0" text="6 Mins">
                <font>
                   <Font name="Herculanum" size="13.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ToggleButton>
-            <Button fx:id="btnPlay" disable="true" layoutX="126.0" layoutY="204.0" mnemonicParsing="false" onAction="#onPlayClick" prefHeight="44.0" prefWidth="131.0" text="PLAY">
+            <Button fx:id="btnPlay" disable="true" layoutX="122.0" layoutY="242.0" mnemonicParsing="false" onAction="#onPlayClick" prefHeight="44.0" prefWidth="131.0" text="PLAY">
                <font>
                   <Font name="Herculanum" size="26.0" />
                </font>

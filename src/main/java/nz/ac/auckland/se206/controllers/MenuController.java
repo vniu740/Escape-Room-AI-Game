@@ -327,6 +327,7 @@ public class MenuController {
     sceneButtonIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
     // start timer of timer manager by getting the instance
     ForestRoomController.getTimeManager().startTimer(timeRemaining);
+    
   }
 
   /** Helper method that translates the pane pnDifficultyMenu upwards. */

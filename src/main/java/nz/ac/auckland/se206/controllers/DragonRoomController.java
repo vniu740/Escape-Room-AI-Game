@@ -122,6 +122,14 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     pnSpeech.setVisible(false);
     GameState.currentRoom = "matchGame";
     App.setUi(AppUi.MATCHING);
+    Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("match 3 items to unlock the shelf");
+              });
+      speachThread.start();
+
   }
 
   @FXML
@@ -142,6 +150,13 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       pnSpeech.setVisible(false);
     } else {
       pnSpeech.setVisible(true);
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("You can't pick it up! Unlock the shelf first.");
+              });
+      speachThread.start();
     }
   }
 

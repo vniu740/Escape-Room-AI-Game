@@ -61,7 +61,7 @@ public class App extends Application {
 
     // Setting the scene to the start page
     Parent root = SceneManager.getUi(AppUi.START_PAGE);
-    scene = new Scene(root, 600, 399);
+    scene = new Scene(root, 800, 499);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
