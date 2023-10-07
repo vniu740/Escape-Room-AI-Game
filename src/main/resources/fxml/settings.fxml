@@ -10,26 +10,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="600.0" stylesheets="@../css/settings.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SettingsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" stylesheets="@../css/settings.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.SettingsController">
    <children>
-      <ImageView fitHeight="408.0" fitWidth="606.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitWidth="800.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/settings.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnSounds" layoutX="320.0" layoutY="117.0" mnemonicParsing="false" onAction="#onSoundClicked" prefHeight="53.0" prefWidth="142.0" text="On">
+      <Button fx:id="btnSounds" layoutX="449.0" layoutY="160.0" mnemonicParsing="false" onAction="#onSoundClicked" prefHeight="53.0" prefWidth="142.0" text="On">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnTextToSpeech" layoutX="320.0" layoutY="191.0" mnemonicParsing="false" onAction="#onTextToSpeechClick" prefHeight="53.0" prefWidth="142.0" text="On">
+      <Button fx:id="btnTextToSpeech" layoutX="449.0" layoutY="261.0" mnemonicParsing="false" onAction="#onTextToSpeechClick" prefHeight="53.0" prefWidth="142.0" text="On">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnExitGame" layoutX="320.0" layoutY="278.0" mnemonicParsing="false" onAction="#onExitGame" prefHeight="68.0" prefWidth="142.0" text="Exit game">
+      <Button fx:id="btnExitGame" layoutX="449.0" layoutY="353.0" mnemonicParsing="false" onAction="#onExitGame" prefHeight="68.0" prefWidth="142.0" text="Exit game">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Text fx:id="txtBack" layoutX="167.0" layoutY="323.0" onMouseClicked="#onGoBack" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;&lt; Back">
+      <Text fx:id="txtBack" layoutX="236.0" layoutY="398.0" onMouseClicked="#onGoBack" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;&lt; Back">
          <font>
             <Font name="Arial Rounded MT Bold" size="30.0" />
          </font>
@@ -37,12 +37,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Text>
-      <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="520.0" layoutY="-17.0" pickOnBounds="true">
+      <ImageView fitHeight="100.0" fitWidth="91.0" layoutX="671.0" layoutY="10.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
          </image>
       </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="565.0" layoutY="42.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Label fx:id="timerLblSettings" alignment="CENTER" layoutX="532.0" layoutY="25.0" prefHeight="34.0" prefWidth="63.0" text="00:00" />
+      <Circle fill="DODGERBLUE" layoutX="716.0" layoutY="69.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Label fx:id="timerLblSettings" alignment="CENTER" layoutX="683.0" layoutY="52.0" prefHeight="34.0" prefWidth="63.0" text="00:00" />
    </children>
 </Pane>

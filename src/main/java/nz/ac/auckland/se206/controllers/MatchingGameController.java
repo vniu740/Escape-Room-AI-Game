@@ -234,13 +234,15 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
       GameState.isMatchGameWon = true;
       System.out.println("Game won");
       txtSpeech.setText("You found 3 pairs! Dragon ingredient is now unlocked");
-      Thread speachThread =
-          new Thread(
-              () -> {
-                TextToSpeech textToSpeech = new TextToSpeech();
-                textToSpeech.speak("You found 3 pairs! Dragon ingredient is now unlocked");
-              });
-      speachThread.start();
+      if (GameState.isTextToSpeechEnabled == true) {
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  TextToSpeech textToSpeech = new TextToSpeech();
+                  textToSpeech.speak("You found 3 pairs! Dragon ingredient is now unlocked");
+                });
+        speachThread.start();
+      }
 
       txtSpeech.setVisible(true);
       btnSpeechExit.setVisible(true);
