@@ -51,7 +51,14 @@ public class GameState {
   /** Indicates if the game has been won */
   public static boolean isWon = false;
 
+  /** Indicates the correct answer to the riddle */
   public static String correctAnswer;
+
+  /** Indicates if sounds are enabled */
+  public static boolean isSoundEnabled = true;
+
+  /** Indicates if text to speech is enabled */
+  public static boolean isTextToSpeechEnabled = true;
 
   /** Resets the game state */
   public static void reset() {

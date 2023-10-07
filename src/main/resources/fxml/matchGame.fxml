@@ -126,8 +126,18 @@
                <Image url="@../images/clock.png" />
             </image>
          </ImageView>
-         <Circle fill="DODGERBLUE" layoutX="743.0" layoutY="85.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-         <Label fx:id="timerLblMatchGame" alignment="CENTER" layoutX="712.0" layoutY="68.0" prefHeight="34.0" prefWidth="63.0" text="00:00" />
+
+         <Circle fill="DODGERBLUE" layoutX="566.0" layoutY="78.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+         <Label fx:id="timerLblMatchGame" alignment="CENTER" layoutX="533.0" layoutY="61.0" prefHeight="34.0" prefWidth="63.0" text="00:00" />
+         <ImageView fx:id="imgViewSettings" fitHeight="49.0" fitWidth="40.0" layoutX="8.0" layoutY="4.0" onMouseClicked="#onSettingsClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/settingsIcon.png" />
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </ImageView>
+
       </children>
    </Pane>
 </VBox>

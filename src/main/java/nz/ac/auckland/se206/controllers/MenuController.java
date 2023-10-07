@@ -202,6 +202,7 @@ public class MenuController {
     // set the game state level to hard
     GameState.setLevel("hard");
     AIChatController.setHintCounter();
+
   }
 
   /**

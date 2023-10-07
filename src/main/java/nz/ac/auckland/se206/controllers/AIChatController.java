@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -17,10 +18,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -42,7 +46,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 public class AIChatController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
-  private static int numHints;
+  static int numHints;
   @FXML private static ImageView chatBackground;
   @FXML private static Label hintCounter;
 
@@ -88,16 +92,29 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
   public static void setHintCounter() {
     if (GameState.level.equals("medium")) {
+      // Update the hint counter for all suitable rooms.
+      DragonRoomController.hintCounter.setText(Integer.toString(5 - numHints));
+      LabController.hintCounter.setText(Integer.toString(5 - numHints));
+      ForestRoomController.hintCounter.setText(Integer.toString(5 - numHints));
       hintCounter.setText(Integer.toString(5 - numHints));
     } else if (GameState.level.equals("hard")) {
+      // Update the hint counter for all suitable rooms.
+      DragonRoomController.hintCounter.setText(Integer.toString(0));
+      LabController.hintCounter.setText(Integer.toString(0));
+      ForestRoomController.hintCounter.setText(Integer.toString(0));
       hintCounter.setText("0");
     } else {
+      // Update the hint counter for all suitable rooms.
+      DragonRoomController.hintCounter.setText("Unlimited");
+      LabController.hintCounter.setText("Unlimited");
+      ForestRoomController.hintCounter.setText("Unlimited");
       hintCounter.setText("Unlimited");
     }
   }
 
   private ChatCompletionRequest chatCompletionRequest;
   private ChatCompletionRequest chatCompletionRequestChat;
+  private MediaPlayer mediaPlayerHint;
   private String gameLevel;
   private Timeline timeline =
       new Timeline(
@@ -156,9 +173,20 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private VBox messageBox;
 
   @FXML
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws ApiProxyException, URISyntaxException {
+
+    // Add a key pressed event handler to the text field
+    txtFieldMessage.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            // Trigger the button's action when Enter is pressed
+            btnSend.fire();
+          }
+        });
+
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
+    createHintMediaPlayer();
 
     // Set the background image
     chatBackground = new ImageView();
@@ -178,14 +206,16 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     hintCounter.setTextFill(Color.web("#ad1cad"));
     // set styles
     hintCounter.setStyle(
-        "-fx-font-size: 23px; "
+        "-fx-font-size: 18px; "
             + "-fx-font-weight: bold; "
             + "-fx-font-family: 'lucida calligraphy'; "
             + "-fx-font-style: italic; "
             + "-fx-underline: true;");
     // set the layout
+
     hintCounter.setLayoutX(145);
     hintCounter.setLayoutY(14);
+
     // add the hintCounter to the paneBack
     paneBack.getChildren().add(hintCounter);
 
@@ -303,6 +333,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onSend() throws ApiProxyException {
+    // Disable the text field
+    txtFieldMessage.setEditable(false);
+
     // get the game level
     gameLevel = GameState.getLevel();
 
@@ -394,12 +427,16 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   }
                   if (gameLevel.equals("medium")) {
                     // Update the hint counter
-                    Platform.runLater(() -> hintCounter.setText(Integer.toString(5 - numHints)));
+                    Platform.runLater(() -> setHintCounter());
+
+                    // Play the hint sound effect
+                    Platform.runLater(() -> mediaPlayerHint.seek(mediaPlayerHint.getStartTime()));
+                    Platform.runLater(() -> mediaPlayerHint.play());
+
                     addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
                     Platform.runLater(() -> stopAnimation());
                   }
                   if (gameLevel.equals("easy")) {
-                    // Update the hint counter
                     addLabel(lastMsg.getContent(), messageBox, scrollPaneMain);
                     Platform.runLater(() -> stopAnimation());
                   }
@@ -528,10 +565,20 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       GameState.isRiddleResolved = true;
     }
   }
+
+  public void createHintMediaPlayer() throws URISyntaxException {
+    // Create the media player that runs the sound bubbles.mp3
+    String path = getClass().getResource("/sounds/hintSound.mp3").toURI().toString();
+    Media mediaBubbles = new Media(path);
+    mediaPlayerHint = new MediaPlayer(mediaBubbles);
+    mediaPlayerHint.setVolume(0.15);
+  }
 }
 
 /**
  * Attribution:
+ *
+ * <p>hintSound.mp3 has been originally created by us.
  *
  * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
  */
