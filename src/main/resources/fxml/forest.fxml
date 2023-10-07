@@ -146,6 +146,14 @@
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="546.0" layoutY="58.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
       <Label fx:id="timerLbl" alignment="CENTER" layoutX="496.0" layoutY="41.0" prefHeight="34.0" prefWidth="102.0" text="00:00" />
+      <ImageView fx:id="imgViewSettings" fitHeight="49.0" fitWidth="40.0" layoutX="12.0" layoutY="14.0" onMouseClicked="#onSettingsClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/settingsIcon.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="22.0" layoutX="23.0" layoutY="4.0" stroke="BLACK" strokeType="INSIDE" width="230.0" />
       <Label layoutX="23.0" layoutY="5.0" prefHeight="19.0" prefWidth="124.0" text="Hints remaining: " textFill="#ae1bae">
          <font>

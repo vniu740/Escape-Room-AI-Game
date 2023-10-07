@@ -386,6 +386,16 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     AIChatController.setBackground();
     App.setUi(AppUi.AICHAT);
   }
+
+  /**
+   * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
+   *
+   * @param event
+   */
+  @FXML
+  private void onSettingsClicked(MouseEvent event) {
+    App.setUi(AppUi.SETTINGS);
+  }
 }
 
 /**

@@ -15,7 +15,8 @@ public class SceneManager {
     LAB,
     LOSE,
     WIN,
-   AICHAT; 
+    AICHAT,
+    SETTINGS;
   }
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
