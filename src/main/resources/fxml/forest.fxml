@@ -31,22 +31,33 @@
          <image>
             <Image url="@../images/pond.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <Pane fx:id="pnFishingOpacity" layoutX="125.0" layoutY="12.0" opacity="0.7" prefHeight="386.0" prefWidth="550.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
+      <ImageView fx:id="imgViewIconScroll1" fitHeight="112.0" fitWidth="126.0" layoutY="387.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
+         <image>
+            <Image url="@../images/potionRecipeIcon.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <Pane fx:id="pnFishingOpacity" opacity="0.7" prefHeight="505.0" prefWidth="800.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false">
          <children>
-            <Button fx:id="btnFishingExit" layoutX="505.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#onFishingExit" opacity="0.65" style="-fx-background-color: white;" text="X">
+            <Button fx:id="btnFishingExit" layoutX="642.0" layoutY="133.0" mnemonicParsing="false" onMouseClicked="#onFishingExit" opacity="0.65" style="-fx-background-color: white;" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text fill="WHITE" layoutX="111.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fish up the correct ingredient!" textAlignment="CENTER" wrappingWidth="327.00001580328717">
+            <Text fill="WHITE" layoutX="236.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fish up the correct ingredient!" textAlignment="CENTER" wrappingWidth="327.00001580328717">
                <font>
                   <Font name="Herculanum" size="26.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="pnFishing" layoutX="170.0" layoutY="101.0" prefHeight="268.0" prefWidth="464.0" visible="false">
+      <Pane fx:id="pnFishing" layoutX="170.0" layoutY="135.0" prefHeight="268.0" prefWidth="464.0" style="-fx-border-radius: 0;" visible="false">
          <children>
             <ImageView fitHeight="277.0" fitWidth="464.0" layoutX="-3.0" pickOnBounds="true">
                <image>
@@ -102,14 +113,6 @@
             </Text>
          </children>
       </Pane>
-      <ImageView fx:id="imgViewIconScroll1" fitHeight="112.0" fitWidth="126.0" layoutY="387.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
-         <image>
-            <Image url="@../images/potionRecipeIcon.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="699.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
@@ -138,6 +141,9 @@
          <image>
             <Image url="@../images/wizard.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="imgViewRightArrow" fitHeight="80.0" fitWidth="36.0" layoutX="760.0" layoutY="223.0" onMouseClicked="#onRightArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>

@@ -24,6 +24,9 @@
          <image>
             <Image url="@../images/lock.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="imageScale" fitHeight="66.0" fitWidth="69.0" layoutX="312.0" layoutY="284.0" onMouseClicked="#onScaleClicked" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -86,6 +89,9 @@
          <image>
             <Image url="@../images/wizard.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="imgViewLeftArrow" fitHeight="71.0" fitWidth="40.0" layoutX="10.0" layoutY="221.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>

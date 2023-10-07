@@ -27,46 +27,73 @@
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile2" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile3" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile4" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile5" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile6" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile7" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile8" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
               <ImageView fx:id="tile9" fitHeight="80.0" fitWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <image>
                   <Image url="@../images/mysteryTile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <columnConstraints>
                <ColumnConstraints />
@@ -82,7 +109,10 @@
                <RowConstraints />
             </rowConstraints>
           </GridPane>
-         <Button fx:id="buttonBack" alignment="CENTER" layoutX="350.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="48.0" prefWidth="100.0" text="Go back" />
+         <Button fx:id="buttonBack" alignment="CENTER" layoutX="350.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#onBackClicked" prefHeight="48.0" prefWidth="100.0" text="Go back">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
          <ImageView fx:id="counterBack" fitHeight="120.0" fitWidth="131.0" layoutX="28.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../images/paperButton.png" />
@@ -120,6 +150,9 @@
             <image>
                <Image url="@../images/wizard.png" />
             </image>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
          </ImageView>
          <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="694.0" layoutY="9.0" pickOnBounds="true">
             <image>
