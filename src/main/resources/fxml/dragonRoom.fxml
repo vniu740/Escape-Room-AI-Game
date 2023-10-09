@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="dragonPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DragonRoomController">
+<Pane fx:id="dragonPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DragonRoomController">
 
    <children>
       <ImageView fitHeight="509.0" fitWidth="800.0" layoutY="-6.0" pickOnBounds="true">
@@ -24,13 +24,16 @@
          <image>
             <Image url="@../images/lock.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <ImageView fx:id="imageScale" fitHeight="53.0" fitWidth="53.0" layoutX="319.0" layoutY="298.0" onMouseClicked="#onScaleClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageScale" fitHeight="66.0" fitWidth="69.0" layoutX="312.0" layoutY="284.0" onMouseClicked="#onScaleClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/scale.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgViewIconScroll" fitHeight="112.0" fitWidth="126.0" layoutX="14.0" layoutY="359.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
+      <ImageView fx:id="imgViewIconScroll" fitHeight="112.0" fitWidth="126.0" layoutY="387.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
          <image>
             <Image url="@../images/potionRecipeIcon.png" />
          </image>
@@ -60,13 +63,13 @@
             </Text>
          </children>
       </Pane>
-      <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="687.0" layoutY="18.0" pickOnBounds="true">
+      <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="699.0" pickOnBounds="true">
          <image>
             <Image url="@../images/clock.png" />
          </image>
       </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="733.0" layoutY="75.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <Pane fx:id="pnScroll" layoutX="100.0" layoutY="55.0" prefHeight="325.0" prefWidth="525.0" visible="false">
+      <Circle fill="DODGERBLUE" layoutX="745.0" layoutY="57.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <Pane fx:id="pnScroll" layoutX="138.0" layoutY="72.0" prefHeight="325.0" prefWidth="525.0" visible="false">
          <children>
             <ImageView fitHeight="316.0" fitWidth="550.0" layoutX="-7.0" layoutY="6.0" pickOnBounds="true">
                <image>
@@ -82,10 +85,13 @@
             </HBox>
          </children>
       </Pane>
-      <ImageView fx:id="imgViewWizard1" fitHeight="201.0" fitWidth="147.0" layoutX="640.0" layoutY="302.0" onMouseClicked="#onWizardClicked" pickOnBounds="true">
+      <ImageView fx:id="imgViewWizard1" fitHeight="201.0" fitWidth="147.0" layoutX="632.0" layoutY="308.0" onMouseClicked="#onWizardClicked" pickOnBounds="true">
          <image>
             <Image url="@../images/wizard.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="imgViewLeftArrow" fitHeight="71.0" fitWidth="40.0" layoutX="10.0" layoutY="221.0" onMouseClicked="#onLeftArrowClicked" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -95,7 +101,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="timerLblDragon" alignment="CENTER" layoutX="665.0" layoutY="58.0" prefHeight="34.0" prefWidth="136.0" text="00:00" />
+      <Label fx:id="timerLblDragon" alignment="CENTER" layoutX="677.0" layoutY="40.0" prefHeight="34.0" prefWidth="136.0" text="00:00" />
       <ImageView fx:id="imgViewSettings" fitHeight="49.0" fitWidth="40.0" layoutX="12.0" layoutY="14.0" onMouseClicked="#onSettingsClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/settingsIcon.png" />

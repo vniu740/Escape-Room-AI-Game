@@ -393,25 +393,32 @@ public class LabController implements TimeManager.TimeUpdateListener {
     if (GameState.isRiddleResolved && !GameState.isLabCollected) {
       imgViewIngredient.setVisible(true);
       txtSpeech.setText("What a pretty gem!");
-      // textToSpeech.speak("What a pretty gem!");
-            Thread speachThread =
-          new Thread(
-              () -> {
-                textToSpeech.speak("What a pretty gem!");;
-              });
-      speachThread.start();
+
+      if (GameState.isTextToSpeechEnabled == true) {
+        // textToSpeech.speak("What a pretty gem!");
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  textToSpeech.speak("What a pretty gem!");
+                  ;
+                });
+        speachThread.start();
+      }
       pnSpeech.setVisible(true);
       imgViewJewellery.setVisible(false);
       animationLabObjectThread.start();
     } else {
       txtSpeech.setText("The jewellery box is locked");
-      //textToSpeech.speak("The jewellery box is locked");
-      Thread speachThread =
-      new Thread(
-          () -> {
-             textToSpeech.speak("The jewellery box is locked");
-          });
-    speachThread.start();
+
+      if (GameState.isTextToSpeechEnabled == true) {
+        // textToSpeech.speak("The jewellery box is locked");
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  textToSpeech.speak("The jewellery box is locked");
+                });
+        speachThread.start();
+      }
       pnSpeech.setVisible(true);
     }
   }
@@ -426,13 +433,15 @@ public class LabController implements TimeManager.TimeUpdateListener {
     // Indicate that the lever is pulled
     GameState.isLeverPulled = true;
     txtSpeech.setText("The jewellery box is playing music!");
-    // textToSpeech.speak("The jewellery box is playing music!");
-    Thread speachThread =
-      new Thread(
-          () -> {
-              textToSpeech.speak("The jewellery box is playing music!");
-          });
-    speachThread.start();
+    if (GameState.isTextToSpeechEnabled == true) {
+      // textToSpeech.speak("The jewellery box is playing music!");
+      Thread speachThread =
+          new Thread(
+              () -> {
+                textToSpeech.speak("The jewellery box is playing music!");
+              });
+      speachThread.start();
+    }
     pnSpeech.setVisible(true);
     imgViewJewellery.setVisible(true);
     // Start the animtion of the jewellery box
@@ -464,13 +473,16 @@ public class LabController implements TimeManager.TimeUpdateListener {
       pnCauldronOpacity.setVisible(true);
       // Make the wizard inform the user on what to do
       txtSpeech.setText("Follow the recipe to make the shrinking potion!");
-      // textToSpeech.speak("Follow the recipe to make the shrinking potion!");
-      Thread speachThread =
-      new Thread(
-          () -> {
-              textToSpeech.speak("Follow the recipe to make the shrinking potion!");
-          });
-    speachThread.start();
+
+      if (GameState.isTextToSpeechEnabled == true) {
+        // textToSpeech.speak("Follow the recipe to make the shrinking potion!");
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  textToSpeech.speak("Follow the recipe to make the shrinking potion!");
+                });
+        speachThread.start();
+      }
 
       pnSpeech.setVisible(true);
     }
@@ -658,14 +670,16 @@ public class LabController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onIngredientClicked(MouseEvent event) {
     if (GameState.isRiddleResolved) {
-      // Play the textToSpeech using a thread to make sure the app doesnt freeze
-      Thread speachThread =
-          new Thread(
-              () -> {
-                //TextToSpeech textToSpeech = new TextToSpeech();
-                textToSpeech.speak("Item picked up");
-              });
-      speachThread.start();
+      if (GameState.isTextToSpeechEnabled == true) {
+        // Play the textToSpeech using a thread to make sure the app doesnt freeze
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  // TextToSpeech textToSpeech = new TextToSpeech();
+                  textToSpeech.speak("Item picked up");
+                });
+        speachThread.start();
+      }
       // Remove the item and update the GameState
       GameState.isLabCollected = true;
       GameState.itemsCollected++;
@@ -699,13 +713,16 @@ public class LabController implements TimeManager.TimeUpdateListener {
       App.setUi(AppUi.WIN);
     } else {
       txtSpeech.setText("You can't escape yet! The potion hasn't been made");
-      // textToSpeech.speak("You can't escape yet! The potion hasn't been made");
-      Thread speachThread =
-      new Thread(
-          () -> {
-              textToSpeech.speak("You can't escape yet! The potion hasn't been made");
-          });
-    speachThread.start();
+
+      if (GameState.isTextToSpeechEnabled == true) {
+        // textToSpeech.speak("You can't escape yet! The potion hasn't been made");
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  textToSpeech.speak("You can't escape yet! The potion hasn't been made");
+                });
+        speachThread.start();
+      }
       pnSpeech.setVisible(true);
     }
   }

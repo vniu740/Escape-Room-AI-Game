@@ -14,8 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
+<Pane fx:id="pnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LabController">
 
    <children>
       <ImageView fitHeight="509.0" fitWidth="800.0" layoutY="-5.0" pickOnBounds="true">
@@ -23,7 +22,7 @@
             <Image url="@../images/lab.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgViewWindow" fitHeight="68.0" fitWidth="76.0" layoutX="307.0" layoutY="144.0" onMouseClicked="#onWindowClicked" pickOnBounds="true">
+      <ImageView fx:id="imgViewWindow" fitHeight="68.0" fitWidth="76.0" layoutX="307.0" layoutY="147.0" onMouseClicked="#onWindowClicked" pickOnBounds="true">
          <image>
             <Image url="@../images/window.png" />
          </image>
@@ -31,7 +30,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewJewellery" fitHeight="40.0" fitWidth="62.0" layoutX="329.0" layoutY="219.0" onMouseClicked="#onJewelleryClick" pickOnBounds="true">
+      <ImageView fx:id="imgViewJewellery" fitHeight="40.0" fitWidth="56.0" layoutX="330.0" layoutY="220.0" onMouseClicked="#onJewelleryClick" pickOnBounds="true">
          <image>
             <Image url="@../images/jewellery.png" />
          </image>
@@ -39,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewLever" fitHeight="51.0" fitWidth="28.0" layoutX="322.0" layoutY="344.0" onMouseClicked="#onLeverClick" pickOnBounds="true">
+      <ImageView fx:id="imgViewLever" fitHeight="51.0" fitWidth="28.0" layoutX="321.0" layoutY="346.0" onMouseClicked="#onLeverClick" pickOnBounds="true">
          <image>
             <Image url="@../images/lever.png" />
          </image>
@@ -47,7 +46,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="imgViewCauldron" fitHeight="82.0" fitWidth="118.0" layoutX="432.0" layoutY="297.0" onMouseClicked="#onCauldronClick" pickOnBounds="true">
+      <ImageView fx:id="imgViewCauldron" fitHeight="78.0" fitWidth="89.0" layoutX="446.0" layoutY="302.0" onMouseClicked="#onCauldronClick" pickOnBounds="true">
          <image>
             <Image url="@../images/labCauldron.png" />
          </image>
@@ -56,10 +55,10 @@
          </cursor>
       </ImageView>
       <ImageView fx:id="imgViewIngredient" fitHeight="33.0" fitWidth="36.0" layoutX="391.0" layoutY="213.0" onMouseClicked="#onIngredientClicked" pickOnBounds="true" preserveRatio="true" />
-      <Pane fx:id="pnCauldron" layoutX="71.0" layoutY="21.0" prefHeight="366.0" prefWidth="581.0" visible="false">
+      <Pane fx:id="pnCauldron" layoutX="101.0" layoutY="56.0" prefHeight="366.0" prefWidth="581.0" visible="false">
          <children>
             <Pane fx:id="pnCauldronOpacity" opacity="0.7" prefHeight="385.0" prefWidth="594.0" style="-fx-background-color: black; -fx-border-color: white;" visible="false" />
-            <ImageView fx:id="imgViewCauldronForest" fitHeight="92.0" fitWidth="85.0" layoutX="64.0" layoutY="71.0" onDragDetected="#onDragDetectionSourceForest" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgViewCauldronForest" fitHeight="102.0" fitWidth="102.0" layoutX="76.0" layoutY="80.0" onDragDetected="#onDragDetectionSourceForest" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
                </effect>
@@ -69,32 +68,32 @@
                   <Image url="@../images/cauldron.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgViewCauldronLab" fitHeight="92.0" fitWidth="85.0" layoutX="220.0" layoutY="65.0" onDragDetected="#onDragDetectionSourceLab" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgViewCauldronLab" fitHeight="102.0" fitWidth="102.0" layoutX="246.0" layoutY="80.0" onDragDetected="#onDragDetectionSourceLab" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
                </effect>
             </ImageView>
-            <ImageView fx:id="imgViewCauldronDragon" fitHeight="82.0" fitWidth="85.0" layoutX="404.0" layoutY="70.0" onDragDetected="#onDragDetectionSourceDragon" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgViewCauldronDragon" fitHeight="102.0" fitWidth="102.0" layoutX="420.0" layoutY="80.0" onDragDetected="#onDragDetectionSourceDragon" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <Shadow blurType="ONE_PASS_BOX" color="WHITE" />
                </effect>
             </ImageView>
-            <Text fill="WHITE" layoutX="26.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drag the ingredients into the cauldron to make the potion" wrappingWidth="441.99999237060547">
+            <Text fill="WHITE" layoutX="15.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drag the ingredients into the cauldron to make the potion" textAlignment="CENTER" wrappingWidth="550.0">
                <font>
-                  <Font name="Herculanum" size="14.0" />
+                  <Font name="Herculanum" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="txtTryAgain" fill="RED" layoutX="92.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrong! try again." textAlignment="CENTER" visible="false" wrappingWidth="280.0">
-               <font>
-                  <Font name="Herculanum" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtCorrect" fill="#51ff00" layoutX="36.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct! You made the potion" visible="false" wrappingWidth="391.21630859375">
+            <Text fx:id="txtTryAgain" fill="RED" layoutX="150.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wrong! try again." textAlignment="CENTER" visible="false" wrappingWidth="280.0">
                <font>
                   <Font name="Herculanum" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="btnCauldronExit" layoutX="531.0" layoutY="15.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: white;" text="X">
+            <Text fx:id="txtCorrect" fill="#51ff00" layoutX="100.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct! You made the potion" textAlignment="CENTER" visible="false" wrappingWidth="391.21630859375">
+               <font>
+                  <Font name="Herculanum" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnCauldronExit" layoutX="545.0" layoutY="15.0" mnemonicParsing="false" onAction="#onCauldronExit" opacity="0.65" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: white;" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -144,7 +143,38 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane fx:id="pnIntro" layoutX="193.0" layoutY="85.0" prefHeight="308.0" prefWidth="369.0">
+      <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="699.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/clock.png" />
+         </image>
+      </ImageView>
+      <Circle fill="DODGERBLUE" layoutX="745.0" layoutY="57.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+      <ImageView fx:id="imgViewIconScroll1" fitHeight="112.0" fitWidth="126.0" layoutY="387.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
+         <image>
+            <Image url="@../images/potionRecipeIcon.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="timerLblLab" alignment="CENTER" layoutX="702.0" layoutY="40.0" prefHeight="34.0" prefWidth="85.0" text="00:00" />
+      <Pane fx:id="pnScroll" layoutX="147.0" layoutY="67.0" prefHeight="325.0" prefWidth="525.0" visible="false">
+         <children>
+            <ImageView fitHeight="316.0" fitWidth="550.0" layoutX="-7.0" layoutY="6.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/scroll.png" />
+               </image>
+            </ImageView>
+            <HBox fx:id="scrollBox" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="448.0" style="-fx-spacing: 30;">
+               <children>
+                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="pnIntro" layoutX="193.0" layoutY="85.0" prefHeight="308.0" prefWidth="369.0" visible="false">
          <children>
             <ImageView fitHeight="308.0" fitWidth="381.0" layoutX="-5.0" layoutY="1.0" pickOnBounds="true">
                <image>
@@ -164,38 +194,10 @@
          <image>
             <Image url="@../images/wizard.png" />
          </image>
-      </ImageView>
-      <ImageView fitHeight="99.0" fitWidth="93.0" layoutX="697.0" layoutY="28.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/clock.png" />
-         </image>
-      </ImageView>
-      <Circle fill="DODGERBLUE" layoutX="743.0" layoutY="85.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
-      <ImageView fx:id="imgViewIconScroll1" fitHeight="112.0" fitWidth="126.0" layoutX="24.0" layoutY="369.0" onMouseEntered="#onEnterIconScroll" onMouseExited="#onExitIconScroll" pickOnBounds="true">
-         <image>
-            <Image url="@../images/potionRecipeIcon.png" />
-         </image>
          <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="timerLblLab" alignment="CENTER" layoutX="701.0" layoutY="68.0" prefHeight="34.0" prefWidth="85.0" text="00:00" />
-      <Pane fx:id="pnScroll" layoutX="110.0" layoutY="65.0" prefHeight="325.0" prefWidth="525.0" visible="false">
-         <children>
-            <ImageView fitHeight="316.0" fitWidth="550.0" layoutX="-7.0" layoutY="6.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/scroll.png" />
-               </image>
-            </ImageView>
-            <HBox fx:id="scrollBox" alignment="CENTER" layoutX="58.0" layoutY="89.0" prefHeight="176.0" prefWidth="448.0" style="-fx-spacing: 30;">
-               <children>
-                  <ImageView fx:id="imgViewOne" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewTwo" fitHeight="92.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgViewThree" fitHeight="92.0" fitWidth="90.0" pickOnBounds="true" />
-               </children>
-            </HBox>
-         </children>
-      </Pane>
       <ImageView fx:id="imgViewSettings" fitHeight="49.0" fitWidth="40.0" layoutX="12.0" layoutY="14.0" onMouseClicked="#onSettingsClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/settingsIcon.png" />

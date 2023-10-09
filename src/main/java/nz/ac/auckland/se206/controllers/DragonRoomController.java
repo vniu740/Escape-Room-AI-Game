@@ -122,27 +122,21 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     pnSpeech.setVisible(false);
     GameState.currentRoom = "matchGame";
     App.setUi(AppUi.MATCHING);
-    Thread speachThread =
+    if (GameState.isTextToSpeechEnabled == true) {
+      Thread speachThread =
           new Thread(
               () -> {
                 TextToSpeech textToSpeech = new TextToSpeech();
                 textToSpeech.speak("match 3 items to unlock the shelf");
               });
       speachThread.start();
-
+    }
   }
 
   @FXML
   private void onScaleClicked() {
     if (GameState.isMatchGameWon) {
       // If the game is won play the textToSpeech
-      Thread speachThread =
-          new Thread(
-              () -> {
-                TextToSpeech textToSpeech = new TextToSpeech();
-                textToSpeech.speak("Item picked up");
-              });
-      speachThread.start();
       GameState.isScaleCollected = true;
       GameState.itemsCollected++;
       // Remove the wizard speech bubble and remove the item
@@ -150,13 +144,15 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       pnSpeech.setVisible(false);
     } else {
       pnSpeech.setVisible(true);
-      Thread speachThread =
-          new Thread(
-              () -> {
-                TextToSpeech textToSpeech = new TextToSpeech();
-                textToSpeech.speak("You can't pick it up! Unlock the shelf first.");
-              });
-      speachThread.start();
+      if (GameState.isTextToSpeechEnabled == true) {
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  TextToSpeech textToSpeech = new TextToSpeech();
+                  textToSpeech.speak("You can't pick it up! Unlock the shelf first.");
+                });
+        speachThread.start();
+      }
     }
   }
 
@@ -225,10 +221,9 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     App.setUi(AppUi.AICHAT);
   }
 
-
   /**
    * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
-   * 
+   *
    * @param event
    */
   @FXML

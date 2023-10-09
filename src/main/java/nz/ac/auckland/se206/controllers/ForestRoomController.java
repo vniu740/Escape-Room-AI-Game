@@ -78,7 +78,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Text txtSpeech;
   private TextToSpeech textToSpeech = new TextToSpeech();
 
-
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
@@ -156,17 +155,18 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         txtSpeech.setText("You fished up the correct ingredient!");
                         pnSpeech.setVisible(true);
                       });
-                  Thread speachThread =
-                   new Thread(
-                          () -> {
-                            textToSpeech.speak("You fished up the correct ingredient!");;
-                          });
-                  speachThread.start();
-                      
-                      
+                  if (GameState.isTextToSpeechEnabled == true) {
+                    Thread speachThread =
+                        new Thread(
+                            () -> {
+                              textToSpeech.speak("You fished up the correct ingredient!");
+                              ;
+                            });
+                    speachThread.start();
+                  }
+
                   GameState.isFishingComplete = true;
                   correctImageView = imgViewSpiralFrog;
-
                 }
 
                 // he slider should not move anymore
@@ -228,10 +228,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
                         txtSpeech.setText("You fished up the correct ingredient!");
                         pnSpeech.setVisible(true);
                       });
-                  Thread speachThread =new Thread(() -> {
-                            textToSpeech.speak("You fished up the correct ingredient!");;
-                          });
-                  speachThread.start();
+                  if (GameState.isTextToSpeechEnabled == true) {
+                    Thread speachThread =
+                        new Thread(
+                            () -> {
+                              textToSpeech.speak("You fished up the correct ingredient!");
+                              ;
+                            });
+                    speachThread.start();
+                  }
                   GameState.isFishingComplete = true;
                   correctImageView = imgViewBug;
                 }
@@ -286,10 +291,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     if (GameState.isFishingComplete) {
 
       txtSpeech.setText("You fished up the correct ingredient!");
-        Thread speachThread =new Thread(() -> {
-               textToSpeech.speak("You fished up the correct ingredient!");;
-                  });
-              speachThread.start();
+      if (GameState.isTextToSpeechEnabled == true) {
+        Thread speachThread =
+            new Thread(
+                () -> {
+                  textToSpeech.speak("You fished up the correct ingredient!");
+                  ;
+                });
+        speachThread.start();
+      }
 
       pnSpeech.setVisible(true);
       correctImageView.setVisible(false);
@@ -378,13 +388,15 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onIngredientClicked(MouseEvent event) {
     // Play the textToSpeech using a thread to make sure the app doesnt freeze
-    Thread speachThread =
-        new Thread(
-            () -> {
-              TextToSpeech textToSpeech = new TextToSpeech();
-              textToSpeech.speak("Item picked up");
-            });
-    speachThread.start();
+    if (GameState.isTextToSpeechEnabled == true) {
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("Item picked up");
+              });
+      speachThread.start();
+    }
     // remove the ingredient and change the GameState
     GameState.isForestCollected = true;
     GameState.itemsCollected++;
