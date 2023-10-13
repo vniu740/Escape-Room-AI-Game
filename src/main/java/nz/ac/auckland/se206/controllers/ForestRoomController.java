@@ -100,13 +100,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     hintCounter.setLayoutX(130);
     hintCounter.setLayoutY(56);
 
-    if (GameState.level == "easy") {
-      hintCounter.setText("eas");
-    } else if (GameState.level == "medium") {
-      hintCounter.setText("med");
-    } else if (GameState.level == "hard") {
-      hintCounter.setText("har");
-    }
     // add the hintCounter to the dragonPane
     paneForest.getChildren().add(hintCounter);
 
