@@ -127,7 +127,6 @@ public class MenuController {
     }
     // set the game state level to easy
     GameState.setLevel("easy");
-    AIChatController.setHintCounter();
   }
 
   /**
@@ -164,7 +163,6 @@ public class MenuController {
     }
     // set the game state level to medium
     GameState.setLevel("medium");
-    AIChatController.setHintCounter();
   }
 
   /**
@@ -201,8 +199,6 @@ public class MenuController {
     }
     // set the game state level to hard
     GameState.setLevel("hard");
-    AIChatController.setHintCounter();
-
   }
 
   /**
@@ -325,9 +321,11 @@ public class MenuController {
     Button button = (Button) event.getSource();
     Scene sceneButtonIsIn = button.getScene();
     sceneButtonIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+
+    // Set the hint counter values in every room depending on difficulty chosen
+    AIChatController.setHintCounter();
     // start timer of timer manager by getting the instance
     ForestRoomController.getTimeManager().startTimer(timeRemaining);
-    
   }
 
   /** Helper method that translates the pane pnDifficultyMenu upwards. */

@@ -99,9 +99,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       hintCounter.setText(Integer.toString(5 - numHints));
     } else if (GameState.level.equals("hard")) {
       // Update the hint counter for all suitable rooms.
-      DragonRoomController.hintCounter.setText(Integer.toString(0));
-      LabController.hintCounter.setText(Integer.toString(0));
-      ForestRoomController.hintCounter.setText(Integer.toString(0));
+      DragonRoomController.hintCounter.setText("0");
+      LabController.hintCounter.setText("0");
+      ForestRoomController.hintCounter.setText("0");
       hintCounter.setText("0");
     } else {
       // Update the hint counter for all suitable rooms.
@@ -213,8 +213,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
             + "-fx-underline: true;");
     // set the layout
 
-    hintCounter.setLayoutX(145);
-    hintCounter.setLayoutY(14);
+    hintCounter.setLayoutX(130);
+    hintCounter.setLayoutY(56);
 
     // add the hintCounter to the paneBack
     paneBack.getChildren().add(hintCounter);

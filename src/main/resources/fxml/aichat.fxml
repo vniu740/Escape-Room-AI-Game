@@ -15,7 +15,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" stylesheets="@../css/aichat.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AIChatController">
 
    <children>
@@ -26,9 +25,9 @@
                <font>
                   <Font name="Lucida Calligraphy Italic" size="15.0" />
                </font></TextField>
-            <ScrollPane fx:id="scrollPaneMain" layoutX="51.0" layoutY="73.0" opacity="0.9" prefHeight="337.0" prefWidth="553.0">
+            <ScrollPane fx:id="scrollPaneMain" layoutX="51.0" layoutY="110.0" opacity="0.9" prefHeight="300.0" prefWidth="553.0">
                <content>
-                  <VBox fx:id="messageBox" prefHeight="323.0" prefWidth="554.0" />
+                  <VBox fx:id="messageBox" prefHeight="297.0" prefWidth="548.0" />
                </content>
             </ScrollPane>
             <Text fx:id="txtSpeak" fill="WHITE" layoutX="624.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CATCH THAT SPRITE!" textAlignment="CENTER" wrappingWidth="149.92519143223763" />
@@ -38,8 +37,8 @@
                </cursor>
             </Circle>
 
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="22.0" layoutX="23.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="230.0" />
-            <Label layoutX="23.0" layoutY="5.0" prefHeight="19.0" prefWidth="124.0" text="Hints remaining: " textFill="#ae1bae">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="22.0" layoutX="11.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="230.0" />
+            <Label layoutX="14.0" layoutY="63.0" prefHeight="19.0" prefWidth="124.0" text="Hints remaining: " textFill="#ae1bae">
 
                <font>
                   <Font name="Lucida Calligraphy Italic" size="12.0" />
