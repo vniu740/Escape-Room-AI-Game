@@ -97,8 +97,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
             + "-fx-font-style: italic; "
             + "-fx-underline: true;");
     // set the layout
-    hintCounter.setLayoutX(140);
-    hintCounter.setLayoutY(0);
+    hintCounter.setLayoutX(130);
+    hintCounter.setLayoutY(56);
     // add the hintCounter to the dragonPane
     paneForest.getChildren().add(hintCounter);
 

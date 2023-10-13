@@ -213,8 +213,8 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
             + "-fx-underline: true;");
     // set the layout
 
-    hintCounter.setLayoutX(145);
-    hintCounter.setLayoutY(14);
+    hintCounter.setLayoutX(130);
+    hintCounter.setLayoutY(56);
 
     // add the hintCounter to the paneBack
     paneBack.getChildren().add(hintCounter);

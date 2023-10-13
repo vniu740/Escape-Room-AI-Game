@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -65,9 +64,8 @@ public class App extends Application {
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
-    //if stage is closed, close the program
+    // if stage is closed, close the program
     stage.setOnCloseRequest(e -> System.exit(0));
-    
   }
 
   public static void addRooms() throws IOException {
