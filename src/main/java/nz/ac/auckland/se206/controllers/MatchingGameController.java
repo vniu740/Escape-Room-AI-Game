@@ -26,6 +26,14 @@ import nz.ac.auckland.se206.Tile;
 import nz.ac.auckland.se206.TimeManager;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
+/**
+ * Controller class for the fxml file matchGame.fxml. Attribution: All images have been generated
+ * through OpenArt Creative 2023, created by the developers, or falls into CC0 unless otherwise
+ * stated below.
+ *
+ * <p>counterBack: Source: https://freesvg.org/parchment-background-vector Liscence:
+ * https://creativecommons.org/licenses/by/4.0/ Published by: https://freesvg.org/by/OpenClipart.
+ */
 public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
@@ -62,8 +70,13 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   private int lastCol = -1;
   private int lastRow = -1;
 
-  // Initialize the game and set up event handlers
+  /**
+   * Initialises the match game scene when called.
+   *
+   * @throws IOException Exception thrown
+   */
   public void initialize() throws IOException {
+    // Initialize the game and set up event handlers
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
 
@@ -122,7 +135,12 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  // Implement event handler for tile clicks
+  /**
+   * Implement event handler for tile clicks.
+   *
+   * @param event mouse evemt
+   * @param clickedTile tile that is clicked
+   */
   @FXML
   public void onTileClicked(MouseEvent event, ImageView clickedTile) {
     txtSpeech.setVisible(false);
@@ -250,6 +268,11 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Method that handles when the back button is clicked.
+   *
+   * @throws IOException exception
+   */
   @FXML
   private void onBackClicked() throws IOException {
     GameState.currentRoom = "dragon";
@@ -260,7 +283,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onSpeechExit(ActionEvent event) {
@@ -278,19 +301,10 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onSettingsClicked(MouseEvent event) {
     App.setUi(AppUi.SETTINGS);
   }
 }
-
-/**
- * Attribution:
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- *
- * <p>counterBack: Source: https://freesvg.org/parchment-background-vector Liscence:
- * https://creativecommons.org/licenses/by/4.0/ Published by: https://freesvg.org/by/OpenClipart
- */

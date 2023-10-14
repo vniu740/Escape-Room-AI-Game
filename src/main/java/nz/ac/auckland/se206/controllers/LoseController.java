@@ -11,10 +11,16 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
+/**
+ * Controller class for the fxml file lose.fxml. Attribution: All images have been generated through
+ * OpenArt Creative 2023, created by the developers, or falls into CC0 unless otherwise stated
+ * below.
+ */
 public class LoseController {
 
   @FXML private static Label itemCounter;
 
+  /** Static Method that sets the number of items collected within the game. */
   @FXML
   public static void setItemCounter() {
     itemCounter.setText(Integer.toString(GameState.itemsCollected));
@@ -27,6 +33,7 @@ public class LoseController {
   @FXML private Pane loseBackground;
   @FXML private ProgressIndicator progressIndicator;
 
+  /** Initialises the lose scene when called. */
   @FXML
   public void initialize() {
 
@@ -58,11 +65,17 @@ public class LoseController {
     fadeIn2.play();
   }
 
+  /** Method that closes the game when the close button is clicked. */
   @FXML
   private void onCloseClicked() {
     System.exit(0);
   }
 
+  /**
+   * Method that handles the event for clicking the retry button.
+   *
+   * @throws IOException
+   */
   @FXML
   private void onRetryClicked() throws IOException {
     // Reset the game state

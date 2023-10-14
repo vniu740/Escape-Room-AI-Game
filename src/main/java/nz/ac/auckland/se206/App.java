@@ -68,6 +68,11 @@ public class App extends Application {
     stage.setOnCloseRequest(e -> System.exit(0));
   }
 
+  /**
+   * Static helper method that adds all scenes into a hash map.
+   *
+   * @throws IOException exception
+   */
   public static void addRooms() throws IOException {
     // Adding rooms into the scenemanager hashmap
     SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
@@ -81,6 +86,11 @@ public class App extends Application {
     SceneManager.addAppUi(AppUi.SETTINGS, loadFxml("settings"));
   }
 
+  /**
+   * Static helper method that restarts all variables in the game.
+   *
+   * @throws IOException Exception
+   */
   public static void restartGame() throws IOException {
     // Clear the hashmap and reset the game state
     SceneManager.resetUiMap();

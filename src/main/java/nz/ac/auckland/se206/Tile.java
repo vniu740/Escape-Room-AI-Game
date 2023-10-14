@@ -5,6 +5,11 @@ public class Tile {
   private boolean faceUp;
   private boolean matched;
 
+  /**
+   * Constructor for tile.
+   *
+   * @param value Identifies the type of tile
+   */
   public Tile(int value) {
     this.value = value;
     this.faceUp = false;

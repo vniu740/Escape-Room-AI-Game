@@ -20,6 +20,11 @@ public class GptPromptEngineering {
         + " the player asks for it. Even if player gives up, do not give the answer or any hints.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for a hint about the forest.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getHintForest() {
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
         + " user has to make a potion to escape. The next task the user has to do is fishing"
@@ -28,6 +33,11 @@ public class GptPromptEngineering {
         + " sentence with 'here is a hint'";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for a hint about the dragon room.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getHintDragon() {
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
         + " user has to make a potion to escape. The next task the user has to do is"
@@ -36,6 +46,11 @@ public class GptPromptEngineering {
         + " ingredient for their potion and begin the sentence with 'here is a hint'";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for a hint about the activities in general.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getHintActivity() {
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
         + " user has to make a potion to escape. The next task the user has to do is to"
@@ -45,6 +60,11 @@ public class GptPromptEngineering {
         + " with 'here is a hint'";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for a hint about the potion.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getHintPotion() {
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
         + " user has to make a potion to escape. The user has found all the ingredients"
@@ -54,6 +74,11 @@ public class GptPromptEngineering {
         + " the sentence with 'here is a hint' ";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for a hint about the gem.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getHintGem() {
     // Tell GPT the context that user has solved a riddle and now must find the gem object
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
@@ -63,6 +88,11 @@ public class GptPromptEngineering {
         + " hint' ";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for a hint about the final escape.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getHintEscape() {
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
         + " user has to make a potion to escape. The user has made the potion. ingredient."
@@ -71,6 +101,11 @@ public class GptPromptEngineering {
         + " 'here is a hint' ";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the context/backstory of the game.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getIntro() {
     // Introducing GPT to the game and story
     return "I have an escape room game that is wizard themed and there is a persona of a"
@@ -82,6 +117,11 @@ public class GptPromptEngineering {
         + " like the grandmaster is informing the user of this backstory.";
   }
 
+  /**
+   * Generates a GPT prompt engineering string about the context of the game.
+   *
+   * @return the generated prompt engineering string
+   */
   public static String getContext() {
     return "You are the grand wizard of an escape room. This is a magical escape room for which"
         + " user has to make a potion to escape. You may engage in casual conversation. Only"
