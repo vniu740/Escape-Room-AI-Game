@@ -19,6 +19,11 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
+/**
+ * Controller class for the fxml file menu.fxml. Attribution: All images have been generated through
+ * OpenArt Creative 2023, created by the developers, or falls into CC0 unless otherwise stated
+ * below. unless otherwise stated below.
+ */
 public class MenuController {
 
   private static Media song;
@@ -96,7 +101,7 @@ public class MenuController {
   /**
    * Handles the ActionEvent on the button btnEasyMode.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onEasyClick(ActionEvent event) {
@@ -132,7 +137,7 @@ public class MenuController {
   /**
    * Handles the ActionEvent on the button btnMediumMode.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onMediumClick(ActionEvent event) {
@@ -168,7 +173,7 @@ public class MenuController {
   /**
    * Handles the ActionEvent on the button btnHardMode.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onHardClick(ActionEvent event) {
@@ -204,7 +209,7 @@ public class MenuController {
   /**
    * Handles the ActionEvent on the toggle button toggleBtnTwoMins.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onTwoMinsClick(ActionEvent event) {
@@ -245,7 +250,7 @@ public class MenuController {
   /**
    * Handles the ActionEvent on the toggle button toggleBtnFourMins.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onFourMinsClick(ActionEvent event) {
@@ -282,7 +287,7 @@ public class MenuController {
   /**
    * Handles the ActionEvent on the toggle button toggleBtnFourMins.
    *
-   * @param event
+   * @param event ActionEvent on toggleBtnFourMins
    */
   @FXML
   private void onSixMinsClick(ActionEvent event) {
@@ -316,6 +321,11 @@ public class MenuController {
     }
   }
 
+  /**
+   * Handles the action event on the button btnPlay.
+   *
+   * @param event action event
+   */
   @FXML
   private void onPlayClick(ActionEvent event) {
     Button button = (Button) event.getSource();
@@ -374,9 +384,3 @@ public class MenuController {
     sleepThread.start();
   }
 }
-
-/**
- * Attribution:
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- */

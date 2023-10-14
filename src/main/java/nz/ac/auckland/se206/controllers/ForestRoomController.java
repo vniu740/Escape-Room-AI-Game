@@ -33,12 +33,20 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
-/** Controller class for the room view. */
+/**
+ * Controller class for the room view. Attribution: ll images have been generated through OpenArt
+ * Creative 2023, created by the developers, or falls into CC0 unless otherwise stated below.
+ */
 public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
   @FXML static Label hintCounter;
 
+  /**
+   * Method that returns the time manager instance.
+   *
+   * @return time manager instance
+   */
   public static TimeManager getTimeManager() {
     return timeManager;
   }
@@ -281,6 +289,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewSpiralPond.
+   *
+   * @param event mouse event
+   * @throws IOException exception for text to speech
+   */
   @FXML
   private void onPondClick(MouseEvent event) throws IOException {
     System.out.println("pond clicked");
@@ -307,6 +321,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Handles the MouseEvent for the button btnFishingExit.
+   *
+   * @param event mouse event
+   * @throws IOException in case of text to speech
+   */
   @FXML
   private void onFishingExit(MouseEvent event) throws IOException {
     // set pnfishing to invisible
@@ -335,7 +355,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onRightArrowClicked(MouseEvent event) {
@@ -362,9 +382,9 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   }
 
   /**
-   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon
+   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon.
    *
-   * @param event
+   * @param event MouseEvent 'on Mouse Entered'
    */
   @FXML
   private void onEnterIconScroll(MouseEvent event) {
@@ -374,7 +394,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
    *
-   * @param event
+   * @param event MouseEvent 'on Mouse Exited'
    */
   @FXML
   private void onExitIconScroll(MouseEvent event) {
@@ -382,9 +402,9 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   }
 
   /**
-   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onIngredientClicked(MouseEvent event) {
@@ -407,7 +427,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onSpeechExit(ActionEvent event) {
@@ -423,16 +443,10 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
    *
-   * @param event
+   * @param event Mouse Event 'on Mouse Click'
    */
   @FXML
   private void onSettingsClicked(MouseEvent event) {
     App.setUi(AppUi.SETTINGS);
   }
 }
-
-/**
- * Attribution:
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- */

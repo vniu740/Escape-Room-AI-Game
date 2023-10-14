@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +13,20 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 
-public class SettingsController implements TimeManager.TimeUpdateListener{
+/**
+ * Controller class for the fxml file settings.fxml. Attribution: All images have been generated
+ * through OpenArt Creative 2023, created by the developers, or falls into CC0 unless otherwise
+ * stated below. unless otherwise stated below.
+ */
+public class SettingsController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
 
+  /**
+   * Static method that returns the timer instance.
+   *
+   * @return timer
+   */
   public static TimeManager getTimeManager() {
     return timeManager;
   }
@@ -28,20 +37,29 @@ public class SettingsController implements TimeManager.TimeUpdateListener{
   @FXML private Text txtBack;
   @FXML private Label timerLblSettings;
 
-   // Initialize the game and set up event handlers
+  /**
+   * Initialises the setting scene when called.
+   *
+   * @throws IOException exception
+   */
   public void initialize() throws IOException {
     timeManager = TimeManager.getInstance();
     timeManager.registerListener(this);
 
     if (GameState.isSoundEnabled == false) {
       btnSounds.setText("Off");
-    } 
+    }
 
     if (GameState.isTextToSpeechEnabled == false) {
       btnTextToSpeech.setText("Off");
     }
   }
 
+  /**
+   * Handles the MouseEvent 'on Mouse Clicked' on the text txtBack.
+   *
+   * @param event mouse event
+   */
   @FXML
   private void onGoBack(MouseEvent event) {
     if (GameState.currentRoom.equals("dragon")) {
@@ -55,6 +73,11 @@ public class SettingsController implements TimeManager.TimeUpdateListener{
     }
   }
 
+  /**
+   * Handles the ActionEvent on the button btnSounds.
+   *
+   * @param event action event
+   */
   @FXML
   private void onSoundClicked(ActionEvent event) {
     if (GameState.isSoundEnabled == true) {
@@ -68,6 +91,11 @@ public class SettingsController implements TimeManager.TimeUpdateListener{
     }
   }
 
+  /**
+   * Handles the ActionEvent on the button btnTextToSpeech.
+   *
+   * @param event action event
+   */
   @FXML
   private void onTextToSpeechClick(ActionEvent event) {
     if (GameState.isTextToSpeechEnabled == true) {
@@ -79,6 +107,11 @@ public class SettingsController implements TimeManager.TimeUpdateListener{
     }
   }
 
+  /**
+   * Handles the ActionEvent on the button btnExitGame.
+   *
+   * @param event action event
+   */
   @FXML
   private void onExitGame(ActionEvent event) {
     System.exit(0);

@@ -44,6 +44,11 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
+/**
+ * This is the controller class for the fxml file lab.fxml. Attribution: All images have been
+ * generated through OpenArt Creative 2023, created by the developers, or falls into CC0 unless
+ * otherwise stated below.
+ */
 public class LabController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManagerlab;
@@ -130,7 +135,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Initialises the lab scene when called.
    *
-   * @throws URISyntaxException
+   * @throws URISyntaxException in the case the sound path cant be found
    */
   @FXML
   public void initialize() throws URISyntaxException {
@@ -362,9 +367,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
   }
 
   /**
-   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon
+   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon.
    *
-   * @param event
+   * @param event mouse event 'on Mouse Entered'
    */
   @FXML
   private void onEnterIconScroll(MouseEvent event) {
@@ -374,7 +379,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onExitIconScroll(MouseEvent event) {
@@ -384,8 +389,8 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Click' for the imageView imgViewJewellery.
    *
-   * @param event
-   * @throws IOException
+   * @param event mouse event
+   * @throws IOException an exception
    */
   @FXML
   private void onJewelleryClick(MouseEvent event) throws IOException {
@@ -426,7 +431,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Click' for the imageView imgViewLever.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onLeverClick(MouseEvent event) {
@@ -452,7 +457,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Click' for the imageView imgViewCauldron.
    *
-   * @param event
+   * @param event MouseEvent 'on MouseClick'
    */
   @FXML
   private void onCauldronClick(MouseEvent event) {
@@ -489,9 +494,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
   }
 
   /**
-   * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronForest.
+   * Handles the MouseEvent 'on Drag Detected' for the multiple imageViews imgViewCauldronForest.
    *
-   * @param event
+   * @param event MouseEvent 'on Drag Detected' for imageView imgViewCauldronForest
    */
   @FXML
   private void onDragDetectionSourceForest(MouseEvent event) {
@@ -504,7 +509,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronLab.
    *
-   * @param event
+   * @param event mouse event 'on Drag Detected'
    */
   @FXML
   private void onDragDetectionSourceLab(MouseEvent event) {
@@ -518,7 +523,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Drag Deteced' for the multiple imageViews imgViewCauldronDragon.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onDragDetectionSourceDragon(MouseEvent event) {
@@ -532,7 +537,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Helper method that is called in the handling of the MouseEvent 'on Drag Detetected'.
    *
-   * @param event
+   * @param event mouse event
    */
   private void dragDetection(MouseEvent event) {
     // If a drag is detected remove cauldron bubbles
@@ -559,7 +564,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the DragEvent 'on Drag Over' for the ImageView imgViewDestination.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onDragOverDestination(DragEvent event) {
@@ -571,7 +576,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the DragEvent 'on Drag Dropped' for the ImageView imgViewDestination.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onDragDroppedDestination(DragEvent event) {
@@ -621,9 +626,9 @@ public class LabController implements TimeManager.TimeUpdateListener {
   }
 
   /**
-   * Handles the ActionEvent on the Button btnCauldronExit
+   * Handles the ActionEvent on the Button btnCauldronExit.
    *
-   * @param event
+   * @param event action event
    */
   @FXML
   private void onCauldronExit(ActionEvent event) {
@@ -637,7 +642,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
    *
-   * @param event
+   * @param event MouseEvent that occus on imageView imgViewLeftArrow
    */
   @FXML
   private void onLeftArrowClicked(MouseEvent event) {
@@ -651,7 +656,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
    *
-   * @param event
+   * @param event MouseEvent 'on Mouse Clicked'
    */
   @FXML
   private void onRightArrowClicked(MouseEvent event) {
@@ -665,7 +670,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onIngredientClicked(MouseEvent event) {
@@ -690,7 +695,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
-   * @param event
+   * @param event ActionEvent
    */
   @FXML
   private void onSpeechExit(ActionEvent event) {
@@ -727,6 +732,12 @@ public class LabController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Helper method that sends a message to GPT.
+   *
+   * @param msg ChatMessage that is being sent
+   * @throws ApiProxyException exception for if API can not be called
+   */
   private void runGpt(ChatMessage msg) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
     try {
@@ -746,6 +757,11 @@ public class LabController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Method that handles the ActionEvent on the button btnIntroExit.
+   *
+   * @param event action event
+   */
   @FXML
   private void onIntroExit(ActionEvent event) {
     pnIntro.setVisible(false);
@@ -754,7 +770,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Creates a new mediaPlayer instance that runs for the sound bubbles.mp3
    *
-   * @throws URISyntaxException
+   * @throws URISyntaxException Exception for URI
    */
   public void createBubbleMediaPlayer() throws URISyntaxException {
     // Create the media player that runs the sound bubbles.mp3
@@ -767,16 +783,10 @@ public class LabController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onSettingsClicked(MouseEvent event) {
     App.setUi(AppUi.SETTINGS);
   }
 }
-
-/**
- * Attribution:
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- */

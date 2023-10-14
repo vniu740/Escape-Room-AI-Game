@@ -43,6 +43,11 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+/**
+ * Controller class for the fxml file aichat.fxml. Attribution: hintSound.mp3 has been originally
+ * created by us. All images have been generated through OpenArt Creative 2023, created by the
+ * developers, or falls into CC0 unless otherwise stated below.
+ */
 public class AIChatController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
@@ -50,10 +55,22 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private static ImageView chatBackground;
   @FXML private static Label hintCounter;
 
+  /**
+   * Method that returns the timer instance.
+   *
+   * @return timer
+   */
   public static TimeManager getTimeManager() {
     return timeManager;
   }
 
+  /**
+   * Method that adds a string to the GUI.
+   *
+   * @param messageFromClient string that will be added to the GUI
+   * @param vbox vbox where the string is added
+   * @param scrollPaneMain scroll pane where the string is added
+   */
   public static void addLabel(String messageFromClient, VBox vbox, ScrollPane scrollPaneMain) {
     HBox hbox = new HBox();
     hbox.setAlignment(Pos.CENTER_RIGHT); // Align to the right
@@ -77,6 +94,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     scrollPaneMain.setVvalue(1.0);
   }
 
+  /** Helper method that sets the background of the chat scene. */
   public static void setBackground() {
     // Set the background image according to the current room
     if (GameState.currentRoom.equals("dragon")) {
@@ -90,6 +108,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /** Static Helper method that sets the Static hint counter on the GUI. */
   public static void setHintCounter() {
     if (GameState.level.equals("medium")) {
       // Update the hint counter for all suitable rooms.
@@ -172,6 +191,12 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
   @FXML private Text txtSpeak;
   @FXML private VBox messageBox;
 
+  /**
+   * Initialises the chat scene when called.
+   *
+   * @throws ApiProxyException API Exception
+   * @throws URISyntaxException URI Exception
+   */
   @FXML
   public void initialize() throws ApiProxyException, URISyntaxException {
 
@@ -301,6 +326,13 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Helper method that sends a message to GPT for the riddle.
+   *
+   * @param msg ChatMessage that is being sent
+   * @return a string generated response from GPT
+   * @throws ApiProxyException exception for if API can not be called
+   */
   private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
     // Add the message to the request
     chatCompletionRequest.addMessage(msg);
@@ -316,6 +348,13 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Helper method that sends a message to GPT for casual chat and hints.
+   *
+   * @param msg ChatMessage that is being sent
+   * @return a string generated response from GPT
+   * @throws ApiProxyException exception for if API can not be called
+   */
   private ChatMessage runGptChat(ChatMessage msg) throws ApiProxyException {
     // Add the message to the request
     chatCompletionRequestChat.addMessage(msg);
@@ -331,6 +370,11 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Handles when a user sends a message.
+   *
+   * @throws ApiProxyException exception for when the API cant be called
+   */
   @FXML
   private void onSend() throws ApiProxyException {
     // Disable the text field
@@ -474,6 +518,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /** Handles when the back button is clicked. */
   @FXML
   public void onBackClicked() {
     // Set the background image according to the current room
@@ -488,6 +533,12 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Helper method that checks if a string contains a hint.
+   *
+   * @param input String to check
+   * @return boolean
+   */
   public boolean containsHintPhrase(String input) {
     // Use a case-insensitive regular expression to check for either phrase using regex
     return input.matches("(?i).*\\bhere\\s+is\\s+a\\s+hint\\b.*")
@@ -551,6 +602,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     sleepThread.start();
   }
 
+  /** Helper method that stops the animation of the wizard. */
   private void stopAnimation() {
     imgViewWizardCast.setVisible(false);
     imgViewWizard.setVisible(true);
@@ -559,6 +611,11 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     txtSpeak.setVisible(false);
   }
 
+  /**
+   * Helper method that checks if the users answer to the riddle is correct.
+   *
+   * @param lastMsg ChatMessage from GPT that identifies if the answer is correct
+   */
   private void checkIfRiddleCorrect(ChatMessage lastMsg) {
     // If the user's input is correct, update the gameState
     if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
@@ -566,6 +623,11 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     }
   }
 
+  /**
+   * Helper method that creates the hint media player.
+   *
+   * @throws URISyntaxException In case where the sound path cant be found
+   */
   public void createHintMediaPlayer() throws URISyntaxException {
     // Create the media player that runs the sound bubbles.mp3
     String path = getClass().getResource("/sounds/hintSound.mp3").toURI().toString();
@@ -574,11 +636,3 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
     mediaPlayerHint.setVolume(0.15);
   }
 }
-
-/**
- * Attribution:
- *
- * <p>hintSound.mp3 has been originally created by us.
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- */

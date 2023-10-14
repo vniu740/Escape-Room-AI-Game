@@ -22,7 +22,11 @@ public class TimeManager {
   private Timer timer;
   private List<TimeUpdateListener> listeners = new ArrayList<>();
 
-  /** Starts the game timer. */
+  /**
+   * Method that starts the timer for the game.
+   *
+   * @param time instance of timer
+   */
   public void startTimer(int time) {
     timeRemaining = time;
     timer = new Timer();
@@ -73,7 +77,7 @@ public class TimeManager {
     void onTimerUpdate(String formattedTime);
   }
 
-  /** Stops the game timer. */
+  /** Method that stops the static timer varible instance from decreasing any further. */
   public void stopTimer() {
     timer.cancel();
     timer.purge();

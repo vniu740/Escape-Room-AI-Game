@@ -9,6 +9,11 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 
+/**
+ * Controller class for the fxml file win.fxml. Attribution: All images have been generated through
+ * OpenArt Creative 2023, created by the developers, or falls into CC0 unless otherwise stated
+ * below.
+ */
 public class WinController {
 
   @FXML private Button buttonRetryWin;
@@ -16,6 +21,7 @@ public class WinController {
   @FXML private Label winTitle;
   @FXML private ProgressIndicator progressIndicator;
 
+  /** Initialises the win scene when called. */
   @FXML
   public void initialize() {
     // Create a fade in transition for the title
@@ -25,11 +31,17 @@ public class WinController {
     fadeIn.play();
   }
 
+  /** Handles when the close button is clicked. */
   @FXML
   private void onCloseClicked() {
     System.exit(0);
   }
 
+  /**
+   * Handles when the retry button is clicked.
+   *
+   * @throws IOException exception for reloading
+   */
   @FXML
   private void onRetryClicked() throws IOException {
     progressIndicator.setVisible(true);
@@ -51,9 +63,3 @@ public class WinController {
     restartApp.start();
   }
 }
-
-/**
- * Attribution:
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- */

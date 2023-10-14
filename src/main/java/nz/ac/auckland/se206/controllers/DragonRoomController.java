@@ -27,6 +27,17 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.TimeManager;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
+/**
+ * Controller class for the fxml file dragonRoom.fxml. Attribution: All images have been generated
+ * through OpenArt Creative 2023, created by the developers, or falls into CC0 unless otherwise
+ * stated below.
+ *
+ * <p>imageLock: <a
+ * href="https://www.freepik.com/free-vector/set-lockpad-icon_4150202.htm#query=cartoon%20lock&position=16&from_view=keyword&track=ais">Image
+ * by brgfx</a> on Freepik.
+ *
+ * <p>
+ */
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
@@ -50,6 +61,11 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   @FXML private Pane dragonPane;
   @FXML private Text txtSpeech;
 
+  /**
+   * Initialises the forest scene when called.
+   *
+   * @throws IOException exception
+   */
   @FXML
   public void initialize() throws IOException {
     timeManager = TimeManager.getInstance();
@@ -159,7 +175,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
    *
-   * @param event
+   * @param event mouseEvent 'on Mouse Clicked'
    */
   @FXML
   private void onLeftArrowClicked(MouseEvent event) {
@@ -186,9 +202,9 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   }
 
   /**
-   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon
+   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onEnterIconScroll(MouseEvent event) {
@@ -198,7 +214,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onExitIconScroll(MouseEvent event) {
@@ -208,7 +224,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the ActionEvent on the Button btnSpeechExit.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onSpeechExit(ActionEvent event) {
@@ -224,20 +240,10 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   /**
    * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
    *
-   * @param event
+   * @param event mouse event
    */
   @FXML
   private void onSettingsClicked(MouseEvent event) {
     App.setUi(AppUi.SETTINGS);
   }
 }
-
-/**
- * Attribution:
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- *
- * <p>imageLock: <a
- * href="https://www.freepik.com/free-vector/set-lockpad-icon_4150202.htm#query=cartoon%20lock&position=16&from_view=keyword&track=ais">Image
- * by brgfx</a> on Freepik
- */
