@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,21 +46,15 @@ public class WinController {
   @FXML
   private void onRetryClicked() throws IOException {
     progressIndicator.setVisible(true);
-    // another thread to restart the game
-    Thread restartApp =
-        new Thread(
-            new Runnable() {
-              @Override
-              public void run() {
-                try {
-                  // Thread.sleep(1000);
-                  App.restartGame();
-                } catch (IOException e) {
-                  // TODO Auto-generated catch block
-                  e.printStackTrace();
-                }
-              }
-            });
-    restartApp.start();
+
+    Platform.runLater(
+        () -> {
+          try {
+            App.restartGame();
+          } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+          }
+        });
   }
 }
