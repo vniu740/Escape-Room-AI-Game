@@ -45,6 +45,10 @@ public class WinController {
    */
   @FXML
   private void onRetryClicked() throws IOException {
+
+    // Disable retry button
+    buttonRetryWin.setDisable(true);
+
     progressIndicator.setVisible(true);
     Thread th = new Thread(restartTask);
 

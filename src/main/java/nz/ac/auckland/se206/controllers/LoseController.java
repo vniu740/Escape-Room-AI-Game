@@ -47,8 +47,8 @@ public class LoseController {
     // Set the text to 0
     itemCounter.setText(Integer.toString(GameState.itemsCollected));
     // Have itemCounter in the middle of the screen
-    itemCounter.setLayoutX(310);
-    itemCounter.setLayoutY(260);
+    itemCounter.setLayoutX(350);
+    itemCounter.setLayoutY(215);
     // Set width to 53
     itemCounter.setMinWidth(53);
     // Set height to 123
@@ -79,6 +79,9 @@ public class LoseController {
    */
   @FXML
   private void onRetryClicked() throws IOException {
+    // Disable retry button
+    buttonRetry.setDisable(true);
+
     progressIndicator.setVisible(true);
     Thread th = new Thread(restartTask);
 
