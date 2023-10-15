@@ -2,7 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;
-import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -73,24 +73,33 @@ public class LoseController {
   }
 
   /**
-   * Method that handles the event for clicking the retry button.
+   * Handles when the retry button is clicked.
    *
-   * @throws IOException
+   * @throws IOException exception for reloading
    */
   @FXML
   private void onRetryClicked() throws IOException {
     progressIndicator.setVisible(true);
+    Thread th = new Thread(restartTask);
 
-    Platform.runLater(
-        () -> {
-          try {
-            App.restartGame();
-          } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-          }
-        });
+    th.setDaemon(true);
+
+    th.start();
   }
+
+  /**
+   * Handles when the retry button is clicked.
+   *
+   * @throws IOException exception for reloading
+   */
+  Task<Void> restartTask =
+      new Task<>() {
+        @Override
+        protected Void call() throws Exception {
+          App.restartGame();
+          return null;
+        }
+      };
 }
 
 /**
