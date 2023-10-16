@@ -62,13 +62,19 @@ public class SettingsController implements TimeManager.TimeUpdateListener {
    */
   @FXML
   private void onGoBack(MouseEvent event) {
+    // Determines which scene to go back to depending on the scene that the user was in before they
+    // clicked on the settings
     if (GameState.currentRoom.equals("dragon")) {
+      // Dragon scene
       App.setUi(AppUi.DRAGON_ROOM);
     } else if (GameState.currentRoom.equals("lab")) {
+      // Lab scene
       App.setUi(AppUi.LAB);
     } else if (GameState.currentRoom.equals("forest")) {
+      // Forest scene
       App.setUi(AppUi.FOREST);
     } else if (GameState.currentRoom.equals("matchGame")) {
+      // Match scene
       App.setUi(AppUi.MATCHING);
     }
   }
@@ -81,10 +87,12 @@ public class SettingsController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onSoundClicked(ActionEvent event) {
     if (GameState.isSoundEnabled == true) {
+      // If sound is turned on, change the button to display 'off' and gamestate
       GameState.isSoundEnabled = false;
       btnSounds.setText("Off");
       MenuController.stopMusic();
     } else {
+      // If sound is turned off, change the button to display 'on' and gamestate
       GameState.isSoundEnabled = true;
       btnSounds.setText("On");
       MenuController.player.play();
@@ -99,9 +107,11 @@ public class SettingsController implements TimeManager.TimeUpdateListener {
   @FXML
   private void onTextToSpeechClick(ActionEvent event) {
     if (GameState.isTextToSpeechEnabled == true) {
+      // If text to speech is turned on, change the button to display 'Off' and gamestate
       GameState.isTextToSpeechEnabled = false;
       btnTextToSpeech.setText("Off");
     } else {
+      // If text to speech is turned on, change the button to display 'On' and gamestate
       GameState.isTextToSpeechEnabled = true;
       btnTextToSpeech.setText("On");
     }
