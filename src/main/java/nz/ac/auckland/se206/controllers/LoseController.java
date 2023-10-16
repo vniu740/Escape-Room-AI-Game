@@ -29,7 +29,8 @@ public class LoseController {
   public static void setItemCounter() {
     itemCounter.setText(Integer.toString(GameState.itemsCollected));
   }
-    /**
+
+  /**
    * Handles when the retry button is clicked.
    *
    * @throws IOException exception for reloading
@@ -105,6 +106,4 @@ public class LoseController {
 
     th.start();
   }
-
-
 }

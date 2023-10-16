@@ -16,8 +16,8 @@ import nz.ac.auckland.se206.App;
  * below.
  */
 public class WinController {
-  
-      /**
+
+  /**
    * Handles when the retry button is clicked.
    *
    * @throws IOException exception for reloading
@@ -34,9 +34,7 @@ public class WinController {
   @FXML private Button buttonRetryWin;
   @FXML private Button buttonCloseWin;
   @FXML private Label winTitle;
-  @FXML
-  private ProgressIndicator progressIndicator;
-
+  @FXML private ProgressIndicator progressIndicator;
 
   /** Initialises the win scene when called. */
   @FXML
@@ -72,7 +70,4 @@ public class WinController {
 
     th.start();
   }
-
-
-
 }
