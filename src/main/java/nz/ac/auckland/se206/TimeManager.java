@@ -9,6 +9,11 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 /** Class that managers the timer for the game. */
 public class TimeManager {
 
+  /** Interface for the time update listener. */
+  public interface TimeUpdateListener {
+    void onTimerUpdate(String formattedTime);
+  }
+
   private static int timeRemaining = 121;
   private static TimeManager instance;
 
@@ -71,11 +76,6 @@ public class TimeManager {
   /** Registers a listener to the time manager. Used for each scene. */
   public void registerListener(TimeUpdateListener listener) {
     listeners.add(listener);
-  }
-
-  /** Interface for the time update listener. */
-  public interface TimeUpdateListener {
-    void onTimerUpdate(String formattedTime);
   }
 
   /** Method that stops the static timer varible instance from decreasing any further. */
