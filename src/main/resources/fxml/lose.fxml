@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="loseBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseController">
+<Pane fx:id="loseBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="800.0" stylesheets="@../css/matching.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LoseController">
    <children>
       <ImageView fitHeight="499.0" fitWidth="800.0">
          <image>
@@ -42,6 +42,6 @@
             <Font name="Lucida Calligraphy Italic" size="23.0" />
          </font>
       </Label>
-      <ProgressIndicator fx:id="progressIndicator" layoutX="357.0" layoutY="55.0" prefHeight="53.0" prefWidth="67.0" visible="false" />
+      <ProgressIndicator fx:id="progressIndicator" layoutX="350.0" layoutY="220.0" prefHeight="53.0" prefWidth="67.0" visible="false" />
    </children>
 </Pane>
