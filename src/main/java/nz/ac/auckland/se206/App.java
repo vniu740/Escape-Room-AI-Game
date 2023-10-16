@@ -76,10 +76,10 @@ public class App extends Application {
   public static void addRooms() throws IOException {
     // Adding rooms into the scenemanager hashmap
     SceneManager.addAppUi(AppUi.LAB, loadFxml("lab"));
-    SceneManager.addAppUi(AppUi.START_PAGE, menu);
-    SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
-    SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
     SceneManager.addAppUi(AppUi.FOREST, loadFxml("forest"));
+    SceneManager.addAppUi(AppUi.DRAGON_ROOM, loadFxml("dragonRoom"));
+    SceneManager.addAppUi(AppUi.AICHAT, loadFxml("aichat"));
+    SceneManager.addAppUi(AppUi.START_PAGE, menu);
     SceneManager.addAppUi(AppUi.MATCHING, loadFxml("matchgame"));
     SceneManager.addAppUi(AppUi.LOSE, loadFxml("lose"));
     SceneManager.addAppUi(AppUi.WIN, loadFxml("win"));
@@ -99,6 +99,6 @@ public class App extends Application {
     // Adding rooms into the scenemanager hashmap
     addRooms();
 
-    setUi(AppUi.START_PAGE);
+    App.setUi(AppUi.START_PAGE);
   }
 }
