@@ -352,8 +352,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     }
   }
 
-
-
   /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
     int listCounter = 0;
@@ -379,8 +377,6 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     pnScroll.setVisible(true);
   }
 
-
-
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient.
    *
@@ -390,11 +386,12 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   private void onIngredientClicked(MouseEvent event) {
     // Play the textToSpeech using a thread to make sure the app doesnt freeze
     if (GameState.isTextToSpeechEnabled == true) {
-      Thread speachThread = new Thread(
-          () -> {
-            TextToSpeech textToSpeech = new TextToSpeech();
-            textToSpeech.speak("Item picked up");
-          });
+      Thread speachThread =
+          new Thread(
+              () -> {
+                TextToSpeech textToSpeech = new TextToSpeech();
+                textToSpeech.speak("Item picked up");
+              });
       speachThread.start();
     }
     // remove the ingredient and change the GameState
@@ -402,7 +399,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     GameState.itemsCollected++;
     imgViewIngredient.setVisible(false);
   }
-    /**
+
+  /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
    *
    * @param event mouse event
@@ -415,7 +413,8 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
     GameState.currentRoom = "lab";
   }
-    /**
+
+  /**
    * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
    *
    * @param event MouseEvent 'on Mouse Exited'

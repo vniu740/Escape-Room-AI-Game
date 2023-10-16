@@ -135,7 +135,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
   private void onLockClicked() {
     // Remove the wizard speech bubble
     pnSpeech.setVisible(false);
-    //Change the scene to the matchGame
+    // Change the scene to the matchGame
     GameState.currentRoom = "matchGame";
     App.setUi(AppUi.MATCHING);
 
@@ -174,8 +174,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     }
   }
 
-
-
   /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
     int listCounter = 0;
@@ -190,8 +188,6 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
       listCounter++;
     }
   }
-
-
 
   /**
    * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
@@ -219,7 +215,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     App.setUi(AppUi.AICHAT);
   }
 
-    /**
+  /**
    * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon.
    *
    * @param event mouse event
@@ -229,7 +225,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     pnScroll.setVisible(true);
   }
 
-    /**
+  /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
    *
    * @param event mouseEvent 'on Mouse Clicked'
@@ -242,7 +238,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
     GameState.currentRoom = "lab";
   }
-  
+
   /**
    * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
    *

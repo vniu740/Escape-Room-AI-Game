@@ -6,15 +6,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 
-/**
- * Class that managers the timer for the game.
- * 
- */
+/** Class that managers the timer for the game. */
 public class TimeManager {
 
-  private static TimeManager instance;
   public static int timeRemaining = 121;
- 
+  private static TimeManager instance;
 
   /** Gets the instance of the time manager. */
   public static TimeManager getInstance() {
