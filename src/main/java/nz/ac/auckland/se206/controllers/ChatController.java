@@ -270,7 +270,7 @@ public class ChatController implements TimeManager.TimeUpdateListener {
                     .setN(1)
                     .setTemperature(0.4)
                     .setTopP(0.5)
-                    .setMaxTokens(130);
+                    .setMaxTokens(150);
 
             ChatMessage msg =
                 runGpt(
@@ -288,7 +288,7 @@ public class ChatController implements TimeManager.TimeUpdateListener {
                     .setN(1)
                     .setTemperature(0.4)
                     .setTopP(0.5)
-                    .setMaxTokens(100);
+                    .setMaxTokens(130);
             runGptChat(new ChatMessage("user", GptPromptEngineering.getContext()));
             return null;
           }
