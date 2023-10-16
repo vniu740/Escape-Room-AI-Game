@@ -95,6 +95,7 @@ public class MenuController {
       player.setVolume(0.05);
       player.play();
     } catch (URISyntaxException e) {
+      e.printStackTrace();
     }
   }
 
@@ -333,7 +334,7 @@ public class MenuController {
     sceneButtonIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
 
     // Set the hint counter values in every room depending on difficulty chosen
-    AIChatController.setHintCounter();
+    ChatController.setHintCounter();
     // start timer of timer manager by getting the instance
     ForestRoomController.getTimeManager().startTimer(timeRemaining);
   }

@@ -704,7 +704,7 @@ public class LabController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onWizardClicked() {
-    AIChatController.setBackground();
+    ChatController.setBackground();
     App.setUi(AppUi.AICHAT);
   }
 

@@ -174,19 +174,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  /**
-   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
-   *
-   * @param event mouseEvent 'on Mouse Clicked'
-   */
-  @FXML
-  private void onLeftArrowClicked(MouseEvent event) {
-    // Switch to the lab
-    ImageView imgView = (ImageView) event.getSource();
-    Scene sceneImageViewIsIn = imgView.getScene();
-    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
-    GameState.currentRoom = "lab";
-  }
+
 
   /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
@@ -203,15 +191,7 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  /**
-   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon.
-   *
-   * @param event mouse event
-   */
-  @FXML
-  private void onEnterIconScroll(MouseEvent event) {
-    pnScroll.setVisible(true);
-  }
+
 
   /**
    * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
@@ -235,10 +215,34 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onWizardClicked() {
-    AIChatController.setBackground();
+    ChatController.setBackground();
     App.setUi(AppUi.AICHAT);
   }
 
+    /**
+   * Handles the MouseEvent 'on Mouse Entered' for the imageView imgViewScrollIcon.
+   *
+   * @param event mouse event
+   */
+  @FXML
+  private void onEnterIconScroll(MouseEvent event) {
+    pnScroll.setVisible(true);
+  }
+
+    /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewLeftArrow.
+   *
+   * @param event mouseEvent 'on Mouse Clicked'
+   */
+  @FXML
+  private void onLeftArrowClicked(MouseEvent event) {
+    // Switch to the lab
+    ImageView imgView = (ImageView) event.getSource();
+    Scene sceneImageViewIsIn = imgView.getScene();
+    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+    GameState.currentRoom = "lab";
+  }
+  
   /**
    * Handles the Mouse Event 'on Mouse Click' for the ImageView imgViewSettings.
    *
