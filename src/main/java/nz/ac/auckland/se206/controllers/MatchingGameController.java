@@ -44,7 +44,6 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   private ImageView[] tiles; // Array of tile ImageViews
   private Tile[][] gameBoard; // Represents the game board (3x3 grid)
-  private TextToSpeech textToSpeech = new TextToSpeech();
 
   @FXML private Button btnSpeechExit;
   @FXML private Button buttonBack;
@@ -294,7 +293,7 @@ public class MatchingGameController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onWizardClicked() {
-    AIChatController.setBackground();
+    ChatController.setBackground();
     App.setUi(AppUi.AICHAT);
   }
 

@@ -12,8 +12,9 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
  */
 public class TimeManager {
 
-  public static int timeRemaining = 121;
   private static TimeManager instance;
+  public static int timeRemaining = 121;
+ 
 
   /** Gets the instance of the time manager. */
   public static TimeManager getInstance() {

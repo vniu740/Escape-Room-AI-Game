@@ -352,19 +352,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     }
   }
 
-  /**
-   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
-   *
-   * @param event mouse event
-   */
-  @FXML
-  private void onRightArrowClicked(MouseEvent event) {
-    // Switch to the Lab
-    ImageView imgView = (ImageView) event.getSource();
-    Scene sceneImageViewIsIn = imgView.getScene();
-    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
-    GameState.currentRoom = "lab";
-  }
+
 
   /** Helper method that sets the ingredient images of the potion recipe. */
   private void setPotionRecipeImages() {
@@ -391,15 +379,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
     pnScroll.setVisible(true);
   }
 
-  /**
-   * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
-   *
-   * @param event MouseEvent 'on Mouse Exited'
-   */
-  @FXML
-  private void onExitIconScroll(MouseEvent event) {
-    pnScroll.setVisible(false);
-  }
+
 
   /**
    * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewIngredient.
@@ -410,18 +390,39 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
   private void onIngredientClicked(MouseEvent event) {
     // Play the textToSpeech using a thread to make sure the app doesnt freeze
     if (GameState.isTextToSpeechEnabled == true) {
-      Thread speachThread =
-          new Thread(
-              () -> {
-                TextToSpeech textToSpeech = new TextToSpeech();
-                textToSpeech.speak("Item picked up");
-              });
+      Thread speachThread = new Thread(
+          () -> {
+            TextToSpeech textToSpeech = new TextToSpeech();
+            textToSpeech.speak("Item picked up");
+          });
       speachThread.start();
     }
     // remove the ingredient and change the GameState
     GameState.isForestCollected = true;
     GameState.itemsCollected++;
     imgViewIngredient.setVisible(false);
+  }
+    /**
+   * Handles the MouseEvent 'on Mouse Clicked' for the imageView imgViewRightArrow.
+   *
+   * @param event mouse event
+   */
+  @FXML
+  private void onRightArrowClicked(MouseEvent event) {
+    // Switch to the Lab
+    ImageView imgView = (ImageView) event.getSource();
+    Scene sceneImageViewIsIn = imgView.getScene();
+    sceneImageViewIsIn.setRoot(SceneManager.getUi(AppUi.LAB));
+    GameState.currentRoom = "lab";
+  }
+    /**
+   * Handles the MouseEvent 'on Mouse Exited' for the imageView imgViewScrollIcon.
+   *
+   * @param event MouseEvent 'on Mouse Exited'
+   */
+  @FXML
+  private void onExitIconScroll(MouseEvent event) {
+    pnScroll.setVisible(false);
   }
 
   /**
@@ -436,7 +437,7 @@ public class ForestRoomController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onWizardClicked() {
-    AIChatController.setBackground();
+    ChatController.setBackground();
     App.setUi(AppUi.AICHAT);
   }
 

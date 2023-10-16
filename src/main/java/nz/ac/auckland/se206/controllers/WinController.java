@@ -16,11 +16,27 @@ import nz.ac.auckland.se206.App;
  * below.
  */
 public class WinController {
+  
+      /**
+   * Handles when the retry button is clicked.
+   *
+   * @throws IOException exception for reloading
+   */
+  private Task<Void> restartTask =
+      new Task<>() {
+        @Override
+        protected Void call() throws Exception {
+          App.restartGame();
+          return null;
+        }
+      };
 
   @FXML private Button buttonRetryWin;
   @FXML private Button buttonCloseWin;
   @FXML private Label winTitle;
-  @FXML private ProgressIndicator progressIndicator;
+  @FXML
+  private ProgressIndicator progressIndicator;
+
 
   /** Initialises the win scene when called. */
   @FXML
@@ -57,17 +73,6 @@ public class WinController {
     th.start();
   }
 
-  /**
-   * Handles when the retry button is clicked.
-   *
-   * @throws IOException exception for reloading
-   */
-  Task<Void> restartTask =
-      new Task<>() {
-        @Override
-        protected Void call() throws Exception {
-          App.restartGame();
-          return null;
-        }
-      };
+
+
 }

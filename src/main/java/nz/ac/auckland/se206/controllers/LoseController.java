@@ -29,6 +29,19 @@ public class LoseController {
   public static void setItemCounter() {
     itemCounter.setText(Integer.toString(GameState.itemsCollected));
   }
+    /**
+   * Handles when the retry button is clicked.
+   *
+   * @throws IOException exception for reloading
+   */
+  private Task<Void> restartTask =
+      new Task<>() {
+        @Override
+        protected Void call() throws Exception {
+          App.restartGame();
+          return null;
+        }
+      };
 
   @FXML private Button buttonRetry;
   @FXML private Button buttonClose;
@@ -93,17 +106,5 @@ public class LoseController {
     th.start();
   }
 
-  /**
-   * Handles when the retry button is clicked.
-   *
-   * @throws IOException exception for reloading
-   */
-  Task<Void> restartTask =
-      new Task<>() {
-        @Override
-        protected Void call() throws Exception {
-          App.restartGame();
-          return null;
-        }
-      };
+
 }

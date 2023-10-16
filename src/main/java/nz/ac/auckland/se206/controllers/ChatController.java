@@ -48,7 +48,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
  * created by us. All images have been generated through OpenArt Creative 2023, created by the
  * developers, or falls into CC0 unless otherwise stated below.
  */
-public class AIChatController implements TimeManager.TimeUpdateListener {
+public class ChatController implements TimeManager.TimeUpdateListener {
 
   private static TimeManager timeManager;
   static int numHints;
