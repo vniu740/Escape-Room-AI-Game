@@ -140,14 +140,14 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
           new KeyFrame(
               Duration.millis(15),
               new EventHandler<ActionEvent>() {
-                private double x = 2;
-                private double y = 2;
+                private double speedHorizontal = 2;
+                private double speedVertical = 2;
 
                 @Override
                 public void handle(ActionEvent event) {
                   double initialScaleX;
-                  circle.setLayoutX(circle.getLayoutX() + x);
-                  circle.setLayoutY(circle.getLayoutY() + y);
+                  circle.setLayoutX(circle.getLayoutX() + speedHorizontal);
+                  circle.setLayoutY(circle.getLayoutY() + speedVertical);
 
                   double sceneMinX = paneBack.getLayoutX();
                   double sceneMinY = paneBack.getLayoutY();
@@ -160,9 +160,9 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                   boolean topBorder = circle.getLayoutY() <= (sceneMinY + circle.getRadius());
 
                   if (rightBorder || leftBorder) {
-                    x *= -1;
+                    speedHorizontal *= -1;
                     // Flip the image horizontally based on the direction of motion
-                    if (x > 0) {
+                    if (speedHorizontal > 0) {
                       initialScaleX = 1.0; // Image faces right
                     } else {
                       initialScaleX = -1.0; // Flip the image horizontally when moving left
@@ -174,7 +174,7 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
                     circle.getTransforms().add(scale);
                   }
                   if (bottomBorder || topBorder) {
-                    y *= -1;
+                    speedVertical *= -1;
                   }
                 }
               }));
@@ -394,7 +394,6 @@ public class AIChatController implements TimeManager.TimeUpdateListener {
       Text text = new Text(messageToSend);
       TextFlow textFlow = new TextFlow(text);
 
-      // textFlow.setStyle("-fx-background-color: #55cfff; -fx-background-radius: 20;");
       textFlow.setStyle("-fx-background-color: #9c42b4; -fx-background-radius: 20;");
       textFlow.setPadding(new Insets(5, 5, 10, 10));
 

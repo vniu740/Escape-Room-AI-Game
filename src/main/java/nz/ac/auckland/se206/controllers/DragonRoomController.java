@@ -35,8 +35,6 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
  * <p>imageLock: <a
  * href="https://www.freepik.com/free-vector/set-lockpad-icon_4150202.htm#query=cartoon%20lock&position=16&from_view=keyword&track=ais">Image
  * by brgfx</a> on Freepik.
- *
- * <p>
  */
 public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
@@ -135,10 +133,14 @@ public class DragonRoomController implements TimeManager.TimeUpdateListener {
 
   @FXML
   private void onLockClicked() {
+    // Remove the wizard speech bubble
     pnSpeech.setVisible(false);
+    //Change the scene to the matchGame
     GameState.currentRoom = "matchGame";
     App.setUi(AppUi.MATCHING);
+
     if (GameState.isTextToSpeechEnabled == true) {
+      // Read out the instructions for the match game
       Thread speachThread =
           new Thread(
               () -> {

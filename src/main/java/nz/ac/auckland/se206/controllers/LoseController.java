@@ -15,6 +15,9 @@ import nz.ac.auckland.se206.GameState;
  * Controller class for the fxml file lose.fxml. Attribution: All images have been generated through
  * OpenArt Creative 2023, created by the developers, or falls into CC0 unless otherwise stated
  * below.
+ *
+ * <p>counterBack: Source: https://freesvg.org/parchment-background-vector Liscence:
+ * https://creativecommons.org/licenses/by/4.0/ Published by: https://freesvg.org/by/OpenClipart.
  */
 public class LoseController {
 
@@ -74,7 +77,7 @@ public class LoseController {
   /**
    * Method that handles the event for clicking the retry button.
    *
-   * @throws IOException
+   * @throws IOException exception thrown
    */
   @FXML
   private void onRetryClicked() throws IOException {
@@ -99,12 +102,3 @@ public class LoseController {
     restartApp.start();
   }
 }
-
-/**
- * Attribution:
- *
- * <p>All images have been generated through OpenArt Creative 2023 unless otherwise stated below.
- *
- * <p>counterBack: Source: https://freesvg.org/parchment-background-vector Liscence:
- * https://creativecommons.org/licenses/by/4.0/ Published by: https://freesvg.org/by/OpenClipart
- */

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.image.Image;
 
+/**
+ * Class that manages the potion recipe.
+ * 
+ */
 public class PotionManager {
   private static List<Image> imgScrollList = new ArrayList<Image>();
   private static List<Image> forestObjectList = new ArrayList<Image>();

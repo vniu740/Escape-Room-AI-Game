@@ -1,5 +1,9 @@
 package nz.ac.auckland.se206;
 
+/**
+ * Class for the matching tiles in the match game.
+ * 
+ */
 public class Tile {
   private int value;
   private boolean faceUp;
