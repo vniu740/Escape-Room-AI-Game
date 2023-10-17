@@ -563,7 +563,8 @@ public class ChatController implements TimeManager.TimeUpdateListener {
         || input.toLowerCase().contains("here's another hint:")
         || input.toLowerCase().contains("will provide you with another hint")
         || input.toLowerCase().contains("will provide you with a hint")
-        || input.toLowerCase().contains("a final hint");
+        || input.toLowerCase().contains("a final hint")
+        || input.toLowerCase().contains("another hint you desire");
   }
 
   @FXML
