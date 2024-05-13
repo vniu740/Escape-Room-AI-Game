@@ -1,36 +1,15 @@
-# SOFTENG 206 - EscAIpe Room
+# EscAIpe Room
+This magical-themed escape room game, developed with JavaFX, distinguishes itself through the incorporation of AI technology, specifically OpenAI's GPT model. This integration ensures an immersive and enjoyable experience for players.
+  
+## Gameplay
+The gameplay revolves around a magical-themed escape room, made with JavaFX's intuitive graphics and interactive elements, bringing the adventure to life.
 
-## To setup OpenAI's API
+## AI Powered Interaction
+Embark on a journey guided by an AI-powered master, ready to interact and lead you through the game, guaranteeing personalized and engaging gameplay with every playthrou
 
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
-- put inside the credentials that you received from no-reply@digitaledu.ac.nz (put the quotes "")
+## Context Aware Hints
+AI-generated hints within the game adapt to your progress and actions, providing contextually aware suggestions for an optimized gameplay experience.
 
-  ```
-  email: "upi123@aucklanduni.ac.nz"
-  apiKey: "YOUR_KEY"
-  ```
-  these are your credentials to invoke the OpenAI GPT APIs
+## Engaging Puzzles
+Each puzzle is meticulously crafted to test problem-solving skills, ensuring an immersive and rewarding experience as players unravel the mysteries of the escape room
 
-## To setup codestyle's API
-
-- add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `codestyle.config`
-- put inside the credentials that you received from gradestyle@digitaledu.ac.nz (put the quotes "")
-
-  ```
-  email: "upi123@aucklanduni.ac.nz"
-  accessToken: "YOUR_KEY"
-  ```
-
- these are your credentials to invoke GradeStyle
-
-## To run the game
-
-`./mvnw clean javafx:run`
-
-## To debug the game
-
-`./mvnw clean javafx:run@debug` then in VS Code "Run & Debug", then run "Debug JavaFX"
-
-## To run codestyle
-
-`./mvnw clean compile exec:java@style`
